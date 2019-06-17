@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:n1="http://schemas.android.com/apk/res/android"
+    n1:id="@+id/layout_loading"
+    n1:layout_width="fill_parent"
+    n1:layout_height="fill_parent"
+    n1:clickable="true"
+    n1:focusable="true"
+    n1:padding="@dimen/_10sdp"
+    n1:visibility="gone">
+
+    <LinearLayout
+        n1:layout_width="wrap_content"
+        n1:layout_height="wrap_content"
+        n1:layout_centerInParent="true"
+        n1:background="@drawable/borders_more_corner"
+        n1:elevation="@dimen/_5sdp"
+        n1:gravity="center"
+        n1:outlineProvider="bounds"
+        n1:padding="@dimen/_15sdp">
+
+        <com.wang.avi.AVLoadingIndicatorView
+            xmlns:n2="http://schemas.android.com/apk/res-auto"
+            n1:id="@+id/loading"
+            n1:layout_width="wrap_content"
+            n1:layout_height="wrap_content"
+            n1:layout_centerInParent="true"
+            n1:layout_marginRight="@dimen/_10sdp"
+            n1:elevation="@dimen/_5sdp"
+            n1:outlineProvider="background"
+            n2:indicatorColor="@color/teal200"
+            n2:indicatorName="LineScalePartyIndicator" />
+
+        <TextView
+            n1:id="@+id/loading_message"
+            n1:layout_width="wrap_content"
+            n1:layout_height="wrap_content"
+            n1:layout_below="@+id/loading"
+            n1:layout_centerHorizontal="true"
+            n1:fontFamily="@font/condition_regular"
+            n1:text="Please Wait"
+            n1:textColor="@color/teal100"
+            n1:textSize="@dimen/_15ssp" />
+    </LinearLayout>
+</RelativeLayout>

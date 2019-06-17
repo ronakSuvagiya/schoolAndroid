@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="admission_no">
+        <item>Select Admission No</item>
+        <item>17293</item>
+        <item>172323</item>
+        <item>182934</item>
+        <item>201423</item>
+        <item>12341</item>
+    </string-array>
+    <string-array name="array_sort_value">
+        <item>Name</item>
+        <item>Size</item>
+        <item>Date</item>
+    </string-array>
+    <string-array name="choosenday">
+        <item>Today</item>
+        <item>Yesterday</item>
+        <item>Day Before Yesterday</item>
+    </string-array>
+    <string-array name="class_no">
+        <item>Select Class</item>
+        <item>6th Class</item>
+        <item>7th Class</item>
+        <item>8th Class</item>
+        <item>9th Class</item>
+        <item>10th Class</item>
+    </string-array>
+    <array name="custom_tab_colors">
+        <item>@color/white800</item>
+    </array>
+    <string-array name="delegates">
+        <item>Select Delegate</item>
+        <item>Praveen (Science)</item>
+        <item>Dinesh (History)</item>
+        <item>Vindhya (Music)</item>
+        <item>Akshay (Art and Design)</item>
+    </string-array>
+    <string-array name="employees">
+        <item>Employee Name</item>
+    </string-array>
+    <string-array name="gender">
+        <item>Select Gender</item>
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+    <string-array name="months">
+        <item>Month</item>
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
+    <string-array name="semesters">
+        <item>Select Semester</item>
+        <item>Semester 1</item>
+        <item>Semester 2</item>
+        <item>Semester 3</item>
+    </string-array>
+    <string-array name="sortby">
+        <item>Year</item>
+        <item>Month</item>
+    </string-array>
+    <string-array name="status">
+        <item>Select Status</item>
+        <item>Pending</item>
+        <item>Completed</item>
+    </string-array>
+    <string-array name="subjects">
+        <item>Select Subject</item>
+        <item>Maths</item>
+        <item>History</item>
+        <item>English</item>
+        <item>Science</item>
+        <item>Social</item>
+        <item>Hindi</item>
+        <item>Telugu</item>
+        <item>All</item>
+    </string-array>
+    <string-array name="teachers">
+        <item>Select Teacher</item>
+        <item>Geetanjali (Hindi)</item>
+        <item>Rohini (Science)</item>
+        <item>Hari Krishna (History)</item>
+        <item>Sujatha (Music)</item>
+        <item>Sachin (Art and Design)</item>
+    </string-array>
+    <string-array name="year">
+        <item>Year</item>
+        <item>2017-2018</item>
+    </string-array>
+</resources>

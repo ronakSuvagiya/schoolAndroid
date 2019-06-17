@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout n1:gravity="center" n1:background="@drawable/background_loading" n1:layout_width="fill_parent" n1:layout_height="wrap_content"
+  xmlns:n1="http://schemas.android.com/apk/res/android">
+    <LinearLayout n1:orientation="vertical" n1:layout_width="fill_parent" n1:layout_height="wrap_content" n1:layout_margin="@dimen/_10sdp">
+        <TextView n1:textSize="@dimen/_18ssp" n1:textStyle="bold" n1:textColor="@color/white900" n1:layout_gravity="center" n1:id="@+id/loading_message" n1:layout_width="wrap_content" n1:layout_height="wrap_content" n1:layout_marginTop="@dimen/_10sdp" n1:layout_marginBottom="@dimen/_10sdp" n1:text="Choose Action..!!" />
+        <LinearLayout n1:layout_width="fill_parent" n1:layout_height="wrap_content" n1:layout_marginTop="@dimen/_20sdp">
+            <com.apps.smartschoolmanagement.utils.ButtonTouchEffect n1:textColor="@color/red700" n1:layout_gravity="left" n1:id="@+id/btn_exit" n1:paddingLeft="@dimen/_10sdp" n1:paddingRight="@dimen/_10sdp" n1:layout_width="0.0dip" n1:layout_margin="@dimen/_10sdp" n1:text="Exit APP" n1:layout_weight="1.0" n1:backgroundTint="@color/red100" style="@style/Button_Style" />
+            <com.apps.smartschoolmanagement.utils.ButtonTouchEffect n1:textColor="@color/purple700" n1:layout_gravity="right" n1:id="@+id/btn_logout" n1:paddingLeft="@dimen/_10sdp" n1:paddingRight="@dimen/_10sdp" n1:layout_width="0.0dip" n1:layout_margin="@dimen/_10sdp" n1:text="LOG OUT" n1:layout_weight="1.0" n1:backgroundTint="@color/purple100" style="@style/Button_Style" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

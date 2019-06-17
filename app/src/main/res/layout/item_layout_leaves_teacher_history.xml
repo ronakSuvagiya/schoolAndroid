@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout n1:layout_width="fill_parent" n1:layout_height="wrap_content"
+  xmlns:n1="http://schemas.android.com/apk/res/android">
+    <TextView n1:textSize="13.0sp" n1:textStyle="bold" n1:textColor="#ffffffff" n1:id="@+id/leave_date" n1:background="@drawable/corner_round" n1:paddingLeft="@dimen/_10sdp" n1:paddingTop="5.0dip" n1:paddingRight="@dimen/_10sdp" n1:paddingBottom="5.0dip" n1:layout_width="wrap_content" n1:layout_height="wrap_content" n1:layout_marginTop="@dimen/_8sdp" n1:layout_centerHorizontal="true" n1:elevation="8.0dip" n1:backgroundTint="@android:color/holo_blue_dark" n1:outlineProvider="background" />
+    <androidx.cardview.widget.CardView n1:id="@+id/cardview" n1:layout_width="fill_parent" n1:layout_height="wrap_content" n1:layout_marginLeft="@dimen/_10sdp" n1:layout_marginTop="25.0dip" n1:layout_marginRight="@dimen/_10sdp" n1:layout_marginBottom="8.0dip" n2:cardCornerRadius="5.0dip" n2:cardElevation="4.0dip" xmlns:n2="http://schemas.android.com/apk/res-auto">
+        <LinearLayout n1:orientation="vertical" n1:paddingTop="@dimen/_10sdp" n1:layout_width="fill_parent" n1:layout_height="wrap_content">
+            <LinearLayout n1:layout_width="fill_parent" n1:layout_height="wrap_content">
+                <LinearLayout n1:orientation="vertical" n1:layout_width="fill_parent" n1:layout_height="wrap_content">
+                    <LinearLayout n1:orientation="vertical" n1:background="@drawable/borders_b" n1:padding="@dimen/_8sdp" n1:layout_width="fill_parent" n1:layout_height="wrap_content">
+                        <LinearLayout n1:layout_width="fill_parent" n1:layout_height="wrap_content">
+                            <TextView n1:textSize="14.0sp" n1:gravity="center_vertical" n1:layout_gravity="center" n1:layout_width="0.0dip" n1:layout_height="fill_parent" n1:layout_marginBottom="5.0dip" n1:text="Name" n1:layout_weight="0.4" n1:lineSpacingMultiplier="1.2" />
+                            <TextView n1:textSize="16.0sp" n1:textStyle="bold" n1:gravity="center_vertical" n1:layout_gravity="center" n1:id="@+id/name" n1:layout_width="0.0dip" n1:layout_height="fill_parent" n1:layout_marginBottom="5.0dip" n1:layout_weight="0.6" n1:lineSpacingMultiplier="1.2" />
+                        </LinearLayout>
+                        <LinearLayout n1:id="@+id/layout_class" n1:layout_width="fill_parent" n1:layout_height="wrap_content">
+                            <TextView n1:textSize="14.0sp" n1:gravity="center_vertical" n1:layout_gravity="center" n1:layout_width="0.0dip" n1:layout_height="fill_parent" n1:layout_marginBottom="5.0dip" n1:text="Class" n1:layout_weight="0.4" n1:lineSpacingMultiplier="1.2" />
+                            <TextView n1:textSize="16.0sp" n1:gravity="center_vertical" n1:layout_gravity="center" n1:id="@+id/clas" n1:layout_width="0.0dip" n1:layout_height="fill_parent" n1:layout_marginBottom="5.0dip" n1:layout_weight="0.6" n1:lineSpacingMultiplier="1.2" />
+                        </LinearLayout>
+                        <LinearLayout n1:layout_width="fill_parent" n1:layout_height="wrap_content">
+                            <TextView n1:textSize="14.0sp" n1:gravity="center_vertical" n1:layout_gravity="center" n1:layout_width="0.0dip" n1:layout_height="fill_parent" n1:layout_marginBottom="5.0dip" n1:text="Reason" n1:layout_weight="0.4" n1:lineSpacingMultiplier="1.2" />
+                            <TextView n1:textSize="16.0sp" n1:gravity="center_vertical" n1:layout_gravity="center" n1:id="@+id/reason" n1:layout_width="0.0dip" n1:layout_height="fill_parent" n1:layout_marginBottom="5.0dip" n1:layout_weight="0.6" n1:lineSpacingMultiplier="1.2" />
+                        </LinearLayout>
+                        <LinearLayout n1:layout_width="fill_parent" n1:layout_height="wrap_content">
+                            <TextView n1:textSize="14.0sp" n1:gravity="center_vertical" n1:layout_gravity="center" n1:layout_width="0.0dip" n1:layout_height="fill_parent" n1:layout_marginBottom="5.0dip" n1:text="Status" n1:layout_weight="0.4" n1:lineSpacingMultiplier="1.2" />
+                            <TextView n1:textSize="16.0sp" n1:textStyle="bold" n1:gravity="center_vertical" n1:layout_gravity="center" n1:id="@+id/status" n1:layout_width="0.0dip" n1:layout_height="fill_parent" n1:layout_marginBottom="5.0dip" n1:layout_weight="0.6" n1:lineSpacingMultiplier="1.2" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

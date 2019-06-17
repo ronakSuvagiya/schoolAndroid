@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:n1="http://schemas.android.com/apk/res/android"
+    n1:layout_width="wrap_content"
+    n1:layout_height="wrap_content">
+
+    <TextView
+        n1:id="@+id/date_text"
+        n1:layout_width="wrap_content"
+        n1:layout_height="wrap_content"
+        n1:layout_centerHorizontal="true"
+        n1:layout_margin="10.0dip"
+        n1:background="@drawable/corner_round"
+        n1:backgroundTint="@android:color/holo_blue_dark"
+        n1:clickable="true"
+        n1:elevation="8.0dip"
+        n1:outlineProvider="background"
+        n1:paddingLeft="@dimen/_10sdp"
+        n1:paddingTop="5.0dip"
+        n1:paddingRight="@dimen/_10sdp"
+        n1:paddingBottom="5.0dip"
+        n1:text="08 Oct 2017"
+        n1:textColor="#ffffffff"
+        n1:textSize="13.0sp"
+        n1:textStyle="bold" />
+</LinearLayout>

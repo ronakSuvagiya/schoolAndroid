@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout n1:padding="5.0dip" n1:layout_width="wrap_content" n1:layout_height="wrap_content"
+  xmlns:n1="http://schemas.android.com/apk/res/android">
+    <RelativeLayout n1:id="@+id/layoutRoot" n1:layout_width="fill_parent" n1:layout_height="80.0dip">
+        <ImageView n1:layout_gravity="center" n1:id="@+id/icon_album" n1:padding="3.0dip" n1:layout_width="80.0dip" n1:layout_height="80.0dip" n1:scaleType="centerCrop" n1:layout_alignParentLeft="true" n1:layout_centerVertical="true" />
+        <LinearLayout n1:gravity="center_vertical" n1:orientation="vertical" n1:padding="5.0dip" n1:layout_width="wrap_content" n1:layout_height="fill_parent" n1:layout_toLeftOf="@+id/iconNext" n1:layout_toRightOf="@+id/icon_album">
+            <TextView n1:textSize="15.0sp" n1:textColor="#ff161616" n1:id="@+id/name_album" n1:layout_width="wrap_content" n1:layout_height="wrap_content" n1:text="Name album" n1:maxLines="1" n1:singleLine="true" />
+            <TextView n1:textSize="12.0sp" n1:textColor="#ff888888" n1:id="@+id/path_album" n1:layout_width="wrap_content" n1:layout_height="wrap_content" n1:text="sdcard/photo/0/new" n1:maxLines="1" />
+        </LinearLayout>
+        <ImageView n1:id="@+id/iconNext" n1:layout_width="20.0dip" n1:layout_height="20.0dip" n1:src="@drawable/piclist_icon_next" n1:layout_alignParentRight="true" n1:layout_centerVertical="true" />
+        <Button n1:background="#ffe4e4e4" n1:layout_width="fill_parent" n1:layout_height="1.0px" n1:layout_alignParentBottom="true" />
+    </RelativeLayout>
+</RelativeLayout>

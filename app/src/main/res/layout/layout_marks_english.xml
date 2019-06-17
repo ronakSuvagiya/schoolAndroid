@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow n1:layout_width="fill_parent" n1:layout_height="wrap_content" n1:divider="@drawable/divider"
+  xmlns:n1="http://schemas.android.com/apk/res/android">
+    <TextView n1:textSize="13.0sp" n1:textStyle="bold" n1:gravity="center" n1:id="@+id/subject" n1:background="@drawable/borders_r" n1:padding="@dimen/_8sdp" n1:layout_width="100.0dip" n1:layout_height="wrap_content" n1:text="English" />
+    <TextView n1:textSize="13.0sp" n1:gravity="center" n1:id="@+id/obtained" n1:background="@drawable/borders_r" n1:padding="@dimen/_8sdp" n1:layout_width="100.0dip" n1:layout_height="wrap_content" n1:text="90" />
+    <TextView n1:textSize="13.0sp" n1:gravity="center" n1:id="@+id/total" n1:background="@drawable/borders_r" n1:padding="@dimen/_8sdp" n1:layout_width="100.0dip" n1:layout_height="wrap_content" n1:text="100" />
+    <TextView n1:textSize="13.0sp" n1:textColor="@android:color/holo_green_dark" n1:gravity="center" n1:id="@+id/result" n1:background="@drawable/borders_r" n1:padding="@dimen/_8sdp" n1:layout_width="100.0dip" n1:layout_height="wrap_content" n1:text="Pass" />
+    <TextView n1:textSize="13.0sp" n1:gravity="center" n1:id="@+id/grade" n1:padding="@dimen/_8sdp" n1:layout_width="100.0dip" n1:layout_height="wrap_content" n1:text="A" />
+</TableRow>

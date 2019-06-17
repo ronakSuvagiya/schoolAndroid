@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:n1="http://schemas.android.com/apk/res/android"
+    n1:id="@+id/main_layout"
+    n1:layout_width="fill_parent"
+    n1:layout_height="fill_parent"
+    n1:background="@color/blue_grey_700"
+    n1:orientation="vertical"
+    n1:weightSum="4.0">
+
+    <LinearLayout
+        n1:layout_width="fill_parent"
+        n1:layout_height="0.0dip"
+        n1:layout_weight="3.0"
+        n1:gravity="center_horizontal"
+        n1:orientation="vertical">
+
+        <ImageView
+            n1:id="@+id/google_icon"
+            n1:layout_width="48.0dip"
+            n1:layout_height="48.0dip"
+            n1:layout_marginTop="100.0dip"
+            n1:layout_marginBottom="@dimen/_8sdp"
+            n1:contentDescription="@string/desc_google_icon"
+            n1:src="@drawable/googleg_color" />
+
+        <TextView
+            n1:id="@+id/title_text"
+            n1:layout_width="wrap_content"
+            n1:layout_height="wrap_content"
+            n1:layout_marginBottom="@dimen/_8sdp"
+            n1:gravity="center"
+            n1:text="Google Plus Signin"
+            n1:textColor="@android:color/white"
+            n1:textSize="36.0sp" />
+
+        <TextView
+            n1:id="@+id/status"
+            n1:layout_width="wrap_content"
+            n1:layout_height="wrap_content"
+            n1:text="@string/signed_out"
+            n1:textColor="@android:color/white"
+            n1:textSize="14.0sp" />
+
+        <TextView
+            n1:id="@+id/detail"
+            n1:layout_width="wrap_content"
+            n1:layout_height="wrap_content"
+            n1:fadeScrollbars="true"
+            n1:gravity="center"
+            n1:maxLines="5"
+            n1:padding="@dimen/_8sdp"
+            n1:scrollbars="vertical"
+            n1:textColor="@android:color/white"
+            n1:textSize="14.0sp" />
+
+        <com.apps.smartschoolmanagement.utils.ButtonTouchEffect
+            n1:id="@+id/btn_optional_action"
+            style="@style/Button_Style"
+            n1:layout_gravity="center_horizontal"
+            n1:layout_margin="20.0dip"
+            n1:paddingLeft="@dimen/_35sdp"
+            n1:paddingRight="@dimen/_35sdp"
+            n1:text="Continue Using App"
+            n1:visibility="gone" />
+    </LinearLayout>
+
+    <RelativeLayout
+        n1:layout_width="fill_parent"
+        n1:layout_height="0.0dip"
+        n1:layout_weight="1.0"
+        n1:background="@color/blue_grey_900">
+
+        <com.google.android.gms.common.SignInButton
+            n1:id="@+id/sign_in_button"
+            n1:layout_width="wrap_content"
+            n1:layout_height="wrap_content"
+            n1:layout_centerInParent="true"
+            n1:visibility="visible" />
+
+        <LinearLayout
+            n1:id="@+id/sign_out_and_disconnect"
+            n1:layout_width="fill_parent"
+            n1:layout_height="wrap_content"
+            n1:layout_centerInParent="true"
+            n1:orientation="horizontal"
+            n1:paddingLeft="16.0dip"
+            n1:paddingRight="16.0dip"
+            n1:visibility="gone">
+
+            <Button
+                n1:id="@+id/sign_out_button"
+                n1:layout_width="0.0dip"
+                n1:layout_height="fill_parent"
+                n1:layout_weight="1.0"
+                n1:text="@string/sign_out"
+                n1:theme="@style/ThemeOverlay.MyDarkButton" />
+
+            <Button
+                n1:id="@+id/disconnect_button"
+                n1:layout_width="0.0dip"
+                n1:layout_height="fill_parent"
+                n1:layout_weight="1.0"
+                n1:text="@string/disconnect"
+                n1:theme="@style/ThemeOverlay.MyDarkButton" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

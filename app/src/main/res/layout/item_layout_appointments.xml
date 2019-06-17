@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:n1="http://schemas.android.com/apk/res/android"
+    n1:layout_width="fill_parent"
+    n1:layout_height="wrap_content"
+    n1:orientation="vertical"
+    n1:padding="@dimen/_5sdp">
+
+    <com.apps.smartschoolmanagement.utils.CircleImage xmlns:n2="http://schemas.android.com/apk/res-auto"
+        n1:id="@+id/profilePic"
+        n1:layout_width="@dimen/_40sdp"
+        n1:layout_height="@dimen/_40sdp"
+        n1:layout_alignParentRight="true"
+        n1:elevation="@dimen/_10sdp"
+        n1:src="@drawable/img_profile"
+        n2:civ_border_color="#ccffffff"
+        n2:civ_border_width="@dimen/_2sdp" />
+
+    <TextView
+        n1:id="@+id/appointment_date"
+        n1:layout_width="wrap_content"
+        n1:layout_height="wrap_content"
+        n1:layout_alignTop="@+id/card"
+        n1:layout_centerHorizontal="true"
+        n1:layout_marginRight="@dimen/_40sdp"
+        n1:background="@drawable/borders_rltb_littlewhite"
+        n1:elevation="@dimen/_10sdp"
+        n1:gravity="center"
+        n1:outlineProvider="bounds"
+        n1:paddingLeft="@dimen/_5sdp"
+        n1:paddingTop="@dimen/_3sdp"
+        n1:paddingRight="@dimen/_5sdp"
+        n1:paddingBottom="@dimen/_2sdp"
+        n1:text="asdfasdfasfd"
+        n1:textColor="@color/blue_grey_600"
+        n1:textSize="@dimen/_10ssp"
+        n1:textStyle="bold" />
+
+    <androidx.cardview.widget.CardView xmlns:n3="http://schemas.android.com/apk/res-auto"
+        n1:id="@+id/card"
+        n1:layout_width="fill_parent"
+        n1:layout_height="wrap_content"
+        n1:layout_marginTop="@dimen/_20sdp"
+        n1:elevation="@dimen/_5sdp"
+        n3:cardBackgroundColor="#f2ffffff"
+        n3:cardCornerRadius="@dimen/_5sdp">
+
+        <RelativeLayout
+            n1:layout_width="fill_parent"
+            n1:layout_height="wrap_content"
+            n1:paddingTop="@dimen/_20sdp">
+
+            <LinearLayout
+                n1:layout_width="fill_parent"
+                n1:layout_height="wrap_content">
+
+                <LinearLayout
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="wrap_content"
+                    n1:layout_weight="1.0"
+                    n1:orientation="vertical"
+                    n1:paddingLeft="@dimen/_5sdp"
+                    n1:paddingRight="@dimen/_5sdp">
+
+                    <LinearLayout
+                        n1:layout_width="fill_parent"
+                        n1:layout_height="wrap_content"
+                        n1:orientation="vertical">
+
+                        <LinearLayout
+                            n1:layout_width="fill_parent"
+                            n1:layout_height="wrap_content"
+                            n1:layout_weight="1.0"
+                            n1:gravity="center_vertical"
+                            n1:padding="@dimen/_4sdp">
+
+                            <TextView
+                                n1:layout_width="0.0dip"
+                                n1:layout_height="wrap_content"
+                                n1:layout_weight="0.4"
+                                n1:gravity="left"
+                                n1:text="Name"
+                                n1:textColor="#99000000"
+                                n1:textSize="@dimen/_11ssp" />
+
+                            <TextView
+                                n1:id="@+id/name"
+                                n1:layout_width="0.0dip"
+                                n1:layout_height="wrap_content"
+                                n1:layout_weight="0.7"
+                                n1:gravity="left"
+                                n1:paddingLeft="@dimen/_5sdp"
+                                n1:textColor="#f2000000"
+                                n1:textSize="@dimen/_12ssp"
+                                n1:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            n1:id="@+id/layout_class"
+                            n1:layout_width="fill_parent"
+                            n1:layout_height="wrap_content"
+                            n1:gravity="center_vertical"
+                            n1:padding="@dimen/_4sdp">
+
+                            <TextView
+                                n1:layout_width="0.0dip"
+                                n1:layout_height="wrap_content"
+                                n1:layout_weight="0.4"
+                                n1:text="Class"
+                                n1:textColor="#99000000"
+                                n1:textSize="@dimen/_11ssp" />
+
+                            <TextView
+                                n1:id="@+id/className"
+                                n1:layout_width="0.0dip"
+                                n1:layout_height="wrap_content"
+                                n1:layout_weight="0.7"
+                                n1:gravity="left"
+                                n1:paddingLeft="@dimen/_5sdp"
+                                n1:textColor="@color/blue_grey_600"
+                                n1:textSize="@dimen/_12ssp"
+                                n1:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            n1:id="@+id/layout_roll"
+                            n1:layout_width="fill_parent"
+                            n1:layout_height="wrap_content"
+                            n1:gravity="center_vertical"
+                            n1:padding="@dimen/_4sdp">
+
+                            <TextView
+                                n1:layout_width="0.0dip"
+                                n1:layout_height="wrap_content"
+                                n1:layout_weight="0.4"
+                                n1:text="Admission No."
+                                n1:textColor="#99000000"
+                                n1:textSize="@dimen/_11ssp" />
+
+                            <TextView
+                                n1:id="@+id/roll"
+                                n1:layout_width="0.0dip"
+                                n1:layout_height="wrap_content"
+                                n1:layout_weight="0.7"
+                                n1:gravity="left"
+                                n1:paddingLeft="@dimen/_5sdp"
+                                n1:textColor="@color/blue_grey_600"
+                                n1:textSize="@dimen/_12ssp"
+                                n1:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            n1:id="@+id/layout_reason"
+                            n1:layout_width="fill_parent"
+                            n1:layout_height="wrap_content"
+                            n1:layout_marginBottom="@dimen/_5sdp"
+                            n1:gravity="center_vertical"
+                            n1:padding="@dimen/_4sdp">
+
+                            <TextView
+                                n1:layout_width="0.0dip"
+                                n1:layout_height="wrap_content"
+                                n1:layout_weight="0.4"
+                                n1:text="Regarding"
+                                n1:textColor="#99000000"
+                                n1:textSize="@dimen/_11ssp" />
+
+                            <TextView
+                                n1:id="@+id/reason"
+                                n1:layout_width="0.0dip"
+                                n1:layout_height="wrap_content"
+                                n1:layout_weight="0.7"
+                                n1:gravity="left"
+                                n1:paddingLeft="@dimen/_5sdp"
+                                n1:textColor="@color/blue_grey_600"
+                                n1:textSize="@dimen/_12ssp"
+                                n1:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

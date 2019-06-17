@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:n1="http://schemas.android.com/apk/res/android"
+    n1:id="@+id/coordinatorlayout"
+    n1:layout_width="fill_parent"
+    n1:layout_height="fill_parent">
+
+    <ScrollView
+        style="@style/Scrollview_Style"
+        n1:background="@color/background">
+
+        <LinearLayout
+            n1:layout_width="fill_parent"
+            n1:layout_height="fill_parent"
+            n1:gravity="center_horizontal"
+            n1:orientation="vertical"
+            n1:padding="@dimen/_10sdp">
+
+            <LinearLayout
+                n1:id="@+id/layout_selection"
+                n1:layout_width="fill_parent"
+                n1:layout_height="wrap_content"
+                n1:layout_marginBottom="@dimen/_16sdp"
+                n1:orientation="vertical">
+
+                <FrameLayout
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="wrap_content"
+                    n1:layout_marginBottom="@dimen/_16sdp"
+                    n1:background="@drawable/borders_rltb_white_background">
+
+                    <Spinner
+                        n1:id="@+id/spnr_class"
+                        n1:layout_width="fill_parent"
+                        n1:layout_height="@dimen/_35sdp"
+                        n1:alpha="0.7"
+                        n1:paddingLeft="@dimen/_4sdp" />
+                </FrameLayout>
+
+                <FrameLayout
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="wrap_content"
+                    n1:background="@drawable/borders_rltb_white_background">
+
+                    <Spinner
+                        n1:id="@+id/spnr_admission"
+                        n1:layout_width="fill_parent"
+                        n1:layout_height="@dimen/_35sdp"
+                        n1:alpha="0.7"
+                        n1:paddingLeft="@dimen/_4sdp" />
+                </FrameLayout>
+
+                <com.apps.smartschoolmanagement.utils.ButtonTouchEffect
+                    n1:id="@+id/btn_search"
+                    style="@style/Button_Style"
+                    n1:layout_gravity="center_horizontal"
+                    n1:layout_marginTop="@dimen/_8sdp"
+                    n1:background="@drawable/corner_rectangle"
+                    n1:paddingLeft="@dimen/_35sdp"
+                    n1:paddingRight="@dimen/_35sdp"
+                    n1:text="Search" />
+            </LinearLayout>
+
+            <LinearLayout
+                n1:id="@+id/root_layout"
+                n1:layout_width="fill_parent"
+                n1:layout_height="wrap_content"
+                n1:orientation="vertical"
+                n1:visibility="gone">
+
+                <RelativeLayout
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="wrap_content">
+
+                    <com.apps.smartschoolmanagement.utils.CircleImage xmlns:n2="http://schemas.android.com/apk/res-auto"
+                        n1:id="@+id/file_path"
+                        n1:layout_width="120.0dip"
+                        n1:layout_height="120.0dip"
+                        n1:layout_centerHorizontal="true"
+                        n1:src="@drawable/img_profile"
+                        n2:civ_border_color="#ff000000"
+                        n2:civ_border_width="2.0dip" />
+
+                    <ImageButton
+                        n1:id="@+id/btn_edit"
+                        n1:layout_width="wrap_content"
+                        n1:layout_height="wrap_content"
+                        n1:layout_alignParentRight="true"
+                        n1:background="@android:color/transparent"
+                        n1:foreground="@drawable/touch_effect_rectangle"
+                        n1:padding="@dimen/_8sdp"
+                        n1:src="@drawable/img_edit" />
+                </RelativeLayout>
+
+                <TextView
+                    n1:id="@+id/name"
+                    style="@style/Textview_Style_Header"
+                    n1:layout_marginTop="@dimen/_10sdp"
+                    n1:layout_marginBottom="5.0dip"
+                    n1:text="Abhilash"
+                    n1:textColor="@color/colorPrimaryDark" />
+
+                <TextView
+                    n1:id="@+id/designation"
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="wrap_content"
+                    n1:layout_marginBottom="@dimen/_16sdp"
+                    n1:gravity="center"
+                    n1:text="Student"
+                    n1:textSize="17.0sp" />
+
+                <LinearLayout
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="wrap_content"
+                    n1:background="@drawable/borders_rltb">
+
+                    <TextView
+                        n1:layout_width="0.0dip"
+                        n1:layout_height="wrap_content"
+                        n1:layout_gravity="center"
+                        n1:layout_weight="1.0"
+                        n1:gravity="center_vertical"
+                        n1:padding="@dimen/_10sdp"
+                        n1:text="@string/admission_no"
+                        n1:textSize="17.0sp" />
+
+                    <View
+                        n1:layout_width="0.5dip"
+                        n1:layout_height="fill_parent"
+                        n1:background="#33000000" />
+
+                    <TextView
+                        n1:id="@+id/roll"
+                        n1:layout_width="0.0dip"
+                        n1:layout_height="wrap_content"
+                        n1:layout_gravity="center"
+                        n1:layout_weight="1.2"
+                        n1:gravity="center_vertical"
+                        n1:padding="@dimen/_10sdp"
+                        n1:textSize="17.0sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="wrap_content"
+                    n1:background="@drawable/borders_rltb">
+
+                    <TextView
+                        n1:layout_width="0.0dip"
+                        n1:layout_height="wrap_content"
+                        n1:layout_gravity="center"
+                        n1:layout_weight="1.0"
+                        n1:gravity="center_vertical"
+                        n1:padding="@dimen/_10sdp"
+                        n1:text="@string/birthday"
+                        n1:textSize="17.0sp" />
+
+                    <View
+                        n1:layout_width="0.5dip"
+                        n1:layout_height="fill_parent"
+                        n1:background="#33000000" />
+
+                    <TextView
+                        n1:id="@+id/birthday"
+                        n1:layout_width="0.0dip"
+                        n1:layout_height="wrap_content"
+                        n1:layout_gravity="center"
+                        n1:layout_weight="1.2"
+                        n1:gravity="center_vertical"
+                        n1:padding="@dimen/_10sdp"
+                        n1:textSize="17.0sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="wrap_content"
+                    n1:background="@drawable/borders_rltb">
+
+                    <TextView
+                        n1:layout_width="0.0dip"
+                        n1:layout_height="wrap_content"
+                        n1:layout_gravity="center"
+                        n1:layout_weight="1.0"
+                        n1:gravity="center_vertical"
+                        n1:padding="@dimen/_10sdp"
+                        n1:text="@string/email"
+                        n1:textSize="17.0sp" />
+
+                    <View
+                        n1:layout_width="0.5dip"
+                        n1:layout_height="fill_parent"
+                        n1:background="#33000000" />
+
+                    <TextView
+                        n1:id="@+id/email"
+                        n1:layout_width="0.0dip"
+                        n1:layout_height="wrap_content"
+                        n1:layout_gravity="center"
+                        n1:layout_weight="1.2"
+                        n1:gravity="center_vertical"
+                        n1:padding="@dimen/_10sdp"
+                        n1:textSize="17.0sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="wrap_content"
+                    n1:background="@drawable/borders_rltb">
+
+                    <TextView
+                        n1:layout_width="0.0dip"
+                        n1:layout_height="wrap_content"
+                        n1:layout_gravity="center"
+                        n1:layout_weight="1.0"
+                        n1:gravity="center_vertical"
+                        n1:padding="@dimen/_10sdp"
+                        n1:text="@string/phone_no"
+                        n1:textSize="17.0sp" />
+
+                    <View
+                        n1:layout_width="0.5dip"
+                        n1:layout_height="fill_parent"
+                        n1:background="#33000000" />
+
+                    <TextView
+                        n1:id="@+id/phone"
+                        n1:layout_width="0.0dip"
+                        n1:layout_height="wrap_content"
+                        n1:layout_gravity="center"
+                        n1:layout_weight="1.2"
+                        n1:gravity="center_vertical"
+                        n1:padding="@dimen/_10sdp"
+                        n1:textSize="17.0sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="wrap_content"
+                    n1:background="@drawable/borders_rltb">
+
+                    <TextView
+                        n1:layout_width="0.0dip"
+                        n1:layout_height="wrap_content"
+                        n1:layout_gravity="center"
+                        n1:layout_weight="1.0"
+                        n1:gravity="center_vertical"
+                        n1:padding="@dimen/_10sdp"
+                        n1:text="@string/student_class"
+                        n1:textSize="17.0sp" />
+
+                    <View
+                        n1:layout_width="0.5dip"
+                        n1:layout_height="fill_parent"
+                        n1:background="#33000000" />
+
+                    <TextView
+                        n1:id="@+id/className"
+                        n1:layout_width="0.0dip"
+                        n1:layout_height="wrap_content"
+                        n1:layout_gravity="center"
+                        n1:layout_weight="1.2"
+                        n1:gravity="center_vertical"
+                        n1:padding="@dimen/_10sdp"
+                        n1:textSize="17.0sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="wrap_content"
+                    n1:background="@drawable/borders_rltb">
+
+                    <TextView
+                        n1:layout_width="0.0dip"
+                        n1:layout_height="wrap_content"
+                        n1:layout_gravity="center"
+                        n1:layout_weight="1.0"
+                        n1:gravity="center_vertical"
+                        n1:padding="@dimen/_10sdp"
+                        n1:text="@string/class_teacher"
+                        n1:textSize="17.0sp" />
+
+                    <View
+                        n1:layout_width="0.5dip"
+                        n1:layout_height="fill_parent"
+                        n1:background="#33000000" />
+
+                    <TextView
+                        n1:id="@+id/teacherName"
+                        n1:layout_width="0.0dip"
+                        n1:layout_height="wrap_content"
+                        n1:layout_gravity="center"
+                        n1:layout_weight="1.2"
+                        n1:gravity="center_vertical"
+                        n1:padding="@dimen/_10sdp"
+                        n1:textSize="17.0sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="wrap_content"
+                    n1:background="@drawable/borders_rltb">
+
+                    <TextView
+                        n1:layout_width="0.0dip"
+                        n1:layout_height="wrap_content"
+                        n1:layout_gravity="center"
+                        n1:layout_weight="1.0"
+                        n1:gravity="center_vertical"
+                        n1:padding="@dimen/_10sdp"
+                        n1:text="@string/bus_no"
+                        n1:textSize="17.0sp" />
+
+                    <View
+                        n1:layout_width="0.5dip"
+                        n1:layout_height="fill_parent"
+                        n1:background="#33000000" />
+
+                    <TextView
+                        n1:id="@+id/bus_number"
+                        n1:layout_width="0.0dip"
+                        n1:layout_height="wrap_content"
+                        n1:layout_gravity="center"
+                        n1:layout_weight="1.2"
+                        n1:gravity="center_vertical"
+                        n1:padding="@dimen/_10sdp"
+                        n1:textSize="17.0sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <include layout="@layout/layout_loading" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

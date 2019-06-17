@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout n1:id="@+id/coordinatorlayout" n1:layout_width="fill_parent" n1:layout_height="fill_parent"
+  xmlns:n1="http://schemas.android.com/apk/res/android">
+    <ScrollView n1:background="@color/background" style="@style/Scrollview_Style">
+        <LinearLayout n1:orientation="vertical" n1:padding="@dimen/_12sdp" n1:layout_width="fill_parent" n1:layout_height="fill_parent">
+            <LinearLayout n1:orientation="vertical" n1:id="@+id/layout_action" n1:layout_width="fill_parent" n1:layout_height="wrap_content" n1:layout_marginBottom="@dimen/_16sdp">
+                <FrameLayout n1:background="@drawable/borders_rltb_white_background" n1:layout_width="fill_parent" n1:layout_height="wrap_content" n1:layout_marginBottom="@dimen/_16sdp">
+                    <Spinner n1:id="@+id/spnr_class" n1:paddingLeft="@dimen/_4sdp" n1:layout_width="fill_parent" n1:layout_height="@dimen/_35sdp" n1:alpha="0.7" />
+                </FrameLayout>
+                <FrameLayout n1:background="@drawable/borders_rltb_white_background" n1:layout_width="fill_parent" n1:layout_height="wrap_content">
+                    <Spinner n1:id="@+id/spnr_student" n1:paddingLeft="@dimen/_4sdp" n1:layout_width="fill_parent" n1:layout_height="@dimen/_35sdp" n1:alpha="0.7" />
+                </FrameLayout>
+                <com.apps.smartschoolmanagement.utils.ButtonTouchEffect n1:layout_gravity="center_horizontal" n1:id="@+id/btn_search" n1:background="@drawable/corner_rectangle" n1:paddingLeft="@dimen/_35sdp" n1:paddingRight="@dimen/_35sdp" n1:layout_marginTop="@dimen/_10sdp" n1:text="Search" style="@style/Button_Style" />
+            </LinearLayout>
+            <TextView n1:id="@+id/error" n1:layout_marginBottom="10.0dip" n1:text="No Records Found" style="@style/TextFields_Error" />
+            <LinearLayout n1:orientation="vertical" n1:id="@+id/root_layout" n1:layout_width="fill_parent" n1:layout_height="wrap_content">
+                <LinearLayout n1:orientation="horizontal" n1:layout_width="fill_parent" n1:layout_height="wrap_content" n1:layout_marginBottom="@dimen/_10sdp">
+                    <TextView n1:textSize="18.0sp" n1:textStyle="bold" n1:gravity="left" n1:layout_gravity="center_vertical" n1:layout_width="fill_parent" n1:layout_height="wrap_content" n1:text="Last Checkup Date :" n1:layout_weight="1.0" />
+                    <TextView n1:textSize="13.0sp" n1:textStyle="bold" n1:textColor="#ffffffff" n1:layout_gravity="center_vertical" n1:id="@+id/date" n1:background="@drawable/corner_round" n1:paddingLeft="@dimen/_10sdp" n1:paddingTop="5.0dip" n1:paddingRight="@dimen/_10sdp" n1:paddingBottom="5.0dip" n1:visibility="gone" n1:layout_width="wrap_content" n1:layout_height="wrap_content" n1:layout_centerHorizontal="true" n1:elevation="8.0dip" n1:backgroundTint="@android:color/holo_blue_dark" n1:outlineProvider="background" />
+                </LinearLayout>
+                <HorizontalScrollView n1:id="@+id/horizontalScrollView" n1:background="@android:color/transparent" n1:layout_marginLeft="-10.0dip" n1:layout_marginRight="-10.0dip" n1:backgroundTint="#ccffffff" style="@style/Horizontal_Scrollview_Style">
+                    <LinearLayout n1:gravity="center" n1:orientation="horizontal" n1:id="@+id/layout_horizontal" n1:layout_width="fill_parent" n1:layout_height="wrap_content" />
+                </HorizontalScrollView>
+                <androidx.cardview.widget.CardView n1:layout_width="fill_parent" n1:layout_height="wrap_content" n1:layout_marginTop="@dimen/_5sdp" n1:layout_marginBottom="@dimen/_8sdp" n2:cardBackgroundColor="#ffffffff" n2:cardCornerRadius="@dimen/_6sdp" n2:cardElevation="@dimen/_5sdp" xmlns:n2="http://schemas.android.com/apk/res-auto">
+                    <LinearLayout n1:background="@drawable/borders_rltb" n1:layout_width="fill_parent" n1:layout_height="wrap_content">
+                        <ImageButton n1:background="@color/colorPrimary" n1:paddingLeft="@dimen/_10sdp" n1:paddingTop="5.0dip" n1:paddingRight="@dimen/_10sdp" n1:paddingBottom="5.0dip" n1:layout_width="wrap_content" n1:layout_height="fill_parent" n1:src="@drawable/img_bp" />
+                        <TextView n1:textSize="16.0sp" n1:textStyle="bold" n1:gravity="center_vertical" n1:layout_gravity="center" n1:padding="@dimen/_10sdp" n1:layout_width="fill_parent" n1:layout_height="fill_parent" n1:text="Blood Pressure" n1:layout_weight="0.7" />
+                        <TextView n1:textSize="16.0sp" n1:layout_gravity="center" n1:id="@+id/blood_pressure" n1:padding="@dimen/_10sdp" n1:layout_width="wrap_content" n1:layout_height="fill_parent" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView n1:layout_width="fill_parent" n1:layout_height="wrap_content" n1:layout_marginBottom="@dimen/_8sdp" n3:cardBackgroundColor="#ffffffff" n3:cardCornerRadius="@dimen/_6sdp" n3:cardElevation="@dimen/_5sdp" xmlns:n3="http://schemas.android.com/apk/res-auto">
+                    <LinearLayout n1:background="@drawable/borders_rltb" n1:layout_width="fill_parent" n1:layout_height="wrap_content">
+                        <ImageButton n1:background="@color/colorPrimary" n1:paddingLeft="@dimen/_10sdp" n1:paddingTop="5.0dip" n1:paddingRight="@dimen/_10sdp" n1:paddingBottom="5.0dip" n1:layout_width="wrap_content" n1:layout_height="fill_parent" n1:src="@drawable/img_eye" />
+                        <TextView n1:textSize="16.0sp" n1:textStyle="bold" n1:gravity="center_vertical" n1:layout_gravity="center" n1:padding="@dimen/_10sdp" n1:layout_width="fill_parent" n1:layout_height="fill_parent" n1:text="Eye Vision" n1:layout_weight="1.0" />
+                        <LinearLayout n1:orientation="vertical" n1:padding="@dimen/_8sdp" n1:layout_width="wrap_content" n1:layout_height="fill_parent">
+                            <TextView n1:textSize="14.0sp" n1:gravity="center" n1:layout_gravity="center" n1:layout_width="wrap_content" n1:layout_height="wrap_content" n1:layout_marginBottom="5.0dip" n1:text="Left Eye" />
+                            <TextView n1:textSize="14.0sp" n1:layout_gravity="center" n1:id="@+id/left_eye_vision" n1:layout_width="wrap_content" n1:layout_height="wrap_content" />
+                        </LinearLayout>
+                        <LinearLayout n1:orientation="vertical" n1:padding="@dimen/_8sdp" n1:layout_width="wrap_content" n1:layout_height="fill_parent">
+                            <TextView n1:textSize="14.0sp" n1:gravity="center" n1:layout_gravity="center" n1:layout_width="wrap_content" n1:layout_height="wrap_content" n1:layout_marginBottom="5.0dip" n1:text="Right Eye" />
+                            <TextView n1:textSize="14.0sp" n1:layout_gravity="center" n1:id="@+id/right_eye_vision" n1:layout_width="wrap_content" n1:layout_height="wrap_content" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView n1:layout_width="fill_parent" n1:layout_height="wrap_content" n1:layout_marginBottom="@dimen/_8sdp" n4:cardBackgroundColor="#ffffffff" n4:cardCornerRadius="@dimen/_6sdp" n4:cardElevation="@dimen/_5sdp" xmlns:n4="http://schemas.android.com/apk/res-auto">
+                    <LinearLayout n1:background="@drawable/borders_rltb" n1:layout_width="fill_parent" n1:layout_height="wrap_content">
+                        <ImageButton n1:background="@color/colorPrimary" n1:paddingLeft="@dimen/_10sdp" n1:paddingTop="5.0dip" n1:paddingRight="@dimen/_10sdp" n1:paddingBottom="5.0dip" n1:layout_width="wrap_content" n1:layout_height="fill_parent" n1:src="@drawable/img_height" />
+                        <TextView n1:textSize="16.0sp" n1:textStyle="bold" n1:gravity="center_vertical" n1:layout_gravity="center" n1:padding="@dimen/_10sdp" n1:layout_width="fill_parent" n1:layout_height="fill_parent" n1:text="Height" n1:layout_weight="1.0" />
+                        <TextView n1:textSize="16.0sp" n1:layout_gravity="center" n1:id="@+id/height" n1:padding="@dimen/_10sdp" n1:layout_width="wrap_content" n1:layout_height="fill_parent" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView n1:layout_width="fill_parent" n1:layout_height="wrap_content" n1:layout_marginBottom="@dimen/_8sdp" n5:cardBackgroundColor="#ffffffff" n5:cardCornerRadius="@dimen/_6sdp" n5:cardElevation="@dimen/_5sdp" xmlns:n5="http://schemas.android.com/apk/res-auto">
+                    <LinearLayout n1:background="@drawable/borders_rltb" n1:layout_width="fill_parent" n1:layout_height="wrap_content">
+                        <ImageButton n1:background="@color/colorPrimary" n1:paddingLeft="@dimen/_10sdp" n1:paddingTop="5.0dip" n1:paddingRight="@dimen/_10sdp" n1:paddingBottom="5.0dip" n1:layout_width="wrap_content" n1:layout_height="fill_parent" n1:src="@drawable/img_weight" />
+                        <TextView n1:textSize="16.0sp" n1:textStyle="bold" n1:gravity="center_vertical" n1:layout_gravity="center" n1:padding="@dimen/_10sdp" n1:layout_width="fill_parent" n1:layout_height="fill_parent" n1:text="Weight" n1:layout_weight="1.0" />
+                        <TextView n1:textSize="16.0sp" n1:layout_gravity="center" n1:id="@+id/weight" n1:padding="@dimen/_10sdp" n1:layout_width="wrap_content" n1:layout_height="fill_parent" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView n1:layout_width="fill_parent" n1:layout_height="wrap_content" n1:layout_marginBottom="@dimen/_8sdp" n6:cardBackgroundColor="#ffffffff" n6:cardCornerRadius="@dimen/_6sdp" n6:cardElevation="@dimen/_5sdp" xmlns:n6="http://schemas.android.com/apk/res-auto">
+                    <LinearLayout n1:background="@drawable/borders_rltb" n1:layout_width="fill_parent" n1:layout_height="wrap_content">
+                        <ImageButton n1:background="@color/colorPrimary" n1:paddingLeft="@dimen/_10sdp" n1:paddingTop="5.0dip" n1:paddingRight="@dimen/_10sdp" n1:paddingBottom="5.0dip" n1:layout_width="wrap_content" n1:layout_height="fill_parent" n1:src="@drawable/img_dental" />
+                        <TextView n1:textSize="16.0sp" n1:textStyle="bold" n1:gravity="center_vertical" n1:layout_gravity="center" n1:padding="@dimen/_10sdp" n1:layout_width="fill_parent" n1:layout_height="fill_parent" n1:text="Dental Hygiene" n1:layout_weight="1.0" />
+                        <TextView n1:textSize="16.0sp" n1:layout_gravity="center" n1:id="@+id/dental_hydiene" n1:padding="@dimen/_10sdp" n1:layout_width="wrap_content" n1:layout_height="fill_parent" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView n1:layout_width="fill_parent" n1:layout_height="wrap_content" n1:layout_marginBottom="@dimen/_8sdp" n7:cardBackgroundColor="#ffffffff" n7:cardCornerRadius="@dimen/_6sdp" n7:cardElevation="@dimen/_5sdp" xmlns:n7="http://schemas.android.com/apk/res-auto">
+                    <LinearLayout n1:background="@drawable/borders_rltb" n1:layout_width="fill_parent" n1:layout_height="wrap_content">
+                        <ImageButton n1:background="@color/colorPrimary" n1:paddingLeft="@dimen/_10sdp" n1:paddingTop="5.0dip" n1:paddingRight="@dimen/_10sdp" n1:paddingBottom="5.0dip" n1:layout_width="wrap_content" n1:layout_height="fill_parent" n1:src="@drawable/img_blood_donation" />
+                        <TextView n1:textSize="16.0sp" n1:textStyle="bold" n1:gravity="center_vertical" n1:layout_gravity="center" n1:padding="@dimen/_10sdp" n1:layout_width="fill_parent" n1:layout_height="fill_parent" n1:text="Blood Group" n1:layout_weight="1.0" />
+                        <TextView n1:textSize="16.0sp" n1:layout_gravity="center" n1:id="@+id/blood_group" n1:padding="@dimen/_10sdp" n1:layout_width="wrap_content" n1:layout_height="fill_parent" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+    <include layout="@layout/layout_loading" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

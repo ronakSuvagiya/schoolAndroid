@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout n1:id="@+id/coordinatorlayout" n1:layout_width="fill_parent" n1:layout_height="fill_parent"
+  xmlns:n1="http://schemas.android.com/apk/res/android">
+    <ScrollView n1:id="@+id/scrollView" n1:background="@color/background" style="@style/Scrollview_Style">
+        <LinearLayout n1:orientation="vertical" n1:padding="@dimen/_12sdp" n1:layout_width="fill_parent" n1:layout_height="fill_parent">
+            <TextView n1:id="@+id/error" n1:text="Please fill all the fields" style="@style/TextFields_Error" />
+            <FrameLayout n1:id="@+id/layout_teacher" n1:background="@drawable/borders_rltb_white_background" n1:visibility="gone" n1:layout_width="fill_parent" n1:layout_height="wrap_content" n1:layout_marginBottom="@dimen/_16sdp">
+                <Spinner n1:entries="@array/teachers" n1:id="@+id/spnr_teacher" n1:paddingLeft="@dimen/_4sdp" n1:layout_width="fill_parent" n1:layout_height="@dimen/_35sdp" n1:alpha="0.7" />
+            </FrameLayout>
+            <LinearLayout n1:gravity="center" n1:layout_width="fill_parent" n1:layout_height="wrap_content" n1:layout_marginBottom="@dimen/_10sdp">
+                <TextView n1:textSize="15.0sp" n1:paddingLeft="@dimen/_4sdp" n1:layout_width="wrap_content" n1:layout_height="wrap_content" n1:text="Apply Leave On" />
+                <com.apps.smartschoolmanagement.utils.EditTextClearable n1:id="@+id/date" n1:layout_marginLeft="@dimen/_10sdp" n1:hint="Select Date" n1:inputType="date" style="@style/Edittext_DateTime" />
+            </LinearLayout>
+            <LinearLayout n1:orientation="horizontal" n1:layout_width="fill_parent" n1:layout_height="wrap_content" n1:layout_marginBottom="@dimen/_10sdp">
+                <TextView n1:textSize="15.0sp" n1:gravity="center_vertical" n1:layout_gravity="center_vertical" n1:paddingLeft="@dimen/_4sdp" n1:layout_width="0.0dip" n1:layout_height="wrap_content" n1:text="No.of days you want to apply for from the starting date" n1:layout_weight="1.0" n1:lineSpacingMultiplier="1.2" />
+                <EditText n1:gravity="center" n1:layout_gravity="center_vertical" n1:id="@+id/days" n1:layout_width="wrap_content" n1:layout_marginLeft="@dimen/_10sdp" n1:minWidth="@dimen/_60sdp" n1:maxLength="2" n1:inputType="numberDecimal" style="@style/Edittext_Editable" />
+            </LinearLayout>
+            <com.apps.smartschoolmanagement.utils.EditTextClearable n1:textColorHint="#55000000" n1:gravity="top" n1:id="@+id/edit_leave_reason" n1:background="@drawable/borders_rltb_white_background" n1:padding="@dimen/_8sdp" n1:layout_width="fill_parent" n1:layout_height="wrap_content" n1:maxHeight="@dimen/_130sdp" n1:hint="Enter Reason for Leave..." />
+            <com.apps.smartschoolmanagement.utils.ButtonTouchEffect n1:layout_gravity="center_horizontal" n1:id="@+id/btn_apply" n1:background="@drawable/corner_rectangle" n1:paddingLeft="@dimen/_35sdp" n1:paddingRight="@dimen/_35sdp" n1:layout_marginTop="@dimen/_25sdp" n1:text="Apply" style="@style/Button_Style" />
+        </LinearLayout>
+    </ScrollView>
+    <include layout="@layout/layout_loading" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

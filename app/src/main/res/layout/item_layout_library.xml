@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout n1:layout_width="fill_parent" n1:layout_height="wrap_content"
+  xmlns:n1="http://schemas.android.com/apk/res/android">
+    <androidx.cardview.widget.CardView n1:layout_width="fill_parent" n1:layout_height="wrap_content" n1:layout_margin="10.0dip" n2:cardBackgroundColor="#ffffffff" n2:cardCornerRadius="@dimen/_6sdp" n2:cardElevation="@dimen/_5sdp" xmlns:n2="http://schemas.android.com/apk/res-auto">
+        <LinearLayout n1:background="@drawable/borders_rltb" n1:layout_width="fill_parent" n1:layout_height="wrap_content">
+            <LinearLayout n1:orientation="vertical" n1:padding="@dimen/_8sdp" n1:layout_width="fill_parent" n1:layout_height="wrap_content" n1:layout_weight="1.0">
+                <LinearLayout n1:orientation="horizontal" n1:layout_width="fill_parent" n1:layout_height="wrap_content" n1:layout_marginBottom="@dimen/_8sdp">
+                    <TextView n1:textSize="14.0sp" n1:textStyle="bold" n1:gravity="left" n1:layout_gravity="center_vertical" n1:layout_width="0.0dip" n1:layout_height="wrap_content" n1:text="Book Name" n1:layout_weight="0.35" />
+                    <TextView n1:textSize="16.0sp" n1:textStyle="bold" n1:layout_gravity="center_vertical" n1:id="@+id/book_name" n1:layout_width="0.0dip" n1:layout_height="wrap_content" n1:layout_weight="0.65" />
+                </LinearLayout>
+                <LinearLayout n1:orientation="horizontal" n1:layout_width="fill_parent" n1:layout_height="wrap_content" n1:layout_marginBottom="@dimen/_8sdp">
+                    <TextView n1:textSize="14.0sp" n1:textStyle="bold" n1:gravity="left" n1:layout_gravity="center_vertical" n1:layout_width="0.0dip" n1:layout_height="wrap_content" n1:text="Student Name" n1:layout_weight="0.35" />
+                    <TextView n1:textSize="16.0sp" n1:textStyle="bold" n1:layout_gravity="center_vertical" n1:id="@+id/student_name" n1:layout_width="0.0dip" n1:layout_height="wrap_content" n1:layout_weight="0.65" />
+                </LinearLayout>
+                <LinearLayout n1:orientation="horizontal" n1:layout_width="fill_parent" n1:layout_height="wrap_content" n1:layout_marginBottom="@dimen/_8sdp">
+                    <TextView n1:textSize="14.0sp" n1:textStyle="bold" n1:gravity="left" n1:layout_gravity="center_vertical" n1:layout_width="0.0dip" n1:layout_height="wrap_content" n1:text="Date of Taken" n1:layout_weight="0.35" />
+                    <TextView n1:textSize="16.0sp" n1:textStyle="bold" n1:layout_gravity="center_vertical" n1:id="@+id/date_taken" n1:layout_width="0.0dip" n1:layout_height="wrap_content" n1:layout_weight="0.65" />
+                </LinearLayout>
+                <LinearLayout n1:orientation="horizontal" n1:layout_width="fill_parent" n1:layout_height="wrap_content" n1:layout_marginBottom="@dimen/_8sdp">
+                    <TextView n1:textSize="14.0sp" n1:textStyle="bold" n1:gravity="left" n1:layout_gravity="center_vertical" n1:layout_width="0.0dip" n1:layout_height="wrap_content" n1:text="Date of Submit" n1:layout_weight="0.35" />
+                    <TextView n1:textSize="16.0sp" n1:textStyle="bold" n1:layout_gravity="center_vertical" n1:id="@+id/submit_date" n1:layout_width="0.0dip" n1:layout_height="wrap_content" n1:layout_weight="0.65" />
+                </LinearLayout>
+                <LinearLayout n1:orientation="horizontal" n1:layout_width="fill_parent" n1:layout_height="fill_parent">
+                    <TextView n1:gravity="right" n1:layout_gravity="center_vertical" n1:id="@+id/status_text" n1:layout_width="wrap_content" n1:layout_height="wrap_content" n1:layout_weight="1.0" />
+                    <ImageView n1:id="@+id/status_icon" n1:layout_width="wrap_content" n1:layout_height="wrap_content" n1:src="@drawable/img_book" n1:layout_weight="0.1" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

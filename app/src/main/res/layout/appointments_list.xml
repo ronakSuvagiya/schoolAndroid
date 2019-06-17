@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:n1="http://schemas.android.com/apk/res/android"
+    n1:id="@+id/coordinatorlayout"
+    n1:layout_width="fill_parent"
+    n1:layout_height="fill_parent">
+
+    <LinearLayout
+        n1:layout_width="fill_parent"
+        n1:layout_height="fill_parent"
+        n1:background="@color/background"
+        n1:orientation="vertical"
+        n1:padding="@dimen/_12sdp">
+
+        <LinearLayout
+            n1:layout_width="fill_parent"
+            n1:layout_height="wrap_content"
+            n1:layout_marginLeft="20.0dip"
+            n1:layout_marginRight="20.0dip"
+            n1:layout_marginBottom="50.0dip"
+            n1:gravity="center">
+
+            <TextView
+                n1:layout_width="wrap_content"
+                n1:layout_height="wrap_content"
+                n1:layout_marginRight="@dimen/_10sdp"
+                n1:background="@drawable/dotted_underline"
+                n1:paddingLeft="@dimen/_4sdp"
+                n1:paddingRight="@dimen/_4sdp"
+                n1:text="Sort By"
+                n1:textSize="18.0sp"
+                n1:textStyle="bold" />
+
+            <FrameLayout
+                n1:layout_width="fill_parent"
+                n1:layout_height="wrap_content"
+                n1:background="@drawable/borders_rltb_white_background"
+                n1:padding="1.0dip">
+
+                <Spinner
+                    n1:id="@+id/spnr_employee"
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="@dimen/_40sdp"
+                    n1:alpha="0.7"
+                    n1:entries="@array/choosenday"
+                    n1:paddingLeft="@dimen/_4sdp" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView xmlns:n2="http://schemas.android.com/apk/res-auto"
+            n1:layout_width="fill_parent"
+            n1:layout_height="wrap_content"
+            n1:layout_marginBottom="@dimen/_8sdp"
+            n2:cardCornerRadius="@dimen/_6sdp"
+            n2:cardElevation="@dimen/_5sdp">
+
+            <LinearLayout
+                n1:layout_width="fill_parent"
+                n1:layout_height="wrap_content"
+                n1:background="@drawable/borders_rltb"
+                n1:orientation="vertical"
+                n1:padding="@dimen/_8sdp">
+
+                <TextView
+                    style="@style/Textview_Style_Header"
+                    n1:layout_marginBottom="@dimen/_8sdp"
+                    n1:gravity="left"
+                    n1:text="Abhilash"
+                    n1:textSize="20.0sp" />
+
+                <TextView
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="wrap_content"
+                    n1:layout_gravity="center"
+                    n1:text="Neque porro quisquam est qul dolorem"
+                    n1:textSize="16.0sp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView xmlns:n3="http://schemas.android.com/apk/res-auto"
+            n1:layout_width="fill_parent"
+            n1:layout_height="wrap_content"
+            n1:layout_marginBottom="@dimen/_8sdp"
+            n3:cardCornerRadius="@dimen/_6sdp"
+            n3:cardElevation="@dimen/_5sdp">
+
+            <LinearLayout
+                n1:layout_width="fill_parent"
+                n1:layout_height="wrap_content"
+                n1:background="@drawable/borders_rltb"
+                n1:orientation="vertical"
+                n1:padding="@dimen/_8sdp">
+
+                <TextView
+                    style="@style/Textview_Style_Header"
+                    n1:layout_marginBottom="@dimen/_8sdp"
+                    n1:gravity="left"
+                    n1:text="Sujatha"
+                    n1:textSize="20.0sp" />
+
+                <TextView
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="wrap_content"
+                    n1:layout_gravity="center"
+                    n1:text="Neque porro quisquam est qul dolorem"
+                    n1:textSize="16.0sp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView xmlns:n4="http://schemas.android.com/apk/res-auto"
+            n1:layout_width="fill_parent"
+            n1:layout_height="wrap_content"
+            n1:layout_marginBottom="@dimen/_8sdp"
+            n4:cardCornerRadius="@dimen/_6sdp"
+            n4:cardElevation="@dimen/_5sdp">
+
+            <LinearLayout
+                n1:layout_width="fill_parent"
+                n1:layout_height="wrap_content"
+                n1:background="@drawable/borders_rltb"
+                n1:orientation="vertical"
+                n1:padding="@dimen/_8sdp">
+
+                <TextView
+                    style="@style/Textview_Style_Header"
+                    n1:layout_marginBottom="@dimen/_8sdp"
+                    n1:gravity="left"
+                    n1:text="Githanjali"
+                    n1:textSize="20.0sp" />
+
+                <TextView
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="wrap_content"
+                    n1:layout_gravity="center"
+                    n1:text="Neque porro quisquam est qul dolorem"
+                    n1:textSize="16.0sp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <ListView
+            n1:id="@+id/listview_appointments"
+            style="@style/ListView_Style" />
+    </LinearLayout>
+
+    <include layout="@layout/layout_loading" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

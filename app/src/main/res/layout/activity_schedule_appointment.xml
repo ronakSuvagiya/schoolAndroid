@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:n1="http://schemas.android.com/apk/res/android"
+    n1:id="@+id/coordinatorlayout"
+    n1:layout_width="fill_parent"
+    n1:layout_height="wrap_content">
+
+    <ScrollView
+        n1:id="@+id/scrollView"
+        style="@style/Scrollview_Style"
+        n1:background="@drawable/borders_more_corner">
+
+        <LinearLayout
+            n1:layout_width="fill_parent"
+            n1:layout_height="fill_parent"
+            n1:orientation="vertical"
+            n1:padding="@dimen/_12sdp">
+
+            <TextView
+                style="@style/Textview_Style_Header"
+                n1:text="Schedule Appointment"
+                n1:textColor="#ccffffff" />
+
+            <View
+                n1:layout_width="fill_parent"
+                n1:layout_height="0.5dip"
+                n1:layout_marginTop="@dimen/_8sdp"
+                n1:layout_marginBottom="@dimen/_16sdp"
+                n1:background="#ccffffff" />
+
+            <com.apps.smartschoolmanagement.utils.EditTextClearable
+                n1:id="@+id/edit_leave_reason"
+                style="@style/Edittext_Editable"
+                n1:layout_marginBottom="@dimen/_10sdp"
+                n1:hint="Appointment Reason..."
+                n1:maxHeight="@dimen/_100sdp"
+                n1:padding="@dimen/_8sdp"
+                n1:textColorHint="#55000000" />
+
+            <FrameLayout
+                n1:id="@+id/layout_delegate"
+                n1:layout_width="fill_parent"
+                n1:layout_height="wrap_content"
+                n1:layout_marginBottom="@dimen/_10sdp"
+                n1:background="@drawable/borders_rltb_white_background">
+
+                <Spinner
+                    n1:id="@+id/spnr_teacher"
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="@dimen/_35sdp"
+                    n1:alpha="0.7"
+                    n1:paddingLeft="@dimen/_4sdp" />
+            </FrameLayout>
+
+            <LinearLayout
+                n1:layout_width="fill_parent"
+                n1:layout_height="wrap_content">
+
+                <com.apps.smartschoolmanagement.utils.EditTextClearable
+                    n1:id="@+id/date"
+                    style="@style/Edittext_DateTime"
+                    n1:layout_marginRight="@dimen/_10sdp"
+                    n1:layout_weight="1.0"
+                    n1:hint="Select Date"
+                    n1:inputType="date" />
+
+                <com.apps.smartschoolmanagement.utils.EditTextClearable
+                    n1:id="@+id/time"
+                    style="@style/Edittext_DateTime"
+                    n1:layout_width="130.0dip"
+                    n1:hint="Time"
+                    n1:inputType="time" />
+            </LinearLayout>
+
+            <com.apps.smartschoolmanagement.utils.ButtonTouchEffect
+                n1:id="@+id/btn_schedule"
+                style="@style/Button_Style"
+                n1:layout_gravity="center_horizontal"
+                n1:layout_marginTop="@dimen/_25sdp"
+                n1:layout_marginBottom="@dimen/_10sdp"
+                n1:background="@drawable/corner_rectangle"
+                n1:paddingLeft="@dimen/_35sdp"
+                n1:paddingRight="@dimen/_35sdp"
+                n1:text="Schedule" />
+        </LinearLayout>
+    </ScrollView>
+
+    <include layout="@layout/layout_loading" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

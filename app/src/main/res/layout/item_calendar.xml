@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:n1="http://schemas.android.com/apk/res/android"
+    n1:id="@+id/layoutBackground"
+    n1:layout_width="wrap_content"
+    n1:layout_height="wrap_content"
+    n1:gravity="center"
+    n1:orientation="vertical">
+
+    <TextView
+        n1:id="@+id/monthName"
+        n1:layout_width="wrap_content"
+        n1:layout_height="wrap_content"
+        n1:layout_marginTop="4.0dip"
+        n1:text="Jan"
+        n1:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+    <TextView
+        n1:id="@+id/dayNumber"
+        n1:layout_width="wrap_content"
+        n1:layout_height="wrap_content"
+        n1:layout_marginTop="4.0dip"
+        n1:text="2"
+        n1:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        n1:textStyle="bold" />
+
+    <TextView
+        n1:id="@+id/dayName"
+        n1:layout_width="wrap_content"
+        n1:layout_height="wrap_content"
+        n1:layout_marginTop="4.0dip"
+        n1:text="Mon"
+        n1:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+    <View
+        n1:id="@+id/selection_view"
+        n1:layout_width="fill_parent"
+        n1:layout_height="5.0dip"
+        n1:layout_marginTop="4.0dip"
+        n1:background="#fff00f0f"
+        n1:visibility="visible" />
+</LinearLayout>

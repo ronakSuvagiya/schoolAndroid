@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView n1:background="@color/background" style="@style/Scrollview_Style"
+  xmlns:n1="http://schemas.android.com/apk/res/android">
+    <LinearLayout n1:orientation="vertical" n1:layout_width="fill_parent" n1:layout_height="fill_parent" n1:layout_margin="16.0dip">
+        <LinearLayout n1:layout_width="fill_parent" n1:layout_height="wrap_content">
+            <FrameLayout n1:layout_width="wrap_content" n1:layout_height="wrap_content" n1:layout_weight="1.0">
+                <com.apps.smartschoolmanagement.utils.CircleDisplay n1:layout_gravity="center" n1:id="@+id/circleDisplay1" n1:clickable="true" n1:layout_width="140.0dip" n1:layout_height="140.0dip" />
+                <TextView n1:textSize="17.0sp" n1:textStyle="bold" n1:textColor="#ffffffff" n1:gravity="center" n1:layout_gravity="center" n1:layout_width="wrap_content" n1:layout_height="wrap_content" n1:text="Pending\nLeaves" />
+            </FrameLayout>
+            <FrameLayout n1:layout_width="wrap_content" n1:layout_height="wrap_content" n1:layout_weight="1.0">
+                <com.apps.smartschoolmanagement.utils.CircleDisplay n1:layout_gravity="center" n1:id="@+id/circleDisplay2" n1:layout_width="140.0dip" n1:layout_height="140.0dip" />
+                <TextView n1:textSize="17.0sp" n1:textStyle="bold" n1:textColor="#ffffffff" n1:gravity="center" n1:layout_gravity="center" n1:layout_width="wrap_content" n1:layout_height="wrap_content" n1:text="Confirmed\nLeaves" />
+            </FrameLayout>
+        </LinearLayout>
+        <LinearLayout n1:gravity="center" n1:layout_width="fill_parent" n1:layout_height="wrap_content" n1:layout_margin="20.0dip">
+            <TextView n1:textSize="18.0sp" n1:textStyle="bold" n1:background="@drawable/dotted_underline" n1:paddingLeft="@dimen/_4sdp" n1:paddingRight="@dimen/_4sdp" n1:layout_width="wrap_content" n1:layout_height="wrap_content" n1:layout_marginRight="@dimen/_10sdp" n1:text="Sort By" />
+            <FrameLayout n1:background="@drawable/borders_rltb_white_background" n1:padding="1.0dip" n1:layout_width="fill_parent" n1:layout_height="wrap_content">
+                <Spinner n1:entries="@array/choosenday" n1:id="@+id/spnr_sortby" n1:paddingLeft="@dimen/_10sdp" n1:layout_width="fill_parent" n1:layout_height="@dimen/_35sdp" n1:alpha="0.7" />
+            </FrameLayout>
+        </LinearLayout>
+        <LinearLayout n1:orientation="vertical" n1:background="@drawable/borders_rltb_white_background" n1:layout_width="fill_parent" n1:layout_height="wrap_content">
+            <LinearLayout n1:orientation="vertical" n1:background="@drawable/borders_rltb" n1:padding="@dimen/_8sdp" n1:layout_width="fill_parent" n1:layout_height="wrap_content">
+                <TextView n1:textSize="20.0sp" n1:gravity="left" n1:layout_marginBottom="@dimen/_8sdp" n1:text="Abhilash" style="@style/Textview_Style_Header" />
+                <TextView n1:textSize="16.0sp" n1:layout_gravity="center" n1:layout_width="fill_parent" n1:layout_height="wrap_content" n1:text="Neque porro quisquam est qul dolorem" />
+                <LinearLayout n1:orientation="vertical" n1:id="@+id/layout_action" n1:layout_width="fill_parent" n1:layout_height="wrap_content">
+                    <View n1:background="#99000000" n1:layout_width="fill_parent" n1:layout_height="0.70000005dip" n1:layout_marginLeft="-10.0dip" n1:layout_marginTop="@dimen/_8sdp" n1:layout_marginRight="-10.0dip" />
+                    <LinearLayout n1:layout_width="fill_parent" n1:layout_height="wrap_content" n1:layout_marginTop="@dimen/_8sdp">
+                        <FrameLayout n1:layout_width="wrap_content" n1:layout_height="wrap_content" n1:layout_weight="1.0">
+                            <com.apps.smartschoolmanagement.utils.ButtonTouchEffect n1:layout_gravity="center_horizontal" n1:id="@+id/btn_accept" n1:background="@drawable/corner_rectangle" n1:paddingLeft="25.0dip" n1:paddingRight="25.0dip" n1:text="Accept" n1:layout_weight="1.0" style="@style/Button_Style" />
+                        </FrameLayout>
+                        <FrameLayout n1:layout_width="wrap_content" n1:layout_height="wrap_content" n1:layout_weight="1.0">
+                            <com.apps.smartschoolmanagement.utils.ButtonTouchEffect n1:layout_gravity="center_horizontal" n1:id="@+id/btn_decline" n1:background="@drawable/corner_rectangle" n1:paddingLeft="25.0dip" n1:paddingRight="25.0dip" n1:text="Decline" style="@style/Button_Style" />
+                        </FrameLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

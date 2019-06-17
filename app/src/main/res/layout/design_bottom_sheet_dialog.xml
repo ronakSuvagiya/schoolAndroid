@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:n1="http://schemas.android.com/apk/res/android"
+    n1:id="@+id/container"
+    n1:layout_width="fill_parent"
+    n1:layout_height="fill_parent"
+    n1:fitsSystemWindows="true">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        n1:id="@+id/coordinator"
+        n1:layout_width="fill_parent"
+        n1:layout_height="fill_parent"
+        n1:fitsSystemWindows="true">
+
+        <View
+            n1:id="@+id/touch_outside"
+            n1:layout_width="fill_parent"
+            n1:layout_height="fill_parent"
+            n1:importantForAccessibility="no"
+            n1:soundEffectsEnabled="false" />
+
+        <FrameLayout xmlns:n2="http://schemas.android.com/apk/res-auto"
+            n1:id="@+id/design_bottom_sheet"
+            style="?bottomSheetStyle"
+            n1:layout_width="fill_parent"
+            n1:layout_height="wrap_content"
+            n1:layout_gravity="center|top"
+            n2:layout_behavior="@string/bottom_sheet_behavior" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</FrameLayout>

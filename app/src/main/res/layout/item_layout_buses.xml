@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:n1="http://schemas.android.com/apk/res/android"
+    n1:layout_width="fill_parent"
+    n1:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView xmlns:n2="http://schemas.android.com/apk/res-auto"
+        n1:layout_width="fill_parent"
+        n1:layout_height="wrap_content"
+        n1:layout_margin="10.0dip"
+        n2:cardBackgroundColor="#ffffffff"
+        n2:cardCornerRadius="@dimen/_6sdp"
+        n2:cardElevation="@dimen/_5sdp">
+
+        <LinearLayout
+            n1:layout_width="fill_parent"
+            n1:layout_height="wrap_content"
+            n1:background="@drawable/borders_rltb">
+
+            <ImageButton
+                n1:layout_width="wrap_content"
+                n1:layout_height="fill_parent"
+                n1:background="#ffdddddd"
+                n1:paddingLeft="@dimen/_10sdp"
+                n1:paddingTop="5.0dip"
+                n1:paddingRight="@dimen/_10sdp"
+                n1:paddingBottom="5.0dip"
+                n1:src="@drawable/img_bus" />
+
+            <LinearLayout
+                n1:layout_width="fill_parent"
+                n1:layout_height="wrap_content"
+                n1:layout_weight="1.0"
+                n1:orientation="vertical"
+                n1:padding="@dimen/_8sdp">
+
+                <LinearLayout
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="wrap_content"
+                    n1:layout_marginBottom="5.0dip"
+                    n1:orientation="horizontal">
+
+                    <TextView
+                        n1:layout_width="0.0dip"
+                        n1:layout_height="wrap_content"
+                        n1:layout_gravity="center_vertical"
+                        n1:layout_weight="0.35"
+                        n1:gravity="left"
+                        n1:text="Bus No."
+                        n1:textSize="14.0sp"
+                        n1:textStyle="bold" />
+
+                    <TextView
+                        n1:id="@+id/busnumber"
+                        n1:layout_width="0.0dip"
+                        n1:layout_height="wrap_content"
+                        n1:layout_gravity="center_vertical"
+                        n1:layout_weight="0.65"
+                        n1:textSize="16.0sp"
+                        n1:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="wrap_content"
+                    n1:layout_marginBottom="5.0dip"
+                    n1:orientation="horizontal">
+
+                    <TextView
+                        n1:layout_width="0.0dip"
+                        n1:layout_height="wrap_content"
+                        n1:layout_gravity="center_vertical"
+                        n1:layout_weight="0.35"
+                        n1:gravity="left"
+                        n1:text="Driver"
+                        n1:textSize="14.0sp"
+                        n1:textStyle="bold" />
+
+                    <TextView
+                        n1:id="@+id/busdriver"
+                        n1:layout_width="0.0dip"
+                        n1:layout_height="wrap_content"
+                        n1:layout_gravity="center_vertical"
+                        n1:layout_weight="0.65"
+                        n1:textSize="16.0sp"
+                        n1:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="wrap_content"
+                    n1:orientation="horizontal">
+
+                    <TextView
+                        n1:layout_width="0.0dip"
+                        n1:layout_height="wrap_content"
+                        n1:layout_gravity="center_vertical"
+                        n1:layout_weight="0.35"
+                        n1:gravity="left"
+                        n1:text="Phone"
+                        n1:textSize="14.0sp"
+                        n1:textStyle="bold" />
+
+                    <TextView
+                        n1:id="@+id/busdriverphone"
+                        n1:layout_width="0.0dip"
+                        n1:layout_height="wrap_content"
+                        n1:layout_gravity="center_vertical"
+                        n1:layout_weight="0.65"
+                        n1:textSize="16.0sp"
+                        n1:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageButton
+                n1:id="@+id/location"
+                n1:layout_width="50.0dip"
+                n1:layout_height="fill_parent"
+                n1:background="@android:color/transparent"
+                n1:foreground="@drawable/touch_effect_rectangle"
+                n1:src="@drawable/img_navigation" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

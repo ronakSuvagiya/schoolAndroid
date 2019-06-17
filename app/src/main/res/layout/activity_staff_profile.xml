@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:n1="http://schemas.android.com/apk/res/android"
+    n1:id="@+id/coordinatorlayout"
+    n1:layout_width="fill_parent"
+    n1:layout_height="fill_parent">
+
+    <ScrollView
+        style="@style/Scrollview_Style"
+        n1:background="@color/background">
+
+        <LinearLayout
+            n1:layout_width="fill_parent"
+            n1:layout_height="fill_parent"
+            n1:gravity="center_horizontal"
+            n1:orientation="vertical"
+            n1:padding="@dimen/_10sdp">
+
+            <LinearLayout
+                n1:id="@+id/layout_selection"
+                n1:layout_width="fill_parent"
+                n1:layout_height="wrap_content"
+                n1:layout_marginBottom="@dimen/_16sdp"
+                n1:orientation="vertical">
+
+                <FrameLayout
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="wrap_content"
+                    n1:layout_marginBottom="@dimen/_16sdp"
+                    n1:background="@drawable/borders_rltb_white_background">
+
+                    <Spinner
+                        n1:id="@+id/spnr_class"
+                        n1:layout_width="fill_parent"
+                        n1:layout_height="@dimen/_35sdp"
+                        n1:alpha="0.7"
+                        n1:paddingLeft="@dimen/_4sdp" />
+                </FrameLayout>
+
+                <FrameLayout
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="wrap_content"
+                    n1:background="@drawable/borders_rltb_white_background">
+
+                    <Spinner
+                        n1:id="@+id/spnr_teacher"
+                        n1:layout_width="fill_parent"
+                        n1:layout_height="@dimen/_35sdp"
+                        n1:alpha="0.7"
+                        n1:paddingLeft="@dimen/_4sdp" />
+                </FrameLayout>
+
+                <com.apps.smartschoolmanagement.utils.ButtonTouchEffect
+                    n1:id="@+id/btn_search"
+                    style="@style/Button_Style"
+                    n1:layout_gravity="center_horizontal"
+                    n1:layout_marginTop="@dimen/_8sdp"
+                    n1:background="@drawable/corner_rectangle"
+                    n1:paddingLeft="@dimen/_35sdp"
+                    n1:paddingRight="@dimen/_35sdp"
+                    n1:text="Search" />
+            </LinearLayout>
+
+            <TextView
+                n1:id="@+id/error"
+                style="@style/TextFields_Error"
+                n1:text="Please select all the fields" />
+
+            <LinearLayout
+                n1:id="@+id/root_layout"
+                n1:layout_width="fill_parent"
+                n1:layout_height="wrap_content"
+                n1:orientation="vertical"
+                n1:visibility="gone">
+
+                <RelativeLayout
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="wrap_content">
+
+                    <com.apps.smartschoolmanagement.utils.CircleImage xmlns:n2="http://schemas.android.com/apk/res-auto"
+                        n1:id="@+id/file_path"
+                        n1:layout_width="120.0dip"
+                        n1:layout_height="120.0dip"
+                        n1:layout_centerHorizontal="true"
+                        n1:src="@drawable/img_profile"
+                        n2:civ_border_color="#ff000000"
+                        n2:civ_border_width="2.0dip" />
+
+                    <ImageButton
+                        n1:id="@+id/btn_edit"
+                        n1:layout_width="wrap_content"
+                        n1:layout_height="wrap_content"
+                        n1:layout_alignParentRight="true"
+                        n1:background="@android:color/transparent"
+                        n1:foreground="@drawable/touch_effect_rectangle"
+                        n1:padding="@dimen/_8sdp"
+                        n1:src="@drawable/img_edit" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="wrap_content"
+                    n1:orientation="vertical">
+
+                    <TextView
+                        n1:id="@+id/name"
+                        style="@style/Textview_Style_Header"
+                        n1:layout_marginTop="@dimen/_10sdp"
+                        n1:layout_marginBottom="5.0dip"
+                        n1:textColor="@color/colorPrimaryDark" />
+
+                    <TextView
+                        n1:id="@+id/subjectName"
+                        n1:layout_width="fill_parent"
+                        n1:layout_height="wrap_content"
+                        n1:layout_marginBottom="@dimen/_16sdp"
+                        n1:gravity="center"
+                        n1:textSize="15.0sp" />
+
+                    <LinearLayout
+                        n1:layout_width="fill_parent"
+                        n1:layout_height="wrap_content"
+                        n1:background="@drawable/borders_rltb">
+
+                        <TextView
+                            n1:layout_width="0.0dip"
+                            n1:layout_height="fill_parent"
+                            n1:layout_gravity="center"
+                            n1:layout_weight="0.4"
+                            n1:background="@drawable/borders_r"
+                            n1:gravity="center_vertical"
+                            n1:padding="@dimen/_10sdp"
+                            n1:text="@string/email"
+                            n1:textSize="15.0sp" />
+
+                        <TextView
+                            n1:id="@+id/email"
+                            n1:layout_width="0.0dip"
+                            n1:layout_height="wrap_content"
+                            n1:layout_gravity="center"
+                            n1:layout_weight="0.6"
+                            n1:gravity="center_vertical"
+                            n1:padding="@dimen/_10sdp"
+                            n1:textSize="15.0sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        n1:layout_width="fill_parent"
+                        n1:layout_height="wrap_content"
+                        n1:background="@drawable/borders_rltb">
+
+                        <TextView
+                            n1:layout_width="0.0dip"
+                            n1:layout_height="fill_parent"
+                            n1:layout_gravity="center"
+                            n1:layout_weight="0.4"
+                            n1:background="@drawable/borders_r"
+                            n1:gravity="center_vertical"
+                            n1:padding="@dimen/_10sdp"
+                            n1:text="@string/phone_no"
+                            n1:textSize="15.0sp" />
+
+                        <TextView
+                            n1:id="@+id/phone"
+                            n1:layout_width="0.0dip"
+                            n1:layout_height="wrap_content"
+                            n1:layout_gravity="center"
+                            n1:layout_weight="0.6"
+                            n1:gravity="center_vertical"
+                            n1:padding="@dimen/_10sdp"
+                            n1:textSize="15.0sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        n1:layout_width="fill_parent"
+                        n1:layout_height="wrap_content"
+                        n1:background="@drawable/borders_rltb"
+                        n1:visibility="gone">
+
+                        <TextView
+                            n1:layout_width="0.0dip"
+                            n1:layout_height="fill_parent"
+                            n1:layout_gravity="center"
+                            n1:layout_weight="0.4"
+                            n1:background="@drawable/borders_r"
+                            n1:gravity="center_vertical"
+                            n1:padding="@dimen/_10sdp"
+                            n1:text="@string/birthday"
+                            n1:textSize="15.0sp" />
+
+                        <TextView
+                            n1:id="@+id/birthday"
+                            n1:layout_width="0.0dip"
+                            n1:layout_height="wrap_content"
+                            n1:layout_gravity="center"
+                            n1:layout_weight="0.6"
+                            n1:gravity="center_vertical"
+                            n1:padding="@dimen/_10sdp"
+                            n1:textSize="15.0sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        n1:id="@+id/layout_joining_date"
+                        n1:layout_width="fill_parent"
+                        n1:layout_height="wrap_content"
+                        n1:background="@drawable/borders_rltb">
+
+                        <TextView
+                            n1:layout_width="0.0dip"
+                            n1:layout_height="wrap_content"
+                            n1:layout_gravity="center"
+                            n1:layout_weight="0.4"
+                            n1:background="@drawable/borders_r"
+                            n1:gravity="center_vertical"
+                            n1:padding="@dimen/_10sdp"
+                            n1:text="@string/joining_Date"
+                            n1:textSize="15.0sp" />
+
+                        <TextView
+                            n1:id="@+id/join_date"
+                            n1:layout_width="0.0dip"
+                            n1:layout_height="wrap_content"
+                            n1:layout_gravity="center"
+                            n1:layout_weight="0.6"
+                            n1:gravity="center_vertical"
+                            n1:padding="@dimen/_10sdp"
+                            n1:textSize="15.0sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        n1:id="@+id/layout_experience"
+                        n1:layout_width="fill_parent"
+                        n1:layout_height="wrap_content"
+                        n1:background="@drawable/borders_rltb">
+
+                        <TextView
+                            n1:layout_width="0.0dip"
+                            n1:layout_height="wrap_content"
+                            n1:layout_gravity="center"
+                            n1:layout_weight="0.4"
+                            n1:background="@drawable/borders_r"
+                            n1:gravity="center_vertical"
+                            n1:padding="@dimen/_10sdp"
+                            n1:text="@string/experience"
+                            n1:textSize="15.0sp" />
+
+                        <TextView
+                            n1:id="@+id/experience"
+                            n1:layout_width="0.0dip"
+                            n1:layout_height="wrap_content"
+                            n1:layout_gravity="center"
+                            n1:layout_weight="0.6"
+                            n1:gravity="center_vertical"
+                            n1:padding="@dimen/_10sdp"
+                            n1:textSize="15.0sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        n1:id="@+id/layout_vehicle"
+                        n1:layout_width="fill_parent"
+                        n1:layout_height="wrap_content"
+                        n1:background="@drawable/borders_rltb"
+                        n1:visibility="gone">
+
+                        <TextView
+                            n1:layout_width="0.0dip"
+                            n1:layout_height="wrap_content"
+                            n1:layout_gravity="center"
+                            n1:layout_weight="0.4"
+                            n1:background="@drawable/borders_r"
+                            n1:gravity="center_vertical"
+                            n1:padding="@dimen/_10sdp"
+                            n1:text="@string/vehicle_details"
+                            n1:textSize="15.0sp" />
+
+                        <TextView
+                            n1:id="@+id/vehicle_number"
+                            n1:layout_width="0.0dip"
+                            n1:layout_height="wrap_content"
+                            n1:layout_gravity="center"
+                            n1:layout_weight="0.6"
+                            n1:gravity="center_vertical"
+                            n1:padding="@dimen/_10sdp"
+                            n1:textSize="15.0sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        n1:id="@+id/layout_ctc"
+                        n1:layout_width="fill_parent"
+                        n1:layout_height="wrap_content"
+                        n1:background="@drawable/borders_rltb">
+
+                        <TextView
+                            n1:layout_width="0.0dip"
+                            n1:layout_height="wrap_content"
+                            n1:layout_gravity="center"
+                            n1:layout_weight="0.4"
+                            n1:background="@drawable/borders_r"
+                            n1:gravity="center_vertical"
+                            n1:padding="@dimen/_10sdp"
+                            n1:text="@string/ctc_details"
+                            n1:textSize="15.0sp" />
+
+                        <TextView
+                            n1:id="@+id/current_ctc"
+                            n1:layout_width="0.0dip"
+                            n1:layout_height="wrap_content"
+                            n1:layout_gravity="center"
+                            n1:layout_weight="0.6"
+                            n1:gravity="center_vertical"
+                            n1:padding="@dimen/_10sdp"
+                            n1:text="---------"
+                            n1:textSize="15.0sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <include layout="@layout/layout_loading" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

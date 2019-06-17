@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView n1:layout_width="fill_parent" n1:layout_height="wrap_content" n1:layout_margin="@dimen/_5sdp" n1:elevation="@dimen/_5sdp" n2:cardBackgroundColor="@color/colorPrimary" n2:cardCornerRadius="@dimen/_5sdp"
+  xmlns:n1="http://schemas.android.com/apk/res/android" xmlns:n2="http://schemas.android.com/apk/res-auto">
+    <LinearLayout n1:orientation="vertical" n1:layout_width="fill_parent" n1:layout_height="wrap_content">
+        <LinearLayout n1:layout_width="fill_parent" n1:layout_height="wrap_content" n1:layout_margin="@dimen/_5sdp">
+            <com.apps.smartschoolmanagement.utils.CircleImage n1:id="@+id/file_path" n1:layout_width="@dimen/_40sdp" n1:layout_height="@dimen/_40sdp" n1:src="@drawable/img_profile" n2:civ_border_color="#ccffffff" n2:civ_border_width="2.0dip" />
+            <LinearLayout n1:orientation="horizontal" n1:layout_width="fill_parent" n1:layout_height="wrap_content">
+                <LinearLayout n1:orientation="vertical" n1:layout_width="fill_parent" n1:layout_height="wrap_content" n1:layout_weight="1.0">
+                    <TextView n1:textSize="@dimen/_12sdp" n1:textColor="@color/cardview_light_background" n1:layout_marginBottom="5.0dip" n1:text="Student Name" style="@style/Textview_Style_Header" />
+                    <TextView n1:textSize="15.0sp" n1:textColor="#ffffffff" n1:gravity="center" n1:id="@+id/name" n1:layout_width="fill_parent" n1:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout n1:orientation="vertical" n1:layout_width="fill_parent" n1:layout_height="wrap_content" n1:layout_weight="1.0">
+                    <TextView n1:textSize="@dimen/_12sdp" n1:textColor="@color/cardview_light_background" n1:id="@+id/changing_text" n1:layout_marginBottom="5.0dip" n1:text="Admission No." style="@style/Textview_Style_Header" />
+                    <TextView n1:textSize="15.0sp" n1:textColor="#ffffffff" n1:gravity="center" n1:id="@+id/roll" n1:layout_width="fill_parent" n1:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <androidx.cardview.widget.CardView n1:layout_width="fill_parent" n1:layout_height="wrap_content" n1:elevation="@dimen/_5sdp" n2:cardBackgroundColor="#44000000" n2:cardCornerRadius="@dimen/_5sdp">
+            <LinearLayout n1:gravity="center_vertical" n1:orientation="horizontal" n1:layout_width="fill_parent" n1:layout_height="wrap_content" n1:layout_margin="@dimen/_5sdp">
+                <LinearLayout n1:orientation="horizontal" n1:layout_width="wrap_content" n1:layout_height="wrap_content">
+                    <TextView n1:textSize="@dimen/_12sdp" n1:textColor="@color/cardview_light_background" n1:text="Class : " style="@style/Textview_Style_Header" />
+                    <TextView n1:textSize="15.0sp" n1:textColor="#ffffffff" n1:gravity="center" n1:id="@+id/clas" n1:layout_width="fill_parent" n1:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout n1:gravity="center_vertical" n1:orientation="horizontal" n1:layout_width="fill_parent" n1:layout_height="wrap_content">
+                    <TextView n1:textSize="@dimen/_12sdp" n1:textColor="@color/cardview_light_background" n1:gravity="right" n1:text="Today Status : " n1:layout_weight="1.0" style="@style/Textview_Style_Header" />
+                    <LinearLayout n1:gravity="center_vertical" n1:layout_width="wrap_content" n1:layout_height="wrap_content">
+                        <TextView n1:textSize="15.0sp" n1:textColor="#ffffffff" n1:gravity="center" n1:id="@+id/attendance_absent" n1:visibility="gone" n1:layout_width="wrap_content" n1:layout_height="wrap_content" n1:layout_marginLeft="@dimen/_5sdp" n1:text="Absent" n1:drawableLeft="@drawable/ic_close" n1:drawablePadding="@dimen/_5sdp" />
+                        <TextView n1:textSize="15.0sp" n1:textColor="#ffffffff" n1:gravity="center" n1:id="@+id/attendance_present" n1:visibility="visible" n1:layout_width="wrap_content" n1:layout_height="wrap_content" n1:layout_marginLeft="@dimen/_5sdp" n1:text="Absent" n1:drawableLeft="@drawable/ic_tick" n1:drawablePadding="@dimen/_5sdp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

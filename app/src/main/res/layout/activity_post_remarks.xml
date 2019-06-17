@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:n1="http://schemas.android.com/apk/res/android"
+    n1:id="@+id/coordinatorlayout"
+    n1:layout_width="fill_parent"
+    n1:layout_height="fill_parent">
+
+    <ScrollView
+        style="@style/Scrollview_Style"
+        n1:background="@color/background">
+
+        <LinearLayout
+            n1:layout_width="fill_parent"
+            n1:layout_height="fill_parent"
+            n1:orientation="vertical"
+            n1:padding="@dimen/_12sdp">
+
+            <TextView
+                n1:id="@+id/error"
+                style="@style/TextFields_Error"
+                n1:text="Please fill all the fields" />
+
+            <FrameLayout
+                n1:layout_width="fill_parent"
+                n1:layout_height="wrap_content"
+                n1:layout_marginBottom="@dimen/_16sdp"
+                n1:background="@drawable/borders_rltb_white_background">
+
+                <Spinner
+                    n1:id="@+id/spnr_class"
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="@dimen/_40sdp"
+                    n1:alpha="0.7"
+                    n1:paddingLeft="@dimen/_4sdp" />
+            </FrameLayout>
+
+            <FrameLayout
+                n1:layout_width="fill_parent"
+                n1:layout_height="wrap_content"
+                n1:layout_marginBottom="@dimen/_16sdp"
+                n1:background="@drawable/borders_rltb_white_background">
+
+                <Spinner
+                    n1:id="@+id/spnr_student"
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="@dimen/_40sdp"
+                    n1:alpha="0.7"
+                    n1:paddingLeft="@dimen/_4sdp" />
+            </FrameLayout>
+
+            <RadioGroup
+                n1:id="@+id/remark_type"
+                n1:layout_width="wrap_content"
+                n1:layout_height="wrap_content"
+                n1:layout_gravity="center"
+                n1:layout_marginBottom="@dimen/_8sdp"
+                n1:orientation="horizontal">
+
+                <RadioButton
+                    n1:id="@+id/positive"
+                    n1:layout_width="wrap_content"
+                    n1:layout_height="wrap_content"
+                    n1:layout_marginRight="30.0dip"
+                    n1:layout_weight="1.0"
+                    n1:buttonTint="@android:color/holo_blue_dark"
+                    n1:text="Positive"
+                    n1:textColor="@android:color/holo_blue_dark" />
+
+                <RadioButton
+                    n1:id="@+id/negative"
+                    n1:layout_width="wrap_content"
+                    n1:layout_height="wrap_content"
+                    n1:layout_weight="1.0"
+                    n1:buttonTint="@android:color/holo_orange_dark"
+                    n1:text="Negative"
+                    n1:textColor="@android:color/holo_orange_dark" />
+            </RadioGroup>
+
+            <com.apps.smartschoolmanagement.utils.EditTextClearable
+                n1:id="@+id/edit_post_remard"
+                n1:layout_width="fill_parent"
+                n1:layout_height="wrap_content"
+                n1:background="@drawable/borders_rltb_white_background"
+                n1:gravity="top"
+                n1:hint="Post Remark..."
+                n1:maxHeight="@dimen/_100sdp"
+                n1:maxLength="1000"
+                n1:padding="@dimen/_10sdp"
+                n1:textColorHint="#55000000" />
+
+            <com.apps.smartschoolmanagement.utils.ButtonTouchEffect
+                n1:id="@+id/btn_post"
+                style="@style/Button_Style"
+                n1:layout_gravity="center_horizontal"
+                n1:layout_marginTop="@dimen/_25sdp"
+                n1:background="@drawable/corner_rectangle"
+                n1:paddingLeft="@dimen/_35sdp"
+                n1:paddingRight="@dimen/_35sdp"
+                n1:text="Post" />
+        </LinearLayout>
+    </ScrollView>
+
+    <include layout="@layout/layout_loading" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

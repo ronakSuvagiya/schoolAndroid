@@ -1,0 +1,611 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:n1="http://schemas.android.com/apk/res/android"
+    n1:id="@+id/coordinatorlayout"
+    n1:layout_width="fill_parent"
+    n1:layout_height="fill_parent"
+    n1:background="@color/background">
+
+    <LinearLayout
+        n1:id="@+id/root_layout"
+        n1:layout_width="fill_parent"
+        n1:layout_height="wrap_content"
+        n1:orientation="vertical">
+
+        <androidx.cardview.widget.CardView xmlns:n2="http://schemas.android.com/apk/res-auto"
+            n1:layout_width="fill_parent"
+            n1:layout_height="wrap_content"
+            n1:layout_margin="@dimen/_5sdp"
+            n1:elevation="@dimen/_5sdp"
+            n2:cardBackgroundColor="@color/colorPrimary"
+            n2:cardCornerRadius="@dimen/_5sdp">
+
+            <LinearLayout
+                n1:id="@+id/layout_profile_colorchange"
+                n1:layout_width="fill_parent"
+                n1:layout_height="wrap_content"
+                n1:background="@color/blue_grey_600"
+                n1:orientation="vertical">
+
+                <LinearLayout
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="wrap_content"
+                    n1:layout_margin="@dimen/_10sdp">
+
+                    <com.apps.smartschoolmanagement.utils.CircleImage
+                        n1:id="@+id/file_path"
+                        n1:layout_width="@dimen/_70sdp"
+                        n1:layout_height="@dimen/_70sdp"
+                        n1:src="@drawable/img_profile"
+                        n2:civ_border_color="#ccffffff"
+                        n2:civ_border_width="2.0dip" />
+
+                    <LinearLayout
+                        n1:layout_width="fill_parent"
+                        n1:layout_height="wrap_content"
+                        n1:orientation="vertical"
+                        n1:padding="@dimen/_10sdp">
+
+                        <LinearLayout
+                            n1:layout_width="fill_parent"
+                            n1:layout_height="wrap_content"
+                            n1:layout_marginBottom="@dimen/_5sdp"
+                            n1:gravity="center_vertical">
+
+                            <TextView
+                                n1:id="@+id/name"
+                                n1:layout_width="wrap_content"
+                                n1:layout_height="wrap_content"
+                                n1:textColor="#ffffffff"
+                                n1:textSize="@dimen/_12ssp"
+                                n1:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            n1:id="@+id/layout_admission"
+                            n1:layout_width="fill_parent"
+                            n1:layout_height="wrap_content"
+                            n1:layout_marginBottom="@dimen/_5sdp">
+
+                            <TextView
+                                n1:id="@+id/roll"
+                                n1:layout_width="wrap_content"
+                                n1:layout_height="wrap_content"
+                                n1:textColor="#ffffffff"
+                                n1:textSize="@dimen/_12ssp"
+                                n1:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            n1:id="@+id/layout_subject"
+                            n1:layout_width="fill_parent"
+                            n1:layout_height="wrap_content"
+                            n1:layout_marginBottom="@dimen/_5sdp"
+                            n1:visibility="gone">
+
+                            <TextView
+                                n1:id="@+id/subjectName"
+                                n1:layout_width="wrap_content"
+                                n1:layout_height="wrap_content"
+                                n1:gravity="center"
+                                n1:textColor="#ccffffff"
+                                n1:textSize="@dimen/_12ssp" />
+
+                            <TextView
+                                n1:layout_width="wrap_content"
+                                n1:layout_height="wrap_content"
+                                n1:gravity="center"
+                                n1:text=" Teacher"
+                                n1:textColor="#ffffffff"
+                                n1:textSize="@dimen/_12ssp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            n1:id="@+id/layout_class"
+                            n1:layout_width="wrap_content"
+                            n1:layout_height="wrap_content"
+                            n1:layout_marginBottom="@dimen/_5sdp"
+                            n1:orientation="horizontal">
+
+                            <TextView
+                                style="@style/Textview_Style_Header"
+                                n1:text="Class : "
+                                n1:textColor="#ccffffff"
+                                n1:textSize="@dimen/_10ssp"
+                                n1:textStyle="normal" />
+
+                            <TextView
+                                n1:id="@+id/className"
+                                n1:layout_width="fill_parent"
+                                n1:layout_height="wrap_content"
+                                n1:gravity="center"
+                                n1:textColor="#ffffffff"
+                                n1:textSize="@dimen/_11ssp"
+                                n1:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            n1:id="@+id/layout_class_teacher"
+                            n1:layout_width="wrap_content"
+                            n1:layout_height="wrap_content"
+                            n1:orientation="horizontal">
+
+                            <TextView
+                                style="@style/Textview_Style_Header"
+                                n1:text="Class Teacher : "
+                                n1:textColor="#ccffffff"
+                                n1:textSize="@dimen/_10ssp"
+                                n1:textStyle="normal" />
+
+                            <TextView
+                                n1:id="@+id/teacherName"
+                                n1:layout_width="fill_parent"
+                                n1:layout_height="wrap_content"
+                                n1:gravity="center"
+                                n1:textColor="#ffffffff"
+                                n1:textSize="@dimen/_11ssp"
+                                n1:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            n1:id="@+id/layout_hm"
+                            n1:layout_width="wrap_content"
+                            n1:layout_height="wrap_content"
+                            n1:orientation="horizontal"
+                            n1:visibility="gone">
+
+                            <TextView
+                                n1:layout_width="fill_parent"
+                                n1:layout_height="wrap_content"
+                                n1:gravity="center"
+                                n1:text="Head Master"
+                                n1:textColor="#ffffffff"
+                                n1:textSize="@dimen/_11ssp"
+                                n1:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <androidx.cardview.widget.CardView
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="wrap_content"
+                    n1:elevation="@dimen/_5sdp"
+                    n2:cardBackgroundColor="#44000000"
+                    n2:cardCornerRadius="@dimen/_5sdp">
+
+                    <LinearLayout
+                        n1:layout_width="fill_parent"
+                        n1:layout_height="wrap_content"
+                        n1:layout_margin="@dimen/_10sdp"
+                        n1:gravity="center_vertical"
+                        n1:orientation="horizontal">
+
+                        <Button
+                            n1:id="@+id/btn_edit"
+                            style="@style/Button_Style"
+                            n1:layout_height="@dimen/_25sdp"
+                            n1:backgroundTint="#ccffffff"
+                            n1:drawableLeft="@drawable/img_edit"
+                            n1:drawablePadding="@dimen/_5sdp"
+                            n1:gravity="center"
+                            n1:paddingLeft="@dimen/_5sdp"
+                            n1:text="Edit"
+                            n1:textColor="@color/colorPrimary" />
+
+                        <LinearLayout
+                            n1:id="@+id/layout_attendance"
+                            n1:layout_width="fill_parent"
+                            n1:layout_height="wrap_content"
+                            n1:gravity="center_vertical"
+                            n1:orientation="horizontal">
+
+                            <TextView
+                                style="@style/Textview_Style_Header"
+                                n1:layout_weight="1.0"
+                                n1:gravity="right"
+                                n1:text="Today Status : "
+                                n1:textColor="#ccffffff"
+                                n1:textSize="@dimen/_10ssp"
+                                n1:textStyle="normal" />
+
+                            <LinearLayout
+                                n1:layout_width="wrap_content"
+                                n1:layout_height="wrap_content"
+                                n1:gravity="center_vertical">
+
+                                <TextView
+                                    n1:id="@+id/attendance_absent"
+                                    n1:layout_width="wrap_content"
+                                    n1:layout_height="wrap_content"
+                                    n1:layout_marginLeft="@dimen/_5sdp"
+                                    n1:drawableLeft="@drawable/ic_close"
+                                    n1:drawablePadding="@dimen/_5sdp"
+                                    n1:gravity="center"
+                                    n1:text="Absent"
+                                    n1:textColor="#ffffffff"
+                                    n1:textSize="@dimen/_11ssp"
+                                    n1:textStyle="bold"
+                                    n1:visibility="gone" />
+
+                                <TextView
+                                    n1:id="@+id/attendance_present"
+                                    n1:layout_width="wrap_content"
+                                    n1:layout_height="wrap_content"
+                                    n1:layout_marginLeft="@dimen/_5sdp"
+                                    n1:drawableLeft="@drawable/ic_tick"
+                                    n1:drawablePadding="@dimen/_5sdp"
+                                    n1:gravity="center"
+                                    n1:text="Present"
+                                    n1:textColor="#ffffffff"
+                                    n1:textSize="@dimen/_11ssp"
+                                    n1:textStyle="bold"
+                                    n1:visibility="visible" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <ScrollView style="@style/Scrollview_Style">
+
+            <LinearLayout
+                n1:layout_width="fill_parent"
+                n1:layout_height="wrap_content"
+                n1:orientation="vertical">
+
+                <androidx.cardview.widget.CardView xmlns:n3="http://schemas.android.com/apk/res-auto"
+                    n1:id="@+id/layout_email"
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="wrap_content"
+                    n1:layout_margin="@dimen/_5sdp"
+                    n1:elevation="@dimen/_5sdp"
+                    n3:cardBackgroundColor="@color/colorPrimary"
+                    n3:cardCornerRadius="@dimen/_5sdp">
+
+                    <LinearLayout
+                        n1:layout_width="fill_parent"
+                        n1:layout_height="wrap_content"
+                        n1:background="@drawable/corner_rectangle"
+                        n1:backgroundTint="#f2ffffff"
+                        n1:padding="@dimen/_5sdp">
+
+                        <ImageView
+                            n1:layout_width="@dimen/_25sdp"
+                            n1:layout_height="@dimen/_25sdp"
+                            n1:layout_margin="@dimen/_10sdp"
+                            n1:background="@drawable/ic_email" />
+
+                        <LinearLayout
+                            n1:layout_width="fill_parent"
+                            n1:layout_height="wrap_content"
+                            n1:orientation="vertical">
+
+                            <TextView
+                                n1:layout_width="fill_parent"
+                                n1:layout_height="fill_parent"
+                                n1:layout_gravity="center"
+                                n1:gravity="center_vertical"
+                                n1:paddingLeft="@dimen/_5sdp"
+                                n1:text="@string/email"
+                                n1:textColor="#cc000000"
+                                n1:textSize="@dimen/_13ssp" />
+
+                            <TextView
+                                n1:id="@+id/email"
+                                n1:layout_width="fill_parent"
+                                n1:layout_height="wrap_content"
+                                n1:layout_gravity="center"
+                                n1:gravity="center_vertical"
+                                n1:padding="@dimen/_5sdp"
+                                n1:textSize="@dimen/_13ssp"
+                                n1:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView xmlns:n4="http://schemas.android.com/apk/res-auto"
+                    n1:id="@+id/layout_phone"
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="wrap_content"
+                    n1:layout_margin="@dimen/_5sdp"
+                    n1:elevation="@dimen/_5sdp"
+                    n4:cardBackgroundColor="@color/colorPrimary"
+                    n4:cardCornerRadius="@dimen/_5sdp">
+
+                    <LinearLayout
+                        n1:layout_width="fill_parent"
+                        n1:layout_height="wrap_content"
+                        n1:background="@drawable/corner_rectangle"
+                        n1:backgroundTint="#f2ffffff"
+                        n1:padding="@dimen/_5sdp">
+
+                        <ImageView
+                            n1:layout_width="@dimen/_25sdp"
+                            n1:layout_height="@dimen/_25sdp"
+                            n1:layout_margin="@dimen/_10sdp"
+                            n1:background="@drawable/ic_phone" />
+
+                        <LinearLayout
+                            n1:layout_width="fill_parent"
+                            n1:layout_height="wrap_content"
+                            n1:orientation="vertical">
+
+                            <TextView
+                                n1:layout_width="fill_parent"
+                                n1:layout_height="fill_parent"
+                                n1:layout_gravity="center"
+                                n1:gravity="center_vertical"
+                                n1:paddingLeft="@dimen/_5sdp"
+                                n1:text="@string/phone_no"
+                                n1:textColor="#cc000000"
+                                n1:textSize="@dimen/_13ssp" />
+
+                            <TextView
+                                n1:id="@+id/phone"
+                                n1:layout_width="fill_parent"
+                                n1:layout_height="wrap_content"
+                                n1:layout_gravity="center"
+                                n1:gravity="center_vertical"
+                                n1:padding="@dimen/_5sdp"
+                                n1:textSize="@dimen/_13ssp"
+                                n1:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView xmlns:n5="http://schemas.android.com/apk/res-auto"
+                    n1:id="@+id/layout_birthday"
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="wrap_content"
+                    n1:layout_margin="@dimen/_5sdp"
+                    n1:elevation="@dimen/_5sdp"
+                    n5:cardBackgroundColor="@color/colorPrimary"
+                    n5:cardCornerRadius="@dimen/_5sdp">
+
+                    <LinearLayout
+                        n1:layout_width="fill_parent"
+                        n1:layout_height="wrap_content"
+                        n1:background="@drawable/corner_rectangle"
+                        n1:backgroundTint="#f2ffffff"
+                        n1:padding="@dimen/_5sdp">
+
+                        <ImageView
+                            n1:layout_width="@dimen/_25sdp"
+                            n1:layout_height="@dimen/_25sdp"
+                            n1:layout_margin="@dimen/_10sdp"
+                            n1:background="@drawable/ic_birthday" />
+
+                        <LinearLayout
+                            n1:layout_width="fill_parent"
+                            n1:layout_height="wrap_content"
+                            n1:orientation="vertical">
+
+                            <TextView
+                                n1:layout_width="fill_parent"
+                                n1:layout_height="fill_parent"
+                                n1:layout_gravity="center"
+                                n1:gravity="center_vertical"
+                                n1:paddingLeft="@dimen/_5sdp"
+                                n1:text="@string/birthday"
+                                n1:textColor="#cc000000"
+                                n1:textSize="@dimen/_13ssp" />
+
+                            <TextView
+                                n1:id="@+id/birthday"
+                                n1:layout_width="fill_parent"
+                                n1:layout_height="wrap_content"
+                                n1:layout_gravity="center"
+                                n1:gravity="center_vertical"
+                                n1:padding="@dimen/_5sdp"
+                                n1:textSize="@dimen/_13ssp"
+                                n1:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView xmlns:n6="http://schemas.android.com/apk/res-auto"
+                    n1:id="@+id/layout_joining_date"
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="wrap_content"
+                    n1:layout_margin="@dimen/_5sdp"
+                    n1:elevation="@dimen/_5sdp"
+                    n6:cardBackgroundColor="@color/colorPrimary"
+                    n6:cardCornerRadius="@dimen/_5sdp">
+
+                    <LinearLayout
+                        n1:layout_width="fill_parent"
+                        n1:layout_height="wrap_content"
+                        n1:background="@drawable/corner_rectangle"
+                        n1:backgroundTint="#f2ffffff"
+                        n1:padding="@dimen/_5sdp">
+
+                        <ImageView
+                            n1:layout_width="@dimen/_25sdp"
+                            n1:layout_height="@dimen/_25sdp"
+                            n1:layout_margin="@dimen/_10sdp"
+                            n1:background="@drawable/ic_joindate" />
+
+                        <LinearLayout
+                            n1:layout_width="fill_parent"
+                            n1:layout_height="wrap_content"
+                            n1:orientation="vertical">
+
+                            <TextView
+                                n1:layout_width="fill_parent"
+                                n1:layout_height="fill_parent"
+                                n1:layout_gravity="center"
+                                n1:gravity="center_vertical"
+                                n1:paddingLeft="@dimen/_5sdp"
+                                n1:text="@string/joining_Date"
+                                n1:textColor="#cc000000"
+                                n1:textSize="@dimen/_13ssp" />
+
+                            <TextView
+                                n1:id="@+id/join_date"
+                                n1:layout_width="fill_parent"
+                                n1:layout_height="wrap_content"
+                                n1:layout_gravity="center"
+                                n1:gravity="center_vertical"
+                                n1:padding="@dimen/_5sdp"
+                                n1:textSize="@dimen/_13ssp"
+                                n1:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView xmlns:n7="http://schemas.android.com/apk/res-auto"
+                    n1:id="@+id/layout_experience"
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="wrap_content"
+                    n1:layout_margin="@dimen/_5sdp"
+                    n1:elevation="@dimen/_5sdp"
+                    n7:cardBackgroundColor="@color/colorPrimary"
+                    n7:cardCornerRadius="@dimen/_5sdp">
+
+                    <LinearLayout
+                        n1:layout_width="fill_parent"
+                        n1:layout_height="wrap_content"
+                        n1:background="@drawable/corner_rectangle"
+                        n1:backgroundTint="#f2ffffff"
+                        n1:padding="@dimen/_5sdp">
+
+                        <ImageView
+                            n1:layout_width="@dimen/_25sdp"
+                            n1:layout_height="@dimen/_25sdp"
+                            n1:layout_margin="@dimen/_10sdp"
+                            n1:background="@drawable/ic_experience" />
+
+                        <LinearLayout
+                            n1:layout_width="fill_parent"
+                            n1:layout_height="wrap_content"
+                            n1:orientation="vertical">
+
+                            <TextView
+                                n1:layout_width="fill_parent"
+                                n1:layout_height="fill_parent"
+                                n1:layout_gravity="center"
+                                n1:gravity="center_vertical"
+                                n1:paddingLeft="@dimen/_5sdp"
+                                n1:text="@string/experience"
+                                n1:textColor="#cc000000"
+                                n1:textSize="@dimen/_13ssp" />
+
+                            <TextView
+                                n1:id="@+id/experience"
+                                n1:layout_width="fill_parent"
+                                n1:layout_height="wrap_content"
+                                n1:layout_gravity="center"
+                                n1:gravity="center_vertical"
+                                n1:padding="@dimen/_5sdp"
+                                n1:textSize="@dimen/_13ssp"
+                                n1:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView xmlns:n8="http://schemas.android.com/apk/res-auto"
+                    n1:id="@+id/layout_tackbus"
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="wrap_content"
+                    n1:layout_margin="@dimen/_5sdp"
+                    n1:elevation="@dimen/_5sdp"
+                    n8:cardBackgroundColor="@color/colorPrimary"
+                    n8:cardCornerRadius="@dimen/_5sdp">
+
+                    <LinearLayout
+                        n1:layout_width="fill_parent"
+                        n1:layout_height="wrap_content"
+                        n1:background="@drawable/corner_rectangle"
+                        n1:backgroundTint="#f2ffffff"
+                        n1:padding="@dimen/_5sdp">
+
+                        <ImageView
+                            n1:layout_width="@dimen/_25sdp"
+                            n1:layout_height="@dimen/_25sdp"
+                            n1:layout_margin="@dimen/_10sdp"
+                            n1:background="@drawable/img_bus" />
+
+                        <TextView
+                            n1:layout_width="fill_parent"
+                            n1:layout_height="fill_parent"
+                            n1:layout_gravity="center_vertical"
+                            n1:drawableRight="@drawable/ic_locate"
+                            n1:gravity="center_vertical"
+                            n1:paddingLeft="@dimen/_5sdp"
+                            n1:paddingRight="@dimen/_5sdp"
+                            n1:text="@string/trackbus"
+                            n1:textColor="#cc000000"
+                            n1:textSize="@dimen/_13ssp"
+                            n1:textStyle="bold" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView xmlns:n9="http://schemas.android.com/apk/res-auto"
+                    n1:id="@+id/layout_ctc"
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="wrap_content"
+                    n1:layout_margin="@dimen/_5sdp"
+                    n1:elevation="@dimen/_5sdp"
+                    n9:cardBackgroundColor="@color/colorPrimary"
+                    n9:cardCornerRadius="@dimen/_5sdp">
+
+                    <LinearLayout
+                        n1:layout_width="fill_parent"
+                        n1:layout_height="wrap_content"
+                        n1:background="@drawable/corner_rectangle"
+                        n1:backgroundTint="#f2ffffff"
+                        n1:padding="@dimen/_5sdp">
+
+                        <ImageView
+                            n1:layout_width="@dimen/_25sdp"
+                            n1:layout_height="@dimen/_25sdp"
+                            n1:layout_margin="@dimen/_10sdp"
+                            n1:background="@drawable/ic_salary" />
+
+                        <LinearLayout
+                            n1:layout_width="fill_parent"
+                            n1:layout_height="wrap_content"
+                            n1:orientation="vertical">
+
+                            <TextView
+                                n1:layout_width="fill_parent"
+                                n1:layout_height="fill_parent"
+                                n1:layout_gravity="center"
+                                n1:gravity="center_vertical"
+                                n1:paddingLeft="@dimen/_5sdp"
+                                n1:text="@string/current_ctc"
+                                n1:textColor="#cc000000"
+                                n1:textSize="@dimen/_13ssp" />
+
+                            <TextView
+                                n1:id="@+id/current_ctc"
+                                n1:layout_width="fill_parent"
+                                n1:layout_height="wrap_content"
+                                n1:layout_gravity="center"
+                                n1:gravity="center_vertical"
+                                n1:padding="@dimen/_5sdp"
+                                n1:textSize="@dimen/_13ssp"
+                                n1:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <com.apps.smartschoolmanagement.utils.ButtonTouchEffect
+                    n1:id="@+id/btn_newquote"
+                    style="@style/Button_Style"
+                    n1:layout_height="@dimen/_30sdp"
+                    n1:layout_gravity="center_horizontal"
+                    n1:layout_margin="@dimen/_10sdp"
+                    n1:background="@drawable/corner_rectangle"
+                    n1:backgroundTint="@color/blue_grey_600"
+                    n1:paddingLeft="@dimen/_35sdp"
+                    n1:paddingRight="@dimen/_35sdp"
+                    n1:text="New Quote"
+                    n1:textStyle="bold"
+                    n1:visibility="gone" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <include layout="@layout/layout_loading" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

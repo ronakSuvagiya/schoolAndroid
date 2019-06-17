@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:n1="http://schemas.android.com/apk/res/android"
+    n1:layout_width="@dimen/dialog_width"
+    n1:layout_height="@dimen/dialog_height">
+
+    <FrameLayout
+        n1:id="@+id/root"
+        n1:layout_width="fill_parent"
+        n1:layout_height="fill_parent"
+        n1:layout_margin="@dimen/margin_medium">
+
+        <androidx.appcompat.widget.AppCompatImageView xmlns:n2="http://schemas.android.com/apk/res-auto"
+            n1:id="@+id/moon"
+            n1:layout_width="fill_parent"
+            n1:layout_height="wrap_content"
+            n1:layout_marginTop="@dimen/margin_xx_large"
+            n1:layout_marginBottom="@dimen/margin_xxxxx_large"
+            n1:scaleType="centerInside"
+            n1:visibility="gone"
+            n2:srcCompat="@drawable/moon" />
+
+        <androidx.appcompat.widget.AppCompatImageView xmlns:n3="http://schemas.android.com/apk/res-auto"
+            n1:id="@+id/close"
+            n1:layout_width="wrap_content"
+            n1:layout_height="wrap_content"
+            n1:layout_gravity="end"
+            n1:background="?selectableItemBackgroundBorderless"
+            n1:padding="@dimen/margin_small"
+            n3:srcCompat="@drawable/ic_cancel_white_24dp" />
+
+        <androidx.appcompat.widget.AppCompatImageView xmlns:n4="http://schemas.android.com/apk/res-auto"
+            n1:id="@+id/plane"
+            n1:layout_width="80.0dip"
+            n1:layout_height="wrap_content"
+            n1:layout_marginTop="@dimen/margin_large"
+            n1:background="?selectableItemBackground"
+            n1:padding="@dimen/margin_medium"
+            n1:scaleType="fitStart"
+            n4:srcCompat="@drawable/plane" />
+    </FrameLayout>
+
+    <androidx.constraintlayout.widget.Guideline xmlns:n5="http://schemas.android.com/apk/res-auto"
+        n1:id="@+id/top_guide"
+        n1:layout_width="fill_parent"
+        n1:layout_height="1.0dip"
+        n1:orientation="horizontal"
+        n5:layout_constraintGuide_percent="0.34" />
+
+    <androidx.constraintlayout.widget.Guideline xmlns:n6="http://schemas.android.com/apk/res-auto"
+        n1:id="@+id/bottom_guide"
+        n1:layout_width="fill_parent"
+        n1:layout_height="1.0dip"
+        n1:orientation="horizontal"
+        n6:layout_constraintGuide_percent="0.92" />
+
+    <androidx.constraintlayout.widget.Guideline xmlns:n7="http://schemas.android.com/apk/res-auto"
+        n1:id="@+id/center_horizontal_guide"
+        n1:layout_width="fill_parent"
+        n1:layout_height="1.0dip"
+        n1:orientation="horizontal"
+        n7:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline xmlns:n8="http://schemas.android.com/apk/res-auto"
+        n1:id="@+id/start_guide"
+        n1:layout_width="1.0dip"
+        n1:layout_height="fill_parent"
+        n1:orientation="vertical"
+        n8:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline xmlns:n9="http://schemas.android.com/apk/res-auto"
+        n1:id="@+id/end_guide"
+        n1:layout_width="1.0dip"
+        n1:layout_height="fill_parent"
+        n1:orientation="vertical"
+        n9:layout_constraintGuide_percent="0.9" />
+
+    <androidx.constraintlayout.widget.Guideline xmlns:n10="http://schemas.android.com/apk/res-auto"
+        n1:id="@+id/center_vertical_guide"
+        n1:layout_width="1.0dip"
+        n1:layout_height="fill_parent"
+        n1:orientation="vertical"
+        n10:layout_constraintGuide_percent="0.5" />
+
+    <androidx.appcompat.widget.AppCompatImageView xmlns:n11="http://schemas.android.com/apk/res-auto"
+        n1:id="@+id/ghost"
+        n1:layout_width="0.0dip"
+        n1:layout_height="wrap_content"
+        n1:paddingStart="@dimen/margin_small"
+        n1:paddingTop="@dimen/margin_medium"
+        n1:paddingEnd="@dimen/margin_small"
+        n1:scaleType="centerInside"
+        n11:layout_constraintDimensionRatio="1:1"
+        n11:layout_constraintEnd_toEndOf="parent"
+        n11:layout_constraintStart_toStartOf="parent"
+        n11:layout_constraintTop_toBottomOf="@+id/top_guide"
+        n11:srcCompat="@drawable/ghost" />
+
+    <androidx.appcompat.widget.AppCompatImageView xmlns:n12="http://schemas.android.com/apk/res-auto"
+        n1:id="@+id/tomb"
+        n1:layout_width="@dimen/tomb_size"
+        n1:layout_height="@dimen/tomb_size"
+        n1:scaleType="centerInside"
+        n12:layout_constraintDimensionRatio="1:1"
+        n12:layout_constraintEnd_toEndOf="parent"
+        n12:layout_constraintStart_toStartOf="parent"
+        n12:layout_constraintTop_toBottomOf="@+id/top_guide"
+        n12:srcCompat="@drawable/tomb" />
+
+    <androidx.appcompat.widget.AppCompatImageView xmlns:n13="http://schemas.android.com/apk/res-auto"
+        n1:id="@+id/ground"
+        n1:layout_width="0.0dip"
+        n1:layout_height="0.0dip"
+        n1:layout_marginStart="@dimen/margin_medium"
+        n1:layout_marginEnd="@dimen/margin_medium"
+        n1:layout_marginBottom="@dimen/margin_medium"
+        n1:visibility="gone"
+        n13:layout_constraintBottom_toBottomOf="parent"
+        n13:layout_constraintEnd_toEndOf="parent"
+        n13:layout_constraintStart_toStartOf="parent"
+        n13:layout_constraintTop_toTopOf="@+id/center_horizontal_guide" />
+
+    <androidx.appcompat.widget.AppCompatImageView xmlns:n14="http://schemas.android.com/apk/res-auto"
+        n1:id="@+id/pumpkin"
+        n1:layout_width="0.0dip"
+        n1:layout_height="25.0dip"
+        n1:scaleType="centerInside"
+        n1:visibility="gone"
+        n14:layout_constraintBottom_toBottomOf="@+id/tomb"
+        n14:layout_constraintDimensionRatio="1:1"
+        n14:layout_constraintEnd_toEndOf="@+id/tomb"
+        n14:srcCompat="@drawable/pumpkin" />
+
+    <androidx.appcompat.widget.AppCompatImageView xmlns:n15="http://schemas.android.com/apk/res-auto"
+        n1:id="@+id/wifi_indicator"
+        n1:layout_width="0.0dip"
+        n1:layout_height="0.0dip"
+        n1:layout_marginEnd="@dimen/margin_medium"
+        n1:layout_marginRight="@dimen/margin_medium"
+        n1:layout_marginBottom="@dimen/margin_medium"
+        n1:alpha="0.5"
+        n1:scaleType="centerInside"
+        n15:layout_constraintBottom_toBottomOf="@+id/tomb"
+        n15:layout_constraintEnd_toEndOf="@+id/tomb"
+        n15:layout_constraintStart_toStartOf="@+id/tomb"
+        n15:layout_constraintTop_toTopOf="@+id/tomb"
+        n15:srcCompat="@drawable/ic_no_wifi" />
+
+    <androidx.appcompat.widget.AppCompatTextView xmlns:n16="http://schemas.android.com/apk/res-auto"
+        n1:id="@+id/no_internet"
+        n1:layout_width="0.0dip"
+        n1:layout_height="wrap_content"
+        n1:ellipsize="end"
+        n1:fontFamily="@font/montserrat_bold"
+        n1:gravity="center"
+        n1:maxLines="1"
+        n1:paddingStart="@dimen/margin_medium"
+        n1:paddingEnd="@dimen/margin_medium"
+        n1:text="@string/no_internet_title"
+        n1:textAllCaps="true"
+        n1:textColor="@color/colorWhite"
+        n1:textSize="20.0sp"
+        n16:layout_constraintEnd_toEndOf="@+id/end_guide"
+        n16:layout_constraintStart_toStartOf="@+id/start_guide"
+        n16:layout_constraintTop_toBottomOf="@+id/tomb" />
+
+    <androidx.appcompat.widget.AppCompatTextView xmlns:n17="http://schemas.android.com/apk/res-auto"
+        n1:id="@+id/no_internet_body"
+        n1:layout_width="0.0dip"
+        n1:layout_height="wrap_content"
+        n1:layout_marginTop="@dimen/margin_x_small"
+        n1:alpha="0.7"
+        n1:ellipsize="end"
+        n1:fontFamily="@font/montserrat_regular"
+        n1:gravity="center_horizontal"
+        n1:maxLines="2"
+        n1:paddingStart="@dimen/margin_medium"
+        n1:paddingEnd="@dimen/margin_medium"
+        n1:text="@string/no_internet_body"
+        n1:textColor="@color/colorWhite"
+        n1:textSize="15.0sp"
+        n17:layout_constraintEnd_toEndOf="@+id/end_guide"
+        n17:layout_constraintStart_toStartOf="@+id/start_guide"
+        n17:layout_constraintTop_toBottomOf="@+id/no_internet" />
+
+    <androidx.appcompat.widget.AppCompatTextView xmlns:n18="http://schemas.android.com/apk/res-auto"
+        n1:id="@+id/turn_on"
+        n1:layout_width="0.0dip"
+        n1:layout_height="wrap_content"
+        n1:layout_marginTop="@dimen/margin_medium"
+        n1:alpha="0.7"
+        n1:ellipsize="end"
+        n1:fontFamily="@font/montserrat_bold"
+        n1:gravity="center_horizontal"
+        n1:maxLines="1"
+        n1:paddingStart="@dimen/margin_medium"
+        n1:paddingEnd="@dimen/margin_medium"
+        n1:paddingBottom="@dimen/margin_x_small"
+        n1:text="@string/turn_on"
+        n1:textAllCaps="true"
+        n1:textColor="@color/colorWhite"
+        n1:textSize="12.0sp"
+        n18:layout_constraintBottom_toTopOf="@+id/buttons"
+        n18:layout_constraintEnd_toEndOf="@+id/end_guide"
+        n18:layout_constraintStart_toStartOf="@+id/start_guide" />
+
+    <RelativeLayout xmlns:n19="http://schemas.android.com/apk/res-auto"
+        n1:id="@+id/buttons"
+        n1:layout_width="0.0dip"
+        n1:layout_height="wrap_content"
+        n1:orientation="horizontal"
+        n19:layout_constraintBottom_toBottomOf="@+id/bottom_guide"
+        n19:layout_constraintEnd_toStartOf="@+id/end_guide"
+        n19:layout_constraintStart_toStartOf="@+id/start_guide">
+
+        <androidx.appcompat.widget.AppCompatButton
+            n1:id="@+id/wifi_on"
+            style="@style/roundedButton"
+            n1:layout_width="@dimen/button_width"
+            n1:layout_height="@dimen/button_size"
+            n1:layout_alignParentStart="true"
+            n1:layout_alignParentLeft="true"
+            n1:layout_marginEnd="@dimen/margin_small"
+            n1:layout_marginRight="@dimen/margin_small"
+            n1:fontFamily="@font/montserrat_light"
+            n1:text="@string/wifi_on"
+            n1:textAllCaps="false"
+            n1:textSize="@dimen/button_text_size" />
+
+        <ProgressBar
+            n1:id="@+id/wifi_loading"
+            n1:layout_width="@dimen/progress_size"
+            n1:layout_height="@dimen/progress_size"
+            n1:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            n1:id="@+id/mobile_on"
+            style="@style/roundedButton"
+            n1:layout_width="@dimen/button_width"
+            n1:layout_height="@dimen/button_size"
+            n1:layout_alignParentEnd="true"
+            n1:layout_alignParentRight="true"
+            n1:layout_marginStart="@dimen/margin_small"
+            n1:layout_marginLeft="@dimen/margin_small"
+            n1:fontFamily="@font/montserrat_light"
+            n1:text="@string/mobile"
+            n1:textAllCaps="false"
+            n1:textSize="@dimen/button_text_size" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            n1:id="@+id/airplane_off"
+            style="@style/roundedButton"
+            n1:layout_width="fill_parent"
+            n1:layout_height="@dimen/button_size"
+            n1:fontFamily="@font/montserrat_light"
+            n1:text="@string/airplane"
+            n1:textAllCaps="false"
+            n1:textColor="@color/colorWhite"
+            n1:textSize="@dimen/button_text_size"
+            n1:visibility="gone" />
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

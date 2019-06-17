@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:n1="http://schemas.android.com/apk/res/android"
+    n1:layout_width="fill_parent"
+    n1:layout_height="fill_parent">
+
+    <TextView
+        n1:id="@+id/noImage"
+        n1:layout_width="fill_parent"
+        n1:layout_height="wrap_content"
+        n1:text=""
+        n1:textColor="#ff000000"
+        n1:textStyle="bold" />
+
+    <Button
+        n1:id="@+id/button_selectpic"
+        n1:layout_width="fill_parent"
+        n1:layout_height="wrap_content"
+        n1:layout_below="@+id/noImage"
+        n1:text="Select Picture" />
+
+    <Button
+        n1:id="@+id/uploadButton"
+        n1:layout_width="fill_parent"
+        n1:layout_height="wrap_content"
+        n1:layout_below="@+id/button_selectpic"
+        n1:text="Click To Upload File" />
+
+    <TextView
+        n1:id="@+id/messageText"
+        n1:layout_width="fill_parent"
+        n1:layout_height="wrap_content"
+        n1:layout_below="@+id/uploadButton"
+        n1:text=""
+        n1:textColor="#ff000000"
+        n1:textStyle="bold" />
+
+    <EditText
+        n1:id="@+id/etxtUpload"
+        n1:layout_width="fill_parent"
+        n1:layout_height="wrap_content"
+        n1:layout_below="@+id/uploadButton"
+        n1:layout_centerHorizontal="true" />
+</RelativeLayout>

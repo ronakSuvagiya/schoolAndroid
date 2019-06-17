@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:n1="http://schemas.android.com/apk/res/android"
+    n1:id="@+id/coordinatorlayout"
+    n1:layout_width="fill_parent"
+    n1:layout_height="fill_parent">
+
+    <ScrollView
+        style="@style/Scrollview_Style"
+        n1:background="@color/background">
+
+        <LinearLayout
+            n1:layout_width="fill_parent"
+            n1:layout_height="fill_parent"
+            n1:orientation="vertical">
+
+            <GridView
+                n1:id="@+id/gridview"
+                n1:layout_width="fill_parent"
+                n1:layout_height="fill_parent"
+                n1:background="@android:color/transparent"
+                n1:gravity="center"
+                n1:numColumns="2"
+                n1:scrollbarThumbVertical="@null"
+                n1:stretchMode="columnWidth" />
+        </LinearLayout>
+    </ScrollView>
+
+    <include layout="@layout/layout_loading" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

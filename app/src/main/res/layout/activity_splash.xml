@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:n1="http://schemas.android.com/apk/res/android"
+    n1:id="@+id/layout"
+    n1:layout_width="fill_parent"
+    n1:layout_height="fill_parent"
+    n1:background="@drawable/background">
+
+    <ImageView
+        n1:id="@+id/image"
+        n1:layout_width="fill_parent"
+        n1:layout_height="fill_parent"
+        n1:layout_margin="@dimen/_30sdp"
+        n1:scaleType="fitCenter"
+        n1:src="@drawable/school_logo_png"
+        n1:visibility="gone" />
+</RelativeLayout>

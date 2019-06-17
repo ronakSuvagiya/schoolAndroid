@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu>
+    <item xmlns:n1="http://schemas.android.com/apk/res/android"
+        xmlns:n2="http://schemas.android.com/apk/res-auto"
+        n1:id="@+id/menu_calendar"
+        n1:icon="@drawable/ic_calendar"
+        n1:title="Select Date"
+        n1:visible="true"
+        n2:showAsAction="always" />
+</menu>

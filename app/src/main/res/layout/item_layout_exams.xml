@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout n1:layout_width="fill_parent" n1:layout_height="wrap_content"
+  xmlns:n1="http://schemas.android.com/apk/res/android">
+    <TextView n1:textSize="13.0sp" n1:textStyle="bold" n1:textColor="#ffffffff" n1:id="@+id/date" n1:background="@drawable/corner_round" n1:paddingLeft="@dimen/_10sdp" n1:paddingTop="5.0dip" n1:paddingRight="@dimen/_10sdp" n1:paddingBottom="5.0dip" n1:layout_width="wrap_content" n1:layout_height="wrap_content" n1:text="08 Oct 2017" n1:layout_centerHorizontal="true" n1:elevation="8.0dip" n1:backgroundTint="@android:color/holo_blue_dark" n1:outlineProvider="background" />
+    <androidx.cardview.widget.CardView n1:layout_width="fill_parent" n1:layout_height="wrap_content" n1:layout_margin="10.0dip" n2:cardCornerRadius="@dimen/_6sdp" n2:cardElevation="@dimen/_5sdp" xmlns:n2="http://schemas.android.com/apk/res-auto">
+        <LinearLayout n1:orientation="vertical" n1:padding="@dimen/_8sdp" n1:layout_width="fill_parent" n1:layout_height="wrap_content" n1:layout_marginTop="@dimen/_8sdp">
+            <TextView n1:textSize="18.0sp" n1:gravity="left" n1:id="@+id/exam_subject" n1:layout_marginTop="5.0dip" n1:layout_marginBottom="@dimen/_8sdp" n1:lineSpacingMultiplier="1.2" style="@style/Textview_Style_Header" />
+            <TextView n1:textSize="16.0sp" n1:layout_gravity="center" n1:id="@+id/exam_type" n1:layout_width="fill_parent" n1:layout_height="wrap_content" n1:lineSpacingMultiplier="1.2" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

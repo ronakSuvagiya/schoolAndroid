@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge>
+
+    <ImageView xmlns:n1="http://schemas.android.com/apk/res/android"
+        n1:id="@+id/icon"
+        n1:layout_width="24.0dip"
+        n1:layout_height="24.0dip"
+        n1:layout_gravity="center_horizontal"
+        n1:layout_marginTop="@dimen/design_bottom_navigation_margin"
+        n1:layout_marginBottom="@dimen/design_bottom_navigation_margin"
+        n1:duplicateParentState="true" />
+
+    <com.google.android.material.internal.BaselineLayout xmlns:n2="http://schemas.android.com/apk/res/android"
+        n2:layout_width="wrap_content"
+        n2:layout_height="wrap_content"
+        n2:layout_gravity="bottom|center"
+        n2:clipToPadding="false"
+        n2:duplicateParentState="true"
+        n2:paddingBottom="10.0dip">
+
+        <TextView
+            n2:id="@+id/smallLabel"
+            n2:layout_width="wrap_content"
+            n2:layout_height="wrap_content"
+            n2:duplicateParentState="true"
+            n2:singleLine="true"
+            n2:textSize="@dimen/design_bottom_navigation_text_size" />
+
+        <TextView
+            n2:id="@+id/largeLabel"
+            n2:layout_width="wrap_content"
+            n2:layout_height="wrap_content"
+            n2:duplicateParentState="true"
+            n2:singleLine="true"
+            n2:textSize="@dimen/design_bottom_navigation_active_text_size"
+            n2:visibility="invisible" />
+    </com.google.android.material.internal.BaselineLayout>
+</merge>

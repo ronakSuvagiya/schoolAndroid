@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:n1="http://schemas.android.com/apk/res/android"
+    xmlns:android="http://schemas.android.com/tools"
+    style="@style/Scrollview_Style"
+    n1:background="@drawable/background"
+    android:ignore="NamespaceTypo">
+
+    <LinearLayout
+        n1:gravity="center"
+        android:layout_gravity="center"
+        n1:layout_centerInParent="true"
+        n1:orientation="vertical"
+        n1:layout_height="wrap_content"
+        n1:layout_width="match_parent">
+
+        <EditText
+            n1:id="@+id/reg_code"
+            n1:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            n1:inputType="number"
+            n1:hint="Registration Code"
+            n1:layout_height="wrap_content"
+            n1:layout_width="match_parent" />
+        <androidx.cardview.widget.CardView xmlns:n2="http://schemas.android.com/apk/res-auto"
+            n1:layout_width="fill_parent"
+            n1:layout_height="wrap_content"
+            n1:layout_margin="30.0dip"
+            n2:cardBackgroundColor="@color/colorPrimary"
+            n2:cardCornerRadius="@dimen/_6sdp"
+            n2:cardElevation="@dimen/_5sdp">
+        <Button
+            n1:id="@+id/btn_reg_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            n1:text="Continue"
+            n1:textAllCaps="false"
+            n1:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            n1:textColor="#ffffffff"
+            n1:textStyle="bold"
+            n1:background="@android:color/transparent"
+            n1:foreground="@drawable/touch_effect_rectangle"
+            n1:layout_height="wrap_content"
+            n1:layout_width="match_parent" />
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</RelativeLayout>

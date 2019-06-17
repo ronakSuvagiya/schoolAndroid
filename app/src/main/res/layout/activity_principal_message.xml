@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:n1="http://schemas.android.com/apk/res/android"
+    n1:id="@+id/coordinatorlayout"
+    n1:layout_width="fill_parent"
+    n1:layout_height="fill_parent">
+
+    <LinearLayout
+        n1:layout_width="fill_parent"
+        n1:layout_height="fill_parent"
+        n1:gravity="center"
+        n1:orientation="vertical"
+        n1:padding="@dimen/_12sdp">
+
+        <ScrollView
+            n1:id="@+id/scrollView"
+            style="@style/Scrollview_Style">
+
+            <LinearLayout
+                n1:layout_width="fill_parent"
+                n1:layout_height="fill_parent"
+                n1:gravity="center"
+                n1:orientation="vertical">
+
+                <RelativeLayout
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="wrap_content">
+
+                    <com.apps.smartschoolmanagement.utils.CircleImage xmlns:n2="http://schemas.android.com/apk/res-auto"
+                        n1:id="@+id/profilePic"
+                        n1:layout_width="@dimen/_100sdp"
+                        n1:layout_height="@dimen/_100sdp"
+                        n1:layout_centerHorizontal="true"
+                        n1:elevation="@dimen/_10sdp"
+                        n1:outlineProvider="background"
+                        n2:civ_border_color="#ffffffff"
+                        n2:civ_border_width="@dimen/_1sdp" />
+
+                    <androidx.cardview.widget.CardView xmlns:n3="http://schemas.android.com/apk/res-auto"
+                        n1:id="@+id/cardview"
+                        n1:layout_width="fill_parent"
+                        n1:layout_height="wrap_content"
+                        n1:layout_marginTop="@dimen/_45sdp"
+                        n1:layout_marginBottom="@dimen/_5sdp"
+                        n3:cardCornerRadius="@dimen/_6sdp"
+                        n3:cardElevation="@dimen/_5sdp"
+                        n3:contentPadding="@dimen/_15sdp">
+
+                        <LinearLayout
+                            n1:layout_width="fill_parent"
+                            n1:layout_height="wrap_content"
+                            n1:layout_marginTop="@dimen/_45sdp"
+                            n1:background="@android:color/transparent"
+                            n1:gravity="center_horizontal"
+                            n1:orientation="vertical">
+
+                            <TextView
+                                n1:id="@+id/name"
+                                style="@style/Textview_Style_Header"
+                                n1:layout_marginBottom="@dimen/_10sdp"
+                                n1:background="@android:color/transparent" />
+
+                            <TextView
+                                n1:id="@+id/statement"
+                                n1:layout_width="fill_parent"
+                                n1:layout_height="wrap_content"
+                                n1:layout_marginBottom="@dimen/_10sdp"
+                                n1:gravity="center_horizontal"
+                                n1:lineSpacingMultiplier="1.3"
+                                n1:textSize="17.0sp" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                </RelativeLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <include layout="@layout/layout_loading" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

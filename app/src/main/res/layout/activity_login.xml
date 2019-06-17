@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:n1="http://schemas.android.com/apk/res/android"
+    n1:id="@+id/coordinatorlayout"
+    n1:layout_width="fill_parent"
+    n1:layout_height="fill_parent"
+    n1:fitsSystemWindows="true">
+
+    <RelativeLayout
+        n1:layout_width="fill_parent"
+        n1:layout_height="fill_parent"
+        n1:background="@drawable/background"
+        n1:gravity="center_horizontal">
+
+        <ScrollView
+            n1:id="@+id/scrollView"
+            style="@style/Scrollview_Style">
+
+            <LinearLayout
+                n1:layout_width="fill_parent"
+                n1:layout_height="fill_parent"
+                n1:gravity="center"
+                n1:orientation="vertical">
+
+                <LinearLayout
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="wrap_content"
+                    n1:layout_margin="@dimen/_25sdp"
+                    n1:gravity="center"
+                    n1:orientation="vertical">
+
+                    <TextView
+                        style="@style/Textview_Style_Header"
+                        n1:layout_marginBottom="30.0dip"
+                        n1:text="Login"
+                        n1:visibility="gone" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        n1:layout_width="fill_parent"
+                        n1:layout_height="wrap_content"
+                        n1:textColorHint="#77000000">
+
+                        <com.apps.smartschoolmanagement.utils.EditTextClearable
+                            n1:id="@+id/username"
+                            n1:layout_width="fill_parent"
+                            n1:layout_height="wrap_content"
+                            n1:drawableLeft="@drawable/img_user"
+                            n1:drawablePadding="@dimen/_10sdp"
+                            n1:hint="@string/username"
+                            n1:maxLength="50"
+                            n1:maxLines="1"
+                            n1:textColor="#ff000000"
+                            n1:textSize="16.0sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        n1:layout_width="fill_parent"
+                        n1:layout_height="wrap_content"
+                        n1:layout_marginTop="20.0dip"
+                        n1:textColorHint="#77000000">
+
+                        <com.apps.smartschoolmanagement.utils.EditTextClearable
+                            n1:id="@+id/password"
+                            n1:layout_width="fill_parent"
+                            n1:layout_height="wrap_content"
+                            n1:drawableLeft="@drawable/img_lock"
+                            n1:drawablePadding="@dimen/_10sdp"
+                            n1:hint="@string/password"
+                            n1:inputType="textPassword"
+                            n1:maxLength="100"
+                            n1:maxLines="1"
+                            n1:textColor="#ff000000"
+                            n1:textSize="16.0sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.apps.smartschoolmanagement.utils.ButtonTouchEffect
+                        n1:id="@+id/btn_signin"
+                        style="@style/Button_Rounded_Corner_Style"
+                        n1:layout_gravity="center_horizontal"
+                        n1:layout_marginTop="35.0dip"
+                        n1:text="Sign In" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
+
+    <include layout="@layout/layout_loading" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
