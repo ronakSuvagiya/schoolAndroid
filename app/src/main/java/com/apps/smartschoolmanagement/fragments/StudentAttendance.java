@@ -19,6 +19,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.apps.smartschoolmanagement.activities.BusesListActivity;
 import com.apps.smartschoolmanagement.adapters.AttendancesAdapter;
@@ -34,8 +35,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -80,7 +83,12 @@ public class StudentAttendance extends JsonFragment implements OnMonthChangedLis
 
         @Override
         public void onSuccess(JSONObject jSONObject) {
-
+            try {
+                Toast.makeText(getActivity().getApplicationContext(), (CharSequence) jSONObject.get("message"),Toast.LENGTH_LONG).show();
+            } catch (JSONException e) {
+                Toast.makeText(getActivity().getApplicationContext(),e.getMessage() ,Toast.LENGTH_LONG).show();
+                e.printStackTrace();
+            }
         }
     }
 
@@ -129,6 +137,7 @@ public class StudentAttendance extends JsonFragment implements OnMonthChangedLis
 //        this.materialCalendarView.setArrowColor(getResources().getColor(R.color.colorPrimary));
         this.materialCalendarView.setHeaderTextAppearance(R.style.month_style);
         this.materialCalendarView.setOnMonthChangedListener(this);
+        materialCalendarView.setSelectedDate(CalendarDay.today());
         this.classes = (Spinner) this.rootView.findViewById(R.id.spnr_class);
         this.student = (Spinner) this.rootView.findViewById(R.id.spnr_student);
         this.studentList = this.rootView.findViewById(R.id.listview1);
@@ -160,7 +169,22 @@ public class StudentAttendance extends JsonFragment implements OnMonthChangedLis
             public void onClick(View view) {
              String std = String.valueOf(stdId.get(classes.getSelectedItemPosition()));
              String div = String.valueOf(divId.get(student.getSelectedItemPosition()));
-             String date = materialCalendarView.getSelectedDate().toString();
+             int day = materialCalendarView.getSelectedDate().getDay();
+             int year = materialCalendarView.getSelectedDate().getYear();
+             int month = materialCalendarView.getSelectedDate().getMonth();
+             String date = "";
+                if(month<10 & day<10) {
+                    date = year + "-0" + month + "-0" + day;
+             }
+             else if(month<10){
+                  date = year + "-0" + month + "-" + day;
+             }
+             else if(day<10) {
+                  date = year + "-" + month + "-0" + day;
+             }
+             else{
+                    date = year + "-" + month + "-" + day;
+             }
                 if(!rollnumber.isEmpty() && rollnumber.endsWith(",")) {
                     rollnumber = rollnumber.substring(0, rollnumber.length() - 1);
 
@@ -168,9 +192,9 @@ public class StudentAttendance extends JsonFragment implements OnMonthChangedLis
                     try {
                         sendData.put("rollNo",rollnumber);
                         sendData.put("date",date);
-                        sendData.put("school",channel);
-                        sendData.put("std",std);
-                        sendData.put("div",div);
+                        sendData.put("school",Integer.parseInt(channel));
+                        sendData.put("std",Integer.parseInt(std));
+                        sendData.put("div",Integer.parseInt(div));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
