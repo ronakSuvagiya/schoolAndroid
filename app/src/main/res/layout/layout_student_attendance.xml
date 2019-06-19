@@ -1,48 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:n1="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:n1="http://schemas.android.com/apk/res/android"
     n1:id="@+id/coordinatorlayout"
-    n1:layout_width="fill_parent"
-    n1:layout_height="fill_parent">
+    n1:layout_width="match_parent"
+    n1:layout_height="match_parent"
+    n1:orientation="vertical">
 
-    <ScrollView
-        style="@style/Scrollview_Style"
-        n1:background="@color/background">
-
-        <LinearLayout
-            n1:layout_width="fill_parent"
-            n1:layout_height="fill_parent"
-            n1:orientation="vertical">
 
             <LinearLayout
                 n1:id="@+id/layout_candidate_selection"
-                n1:layout_width="fill_parent"
+                n1:layout_width="match_parent"
                 n1:layout_height="wrap_content"
                 n1:background="@color/background"
                 n1:orientation="vertical"
                 n1:padding="@dimen/_12sdp">
 
                 <FrameLayout
-                    n1:layout_width="fill_parent"
+                    n1:layout_width="match_parent"
                     n1:layout_height="wrap_content"
                     n1:layout_marginBottom="@dimen/_16sdp"
                     n1:background="@drawable/borders_rltb_white_background">
 
                     <Spinner
                         n1:id="@+id/spnr_class"
-                        n1:layout_width="fill_parent"
+                        n1:layout_width="match_parent"
                         n1:layout_height="@dimen/_35sdp"
                         n1:alpha="0.7"
                         n1:paddingLeft="@dimen/_4sdp" />
                 </FrameLayout>
 
                 <FrameLayout
-                    n1:layout_width="fill_parent"
+                    n1:layout_width="match_parent"
                     n1:layout_height="wrap_content"
                     n1:background="@drawable/borders_rltb_white_background">
 
                     <Spinner
                         n1:id="@+id/spnr_student"
-                        n1:layout_width="fill_parent"
+                        n1:layout_width="match_parent"
                         n1:layout_height="@dimen/_35sdp"
                         n1:alpha="0.7"
                         n1:paddingLeft="@dimen/_4sdp" />
@@ -52,7 +45,7 @@
 
             <com.prolificinteractive.materialcalendarview.MaterialCalendarView xmlns:n2="http://schemas.android.com/apk/res-auto"
                 n1:id="@+id/calendarView"
-                n1:layout_width="fill_parent"
+                n1:layout_width="match_parent"
                 n1:layout_height="wrap_content"
                 n1:padding="@dimen/_5sdp"
                 n2:mcv_dateTextAppearance="@style/date_style"
@@ -62,33 +55,31 @@
                 n2:mcv_tileHeight="@dimen/_30sdp"
                 n2:mcv_weekDayTextAppearance="@style/month_style" />
 
-            <LinearLayout
-                n1:id="@+id/layout_candidate_selection1"
-                n1:layout_width="fill_parent"
+
+        <LinearLayout
+            n1:id="@+id/layout_candidate_selection1"
+            n1:layout_width="match_parent"
+            n1:layout_height="wrap_content"
+            n1:background="@color/background"
+            n1:orientation="vertical"
+            n1:padding="@dimen/_12sdp">
+
+            <ListView
+                n1:id="@+id/listview1"
+                style="@style/ListView_Style"
+                n1:layout_height="wrap_content"/>
+
+
+            <com.apps.smartschoolmanagement.utils.ButtonTouchEffect
+                n1:id="@+id/btn_submit"
+                n1:layout_width="wrap_content"
                 n1:layout_height="wrap_content"
-                n1:background="@color/background"
-                n1:orientation="vertical"
-                n1:padding="@dimen/_12sdp">
-
-                <ListView
-                    n1:id="@+id/listview1"
-                    style="@style/ListView_Style"
-                    n1:layout_height="155dp" />
-
-
-                <com.apps.smartschoolmanagement.utils.ButtonTouchEffect
-                    n1:id="@+id/btn_submit"
-                    style="@style/Button_Style"
-                    n1:layout_gravity="center_horizontal"
-                    n1:layout_marginTop="@dimen/_8sdp"
-                    n1:background="@drawable/corner_rectangle"
-                    n1:paddingLeft="@dimen/_35sdp"
-                    n1:paddingRight="@dimen/_35sdp"
-                    n1:text="Submit" />
-            </LinearLayout>
-
+                n1:layout_gravity="center_horizontal"
+                n1:layout_marginTop="@dimen/_8sdp"
+                n1:background="@drawable/corner_rectangle"
+                n1:paddingLeft="@dimen/_35sdp"
+                n1:paddingRight="@dimen/_35sdp"
+                n1:text="Submit" />
         </LinearLayout>
-    </ScrollView>
 
-    <include layout="@layout/layout_loading" />
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</LinearLayout>

@@ -43,7 +43,6 @@
                     n1:layout_width="fill_parent"
                     n1:layout_height="@dimen/_35sdp"
                     n1:alpha="0.7"
-                    n1:entries="@array/months"
                     n1:paddingLeft="@dimen/_10sdp" />
             </FrameLayout>
 

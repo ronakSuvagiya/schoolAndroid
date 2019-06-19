@@ -110,7 +110,7 @@ public class StudentAttendance extends JsonFragment implements OnMonthChangedLis
         }
     }
 
-    class  StudentApiCall implements VolleyCallbackJSONArray{
+    class StudentApiCall implements VolleyCallbackJSONArray{
 
         @Override
         public void onSuccess(JSONArray jsonArray) {
@@ -140,7 +140,7 @@ public class StudentAttendance extends JsonFragment implements OnMonthChangedLis
         materialCalendarView.setSelectedDate(CalendarDay.today());
         this.classes = (Spinner) this.rootView.findViewById(R.id.spnr_class);
         this.student = (Spinner) this.rootView.findViewById(R.id.spnr_student);
-        this.studentList = this.rootView.findViewById(R.id.listview1);
+        this.studentList = this.rootView.findViewById(R.id.listview);
      //   Switch onoff = this.rootView.findViewById(R.id.switch1);
         sp = PreferenceManager.getDefaultSharedPreferences(rootView.getContext());
         String channel = (sp.getString("schoolid", ""));
