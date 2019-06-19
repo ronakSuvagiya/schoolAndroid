@@ -47,7 +47,7 @@ public class LibraryActivity extends JsonClass {
         } else if (UserStaticData.user_type == 1) {
             this.params.put("teacer_id", ProfileInfo.getInstance().getLoginData().get("userId"));
         }
-        getJsonResponse(URLs.books, this, new C12211());
+       // getJsonResponse(URLs.books, this, new C12211());
     }
 
     public void processJSONResult(JSONObject jsonObject) {

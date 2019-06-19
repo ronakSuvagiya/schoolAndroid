@@ -48,7 +48,7 @@ public class MarksActivity extends JsonClass {
             if (result != null) {
                 MarksActivity.this.examid = result;
                 MarksActivity.this.params.put("exam_id", MarksActivity.this.examid);
-                MarksActivity.this.getJsonResponse(URLs.marks, MarksActivity.this, new C12311());
+             //   MarksActivity.this.getJsonResponse(URLs.marks, MarksActivity.this, new C12311());
             }
         }
     }
@@ -98,7 +98,7 @@ public class MarksActivity extends JsonClass {
         public void onClick(View view) {
             MarksActivity.this.params.put("student_id", MarksActivity.this.studentid);
             MarksActivity.this.params.put("exam_id", MarksActivity.this.examid);
-            MarksActivity.this.getJsonResponse(URLs.marks, MarksActivity.this, new C12351());
+        //    MarksActivity.this.getJsonResponse(URLs.marks, MarksActivity.this, new C12351());
         }
     }
 

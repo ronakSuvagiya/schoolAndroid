@@ -56,7 +56,7 @@ public class ResetPasswordActivity extends JsonClass {
                 ResetPasswordActivity.this.params.put("otp", ResetPasswordActivity.this.otp.getText().toString());
                 ResetPasswordActivity.this.params.put("pwd", ResetPasswordActivity.this.newpswd.getText().toString());
                 ResetPasswordActivity.this.params.put("confirm_password", ResetPasswordActivity.this.confirmpswd.getText().toString());
-                ResetPasswordActivity.this.getJsonResponse(URLs.resetpassword, ResetPasswordActivity.this, new C12871());
+            //    ResetPasswordActivity.this.getJsonResponse(URLs.resetpassword, ResetPasswordActivity.this, new C12871());
             } else {
                 ResetPasswordActivity.this.confirmpswd.setError("Passwords did not match");
                 ResetPasswordActivity.this.confirmpswd.requestFocus();

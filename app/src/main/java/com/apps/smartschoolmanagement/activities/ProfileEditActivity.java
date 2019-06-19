@@ -268,7 +268,7 @@ public class ProfileEditActivity extends BaseActivity {
         } else if (UserStaticData.user_type == 2) {
             this.params.put("admin_id", ProfileInfo.getInstance().getLoginData().get("userId"));
         }
-        getJsonResponse(URLs.userprofile, this, new C12735());
+      //  getJsonResponse(URLs.userprofile, this, new C12735());
 //        SpinnerrAdapter adapter = new SpinnerrAdapter(this, R.layout.spinner_selected_item, Arrays.asList(getResources().getStringArray(R.array.gender))) {
 //            public boolean isEnabled(int position) {
 //                if (position == 0) {

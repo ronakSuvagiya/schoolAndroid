@@ -76,7 +76,7 @@ public class AppointmentsActivity extends JsonClass {
             }
             AppointmentsActivity.this.params.put("dateofappinment", AppointmentsActivity.this.date.getText().toString());
             AppointmentsActivity.this.params.put("time", AppointmentsActivity.this.time.getText().toString());
-            AppointmentsActivity.this.getJsonResponse(URLs.appointment, AppointmentsActivity.this, new C11901());
+          //  AppointmentsActivity.this.getJsonResponse(URLs.appointment, AppointmentsActivity.this, new C11901());
         }
     }
 

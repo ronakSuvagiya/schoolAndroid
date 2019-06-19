@@ -90,7 +90,7 @@ public class PostRemarkActivity extends JsonClass {
             PostRemarkActivity.this.params.put("student_id", PostRemarkActivity.this.studentid);
             PostRemarkActivity.this.params.put("teacher_id", ProfileInfo.getInstance().getLoginData().get("userId"));
             PostRemarkActivity.this.params.put("remark", ((EditText) PostRemarkActivity.this.findViewById(R.id.edit_post_remard)).getText().toString());
-            PostRemarkActivity.this.getJsonResponse(URLs.remarks_post, PostRemarkActivity.this, new C12631());
+           // PostRemarkActivity.this.getJsonResponse(URLs.remarks_post, PostRemarkActivity.this, new C12631());
         }
     }
 

@@ -73,7 +73,7 @@ public class MarksListActivity extends JsonClass {
                 MarksListActivity.this.examid = result;
                 MarksListActivity.this.params.put("exam_id", MarksListActivity.this.examid);
                 MarksListActivity.this.params.put("student_id", ProfileInfo.getInstance().getLoginData().get("userId"));
-                MarksListActivity.this.getJsonResponse(URLs.marks, MarksListActivity.this, new C12371());
+              //  MarksListActivity.this.getJsonResponse(URLs.marks, MarksListActivity.this, new C12371());
             }
         }
     }
@@ -106,7 +106,7 @@ public class MarksListActivity extends JsonClass {
                     MarksListActivity.this.params.put("class_id", MarksListActivity.this.classid);
                     if (MarksListActivity.this.studentid != null) {
                         MarksListActivity.this.params.put("student_id", MarksListActivity.this.studentid);
-                        MarksListActivity.this.getJsonResponse(URLs.marks, MarksListActivity.this, new C12391());
+                     //   MarksListActivity.this.getJsonResponse(URLs.marks, MarksListActivity.this, new C12391());
                         return;
                     }
                     Toast.makeText(MarksListActivity.this, "Select Student", 0).show();

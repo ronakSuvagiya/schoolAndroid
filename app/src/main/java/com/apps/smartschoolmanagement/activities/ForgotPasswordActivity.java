@@ -50,7 +50,7 @@ public class ForgotPasswordActivity extends BaseActivity {
                 ForgotPasswordActivity.this.params.put("email", ForgotPasswordActivity.this.email.getText().toString());
                 ProfileInfo.getInstance().getLoginData().clear();
                 ForgotPasswordActivity.this.findViewById(R.id.btn_continue).setEnabled(false);
-                ForgotPasswordActivity.this.getJsonResponse(URLs.sendotp, ForgotPasswordActivity.this, new C12121());
+              //  ForgotPasswordActivity.this.getJsonResponse(URLs.sendotp, ForgotPasswordActivity.this, new C12121());
             }
         }
     }

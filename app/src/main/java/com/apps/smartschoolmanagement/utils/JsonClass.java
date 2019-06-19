@@ -31,9 +31,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.load.Key;
@@ -91,11 +93,20 @@ public class JsonClass extends AppCompatActivity {
         void onSuccess(JSONObject jSONObject);
     }
 
+    public interface VolleyCallbackJSONArray {
+        void onSuccess(JSONArray jsonArray);
+    }
+
     public class SendHttpRequestTask extends AsyncTask<Object, Void, String> {
         public AsyncResponse delegate = null;
 
         public SendHttpRequestTask(AsyncResponse asyncResponse) {
             this.delegate = asyncResponse;
+        }
+
+        @Override
+        protected String doInBackground(Object... objects) {
+            return null;
         }
 
         protected void onPreExecute() {
@@ -110,165 +121,6 @@ public class JsonClass extends AppCompatActivity {
                 JsonClass.this.findViewById(R.id.layout_loading).setVisibility(8);
             }
             this.delegate.processFinish(result);
-        }
-
-        /* JADX WARNING: inconsistent code. */
-        /* Code decompiled incorrectly, please refer to instructions dump. */
-        protected java.lang.String doInBackground(java.lang.Object... r22) {
-            /*
-            r21 = this;
-            r18 = 0;
-            r17 = r22[r18];
-            r17 = (java.lang.String) r17;
-            r18 = 2;
-            r8 = r22[r18];
-            r8 = (java.util.HashMap) r8;
-            r18 = 1;
-            r6 = r22[r18];
-            r6 = (java.util.List) r6;
-            r18 = "JSONCLASS1";
-            r19 = new java.lang.StringBuilder;
-            r19.<init>();
-            r20 = "params : ";
-            r19 = r19.append(r20);
-            r0 = r19;
-            r19 = r0.append(r8);
-            r19 = r19.toString();
-            android.util.Log.d(r18, r19);
-            r18 = "JSONCLASS1";
-            r19 = new java.lang.StringBuilder;
-            r19.<init>();
-            r20 = "fileslist : ";
-            r19 = r19.append(r20);
-            r0 = r19;
-            r19 = r0.append(r6);
-            r19 = r19.toString();
-            android.util.Log.d(r18, r19);
-            r5 = "userfile";
-            r2 = "UTF-8";
-            r15 = 0;
-            r12 = 0;
-            r13 = new com.apps.smartschoolmanagement.utils.MultipartUtility;	 Catch:{ IOException -> 0x013e }
-            r0 = r17;
-            r13.<init>(r0, r2);	 Catch:{ IOException -> 0x013e }
-            r18 = r6.size();	 Catch:{ FileNotFoundException -> 0x00c8 }
-            if (r18 != 0) goto L_0x00ac;
-        L_0x0059:
-            r18 = r8.entrySet();	 Catch:{ IOException -> 0x00a6 }
-            r9 = r18.iterator();	 Catch:{ IOException -> 0x00a6 }
-        L_0x0061:
-            r18 = r9.hasNext();	 Catch:{ IOException -> 0x00a6 }
-            if (r18 == 0) goto L_0x010a;
-        L_0x0067:
-            r14 = r9.next();	 Catch:{ IOException -> 0x00a6 }
-            r14 = (java.util.Map.Entry) r14;	 Catch:{ IOException -> 0x00a6 }
-            r18 = new java.lang.StringBuilder;	 Catch:{ IOException -> 0x00a6 }
-            r18.<init>();	 Catch:{ IOException -> 0x00a6 }
-            r19 = "";
-            r18 = r18.append(r19);	 Catch:{ IOException -> 0x00a6 }
-            r19 = r14.getKey();	 Catch:{ IOException -> 0x00a6 }
-            r18 = r18.append(r19);	 Catch:{ IOException -> 0x00a6 }
-            r18 = r18.toString();	 Catch:{ IOException -> 0x00a6 }
-            r19 = new java.lang.StringBuilder;	 Catch:{ IOException -> 0x00a6 }
-            r19.<init>();	 Catch:{ IOException -> 0x00a6 }
-            r20 = "";
-            r19 = r19.append(r20);	 Catch:{ IOException -> 0x00a6 }
-            r20 = r14.getValue();	 Catch:{ IOException -> 0x00a6 }
-            r19 = r19.append(r20);	 Catch:{ IOException -> 0x00a6 }
-            r19 = r19.toString();	 Catch:{ IOException -> 0x00a6 }
-            r0 = r18;
-            r1 = r19;
-            r13.addFormField(r0, r1);	 Catch:{ IOException -> 0x00a6 }
-            r9.remove();	 Catch:{ IOException -> 0x00a6 }
-            goto L_0x0061;
-        L_0x00a6:
-            r3 = move-exception;
-            r12 = r13;
-        L_0x00a8:
-            r3.printStackTrace();
-        L_0x00ab:
-            return r15;
-        L_0x00ac:
-            r18 = r6.size();	 Catch:{ FileNotFoundException -> 0x00c8 }
-            r19 = 1;
-            r0 = r18;
-            r1 = r19;
-            if (r0 != r1) goto L_0x00d5;
-        L_0x00b8:
-            r18 = 0;
-            r0 = r18;
-            r18 = r6.get(r0);	 Catch:{ FileNotFoundException -> 0x00c8 }
-            r18 = (java.io.File) r18;	 Catch:{ FileNotFoundException -> 0x00c8 }
-            r0 = r18;
-            r13.addFilePart(r5, r0);	 Catch:{ FileNotFoundException -> 0x00c8 }
-            goto L_0x0059;
-        L_0x00c8:
-            r3 = move-exception;
-            r0 = r21;
-            r0 = com.apps.smartschoolmanagement.utils.JsonClass.this;	 Catch:{ IOException -> 0x00a6 }
-            r18 = r0;
-            r19 = "You are trying to upload a file from cache, which is not supported";
-            r18.showToast(r19);	 Catch:{ IOException -> 0x00a6 }
-            goto L_0x0059;
-        L_0x00d5:
-            r18 = r6.iterator();	 Catch:{ FileNotFoundException -> 0x00c8 }
-        L_0x00d9:
-            r19 = r18.hasNext();	 Catch:{ FileNotFoundException -> 0x00c8 }
-            if (r19 == 0) goto L_0x0059;
-        L_0x00df:
-            r4 = r18.next();	 Catch:{ FileNotFoundException -> 0x00c8 }
-            r4 = (java.io.File) r4;	 Catch:{ FileNotFoundException -> 0x00c8 }
-            r19 = r6.size();	 Catch:{ FileNotFoundException -> 0x00c8 }
-            if (r19 == 0) goto L_0x00d9;
-        L_0x00eb:
-            r19 = new java.lang.StringBuilder;	 Catch:{ FileNotFoundException -> 0x00c8 }
-            r19.<init>();	 Catch:{ FileNotFoundException -> 0x00c8 }
-            r0 = r19;
-            r19 = r0.append(r5);	 Catch:{ FileNotFoundException -> 0x00c8 }
-            r20 = r6.indexOf(r4);	 Catch:{ FileNotFoundException -> 0x00c8 }
-            r20 = r20 + 1;
-            r19 = r19.append(r20);	 Catch:{ FileNotFoundException -> 0x00c8 }
-            r19 = r19.toString();	 Catch:{ FileNotFoundException -> 0x00c8 }
-            r0 = r19;
-            r13.addFilePart(r0, r4);	 Catch:{ FileNotFoundException -> 0x00c8 }
-            goto L_0x00d9;
-        L_0x010a:
-            r15 = r13.finish();	 Catch:{ IOException -> 0x00a6 }
-            r18 = android.text.TextUtils.isEmpty(r15);	 Catch:{ IOException -> 0x00a6 }
-            if (r18 != 0) goto L_0x0136;
-        L_0x0114:
-            r7 = r15;
-            r18 = "jkl";
-            r0 = r18;
-            android.util.Log.d(r0, r7);	 Catch:{ IOException -> 0x00a6 }
-            r10 = 0;
-            r11 = new org.json.JSONObject;	 Catch:{ JSONException -> 0x0139 }
-            r11.<init>(r15);	 Catch:{ JSONException -> 0x0139 }
-            r18 = "status";
-            r0 = r18;
-            r16 = r11.getString(r0);	 Catch:{ JSONException -> 0x0141 }
-            r18 = "success";
-            r0 = r18;
-            r1 = r16;
-            r18 = r0.equals(r1);	 Catch:{ JSONException -> 0x0141 }
-            if (r18 == 0) goto L_0x0136;
-        L_0x0136:
-            r12 = r13;
-            goto L_0x00ab;
-        L_0x0139:
-            r3 = move-exception;
-        L_0x013a:
-            r3.printStackTrace();	 Catch:{ IOException -> 0x00a6 }
-            goto L_0x0136;
-        L_0x013e:
-            r3 = move-exception;
-            goto L_0x00a8;
-        L_0x0141:
-            r3 = move-exception;
-            r10 = r11;
-            goto L_0x013a;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: com.apps.smartschoolmanagement.utils.JsonClass.SendHttpRequestTask.doInBackground(java.lang.Object[]):java.lang.String");
         }
     }
 
@@ -302,40 +154,18 @@ public class JsonClass extends AppCompatActivity {
         }
     }
 
-    public void getJsonResponse(String url, final Context context, final VolleyCallback callback) {
+    public void getJsonResponse(String url, final Context context, final VolleyCallbackJSONArray callback) {
         if (Connectivity.isConnected(context)) {
             if (findViewById(R.id.layout_loading) != null) {
                 findViewById(R.id.layout_loading).setVisibility(0);
             }
-            StringRequest strReq = new StringRequest(1, url, new Listener<String>() {
-                public void onResponse(String response) {
-                    Log.d("jkl", "Response: " + response.toString());
+            JsonArrayRequest strReq = new JsonArrayRequest(Request.Method.GET,url,null, new Listener<JSONArray>() {
+                @Override
+                public void onResponse(JSONArray response) {
                     if (JsonClass.this.findViewById(R.id.layout_loading) != null) {
                         JsonClass.this.findViewById(R.id.layout_loading).setVisibility(8);
                     }
-                    try {
-                        JSONObject jsonObject = new JSONObject(response);
-                        if (jsonObject.length() != 0) {
-                            try {
-                                if (jsonObject.isNull("error")) {
-                                    callback.onSuccess(response);
-                                    return;
-                                }
-                                String error = jsonObject.getString("error");
-                                if (error != null) {
-                                    JsonClass.this.showToast(error);
-                                    return;
-                                }
-                                return;
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                                return;
-                            }
-                        }
-                        JsonClass.this.showToast("Failed to Retrieve Data");
-                    } catch (JSONException e2) {
-                        e2.printStackTrace();
-                    }
+                    callback.onSuccess(response);
                 }
             }, new ErrorListener() {
                 public void onErrorResponse(VolleyError error) {
@@ -373,7 +203,7 @@ public class JsonClass extends AppCompatActivity {
                 }
             };
             strReq.setRetryPolicy(new DefaultRetryPolicy(5000, 2, 1.0f));
-//            AppSingleton.getInstance(this).addToRequestQueue(strReq);
+           AppSingleton.getInstance(this).addToRequestQueue(strReq);
             return;
         }
         if (findViewById(R.id.layout_loading) != null) {

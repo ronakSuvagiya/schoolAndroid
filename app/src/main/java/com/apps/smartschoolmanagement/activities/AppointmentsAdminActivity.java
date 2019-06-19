@@ -85,7 +85,7 @@ public class AppointmentsAdminActivity extends JsonClass {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tab_layout_top);
         setTitle("Appointments");
-        getJsonResponse(URLs.appointmentsList, this, new C11921());
+       // getJsonResponse(URLs.appointmentsList, this, new C11921());
         this.tabLayout = (TabLayout) findViewById(R.id.tabs);
         this.tabLayout.addTab(this.tabLayout.newTab().setText("Students"));
         this.tabLayout.addTab(this.tabLayout.newTab().setText("Teachers"));

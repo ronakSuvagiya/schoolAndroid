@@ -40,7 +40,7 @@ public class StaffProfileActivity extends JsonClass {
         setContentView(R.layout.listview);
         setTitle("Staff Profile");
         this.listView = (ListView) findViewById(R.id.listview);
-        getJsonResponse(URLs.allteacherslist, this, new C12961());
+        //getJsonResponse(URLs.allteacherslist, this, new C12961());
     }
 
     public void processJSONResult(JSONObject jsonObject) {

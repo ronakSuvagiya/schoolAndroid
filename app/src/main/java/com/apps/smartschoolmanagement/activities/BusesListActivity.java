@@ -40,7 +40,7 @@ public class BusesListActivity extends JsonClass {
         setTitle("Buses");
         KProgressHUD progressHUD = KProgressHUD.create(this).setLabel("Loading");
         this.listView = (ListView) findViewById(R.id.listview);
-        getJsonResponse(URLs.buses, this, new C12031());
+       // getJsonResponse(URLs.buses, this, new C12031());
     }
 
     public void processJSONResult(JSONObject jsonObject) {

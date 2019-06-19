@@ -70,7 +70,7 @@ public class MyHealthStatusActivity extends JsonClass {
         if (UserStaticData.user_type == 2) {
             this.params.put("admin_id", ProfileInfo.getInstance().getLoginData().get("userId"));
         }
-        getJsonResponse(URLs.healthStatus, this, new C12431());
+       // getJsonResponse(URLs.healthStatus, this, new C12431());
     }
 
     public void processJSONResult(JSONObject jsonObject) {

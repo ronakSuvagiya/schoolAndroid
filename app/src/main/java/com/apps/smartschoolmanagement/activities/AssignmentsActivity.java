@@ -88,7 +88,7 @@ public class AssignmentsActivity extends JsonClass {
         } else {
             this.params.put("date", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
         }
-        getJsonResponse(URLs.assignments_List_bydate, this, new C11982());
+      //  getJsonResponse(URLs.assignments_List_bydate, this, new C11982());
     }
 
     public void processJSONResult(JSONObject jsonObject) {

@@ -103,7 +103,7 @@ public class StudentAttendanceActivity extends JsonClass implements OnMonthChang
             if (StudentAttendanceActivity.this.classes.getSelectedItemPosition() > 0) {
                 StudentAttendanceActivity.this.params.put("class_id", StudentAttendanceActivity.this.classid);
                 StudentAttendanceActivity.this.params.put("student_id", StudentAttendanceActivity.this.studentid);
-                StudentAttendanceActivity.this.getJsonResponse(URLs.attendance, StudentAttendanceActivity.this, new C13011());
+              //  StudentAttendanceActivity.this.getJsonResponse(URLs.attendance, StudentAttendanceActivity.this, new C13011());
             }
         }
     }
@@ -176,7 +176,7 @@ public class StudentAttendanceActivity extends JsonClass implements OnMonthChang
             Calendar cal = Calendar.getInstance();
             cal.setTime(today);
             this.params.put("month", "" + (cal.get(2) + 1));
-            getJsonResponse(URLs.attendance, this, new C12981());
+          //  getJsonResponse(URLs.attendance, this, new C12981());
         } else if (UserStaticData.user_type == 1) {
             setTitle("Student's Attendance");
             findViewById(R.id.layout_candidate_selection).setVisibility(0);
@@ -263,7 +263,7 @@ public class StudentAttendanceActivity extends JsonClass implements OnMonthChang
     public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
         this.params.put("student_id", ProfileInfo.getInstance().getLoginData().get("userId"));
         this.params.put("month", "" + (date.getMonth() + 1));
-        getJsonResponse(URLs.attendance, this, new C13034());
+       // getJsonResponse(URLs.attendance, this, new C13034());
     }
 
 //    public void addDefaultDecorators() {

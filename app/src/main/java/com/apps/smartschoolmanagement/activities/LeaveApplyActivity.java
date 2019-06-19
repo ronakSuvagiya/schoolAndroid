@@ -49,7 +49,7 @@ public class LeaveApplyActivity extends JsonClass {
                 } else if (UserStaticData.user_type == 0) {
                     LeaveApplyActivity.this.params.put("student_id", ProfileInfo.getInstance().getLoginData().get("userId"));
                 }
-                LeaveApplyActivity.this.getJsonResponse(URLs.applyleave, LeaveApplyActivity.this, new C12191());
+           //     LeaveApplyActivity.this.getJsonResponse(URLs.applyleave, LeaveApplyActivity.this, new C12191());
             }
         });
     }

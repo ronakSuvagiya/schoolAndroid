@@ -36,7 +36,7 @@ public class PrincipalMessageActivity extends JsonClass {
         setTitle("Principal's Message");
         this.name = (TextView) findViewById(R.id.name);
         this.statement = (TextView) findViewById(R.id.statement);
-        getJsonResponse(URLs.principalstatement_view, this, new C12651());
+       // getJsonResponse(URLs.principalstatement_view, this, new C12651());
         findViewById(R.id.layout_loading).setVisibility(8);
     }
 

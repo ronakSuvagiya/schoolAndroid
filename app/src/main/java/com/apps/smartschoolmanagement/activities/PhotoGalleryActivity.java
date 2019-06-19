@@ -71,7 +71,7 @@ public class PhotoGalleryActivity extends JsonClass {
         setTitle("Photo Gallery");
         KProgressHUD progressHUD = KProgressHUD.create(this).setLabel("Loading Images..");
         this.gridView = (GridView) findViewById(R.id.gridview);
-        getJsonResponse(URLs.gallery, this, new C12511());
+       // getJsonResponse(URLs.gallery, this, new C12511());
         this.gridView.setOnItemClickListener(new C12522());
     }
 

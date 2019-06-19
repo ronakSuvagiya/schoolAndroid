@@ -63,7 +63,7 @@ public class OnlineMaterialActivity extends JsonClass {
                 OnlineMaterialActivity.this.subjectid = result;
                 OnlineMaterialActivity.this.params.put("subject_id", OnlineMaterialActivity.this.subjectid);
                 OnlineMaterialActivity.this.params.put("student_id", ProfileInfo.getInstance().getLoginData().get("userId"));
-                OnlineMaterialActivity.this.getJsonResponse(URLs.online_material, OnlineMaterialActivity.this, new C12471());
+             //   OnlineMaterialActivity.this.getJsonResponse(URLs.online_material, OnlineMaterialActivity.this, new C12471());
             }
         }
     }

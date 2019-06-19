@@ -40,7 +40,7 @@ public class PrincipalStatementActivity extends JsonClass {
             PrincipalStatementActivity.this.params.clear();
             PrincipalStatementActivity.this.params.put("admin_id", ProfileInfo.getInstance().getLoginData().get("userId"));
             PrincipalStatementActivity.this.params.put("statement", ((EditText) PrincipalStatementActivity.this.findViewById(R.id.edit_quote)).getText().toString());
-            PrincipalStatementActivity.this.getJsonResponse(URLs.principalstatement_post, PrincipalStatementActivity.this, new C12661());
+          //  PrincipalStatementActivity.this.getJsonResponse(URLs.principalstatement_post, PrincipalStatementActivity.this, new C12661());
         }
     }
 

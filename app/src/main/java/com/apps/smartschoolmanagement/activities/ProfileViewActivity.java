@@ -81,14 +81,14 @@ public class ProfileViewActivity extends JsonClass {
         findViewById(R.id.btn_edit).setVisibility(8);
         if (getIntent().getStringExtra("teacherid") != null) {
             this.params.put("teacher_id", getIntent().getStringExtra("teacherid"));
-            getJsonResponse(URLs.userprofile, this, new C12802());
+         //   getJsonResponse(URLs.userprofile, this, new C12802());
             findViewById(R.id.layout_tackbus).setVisibility(8);
             findViewById(R.id.layout_admission).setVisibility(8);
             findViewById(R.id.layout_class_teacher).setVisibility(8);
             findViewById(R.id.layout_subject).setVisibility(0);
         } else if (getIntent().getStringExtra("studentid") != null) {
             this.params.put("student_id", getIntent().getStringExtra("studentid"));
-            getJsonResponse(URLs.userprofile, this, new C12813());
+          //  getJsonResponse(URLs.userprofile, this, new C12813());
             findViewById(R.id.layout_joining_date).setVisibility(8);
             findViewById(R.id.layout_tackbus).setVisibility(8);
             findViewById(R.id.layout_experience).setVisibility(8);

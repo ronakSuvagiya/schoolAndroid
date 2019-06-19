@@ -62,7 +62,7 @@ public class ExamScheduleActivity extends JsonClass {
             if (i > 0) {
                 ExamScheduleActivity.this.params.put("student_id", ProfileInfo.getInstance().getLoginData().get("userId"));
                 ExamScheduleActivity.this.params.put("month", "" + ExamScheduleActivity.this.month.getSelectedItemPosition());
-                ExamScheduleActivity.this.getJsonResponse(URLs.examSchedule, ExamScheduleActivity.this, new C12051());
+             //   ExamScheduleActivity.this.getJsonResponse(URLs.examSchedule, ExamScheduleActivity.this, new C12051());
             }
         }
 
@@ -83,7 +83,7 @@ public class ExamScheduleActivity extends JsonClass {
         }
         this.listView = (ListView) findViewById(R.id.listview_exams);
         this.params.put("student_id", ProfileInfo.getInstance().getLoginData().get("userId"));
-        getJsonResponse(URLs.examSchedule, this, new C12041());
+       // getJsonResponse(URLs.examSchedule, this, new C12041());
         this.month = (Spinner) findViewById(R.id.spnr_month);
         this.month.setOnItemSelectedListener(new C12062());
     }

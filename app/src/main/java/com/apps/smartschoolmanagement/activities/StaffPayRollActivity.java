@@ -45,7 +45,7 @@ public class StaffPayRollActivity extends JsonClass {
                 StaffPayRollActivity.this.teacherid = result;
                 if (StaffPayRollActivity.this.dlg.getSelectedItemPosition() > 0) {
                     StaffPayRollActivity.this.params.put("teacher_id", StaffPayRollActivity.this.teacherid);
-                    StaffPayRollActivity.this.getJsonResponse(URLs.staffpayrolls, StaffPayRollActivity.this, new C12941());
+                //    StaffPayRollActivity.this.getJsonResponse(URLs.staffpayrolls, StaffPayRollActivity.this, new C12941());
                     return;
                 }
                 Toast.makeText(StaffPayRollActivity.this, "Please Select both Class and Teacher", 0).show();

@@ -61,7 +61,7 @@ public class RemarksActivity extends JsonClass {
             if (i > 0) {
                 RemarksActivity.this.params.put("student_id", ProfileInfo.getInstance().getLoginData().get("userId"));
                 RemarksActivity.this.params.put("month", "" + RemarksActivity.this.month.getSelectedItemPosition());
-                RemarksActivity.this.getJsonResponse(URLs.remarks, RemarksActivity.this, new C12851());
+              //  RemarksActivity.this.getJsonResponse(URLs.remarks, RemarksActivity.this, new C12851());
             }
         }
 
@@ -79,7 +79,7 @@ public class RemarksActivity extends JsonClass {
         KProgressHUD progressHUD = KProgressHUD.create(this).setLabel("Loading");
         this.listView = (ListView) findViewById(R.id.listview_remarks);
         this.params.put("student_id", ProfileInfo.getInstance().getLoginData().get("userId"));
-        getJsonResponse(URLs.remarks, this, new C12841());
+      //  getJsonResponse(URLs.remarks, this, new C12841());
         this.month = (Spinner) findViewById(R.id.spnr_month);
         this.month.setOnItemSelectedListener(new C12862());
     }

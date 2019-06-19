@@ -84,7 +84,7 @@ public class FeeDetailsActivity extends JsonClass {
                     FeeDetailsActivity.this.studentid = result;
                     if (FeeDetailsActivity.this.student.getSelectedItemPosition() > 0) {
                         FeeDetailsActivity.this.params.put("student_id", FeeDetailsActivity.this.studentid);
-                        FeeDetailsActivity.this.getJsonResponse(URLs.feedetails, FeeDetailsActivity.this, new C12081());
+                       // FeeDetailsActivity.this.getJsonResponse(URLs.feedetails, FeeDetailsActivity.this, new C12081());
                     }
                 }
             }
@@ -131,7 +131,7 @@ public class FeeDetailsActivity extends JsonClass {
             findViewById(R.id.layout_action).setVisibility(8);
             findViewById(R.id.layout_fields).setVisibility(0);
             this.params.put("student_id", ProfileInfo.getInstance().getLoginData().get("userId"));
-            getJsonResponse(URLs.feedetails, this, new C12071());
+          //  getJsonResponse(URLs.feedetails, this, new C12071());
         } else {
             findViewById(R.id.layout_pay).setVisibility(8);
 //            getSpinnerData(this, URLs.class_codes, this.classes, new C12102());

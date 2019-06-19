@@ -72,7 +72,7 @@ public class StaffAttendanceActivity extends JsonClass {
                     Calendar cal = Calendar.getInstance();
                     cal.setTime(today);
                     StaffAttendanceActivity.this.params.put("month", "" + (cal.get(2) + 1));
-                    StaffAttendanceActivity.this.getJsonResponse(URLs.attendance, StaffAttendanceActivity.this, new C12921());
+                 //   StaffAttendanceActivity.this.getJsonResponse(URLs.attendance, StaffAttendanceActivity.this, new C12921());
                 }
             }
         }
@@ -100,7 +100,7 @@ public class StaffAttendanceActivity extends JsonClass {
             setTitle("My Attendance");
             findViewById(R.id.layout_candidate_selection).setVisibility(8);
             this.params.put("teacher_id", ProfileInfo.getInstance().getLoginData().get("userId"));
-            getJsonResponse(URLs.attendance, this, new C12911());
+          //  getJsonResponse(URLs.attendance, this, new C12911());
             return;
         }
         setTitle("Staff Attendance");
