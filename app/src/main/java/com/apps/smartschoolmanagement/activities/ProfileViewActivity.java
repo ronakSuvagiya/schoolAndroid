@@ -2,14 +2,19 @@ package com.apps.smartschoolmanagement.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
+
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader.ImageContainer;
 import com.android.volley.toolbox.ImageLoader.ImageListener;
@@ -18,8 +23,10 @@ import com.apps.smartschoolmanagement.models.UserStaticData;
 import com.apps.smartschoolmanagement.utils.AppSingleton;
 import com.apps.smartschoolmanagement.utils.JsonClass;
 import com.apps.smartschoolmanagement.utils.URLs;
+
 import java.util.HashMap;
 import java.util.Iterator;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,6 +34,8 @@ import org.json.JSONObject;
 public class ProfileViewActivity extends JsonClass {
     ImageView profilePic;
     LinearLayout root;
+    int student_id;
+    String ids;
 
     /* renamed from: com.apps.smartschoolmanagement.activities.ProfileViewActivity$1 */
     class C12791 implements OnClickListener {
@@ -81,14 +90,19 @@ public class ProfileViewActivity extends JsonClass {
         findViewById(R.id.btn_edit).setVisibility(8);
         if (getIntent().getStringExtra("teacherid") != null) {
             this.params.put("teacher_id", getIntent().getStringExtra("teacherid"));
-         //   getJsonResponse(URLs.userprofile, this, new C12802());
+            //   getJsonResponse(URLs.userprofile, this, new C12802());
             findViewById(R.id.layout_tackbus).setVisibility(8);
             findViewById(R.id.layout_admission).setVisibility(8);
             findViewById(R.id.layout_class_teacher).setVisibility(8);
             findViewById(R.id.layout_subject).setVisibility(0);
+//            student_id = getIntent().getIntExtra("studentid",0);
+//            ids = String.valueOf(student_id);
+//            Log.e("student", "idss" + ids);
         } else if (getIntent().getStringExtra("studentid") != null) {
             this.params.put("student_id", getIntent().getStringExtra("studentid"));
-          //  getJsonResponse(URLs.userprofile, this, new C12813());
+
+            getJsonResponse(URLs.getStudent + student_id, ProfileViewActivity.this, new ProfileViewActivity.getStudentApi());
+
             findViewById(R.id.layout_joining_date).setVisibility(8);
             findViewById(R.id.layout_tackbus).setVisibility(8);
             findViewById(R.id.layout_experience).setVisibility(8);
@@ -97,6 +111,20 @@ public class ProfileViewActivity extends JsonClass {
         }
         if (UserStaticData.user_type == 0) {
             findViewById(R.id.layout_ctc).setVisibility(8);
+        }
+    }
+
+    class getStudentApi implements VolleyCallbackJSONArray {
+        @Override
+        public void onSuccess(JSONArray jsonArray) {
+            for (int i = 0; i < jsonArray.length(); i++) {
+                try {
+                    JSONObject obj = jsonArray.getJSONObject(i);
+                    Log.e("student ", "data_student" + jsonArray.toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 

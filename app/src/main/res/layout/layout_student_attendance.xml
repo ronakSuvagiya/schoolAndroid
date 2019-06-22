@@ -65,9 +65,9 @@
             n1:padding="@dimen/_12sdp">
 
             <ListView
-                n1:id="@+id/listview1"
+                n1:id="@+id/listview"
                 style="@style/ListView_Style"
-                n1:layout_height="wrap_content"/>
+                n1:layout_height="200dp"/>
 
 
             <com.apps.smartschoolmanagement.utils.ButtonTouchEffect
@@ -81,5 +81,6 @@
                 n1:paddingRight="@dimen/_35sdp"
                 n1:text="Submit" />
         </LinearLayout>
+
 
 </LinearLayout>

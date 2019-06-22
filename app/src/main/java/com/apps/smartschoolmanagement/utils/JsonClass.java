@@ -213,7 +213,9 @@ public class JsonClass extends AppCompatActivity {
             if (!this.noInternetDialog.isShowing()) {
                 this.noInternetDialog.showDialog();
             }
-        } else if (!MyApplication.isActivityVisible()) {
+        }
+
+        else if (!MyApplication.isActivityVisible()) {
             showNetworkDialog("", "");
         }
     }

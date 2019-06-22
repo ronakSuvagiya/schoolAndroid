@@ -112,7 +112,7 @@ public class ListViewAdapter extends BaseAdapter {
         TextView student_class;
         TextView student_name;
         ImageView student_photo;
-        TextView student_roll;
+//        TextView student_roll;
         CardView studentprofile_layout;
 
         private ViewHolder() {
@@ -186,7 +186,7 @@ public class ListViewAdapter extends BaseAdapter {
             viewHolder.studentprofile_layout = (CardView) convertView.findViewById(R.id.layout_studentprofile);
             viewHolder.student_name = (TextView) convertView.findViewById(R.id.student_name);
             viewHolder.student_class = (TextView) convertView.findViewById(R.id.student_class);
-            viewHolder.student_roll = (TextView) convertView.findViewById(R.id.student_roll);
+//            viewHolder.student_roll = (TextView) convertView.findViewById(R.id.student_roll);
             viewHolder.student_photo = (ImageView) convertView.findViewById(R.id.student_photo);
             viewHolder.appointment_profilepic = (ImageView) convertView.findViewById(R.id.profilePic);
             viewHolder.appointment_roll = (TextView) convertView.findViewById(R.id.roll);
@@ -419,14 +419,15 @@ public class ListViewAdapter extends BaseAdapter {
         if (viewHolder.student_class != null) {
             viewHolder.student_class.setText(data.getStudent_class());
         }
-        if (viewHolder.student_roll != null) {
-            viewHolder.student_roll.setText(data.getStudent_roll());
-        }
+//        if (viewHolder.student_roll != null) {
+//            viewHolder.student_roll.setText(data.getStudent_roll());
+//        }x
         if (viewHolder.studentprofile_layout != null) {
             viewHolder.studentprofile_layout.setOnClickListener(new OnClickListener() {
                 public void onClick(View v) {
                     Intent intent = new Intent(ListViewAdapter.this.mContext, ProfileViewActivity.class);
                     intent.putExtra("studentid", data.getStudent_id());
+                    Log.e("id","send"+ data.getStudent_id());
                     ListViewAdapter.this.mContext.startActivity(intent);
                 }
             });

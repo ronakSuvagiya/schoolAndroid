@@ -103,15 +103,18 @@ public class StudentProfileActivity extends JsonClass {
 
         @Override
         public void onSuccess(JSONArray jsonArray) {
+            listDatas.clear();
             for (int i = 0; i < jsonArray.length(); i++) {
                 try {
                     ListData listData = new ListData();
                     JSONObject obj = jsonArray.getJSONObject(i);
-
                     StudentName.add("" + obj.getInt("rollNo") + ": " + obj.getString("name"));
-
                     listData.setStudent_name(obj.getString("name"));
                     StudentRollNo.add(obj.getInt("rollNo"));
+                    JSONObject jsonObject = obj.getJSONObject("divId");
+                    listData.setStudent_class(jsonObject.getString("name"));
+                    listData.setStudent_id(obj.getString("id"));
+                    Log.e("id","create" + listData.getStudent_id());
                     listDatas.add(listData);
                     Log.e("listdata", jsonArray.toString());
                 } catch (JSONException e) {
