@@ -75,7 +75,7 @@
             android:name="com.apps.smartschoolmanagement.activities.NetworkDialogActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Transparent"
-            android:windowSoftInputMode="stateAlwaysHidden" />
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name="com.apps.smartschoolmanagement.activities.HomeActivity"
             android:windowSoftInputMode="adjustNothing" />

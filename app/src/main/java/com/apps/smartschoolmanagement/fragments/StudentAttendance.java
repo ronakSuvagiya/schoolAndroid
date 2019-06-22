@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.apps.smartschoolmanagement.activities.BusesListActivity;
 import com.apps.smartschoolmanagement.adapters.AttendancesAdapter;
+import com.apps.smartschoolmanagement.utils.JsonClass;
 import com.apps.smartschoolmanagement.utils.URLs;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
@@ -160,8 +161,6 @@ public class StudentAttendance extends JsonFragment implements OnMonthChangedLis
                 }
             }
         });
-
-
 
         submit = this.rootView.findViewById(R.id.btn_submit);
         submit.setOnClickListener(new View.OnClickListener() {

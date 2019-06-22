@@ -2,6 +2,7 @@ package com.apps.smartschoolmanagement.utils;
 
 import am.appwise.components.ni.NoInternetDialog;
 import am.appwise.components.ni.NoInternetDialog.Builder;
+
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -15,10 +16,14 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.StatFs;
+
 import androidx.annotation.Nullable;
 import androidx.core.content.FileProvider;
+
 import android.support.v4.media.session.PlaybackStateCompat;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
@@ -30,6 +35,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response.ErrorListener;
@@ -45,6 +51,7 @@ import com.apps.smartschoolmanagement.activities.AddPhotoGalleryActivity.Utils;
 import com.apps.smartschoolmanagement.activities.NetworkDialogActivity;
 import com.apps.smartschoolmanagement.adapters.SpinnerrAdapter;
 import com.apps.smartschoolmanagement.models.ListData;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -60,6 +67,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -159,7 +167,7 @@ public class JsonClass extends AppCompatActivity {
             if (findViewById(R.id.layout_loading) != null) {
                 findViewById(R.id.layout_loading).setVisibility(0);
             }
-            JsonArrayRequest strReq = new JsonArrayRequest(Request.Method.GET,url,null, new Listener<JSONArray>() {
+            JsonArrayRequest strReq = new JsonArrayRequest(Request.Method.GET, url, null, new Listener<JSONArray>() {
                 @Override
                 public void onResponse(JSONArray response) {
                     if (JsonClass.this.findViewById(R.id.layout_loading) != null) {
@@ -173,28 +181,21 @@ public class JsonClass extends AppCompatActivity {
                     if (JsonClass.this.findViewById(R.id.layout_loading) != null) {
                         JsonClass.this.findViewById(R.id.layout_loading).setVisibility(8);
                     }
-                    if (Connectivity.isConnected(context)) {
-                        if (error != null && error.networkResponse != null) {
-                            int statusCode = error.networkResponse.statusCode;
-                            Log.d("jkl", "Error Code: " + statusCode);
-                            if (statusCode == 404) {
-                                JsonClass.this.showToast("URL Not Found");
-                            }
-                            try {
-                                Log.d("jkl", "Error: " + new String(error.networkResponse.data, Key.STRING_CHARSET_NAME));
-                            } catch (UnsupportedEncodingException e) {
-                            }
-                        } else if (error == null || error.getMessage() == null) {
-                            JsonClass.this.showToast("Unidentified Server Response");
-                        } else if (!MyApplication.isActivityVisible()) {
-                            JsonClass.this.showNetworkDialog("Your network speed too slow. Please switch your network", "Switch");
+
+                    if (error != null && error.networkResponse != null) {
+                        int statusCode = error.networkResponse.statusCode;
+                        Log.d("jkl", "Error Code: " + statusCode);
+                        if (statusCode == 404) {
+                            JsonClass.this.showToast("URL Not Found");
                         }
-                    } else if (JsonClass.this.noInternetDialog != null) {
-                        if (!JsonClass.this.noInternetDialog.isShowing()) {
-                            JsonClass.this.noInternetDialog.showDialog();
+                        try {
+                            Log.d("jkl", "Error: " + new String(error.networkResponse.data, Key.STRING_CHARSET_NAME));
+                        } catch (UnsupportedEncodingException e) {
                         }
+                    } else if (error == null || error.getMessage() == null) {
+                        JsonClass.this.showToast("Unidentified Server Response");
                     } else if (!MyApplication.isActivityVisible()) {
-                        JsonClass.this.showNetworkDialog("", "");
+                        JsonClass.this.showNetworkDialog("Your network speed too slow. Please switch your network", "Switch");
                     }
                 }
             }) {
@@ -203,20 +204,11 @@ public class JsonClass extends AppCompatActivity {
                 }
             };
             strReq.setRetryPolicy(new DefaultRetryPolicy(5000, 2, 1.0f));
-           AppSingleton.getInstance(this).addToRequestQueue(strReq);
+            AppSingleton.getInstance(this).addToRequestQueue(strReq);
             return;
         }
         if (findViewById(R.id.layout_loading) != null) {
             findViewById(R.id.layout_loading).setVisibility(8);
-        }
-        if (this.noInternetDialog != null) {
-            if (!this.noInternetDialog.isShowing()) {
-                this.noInternetDialog.showDialog();
-            }
-        }
-
-        else if (!MyApplication.isActivityVisible()) {
-            showNetworkDialog("", "");
         }
     }
 
