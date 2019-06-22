@@ -38,45 +38,6 @@ public class ProfileViewActivity extends JsonClass {
     String ids;
 
     /* renamed from: com.apps.smartschoolmanagement.activities.ProfileViewActivity$1 */
-    class C12791 implements OnClickListener {
-        C12791() {
-        }
-
-        public void onClick(View view) {
-            ProfileViewActivity.this.startActivity(new Intent(ProfileViewActivity.this, ProfileEditActivity.class));
-        }
-    }
-
-    /* renamed from: com.apps.smartschoolmanagement.activities.ProfileViewActivity$2 */
-    class C12802 implements VolleyCallback {
-        C12802() {
-        }
-
-        public void onSuccess(String result) {
-            ProfileViewActivity.this.processJsonResponse(result);
-        }
-    }
-
-    /* renamed from: com.apps.smartschoolmanagement.activities.ProfileViewActivity$3 */
-    class C12813 implements VolleyCallback {
-        C12813() {
-        }
-
-        public void onSuccess(String result) {
-            ProfileViewActivity.this.processJsonResponse(result);
-        }
-    }
-
-    /* renamed from: com.apps.smartschoolmanagement.activities.ProfileViewActivity$4 */
-    class C12824 implements OnClickListener {
-        C12824() {
-        }
-
-        public void onClick(View v) {
-            ProfileViewActivity.this.startActivity(new Intent(ProfileViewActivity.this, BusTrackingActivity.class));
-        }
-    }
-
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         if (UserStaticData.user_type == 0) {
             setTheme(R.style.AppTheme1);
@@ -85,7 +46,7 @@ public class ProfileViewActivity extends JsonClass {
         setContentView(R.layout.layout_profile_view);
         this.root = (LinearLayout) findViewById(R.id.root_layout);
         this.root.setVisibility(0);
-        findViewById(R.id.btn_edit).setOnClickListener(new C12791());
+
         this.profilePic = (ImageView) findViewById(R.id.file_path);
         findViewById(R.id.btn_edit).setVisibility(8);
         if (getIntent().getStringExtra("teacherid") != null) {
@@ -100,31 +61,25 @@ public class ProfileViewActivity extends JsonClass {
 //            Log.e("student", "idss" + ids);
         } else if (getIntent().getStringExtra("studentid") != null) {
             this.params.put("student_id", getIntent().getStringExtra("studentid"));
-
+            student_id = Integer.parseInt(getIntent().getStringExtra("studentid"));
+            Log.e("url",URLs.getStudent+ student_id);
             getJsonResponse(URLs.getStudent + student_id, ProfileViewActivity.this, new ProfileViewActivity.getStudentApi());
 
             findViewById(R.id.layout_joining_date).setVisibility(8);
             findViewById(R.id.layout_tackbus).setVisibility(8);
             findViewById(R.id.layout_experience).setVisibility(8);
             findViewById(R.id.layout_ctc).setVisibility(8);
-            findViewById(R.id.layout_tackbus).setOnClickListener(new C12824());
+
         }
         if (UserStaticData.user_type == 0) {
             findViewById(R.id.layout_ctc).setVisibility(8);
         }
     }
 
-    class getStudentApi implements VolleyCallbackJSONArray {
+    class getStudentApi implements VolleyCallbackJSONObject {
         @Override
-        public void onSuccess(JSONArray jsonArray) {
-            for (int i = 0; i < jsonArray.length(); i++) {
-                try {
-                    JSONObject obj = jsonArray.getJSONObject(i);
-                    Log.e("student ", "data_student" + jsonArray.toString());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
+        public void onSuccess(JSONObject jsonArray) {
+                Log.e("student ", "data_student" + jsonArray.toString());
         }
     }
 
@@ -159,35 +114,5 @@ public class ProfileViewActivity extends JsonClass {
             }
             loadData(this.root, this.responseParams);
         }
-    }
-
-    public void loadData(ViewGroup parent, HashMap<String, String> returnData) {
-        if (returnData != null) {
-            for (int i = 0; i < parent.getChildCount(); i++) {
-                View child = parent.getChildAt(i);
-                if (child instanceof ViewGroup) {
-                    loadData((ViewGroup) child, returnData);
-                } else if (parent.getChildAt(i) instanceof TextView) {
-                    TextView et = (TextView) parent.getChildAt(i);
-                    if (et.getId() > 0 && returnData.containsKey(getResources().getResourceEntryName(et.getId()))) {
-                        et.setText((CharSequence) returnData.get(getResources().getResourceEntryName(et.getId())));
-                    }
-                } else if (child instanceof ImageView) {
-                    final ImageView et2 = (ImageView) child;
-                    if (et2.getId() > 0 && returnData.containsKey(getResources().getResourceEntryName(et2.getId()))) {
-                        AppSingleton.getInstance(this).getImageLoader().get((String) returnData.get(getResources().getResourceEntryName(et2.getId())), new ImageListener() {
-                            public void onResponse(ImageContainer imageContainer, boolean b) {
-                                et2.setImageBitmap(imageContainer.getBitmap());
-                            }
-
-                            public void onErrorResponse(VolleyError volleyError) {
-                            }
-                        });
-                    }
-                }
-            }
-            return;
-        }
-        Toast.makeText(this, "No record found", 0).show();
     }
 }

@@ -212,6 +212,57 @@ public class JsonClass extends AppCompatActivity {
         }
     }
 
+
+    public void getJsonResponse(String url, final Context context, final VolleyCallbackJSONObject callback) {
+        if (Connectivity.isConnected(context)) {
+            if (findViewById(R.id.layout_loading) != null) {
+                findViewById(R.id.layout_loading).setVisibility(0);
+            }
+            JsonObjectRequest strReq = new JsonObjectRequest(Request.Method.GET, url, null, new Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    if (JsonClass.this.findViewById(R.id.layout_loading) != null) {
+                        JsonClass.this.findViewById(R.id.layout_loading).setVisibility(8);
+                    }
+                    callback.onSuccess(response);
+                }
+            }, new ErrorListener() {
+                public void onErrorResponse(VolleyError error) {
+                    Log.e("jkl", "Error: " + error.getMessage());
+                    if (JsonClass.this.findViewById(R.id.layout_loading) != null) {
+                        JsonClass.this.findViewById(R.id.layout_loading).setVisibility(8);
+                    }
+
+                    if (error != null && error.networkResponse != null) {
+                        int statusCode = error.networkResponse.statusCode;
+                        Log.d("jkl", "Error Code: " + statusCode);
+                        if (statusCode == 404) {
+                            JsonClass.this.showToast("URL Not Found");
+                        }
+                        try {
+                            Log.d("jkl", "Error: " + new String(error.networkResponse.data, Key.STRING_CHARSET_NAME));
+                        } catch (UnsupportedEncodingException e) {
+                        }
+                    } else if (error == null || error.getMessage() == null) {
+                        JsonClass.this.showToast("Unidentified Server Response");
+                    } else if (!MyApplication.isActivityVisible()) {
+                        JsonClass.this.showNetworkDialog("Your network speed too slow. Please switch your network", "Switch");
+                    }
+                }
+            }) {
+                protected Map<String, String> getParams() {
+                    return JsonClass.this.checkParams(JsonClass.this.params);
+                }
+            };
+            strReq.setRetryPolicy(new DefaultRetryPolicy(5000, 2, 1.0f));
+            AppSingleton.getInstance(this).addToRequestQueue(strReq);
+            return;
+        }
+        if (findViewById(R.id.layout_loading) != null) {
+            findViewById(R.id.layout_loading).setVisibility(8);
+        }
+    }
+
     public void getJsonResponseBackground(String url, final Context context, final VolleyCallback callback) {
         if (Connectivity.isConnected(context)) {
             StringRequest strReq = new StringRequest(1, url, new Listener<String>() {
