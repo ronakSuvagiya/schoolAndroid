@@ -55,7 +55,7 @@ public class AssignmentsTeacherActivity extends AppCompatActivity {
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.tab_layout_top);
+        setContentView(R.layout.tab_layout_top2);
         getSupportActionBar().setElevation(0.0f);
         setTitle("Assignments");
         this.tabLayout = (TabLayout) findViewById(R.id.tabs);
