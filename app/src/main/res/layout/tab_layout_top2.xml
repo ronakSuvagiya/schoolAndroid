@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:n1="http://schemas.android.com/apk/res/android"
+    n1:id="@+id/coordinatorlayout"
+    n1:layout_width="fill_parent"
+    n1:layout_height="fill_parent">
+
+
+    <LinearLayout
+        n1:layout_width="fill_parent"
+        n1:layout_height="fill_parent"
+        n1:background="@color/background"
+        n1:orientation="vertical">
+
+        <com.google.android.material.tabs.TabLayout xmlns:n2="http://schemas.android.com/apk/res-auto"
+            n1:id="@+id/tabs"
+            n1:layout_width="fill_parent"
+            n1:layout_height="wrap_content"
+            n1:background="@color/colorPrimary"
+            n2:tabIndicatorColor="#ffffffff"
+            n2:tabSelectedTextColor="#ffffffff"
+            n2:tabTextAppearance="@style/Tablayout_Text_Appearance"
+            n2:tabTextColor="#99ffffff" />
+        <FrameLayout
+            n1:id="@+id/container"
+            n1:layout_width="fill_parent"
+            n1:layout_height="fill_parent"
+            n1:layout_weight="1.0" />
+
+        <androidx.viewpager.widget.ViewPager
+            n1:id="@+id/viewpager_assignment"
+            n1:layout_width="fill_parent"
+            n1:layout_height="fill_parent"
+            n1:layout_weight="1.0"
+            n1:visibility="gone" />
+
+    </LinearLayout>
+
+    <include layout="@layout/layout_loading" />
+
+</RelativeLayout>
