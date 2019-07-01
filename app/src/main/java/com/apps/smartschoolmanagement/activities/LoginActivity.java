@@ -59,13 +59,13 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         setTitle("Login");
-        this.imageIds.put("Assignments", Integer.valueOf(R.drawable.img_assignment));
+        this.imageIds.put("Assignments", Integer.valueOf(R.drawable.img_assignment));  // selected
         this.imageIds.put("Post Assignment", Integer.valueOf(R.drawable.img_assignment));
         this.imageIds.put("Post Remarks", Integer.valueOf(R.drawable.img_remarks));
         this.imageIds.put("Remarks", Integer.valueOf(R.drawable.img_remarks));
         this.imageIds.put("Add Photo Gallery", Integer.valueOf(R.drawable.img_add_gallery));
-        this.imageIds.put("Photo Gallery", Integer.valueOf(R.drawable.img_photo_gallery));
-        this.imageIds.put("Post Material", Integer.valueOf(R.drawable.img_online_material));
+        this.imageIds.put("Photo Gallery", Integer.valueOf(R.drawable.img_photo_gallery));// selected
+        this.imageIds.put("Post Material", Integer.valueOf(R.drawable.img_online_material));// selected
         this.imageIds.put("Online Material", Integer.valueOf(R.drawable.img_online_material));
         this.imageIds.put("Take Appointment", Integer.valueOf(R.drawable.img_appointment));
         this.imageIds.put("Appointments", Integer.valueOf(R.drawable.img_appointment));
@@ -75,15 +75,15 @@ public class LoginActivity extends BaseActivity {
         this.imageIds.put("Track Bus", Integer.valueOf(R.drawable.img_bus));
         this.imageIds.put("Principal Statement", Integer.valueOf(R.drawable.img_principal_message));
         this.imageIds.put("Staff Attendance", Integer.valueOf(R.drawable.img_attendance));
-        this.imageIds.put("Attendance", Integer.valueOf(R.drawable.img_attendance));
+        this.imageIds.put("Attendance", Integer.valueOf(R.drawable.img_attendance)); // selected
         this.imageIds.put("My Attendance", Integer.valueOf(R.drawable.img_attendance));
         this.imageIds.put("Fee Details", Integer.valueOf(R.drawable.img_fee));
         this.imageIds.put("Student's Fee Details", Integer.valueOf(R.drawable.img_fee));
-        this.imageIds.put("Exam Schedule", Integer.valueOf(R.drawable.img_exam_schedule));
+        this.imageIds.put("Exam Schedule", Integer.valueOf(R.drawable.img_exam_schedule));// selected
         this.imageIds.put("Marks", Integer.valueOf(R.drawable.img_marks_list));
-        this.imageIds.put("Student's Mark List", Integer.valueOf(R.drawable.img_marks_list));
+        this.imageIds.put("Student's Mark List", Integer.valueOf(R.drawable.img_marks_list));// selected
         this.imageIds.put("Staff Payrolls", Integer.valueOf(R.drawable.img_pay));
-        this.imageIds.put("Student Profile", Integer.valueOf(R.drawable.img_student_profile));
+        this.imageIds.put("Student Profile", Integer.valueOf(R.drawable.img_student_profile));// selected
         this.imageIds.put("Staff Profile", Integer.valueOf(R.drawable.img_staff_profile));
         this.imageIds.put("Profit & Loss", Integer.valueOf(R.drawable.img_profit_loss));
         this.imageIds.put("My Leaves", Integer.valueOf(R.drawable.img_leave));

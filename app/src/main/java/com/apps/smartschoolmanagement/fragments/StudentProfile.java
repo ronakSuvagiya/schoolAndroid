@@ -101,19 +101,21 @@ public class StudentProfile extends JsonFragment {
         String name =  sp.getString("name", null);
         String email =  sp.getString("email", null);
         this.root.setVisibility(0);
-        TextView aav = this.view.findViewById(R.id.teacherName);
-        aav.setText(name);
-        aav.setTextColor(R.color.white);
+//        TextView aav = this.view.findViewById(R.id.teacherName);
+//        aav.setText(name);
+//        aav.setTextColor(R.color.white);
+//
+//        TextView temail = this.view.findViewById(R.id.email);
+//        temail.setTextColor(R.color.black);
+//        temail.setText(email);
 
-        TextView temail = this.view.findViewById(R.id.email);
-        temail.setTextColor(R.color.black);
-        temail.setText(email);
-        this.view.findViewById(R.id.btn_edit).setOnClickListener(new C13721());
+//        this.view.findViewById(R.id.btn_edit).setOnClickListener(new C13721());
         profilePic = (ImageView) this.view.findViewById(R.id.file_path);
-        this.view.findViewById(R.id.layout_joining_date).setVisibility(8);
-        this.view.findViewById(R.id.layout_experience).setVisibility(8);
-        this.view.findViewById(R.id.layout_ctc).setVisibility(8);
-        this.view.findViewById(R.id.layout_tackbus).setOnClickListener(new C13732());
+//        this.view.findViewById(R.id.layout_joining_date).setVisibility(8);
+//        this.view.findViewById(R.id.layout_experience).setVisibility(8);
+//        this.view.findViewById(R.id.layout_ctc).setVisibility(8);
+
+
 
 
         if (ProfileInfo.getInstance().getLoginData().get("userPic") != null && ((String) ProfileInfo.getInstance().getLoginData().get("userPic")).length() > 50) {

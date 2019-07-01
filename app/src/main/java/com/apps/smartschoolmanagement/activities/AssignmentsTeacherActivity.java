@@ -8,13 +8,15 @@ import com.google.android.material.tabs.TabLayout.OnTabSelectedListener;
 import com.google.android.material.tabs.TabLayout.Tab;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+
 import com.apps.smartschoolmanagement.R;
 import com.apps.smartschoolmanagement.fragments.AssignmentsHistory;
 import com.apps.smartschoolmanagement.fragments.PostAssignment;
 
 public class AssignmentsTeacherActivity extends AppCompatActivity {
     TabLayout tabLayout;
-
+    ViewPager viewPager;
     /* renamed from: com.apps.smartschoolmanagement.activities.AssignmentsTeacherActivity$1 */
     class C11991 implements OnTabSelectedListener {
         C11991() {
@@ -58,6 +60,11 @@ public class AssignmentsTeacherActivity extends AppCompatActivity {
         setContentView(R.layout.tab_layout_top2);
         getSupportActionBar().setElevation(0.0f);
         setTitle("Assignments");
+//        this.viewPager = (ViewPager) findViewById(R.id.viewpager);
+//        setupViewPager(this.viewPager);
+//        this.tabLayout.addOnTabSelectedListener(new HomeActivity.C12161());
+//        setupTabIcons();
+
         this.tabLayout = (TabLayout) findViewById(R.id.tabs);
         this.tabLayout.addTab(this.tabLayout.newTab().setText("Post Assignment"));
         this.tabLayout.addTab(this.tabLayout.newTab().setText("History"));

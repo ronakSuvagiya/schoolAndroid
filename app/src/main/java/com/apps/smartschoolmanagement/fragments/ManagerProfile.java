@@ -87,16 +87,12 @@ public class ManagerProfile extends JsonFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         this.view = inflater.inflate(R.layout.layout_profile_view, container, false);
         this.view.findViewById(R.id.layout_ctc).setVisibility(8);
-        this.view.findViewById(R.id.layout_tackbus).setVisibility(8);
         this.view.findViewById(R.id.layout_birthday).setVisibility(0);
-        this.view.findViewById(R.id.layout_attendance).setVisibility(8);
-        this.view.findViewById(R.id.layout_admission).setVisibility(8);
+
         this.view.findViewById(R.id.layout_joining_date).setVisibility(8);
         this.view.findViewById(R.id.layout_experience).setVisibility(8);
-        this.view.findViewById(R.id.layout_class_teacher).setVisibility(8);
         this.root = (LinearLayout) this.view.findViewById(R.id.root_layout);
         this.view.findViewById(R.id.btn_edit).setOnClickListener(new C13511());
-        this.view.findViewById(R.id.btn_newquote).setVisibility(0);
         this.view.findViewById(R.id.layout_hm).setVisibility(0);
         this.view.findViewById(R.id.layout_class).setVisibility(8);
         this.view.findViewById(R.id.coordinatorlayout).setBackgroundColor(Color.parseColor("#33546E7A"));
@@ -108,7 +104,7 @@ public class ManagerProfile extends JsonFragment {
         }
         this.params.put("admin_id", ProfileInfo.getInstance().getLoginData().get("userId"));
 //        getJsonResponse(URLs.userprofile, this.view, new C13533());
-        this.view.findViewById(R.id.btn_newquote).setOnClickListener(new C13544());
+
         return this.view;
     }
 

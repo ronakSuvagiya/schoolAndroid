@@ -75,9 +75,6 @@ public class StaffProfile extends JsonFragment {
     @Nullable
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         this.view = inflater.inflate(R.layout.layout_profile_view, container, false);
-        this.view.findViewById(R.id.layout_tackbus).setVisibility(8);
-        this.view.findViewById(R.id.layout_admission).setVisibility(8);
-        this.view.findViewById(R.id.layout_class_teacher).setVisibility(8);
         this.view.findViewById(R.id.layout_subject).setVisibility(0);
         this.root = (LinearLayout) this.view.findViewById(R.id.root_layout);
         this.view.findViewById(R.id.btn_edit).setOnClickListener(new C13601());

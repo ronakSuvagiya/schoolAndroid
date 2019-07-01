@@ -36,6 +36,7 @@ public class ProfileViewActivity extends JsonClass {
     LinearLayout root;
     int student_id;
     String ids;
+    TextView email,name,className,div_name,phone,address,gender,birthday;
 
     /* renamed from: com.apps.smartschoolmanagement.activities.ProfileViewActivity$1 */
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,15 +47,18 @@ public class ProfileViewActivity extends JsonClass {
         setContentView(R.layout.layout_profile_view);
         this.root = (LinearLayout) findViewById(R.id.root_layout);
         this.root.setVisibility(0);
-
+        email = findViewById(R.id.email);
+        name = findViewById(R.id.name);
+        className = findViewById(R.id.className);
+        div_name = findViewById(R.id.div_name);
+        phone = findViewById(R.id.phone);
+        address = findViewById(R.id.address);
+        gender = findViewById(R.id.gender);
+        birthday = findViewById(R.id.birthday);
         this.profilePic = (ImageView) findViewById(R.id.file_path);
-        findViewById(R.id.btn_edit).setVisibility(8);
+//        findViewById(R.id.btn_edit).setVisibility(8);
         if (getIntent().getStringExtra("teacherid") != null) {
             this.params.put("teacher_id", getIntent().getStringExtra("teacherid"));
-            //   getJsonResponse(URLs.userprofile, this, new C12802());
-            findViewById(R.id.layout_tackbus).setVisibility(8);
-            findViewById(R.id.layout_admission).setVisibility(8);
-            findViewById(R.id.layout_class_teacher).setVisibility(8);
             findViewById(R.id.layout_subject).setVisibility(0);
 //            student_id = getIntent().getIntExtra("studentid",0);
 //            ids = String.valueOf(student_id);
@@ -65,21 +69,39 @@ public class ProfileViewActivity extends JsonClass {
             Log.e("url",URLs.getStudent+ student_id);
             getJsonResponse(URLs.getStudent + student_id, ProfileViewActivity.this, new ProfileViewActivity.getStudentApi());
 
-            findViewById(R.id.layout_joining_date).setVisibility(8);
-            findViewById(R.id.layout_tackbus).setVisibility(8);
-            findViewById(R.id.layout_experience).setVisibility(8);
-            findViewById(R.id.layout_ctc).setVisibility(8);
+//            findViewById(R.id.layout_joining_date).setVisibility(8);
+//            findViewById(R.id.layout_experience).setVisibility(8);
+//            findViewById(R.id.layout_ctc).setVisibility(8);
 
         }
-        if (UserStaticData.user_type == 0) {
-            findViewById(R.id.layout_ctc).setVisibility(8);
-        }
+//        if (UserStaticData.user_type == 0) {
+//            findViewById(R.id.layout_ctc).setVisibility(8);
+//        }
     }
 
     class getStudentApi implements VolleyCallbackJSONObject {
         @Override
         public void onSuccess(JSONObject jsonArray) {
                 Log.e("student ", "data_student" + jsonArray.toString());
+//        email.setText(jsonArray.getString(""));
+            try {
+                name.setText(jsonArray.getString("name"));
+                phone.setText(jsonArray.getString("mobileNo"));
+                address.setText(jsonArray.getString("address"));
+                gender.setText(jsonArray.getString("gender"));
+                birthday.setText(jsonArray.getString("dob"));
+
+                JSONObject jsonObject = jsonArray.getJSONObject("divId");
+
+                div_name.setText(jsonObject.getString("name"));
+
+                JSONObject jsonObject2 = jsonObject.getJSONObject("stdId");
+
+                className.setText(jsonObject2.getString("stdName"));
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 
