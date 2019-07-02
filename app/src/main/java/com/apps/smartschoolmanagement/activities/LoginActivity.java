@@ -141,6 +141,7 @@ public class LoginActivity extends BaseActivity {
                         String school_id = String.valueOf(response.get("schoolId"));
                         String name = String.valueOf(response.get("name"));
                         String email = String.valueOf(response.get("emailId"));
+                        int teachermaster = response.getInt("teacherCode");
                         JSONObject jsonObject = new JSONObject(school_id);
                         String Schoolid = String.valueOf(jsonObject.get("id"));
                         SharedPreferences.Editor e = sp.edit();
@@ -149,6 +150,7 @@ public class LoginActivity extends BaseActivity {
                         e.putString("schoolid", Schoolid);
                         e.putString("name", name);
                         e.putString("email", email);
+                        e.putInt("teachermaster", teachermaster);
                         e.commit();
 
                         if (LoginActivity.this.findViewById(R.id.layout_loading) != null) {
@@ -174,11 +176,11 @@ public class LoginActivity extends BaseActivity {
                             }
                             Toast.makeText(LoginActivity.this, "Invalid Username and Password", Toast.LENGTH_LONG).show();
                         }
-                    });
-            MyRequestQueue.add(jsonObjectRequest);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+                        });
+                MyRequestQueue.add(jsonObjectRequest);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
     }
 //
 //

@@ -4,12 +4,6 @@
     n1:layout_width="fill_parent"
     n1:layout_height="fill_parent">
 
-    <include
-        layout="@layout/layout_loading"
-        n1:layout_width="wrap_content"
-        n1:layout_height="wrap_content"
-        n1:layout_gravity="center" />
-
     <ScrollView
         style="@style/Scrollview_Style"
         n1:background="@color/background">
@@ -94,4 +88,8 @@
                 n1:text="Post" />
         </LinearLayout>
     </ScrollView>
+
+    <include
+        layout="@layout/layout_loading" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

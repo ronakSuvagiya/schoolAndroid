@@ -15,7 +15,16 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.apps.smartschoolmanagement.Comman.URL;
 import com.apps.smartschoolmanagement.R;
+import com.apps.smartschoolmanagement.activities.LoginActivity;
 import com.apps.smartschoolmanagement.activities.StudentProfileActivity;
 import com.apps.smartschoolmanagement.utils.JsonClass;
 import com.apps.smartschoolmanagement.utils.JsonFragment;
@@ -28,7 +37,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static com.apps.smartschoolmanagement.fragments.StudentAttendance.stdid;
@@ -44,67 +56,15 @@ public class PostAssignment extends JsonFragment {
     SpinnerHelper subject;
     String subjectid = null;
     SharedPreferences sp;
-
+    String channel;
+    int div,stds,subjects,teacherMasters;
     List<String> stdname = new ArrayList<>();
     List<Integer> stdId = new ArrayList<>();
     List<String> divName = new ArrayList<>();
     List<Integer> divId = new ArrayList<>();
     List<String> subName = new ArrayList<>();
     List<Integer> subID  = new ArrayList<>();
-    /* renamed from: com.apps.smartschoolmanagement.fragments.PostAssignment$1 */
-    class C13561 implements VolleyCallback {
-        C13561() {
-        }
 
-        public void onSuccess(String result) {
-            if (result != null) {
-                PostAssignment.this.classid = result;
-                PostAssignment.this.params.put("class", PostAssignment.this.classid);
-            }
-        }
-    }
-
-    /* renamed from: com.apps.smartschoolmanagement.fragments.PostAssignment$2 */
-    class C13572 implements VolleyCallback {
-        C13572() {
-        }
-
-        public void onSuccess(String result) {
-            if (result != null) {
-                PostAssignment.this.subjectid = result;
-                PostAssignment.this.params.put("subject", PostAssignment.this.subjectid);
-            }
-        }
-    }
-
-    /* renamed from: com.apps.smartschoolmanagement.fragments.PostAssignment$3 */
-    class C13593 implements OnClickListener {
-
-        /* renamed from: com.apps.smartschoolmanagement.fragments.PostAssignment$3$1 */
-        class C13581 implements VolleyCallback {
-            C13581() {
-            }
-
-            public void onSuccess(String result) {
-                Toast.makeText(PostAssignment.this.getActivity(), "Assignment Posted", 1).show();
-            }
-        }
-
-        C13593() {
-        }
-
-        public void onClick(View view) {
-            if (PostAssignment.this.date.getText().toString().length() <= 5 || ((EditText) PostAssignment.this.rootView.findViewById(R.id.edit_post_assignment)).getText().toString().equalsIgnoreCase("")) {
-                PostAssignment.this.rootView.findViewById(R.id.error).setVisibility(0);
-                return;
-            }
-            PostAssignment.this.rootView.findViewById(R.id.error).setVisibility(8);
-            PostAssignment.this.params.put("teacher_id", ProfileInfo.getInstance().getLoginData().get("userId"));
-            PostAssignment.this.params.put("date", PostAssignment.this.date.getText().toString());
-            PostAssignment.this.params.put("assignment", ((EditText) PostAssignment.this.rootView.findViewById(R.id.edit_post_assignment)).getText().toString());
-           // PostAssignment.this.getJsonResponse(URLs.assignment_post, PostAssignment.this.rootView, new C13581());
-        }
-    }
     class getStdApi implements JsonFragment.VolleyCallbackJSONArray {
         @Override
         public void onSuccess(JSONArray jsonArray) {
@@ -113,6 +73,7 @@ public class PostAssignment extends JsonFragment {
                     JSONObject obj = jsonArray.getJSONObject(i);
                     stdname.add(obj.getString("stdName"));
                     stdId.add(obj.getInt("id"));
+                    stds = obj.getInt("id");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -130,6 +91,7 @@ public class PostAssignment extends JsonFragment {
                     JSONObject obj = jsonArray.getJSONObject(i);
                     divName.add(obj.getString("name"));
                     divId.add(obj.getInt("id"));
+                    div = obj.getInt("id");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -148,6 +110,7 @@ public class PostAssignment extends JsonFragment {
                     JSONObject obj = jsonArray.getJSONObject(i);
                     subName.add(obj.getString("name"));
                     subID.add(obj.getInt("id"));
+                    subjects  = obj.getInt("id");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -165,18 +128,17 @@ public class PostAssignment extends JsonFragment {
         this.cls = (Spinner) this.rootView.findViewById(R.id.spnr_class);
         this.date = (EditText) this.rootView.findViewById(R.id.date);
         sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        String channel = (sp.getString("schoolid", ""));
+         channel = (sp.getString("schoolid", ""));
+         teacherMasters = sp.getInt("teachermaster",0);
         getJsonResponse(URLs.getStd + channel,rootView, new getStdApi());
         std.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 divName.removeAll(divName);
                 divId.removeAll(divId);
-                subName.removeAll(subName);
-                subID.removeAll(subID);
                 stdid = stdId.get(i);
                 getJsonResponse(URLs.getDiv + stdid + "&school=" + channel, rootView, new PostAssignment.getDivApi());
-                getJsonResponse(URLs.getSubject + stdid + "&school=" + channel, rootView, new PostAssignment.getSubjectApi());
+
             }
 
             @Override
@@ -184,15 +146,76 @@ public class PostAssignment extends JsonFragment {
 
             }
         });
+        cls.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                subName.removeAll(subName);
+                subID.removeAll(subID);
+                stdid = stdId.get(i);
+                getJsonResponse(URLs.getSubject + stdid + "&school=" + channel, rootView, new PostAssignment.getSubjectApi());
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
+            }
+        });
         this.date.setOnClickListener(new OnClickDateListener(this.date, getActivity(), "past"));
         return this.rootView;
     }
 
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        getSpinnerData(getActivity(), this.rootView, URLs.class_codes, this.cls, new C13561());
-//        getSpinnerData(getActivity(), this.rootView, URLs.subject_codes, this.subj, new C13572());
-        this.rootView.findViewById(R.id.btn_post).setOnClickListener(new C13593());
+        this.rootView.findViewById(R.id.btn_post).setOnClickListener(new OnClickListener() {
+                                                                         @Override
+                                                                         public void onClick(View v) {
+                                                                             if (PostAssignment.this.date.getText().toString().length() <= 5 || ((EditText) PostAssignment.this.rootView.findViewById(R.id.edit_post_assignment)).getText().toString().equalsIgnoreCase("")) {
+                                                                                 PostAssignment.this.rootView.findViewById(R.id.error).setVisibility(0);
+                                                                                 return;
+                                                                             } else {
+                                                                                 PostAssignment.this.rootView.findViewById(R.id.error).setVisibility(8);
+                                                                                 int schoolid = Integer.parseInt(channel);
+                                                                                 SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
+                                                                                 String s=df.format(new Date());
+                                                                                 Log.e("div",">>"+divId);
+                                                                                 Log.e("std",">>"+stdId);
+                                                                                 Log.e("school",">>"+schoolid);
+                                                                                 Log.e("subject",">>"+subID);
+                                                                                 Log.e("created_on",">>"+PostAssignment.this.date.getText().toString());
+                                                                                 Log.e("date",">>"+PostAssignment.this.date.getText().toString());
+                                                                                 Log.e("description",">>"+((EditText) PostAssignment.this.rootView.findViewById(R.id.edit_post_assignment)).getText().toString());
+                                                                                 Log.e("teacherMaster",">>"+teacherMasters);
+                                                                                 try {
+                                                                                 RequestQueue MyRequestQueue = Volley.newRequestQueue(getActivity());
+                                                                                 JSONObject jsonBody = new JSONObject();
+                                                                                     jsonBody.put("created_on", s);
+                                                                                     jsonBody.put("date", PostAssignment.this.date.getText().toString());
+                                                                                     jsonBody.put("description", ((EditText) PostAssignment.this.rootView.findViewById(R.id.edit_post_assignment)).getText().toString());
+                                                                                     jsonBody.put("div", div);
+                                                                                     jsonBody.put("school", schoolid);
+                                                                                     jsonBody.put("std", stds);
+                                                                                     jsonBody.put("subject", subjects);
+                                                                                     jsonBody.put("teacherMaster", schoolid);
+                                                                                     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, URLs.PostAssignment, jsonBody, new Response.Listener<JSONObject>() {
+                                                                                         @Override
+                                                                                         public void onResponse(JSONObject response) {
+                                                                                             Toast.makeText(PostAssignment.this.getActivity(), "Assignment Posted", 1).show();
+                                                                                         }
+                                                                                     },
+                                                                                             new Response.ErrorListener() {
+                                                                                                 @Override
+                                                                                                 public void onErrorResponse(VolleyError error) {
+                                                                                                     Toast.makeText(getActivity(), "Assignment not posted try again...", Toast.LENGTH_LONG).show();
+
+                                                                                                 }
+                                                                                             });
+
+                                                                                     MyRequestQueue.add(jsonObjectRequest);
+                                                                                 } catch (JSONException e) {
+                                                                                     e.printStackTrace();
+                                                                                 }
+                                                                             }
+                                                                         }
+                                                                     });
     }
 }
+

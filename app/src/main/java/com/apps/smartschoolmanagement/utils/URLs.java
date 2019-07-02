@@ -11,6 +11,8 @@ public class URLs {
     public static String getStudent = "http://quickedu.co.in/findByStudentid?id="; //1
     public static String getSubject = "http://quickedu.co.in/getSubjectApi?stdid="; //1
     public static String getPrentByStudent = "http://quickedu.co.in/findByStudents?id=";
+    public static String PostAssignment = "http://quickedu.co.in/addAssignmentApi";
+
 
 
     // end
