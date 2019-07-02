@@ -9,6 +9,8 @@ public class URLs {
     public static String getStudentByStdAndDiv ="http://quickedu.co.in/findByStdAndDivAndSchool?std="; //1&div=1&School=1
     public static String addAttendce ="http://quickedu.co.in/addAttendance";
     public static String getStudent = "http://quickedu.co.in/findByStudentid?id="; //1
+    public static String getSubject = "http://quickedu.co.in/SubjectApi?stdid="; //1
+
 
 
 
