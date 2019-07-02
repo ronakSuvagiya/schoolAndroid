@@ -49,8 +49,8 @@ public class PostAssignment extends JsonFragment {
     List<Integer> stdId = new ArrayList<>();
     List<String> divName = new ArrayList<>();
     List<Integer> divId = new ArrayList<>();
-    List<String> StudentName = new ArrayList<>();
-    List<Integer> StudentRollNo  = new ArrayList<>();
+    List<String> subName = new ArrayList<>();
+    List<Integer> subID  = new ArrayList<>();
     /* renamed from: com.apps.smartschoolmanagement.fragments.PostAssignment$1 */
     class C13561 implements VolleyCallback {
         C13561() {
@@ -146,15 +146,14 @@ public class PostAssignment extends JsonFragment {
             for (int i = 0; i < jsonArray.length(); i++) {
                 try {
                     JSONObject obj = jsonArray.getJSONObject(i);
-                    divName.add(obj.getString("name"));
-                    divId.add(obj.getInt("id"));
+                    subName.add(obj.getString("name"));
+                    subID.add(obj.getInt("id"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
-            final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_dropdown_custom, divName);
-            cls.setAdapter(spinnerArrayAdapter);
-            Log.e("divData", jsonArray.toString());
+            final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_dropdown_custom, subName);
+            subj.setAdapter(spinnerArrayAdapter);
         }
     }
 
@@ -173,22 +172,11 @@ public class PostAssignment extends JsonFragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 divName.removeAll(divName);
                 divId.removeAll(divId);
+                subName.removeAll(subName);
+                subID.removeAll(subID);
                 stdid = stdId.get(i);
-                getJsonResponse(URLs.getDiv + stdid + "&school=" + channel, rootView, new getDivApi());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-        cls.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                StudentName.removeAll(StudentName);
-                StudentRollNo.removeAll(StudentRollNo);
-                Integer divid = divId.get(i);
-                getJsonResponse(URLs.getStudentByStdAndDiv + stdid + "&div=" + divid + "&School=" + channel, rootView, new getSubjectApi());
+                getJsonResponse(URLs.getDiv + stdid + "&school=" + channel, rootView, new PostAssignment.getDivApi());
+                getJsonResponse(URLs.getSubject + stdid + "&school=" + channel, rootView, new PostAssignment.getSubjectApi());
             }
 
             @Override
@@ -197,20 +185,6 @@ public class PostAssignment extends JsonFragment {
             }
         });
 
-        subj.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                StudentName.removeAll(StudentName);
-                StudentRollNo.removeAll(StudentRollNo);
-                Integer divid = divId.get(i);
-                getJsonResponse(URLs.getSubject + stdid + "&div=" + divid + "&School=" + channel, rootView, new getSubjectApi());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
         this.date.setOnClickListener(new OnClickDateListener(this.date, getActivity(), "past"));
         return this.rootView;
     }
