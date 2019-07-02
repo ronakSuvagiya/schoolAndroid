@@ -60,11 +60,6 @@ public class AssignmentsTeacherActivity extends AppCompatActivity {
         setContentView(R.layout.tab_layout_top2);
         getSupportActionBar().setElevation(0.0f);
         setTitle("Assignments");
-//        this.viewPager = (ViewPager) findViewById(R.id.viewpager);
-//        setupViewPager(this.viewPager);
-//        this.tabLayout.addOnTabSelectedListener(new HomeActivity.C12161());
-//        setupTabIcons();
-
         this.tabLayout = (TabLayout) findViewById(R.id.tabs);
         this.tabLayout.addTab(this.tabLayout.newTab().setText("Post Assignment"));
         this.tabLayout.addTab(this.tabLayout.newTab().setText("History"));

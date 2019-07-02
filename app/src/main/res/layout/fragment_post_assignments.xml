@@ -24,7 +24,6 @@
                 n1:id="@+id/error"
                 style="@style/TextFields_Error"
                 n1:text="Please fill all the fields" />
-
             <FrameLayout
                 n1:layout_width="fill_parent"
                 n1:layout_height="wrap_content"
@@ -32,12 +31,13 @@
                 n1:background="@drawable/borders_rltb_white_background">
 
                 <Spinner
-                    n1:id="@+id/spnr_subject"
+                    n1:id="@+id/spnr_std"
                     n1:layout_width="fill_parent"
                     n1:layout_height="@dimen/_40sdp"
                     n1:alpha="0.7"
                     n1:paddingLeft="@dimen/_4sdp" />
             </FrameLayout>
+
 
             <FrameLayout
                 n1:layout_width="fill_parent"
@@ -52,7 +52,19 @@
                     n1:alpha="0.7"
                     n1:paddingLeft="@dimen/_4sdp" />
             </FrameLayout>
+            <FrameLayout
+                n1:layout_width="fill_parent"
+                n1:layout_height="wrap_content"
+                n1:layout_marginBottom="@dimen/_16sdp"
+                n1:background="@drawable/borders_rltb_white_background">
 
+                <Spinner
+                    n1:id="@+id/spnr_subject"
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="@dimen/_40sdp"
+                    n1:alpha="0.7"
+                    n1:paddingLeft="@dimen/_4sdp" />
+            </FrameLayout>
             <com.apps.smartschoolmanagement.utils.EditTextClearable
                 n1:id="@+id/date"
                 style="@style/Edittext_DateTime"
