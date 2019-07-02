@@ -13,6 +13,18 @@ public class URLs {
 
 
 
+
+
+
+
+
+
+
+
+
+    public static String getPrentByStudent = "http://quickedu.co.in/findByStudents?id=";
+
+
     // end
 
 

@@ -56,37 +56,39 @@ public class ProfileViewActivity extends JsonClass {
         gender = findViewById(R.id.gender);
         birthday = findViewById(R.id.birthday);
         this.profilePic = (ImageView) findViewById(R.id.file_path);
-//        findViewById(R.id.btn_edit).setVisibility(8);
         if (getIntent().getStringExtra("teacherid") != null) {
             this.params.put("teacher_id", getIntent().getStringExtra("teacherid"));
             findViewById(R.id.layout_subject).setVisibility(0);
-//            student_id = getIntent().getIntExtra("studentid",0);
-//            ids = String.valueOf(student_id);
-//            Log.e("student", "idss" + ids);
         } else if (getIntent().getStringExtra("studentid") != null) {
             this.params.put("student_id", getIntent().getStringExtra("studentid"));
             student_id = Integer.parseInt(getIntent().getStringExtra("studentid"));
             Log.e("url",URLs.getStudent+ student_id);
             getJsonResponse(URLs.getStudent + student_id, ProfileViewActivity.this, new ProfileViewActivity.getStudentApi());
 
-//            findViewById(R.id.layout_joining_date).setVisibility(8);
-//            findViewById(R.id.layout_experience).setVisibility(8);
-//            findViewById(R.id.layout_ctc).setVisibility(8);
-
         }
-//        if (UserStaticData.user_type == 0) {
-//            findViewById(R.id.layout_ctc).setVisibility(8);
-//        }
     }
 
+    class getparentDetails implements  VolleyCallbackJSONObject{
+
+        @Override
+        public void onSuccess(JSONObject jSONObject) {
+            Log.e("parent", "data_parent" + jSONObject.toString());
+            try {
+                phone.setText(jSONObject.getString("mobileNo"));
+                email.setText(jSONObject.getString("emialID"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
     class getStudentApi implements VolleyCallbackJSONObject {
         @Override
         public void onSuccess(JSONObject jsonArray) {
                 Log.e("student ", "data_student" + jsonArray.toString());
 //        email.setText(jsonArray.getString(""));
             try {
+                getJsonResponse(URLs.getPrentByStudent + jsonArray.getString("id"), ProfileViewActivity.this, new ProfileViewActivity.getparentDetails());
                 name.setText(jsonArray.getString("name"));
-                phone.setText(jsonArray.getString("mobileNo"));
                 address.setText(jsonArray.getString("address"));
                 gender.setText(jsonArray.getString("gender"));
                 birthday.setText(jsonArray.getString("dob"));
@@ -102,39 +104,6 @@ public class ProfileViewActivity extends JsonClass {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }
-    }
-
-    public void processJsonResponse(String response) {
-        if (response != null && !response.equalsIgnoreCase("")) {
-            this.responseParams.clear();
-            try {
-                JSONObject jsonObject1 = new JSONObject(response);
-                JSONArray jsonArray = jsonObject1.getJSONArray("staffprofile");
-                Iterator<String> keysIterator = jsonArray.getJSONObject(0).keys();
-                while (keysIterator.hasNext()) {
-                    String keyStr = (String) keysIterator.next();
-                    this.responseParams.put(keyStr, jsonArray.getJSONObject(0).getString(keyStr));
-                }
-                JSONArray jsonArray1 = jsonObject1.getJSONArray("attendance");
-                keysIterator = jsonArray1.getJSONObject(0).keys();
-                while (keysIterator.hasNext()) {
-                    if ("Absent".equals(jsonArray1.getJSONObject(0).getString((String) keysIterator.next()))) {
-                        findViewById(R.id.attendance_present).setVisibility(8);
-                        findViewById(R.id.attendance_absent).setVisibility(0);
-                    } else {
-                        findViewById(R.id.attendance_present).setVisibility(0);
-                        findViewById(R.id.attendance_absent).setVisibility(8);
-                    }
-                }
-                if (jsonArray1.length() < 1) {
-                    findViewById(R.id.attendance_present).setVisibility(8);
-                    findViewById(R.id.attendance_absent).setVisibility(8);
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            loadData(this.root, this.responseParams);
         }
     }
 }
