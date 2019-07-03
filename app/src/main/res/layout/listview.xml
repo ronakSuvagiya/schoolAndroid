@@ -19,7 +19,7 @@
                 n1:layout_height="wrap_content"
                 n1:layout_margin="@dimen/_10sdp"
                 n1:background="@drawable/borders_rltb_white_background"
-                n1:visibility="gone">
+                n1:visibility="visible">
 
                 <Spinner
                     n1:id="@+id/spnr_class"
@@ -36,7 +36,7 @@
                 n1:layout_gravity="center_vertical"
                 n1:layout_margin="@dimen/_10sdp"
                 n1:background="@drawable/borders_rltb_white_background"
-                n1:visibility="gone">
+                n1:visibility="visible">
 
                 <Spinner
                     n1:id="@+id/spnr_month"
@@ -45,6 +45,13 @@
                     n1:alpha="0.7"
                     n1:paddingLeft="@dimen/_10sdp" />
             </FrameLayout>
+
+            <com.apps.smartschoolmanagement.utils.EditTextClearable
+                n1:id="@+id/getdate"
+                style="@style/Edittext_DateTime"
+                n1:layout_marginBottom="@dimen/_16sdp"
+                n1:hint="Select Date"
+                n1:inputType="date" />
 
             <TextView
                 n1:id="@+id/error"

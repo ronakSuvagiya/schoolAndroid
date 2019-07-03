@@ -3,11 +3,15 @@ package com.apps.smartschoolmanagement.fragments;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -15,19 +19,31 @@ import com.apps.smartschoolmanagement.R;
 import com.apps.smartschoolmanagement.adapters.TeacherAssignmentsAdapter;
 import com.apps.smartschoolmanagement.models.ListData;
 import com.apps.smartschoolmanagement.utils.JsonFragment;
+import com.apps.smartschoolmanagement.utils.OnClickDateListener;
 import com.apps.smartschoolmanagement.utils.ProfileInfo;
 import com.apps.smartschoolmanagement.utils.URLs;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.apps.smartschoolmanagement.fragments.StudentAttendance.stdid;
+
 public class AssignmentsHistory extends JsonFragment {
-    Spinner classes;
+    Spinner std;
+    EditText date;
     String classid = null;
     ListView listView;
-    Spinner month;
+    Spinner div;
     View rootView;
-
+    int divid;
+    static Integer stdid ;
+    List<Integer> stdId = new ArrayList<>();
+    List<String> stdname = new ArrayList<>();
+    List<Integer> divId = new ArrayList<>();
+    List<String> divName = new ArrayList<>();
     /* renamed from: com.apps.smartschoolmanagement.fragments.AssignmentsHistory$1 */
     class C13441 implements VolleyCallback {
 
@@ -38,7 +54,7 @@ public class AssignmentsHistory extends JsonFragment {
 
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i > 0) {
-                    AssignmentsHistory.this.params.put("month", "" + AssignmentsHistory.this.month.getSelectedItemPosition());
+                    AssignmentsHistory.this.params.put("month", "" + AssignmentsHistory.this.div.getSelectedItemPosition());
                     if (AssignmentsHistory.this.classid != null) {
                         AssignmentsHistory.this.loadData();
                     } else {
@@ -59,7 +75,7 @@ public class AssignmentsHistory extends JsonFragment {
                 AssignmentsHistory.this.classid = result;
                 AssignmentsHistory.this.params.put("class_id", AssignmentsHistory.this.classid);
             }
-            AssignmentsHistory.this.month.setOnItemSelectedListener(new C13431());
+            AssignmentsHistory.this.div.setOnItemSelectedListener(new C13431());
         }
     }
 
@@ -77,14 +93,78 @@ public class AssignmentsHistory extends JsonFragment {
         }
     }
 
+    class getStdApi implements JsonFragment.VolleyCallbackJSONArray {
+        @Override
+        public void onSuccess(JSONArray jsonArray) {
+            for (int i = 0; i < jsonArray.length(); i++) {
+                try {
+                    JSONObject obj = jsonArray.getJSONObject(i);
+                    stdname.add(obj.getString("stdName"));
+                    stdId.add(obj.getInt("id"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_dropdown_custom, stdname);
+            std.setAdapter(spinnerArrayAdapter);
+            Log.e("stdData", jsonArray.toString());
+        }
+    }
+    class getDivsApi implements JsonFragment.VolleyCallbackJSONArray {
+        @Override
+        public void onSuccess(JSONArray jsonArray) {
+            for (int i = 0; i < jsonArray.length(); i++) {
+                try {
+                    JSONObject obj = jsonArray.getJSONObject(i);
+                    divName.add(obj.getString("name"));
+                    divId.add(obj.getInt("id"));
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_dropdown_custom, divName);
+            div.setAdapter(spinnerArrayAdapter);
+            Log.e("divData", jsonArray.toString());
+        }
+    }
     @Nullable
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         this.rootView = inflater.inflate(R.layout.listview, container, false);
         this.listView = (ListView) this.rootView.findViewById(R.id.listview);
         this.rootView.findViewById(R.id.layout_spnr_month).setVisibility(0);
         this.rootView.findViewById(R.id.layout_spnr_class).setVisibility(0);
-        this.month = (Spinner) this.rootView.findViewById(R.id.spnr_month);
-        this.classes = (Spinner) this.rootView.findViewById(R.id.spnr_class);
+        this.div = (Spinner) this.rootView.findViewById(R.id.spnr_month);
+        this.std = (Spinner) this.rootView.findViewById(R.id.spnr_class);
+        this.date = (EditText) this.rootView.findViewById(R.id.date);
+        getJsonResponse(URLs.getAssignment + stdid , rootView, new getStdApi());
+        std.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                stdid = stdId.get(i);
+                getJsonResponse(URLs.getAssignment + stdid , rootView, new getStdApi());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        div.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                divid = divId.get(i);
+                getJsonResponse(URLs.getAssignment + stdid + "&div=" + divId, rootView, new getDivsApi());
+
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+//        this.date.setOnClickListener(new OnClickDateListener(this.date, getActivity(), "past"));
+
         return this.rootView;
     }
 
