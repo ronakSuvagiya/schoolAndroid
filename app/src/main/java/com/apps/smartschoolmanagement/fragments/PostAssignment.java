@@ -129,7 +129,7 @@ public class PostAssignment extends JsonFragment {
         this.date = (EditText) this.rootView.findViewById(R.id.date);
         sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
          channel = (sp.getString("schoolid", ""));
-         teacherMasters = sp.getInt("teachermaster",0);
+         teacherMasters = (sp.getInt("teachermaster",0));
         getJsonResponse(URLs.getStd + channel,rootView, new getStdApi());
         std.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -176,11 +176,11 @@ public class PostAssignment extends JsonFragment {
                                                                                  int schoolid = Integer.parseInt(channel);
                                                                                  SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
                                                                                  String s=df.format(new Date());
-                                                                                 Log.e("div",">>"+divId);
-                                                                                 Log.e("std",">>"+stdId);
+                                                                                 Log.e("div",">>"+ cls.getSelectedItem().toString());
+                                                                                 Log.e("std",">>"+stds);
                                                                                  Log.e("school",">>"+schoolid);
-                                                                                 Log.e("subject",">>"+subID);
-                                                                                 Log.e("created_on",">>"+PostAssignment.this.date.getText().toString());
+                                                                                 Log.e("subject",">>"+subjects);
+                                                                                 Log.e("created_on",">>"+s);
                                                                                  Log.e("date",">>"+PostAssignment.this.date.getText().toString());
                                                                                  Log.e("description",">>"+((EditText) PostAssignment.this.rootView.findViewById(R.id.edit_post_assignment)).getText().toString());
                                                                                  Log.e("teacherMaster",">>"+teacherMasters);
@@ -194,7 +194,7 @@ public class PostAssignment extends JsonFragment {
                                                                                      jsonBody.put("school", schoolid);
                                                                                      jsonBody.put("std", stds);
                                                                                      jsonBody.put("subject", subjects);
-                                                                                     jsonBody.put("teacherMaster", schoolid);
+                                                                                     jsonBody.put("teacherMaster", teacherMasters);
                                                                                      JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, URLs.PostAssignment, jsonBody, new Response.Listener<JSONObject>() {
                                                                                          @Override
                                                                                          public void onResponse(JSONObject response) {
