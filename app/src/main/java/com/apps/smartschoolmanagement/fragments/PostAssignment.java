@@ -40,15 +40,13 @@ import java.util.List;
 import static com.apps.smartschoolmanagement.fragments.StudentAttendance.stdid;
 
 public class PostAssignment extends JsonFragment {
-    SpinnerHelper classes;
-    String classid = null;
+
+    EditText desc;
     Spinner cls;
     EditText date;
     View rootView;
     Spinner subj;
     Spinner std;
-    SpinnerHelper subject;
-    String subjectid = null;
     SharedPreferences sp;
     String channel;
     int div, stds, subjects, teacherMasters;
@@ -58,105 +56,6 @@ public class PostAssignment extends JsonFragment {
     List<Integer> divId = new ArrayList<>();
     List<String> subName = new ArrayList<>();
     List<Integer> subID = new ArrayList<>();
-
-    @Nullable
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        this.rootView = inflater.inflate(R.layout.fragment_post_assignments, container, false);
-        this.std = this.rootView.findViewById(R.id.spnr_std);
-        this.subj = this.rootView.findViewById(R.id.spnr_subject);
-        this.cls = this.rootView.findViewById(R.id.spnr_class);
-        this.date = this.rootView.findViewById(R.id.date);
-        sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        channel = (sp.getString("schoolid", ""));
-        teacherMasters = (sp.getInt("teachermaster", 0));
-        getJsonResponse(URLs.getStd + channel, rootView, new getStdApi());
-        std.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                divName.removeAll(divName);
-                divId.removeAll(divId);
-                stdid = stdId.get(i);
-                getJsonResponse(URLs.getDiv + stdid + "&school=" + channel, rootView, new PostAssignment.getDivApi());
-                subName.removeAll(subName);
-                subID.removeAll(subID);
-                getJsonResponse(URLs.getSubject + stdid + "&school=" + channel, rootView, new PostAssignment.getSubjectApi());
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-        cls.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-               div = divId.get(i);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-        this.date.setOnClickListener(new OnClickDateListener(this.date, getActivity(), "past"));
-        return this.rootView;
-    }
-
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        this.rootView.findViewById(R.id.btn_post).setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (PostAssignment.this.date.getText().toString().length() <= 5 || ((EditText) PostAssignment.this.rootView.findViewById(R.id.edit_post_assignment)).getText().toString().equalsIgnoreCase("")) {
-                    PostAssignment.this.rootView.findViewById(R.id.error).setVisibility(0);
-                    return;
-                } else {
-                    PostAssignment.this.rootView.findViewById(R.id.error).setVisibility(8);
-                    int schoolid = Integer.parseInt(channel);
-                    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-                    String s = df.format(new Date());
-                    Log.e("div", ">>" + cls.getSelectedItem().toString());
-                    Log.e("std", ">>" + stds);
-                    Log.e("school", ">>" + schoolid);
-                    Log.e("subject", ">>" + subjects);
-                    Log.e("created_on", ">>" + s);
-                    Log.e("date", ">>" + PostAssignment.this.date.getText().toString());
-                    Log.e("description", ">>" + ((EditText) PostAssignment.this.rootView.findViewById(R.id.edit_post_assignment)).getText().toString());
-                    Log.e("teacherMaster", ">>" + teacherMasters);
-                    try {
-                        RequestQueue MyRequestQueue = Volley.newRequestQueue(getActivity());
-                        JSONObject jsonBody = new JSONObject();
-                        jsonBody.put("created_on", s);
-                        jsonBody.put("date", PostAssignment.this.date.getText().toString());
-                        jsonBody.put("description", ((EditText) PostAssignment.this.rootView.findViewById(R.id.edit_post_assignment)).getText().toString());
-                        jsonBody.put("div", div);
-                        jsonBody.put("school", schoolid);
-                        jsonBody.put("std", stds);
-                        jsonBody.put("subject", subjects);
-                        jsonBody.put("teacherMaster", teacherMasters);
-                        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, URLs.PostAssignment, jsonBody, new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                Toast.makeText(PostAssignment.this.getActivity(), "Assignment Posted", 1).show();
-                            }
-                        },
-                                new Response.ErrorListener() {
-                                    @Override
-                                    public void onErrorResponse(VolleyError error) {
-                                        Toast.makeText(getActivity(), "Assignment not posted try again...", Toast.LENGTH_LONG).show();
-
-                                    }
-                                });
-
-                        MyRequestQueue.add(jsonObjectRequest);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
-    }
 
     class getStdApi implements JsonFragment.VolleyCallbackJSONArray {
         @Override
@@ -212,6 +111,110 @@ public class PostAssignment extends JsonFragment {
             final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_dropdown_custom, subName);
             subj.setAdapter(spinnerArrayAdapter);
         }
+    }
+
+    @Nullable
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        this.rootView = inflater.inflate(R.layout.fragment_post_assignments, container, false);
+        this.std = this.rootView.findViewById(R.id.spnr_std);
+        this.subj = this.rootView.findViewById(R.id.spnr_subject);
+        this.cls = this.rootView.findViewById(R.id.spnr_class);
+        this.date = this.rootView.findViewById(R.id.date);
+        this.desc = this.rootView.findViewById(R.id.edit_post_assignment);
+
+        sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        channel = (sp.getString("schoolid", ""));
+        teacherMasters = (sp.getInt("teachermaster", 0));
+        getJsonResponse(URLs.getStd + channel, rootView, new getStdApi());
+        std.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                divName.removeAll(divName);
+                divId.removeAll(divId);
+                stdid = stdId.get(i);
+                subName.removeAll(subName);
+                subID.removeAll(subID);
+                getJsonResponse(URLs.getDiv + stdid + "&school=" + channel, rootView, new PostAssignment.getDivApi());
+                getJsonResponse(URLs.getSubject + stdid + "&school=" + channel, rootView, new PostAssignment.getSubjectApi());
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        cls.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                div = divId.get(i);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        this.date.setOnClickListener(new OnClickDateListener(this.date, getActivity(), "past"));
+        return this.rootView;
+    }
+
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        this.rootView.findViewById(R.id.btn_post).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (PostAssignment.this.date.getText().toString().length() <= 5 || ((EditText) PostAssignment.this.rootView.findViewById(R.id.edit_post_assignment)).getText().toString().equalsIgnoreCase("")) {
+                    PostAssignment.this.rootView.findViewById(R.id.error).setVisibility(0);
+                    return;
+                } else {
+                    PostAssignment.this.rootView.findViewById(R.id.error).setVisibility(8);
+                    int schoolid = Integer.parseInt(channel);
+                    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                    String s = df.format(new Date());
+                    Log.e("div", ">>" + cls.getSelectedItem().toString());
+                    Log.e("std", ">>" + stdid);
+                    Log.e("school", ">>" + schoolid);
+                    Log.e("subject", ">>" + subjects);
+                    Log.e("created_on", ">>" + s);
+                    Log.e("date", ">>" + PostAssignment.this.date.getText().toString());
+                    Log.e("description", ">>" + ((EditText) PostAssignment.this.rootView.findViewById(R.id.edit_post_assignment)).getText().toString());
+                    Log.e("teacherMaster", ">>" + teacherMasters);
+                    try {
+                        RequestQueue MyRequestQueue = Volley.newRequestQueue(getActivity());
+                        JSONObject jsonBody = new JSONObject();
+                        jsonBody.put("created_on", s);
+                        jsonBody.put("date", PostAssignment.this.date.getText().toString());
+                        jsonBody.put("description", ((EditText) PostAssignment.this.rootView.findViewById(R.id.edit_post_assignment)).getText().toString());
+                        jsonBody.put("div", div);
+                        jsonBody.put("school", schoolid);
+                        jsonBody.put("std", stdid);
+                        jsonBody.put("subject", subjects);
+                        jsonBody.put("teacherMaster", teacherMasters);
+                        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, URLs.PostAssignment, jsonBody, new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+
+                                Toast.makeText(PostAssignment.this.getActivity(), "Assignment Posted", 1).show();
+                                PostAssignment.this.desc.setText("");
+                                PostAssignment.this.date.setText("");
+                            }
+                        },
+                                new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        Toast.makeText(getActivity(), "Assignment not posted try again...", Toast.LENGTH_LONG).show();
+
+                                    }
+                                });
+
+                        MyRequestQueue.add(jsonObjectRequest);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
     }
 }
 
