@@ -4,10 +4,10 @@ public class URLs {
 
 
     // new url start
-    public  static  String getStd = "http://quickedu.co.in/finstdBySchoolId?school="; //1
+    public static String getStd = "http://quickedu.co.in/finstdBySchoolId?school="; //1
     public static String getDiv = "http://quickedu.co.in/findByStd?std="; //1&school=1
-    public static String getStudentByStdAndDiv ="http://quickedu.co.in/findByStdAndDivAndSchool?std="; //1&div=1&School=1
-    public static String addAttendce ="http://quickedu.co.in/addAttendance";
+    public static String getStudentByStdAndDiv = "http://quickedu.co.in/findByStdAndDivAndSchool?std="; //1&div=1&School=1
+    public static String addAttendce = "http://quickedu.co.in/addAttendance";
     public static String getStudent = "http://quickedu.co.in/findByStudentid?id="; //1
     public static String getSubject = "http://quickedu.co.in/getSubjectApi?stdid="; //1
     public static String getPrentByStudent = "http://quickedu.co.in/findByStudents?id=";
@@ -15,9 +15,9 @@ public class URLs {
 
 
 
+
+
     // end
-
-
 
 
     public static String acceptleave = "http://findlogics.in/school-master/index.php?/api/leaveRequest/acceptLeave";

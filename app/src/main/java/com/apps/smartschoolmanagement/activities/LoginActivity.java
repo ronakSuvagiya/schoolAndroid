@@ -3,14 +3,14 @@ package com.apps.smartschoolmanagement.activities;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-
-import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -20,10 +20,11 @@ import com.android.volley.toolbox.Volley;
 import com.apps.smartschoolmanagement.Comman.URL;
 import com.apps.smartschoolmanagement.R;
 import com.apps.smartschoolmanagement.models.UserStaticData;
-import com.apps.smartschoolmanagement.utils.JsonClass;
 import com.apps.smartschoolmanagement.utils.basehelpers.BaseActivity;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.HashMap;
 
 public class LoginActivity extends BaseActivity {
@@ -107,8 +108,8 @@ public class LoginActivity extends BaseActivity {
 //                this.titles = this.managerTitles;
 //            }
         }
-        this.userNames = (EditText) findViewById(R.id.username);
-        this.password = (EditText) findViewById(R.id.password);
+        this.userNames = findViewById(R.id.username);
+        this.password = findViewById(R.id.password);
         findViewById(R.id.btn_signin).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -176,11 +177,11 @@ public class LoginActivity extends BaseActivity {
                             }
                             Toast.makeText(LoginActivity.this, "Invalid Username and Password", Toast.LENGTH_LONG).show();
                         }
-                        });
-                MyRequestQueue.add(jsonObjectRequest);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+                    });
+            MyRequestQueue.add(jsonObjectRequest);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 //
 //
