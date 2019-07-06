@@ -30,8 +30,8 @@ public class StartActivity extends AppCompatActivity {
 
      String user_type = null;
     SharedPreferences sp;
-    String[] parentTitles = new String[]{"Assignments", "Marks", "My Attendance", "Exam Schedule", "Online Material", "Library", "Fee Details", "Remarks", "My Health Status", "Photo Gallery", "Take Appointment", "My Leaves", "Staff Profile", "Principal Statement"};
-    String[] staffTitles = new String[]{"Post Assignment", "Post Material", "Post Remarks", "Attendance", "Student Profile", "Student's Mark List", "Track Bus", "Library", "Health Status", "Photo Gallery", "Leave Management", "Take Appointment"};
+    String[] parentTitles = new String[]{"Assignments", "Marks", "My Attendance", "Exam Schedule", "Online Material", "Notification", "Fee Details", "Time Table", "Complaint", "Photo Gallery",  "Event List", "Holiday List", "Staff Profile"};
+    String[] staffTitles = new String[]{"Post Assignment", "Post Material", "Notification", "Attendance", "Student Profile", "Student's Mark List", "Schedule", "Exam Schedule", "Complaint", "Add Photo Gallery", "Event List", "Holiday List"};
     String[] titles = null;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,18 +39,15 @@ public class StartActivity extends AppCompatActivity {
         setContentView(R.layout.user_type);
         this.imageIds.put("Assignments", Integer.valueOf(R.drawable.img_assignment));
         this.imageIds.put("Post Assignment", Integer.valueOf(R.drawable.img_assignment));
-        this.imageIds.put("Post Remarks", Integer.valueOf(R.drawable.img_remarks));
-        this.imageIds.put("Remarks", Integer.valueOf(R.drawable.img_remarks));
+        this.imageIds.put("Notification", Integer.valueOf(R.drawable.img_remarks));
         this.imageIds.put("Add Photo Gallery", Integer.valueOf(R.drawable.img_add_gallery));
         this.imageIds.put("Photo Gallery", Integer.valueOf(R.drawable.img_photo_gallery));
         this.imageIds.put("Post Material", Integer.valueOf(R.drawable.img_online_material));
         this.imageIds.put("Online Material", Integer.valueOf(R.drawable.img_online_material));
-        this.imageIds.put("Take Appointment", Integer.valueOf(R.drawable.img_appointment));
-        this.imageIds.put("Appointments", Integer.valueOf(R.drawable.img_appointment));
-        this.imageIds.put("My Health Status", Integer.valueOf(R.drawable.img_health_status));
+        this.imageIds.put("Schedule", Integer.valueOf(R.drawable.img_exam_schedule));
+        this.imageIds.put("Event List", Integer.valueOf(R.drawable.img_appointment));
         this.imageIds.put("Health Status", Integer.valueOf(R.drawable.img_health_status));
-        this.imageIds.put("Student's Health Status", Integer.valueOf(R.drawable.img_health_status));
-        this.imageIds.put("Track Bus", Integer.valueOf(R.drawable.img_bus));
+        this.imageIds.put("Holiday List", Integer.valueOf(R.drawable.img_health_status));
         this.imageIds.put("Principal Statement", Integer.valueOf(R.drawable.img_principal_message));
         this.imageIds.put("Staff Attendance", Integer.valueOf(R.drawable.img_attendance));
         this.imageIds.put("Attendance", Integer.valueOf(R.drawable.img_attendance));
@@ -60,14 +57,10 @@ public class StartActivity extends AppCompatActivity {
         this.imageIds.put("Exam Schedule", Integer.valueOf(R.drawable.img_exam_schedule));
         this.imageIds.put("Marks", Integer.valueOf(R.drawable.img_marks_list));
         this.imageIds.put("Student's Mark List", Integer.valueOf(R.drawable.img_marks_list));
-        this.imageIds.put("Staff Payrolls", Integer.valueOf(R.drawable.img_pay));
         this.imageIds.put("Student Profile", Integer.valueOf(R.drawable.img_student_profile));
         this.imageIds.put("Staff Profile", Integer.valueOf(R.drawable.img_staff_profile));
         this.imageIds.put("Profit & Loss", Integer.valueOf(R.drawable.img_profit_loss));
-        this.imageIds.put("My Leaves", Integer.valueOf(R.drawable.img_leave));
-        this.imageIds.put("Leaves", Integer.valueOf(R.drawable.img_leave));
-        this.imageIds.put("Library", Integer.valueOf(R.drawable.ic_books));
-        this.imageIds.put("Leave Management", Integer.valueOf(R.drawable.img_leave));
+        this.imageIds.put("Complaint", Integer.valueOf(R.drawable.img_leave));
         UserStaticData.imageIds = this.imageIds;
         reg_code = findViewById(R.id.reg_code);
         btn_reg_code = findViewById(R.id.btn_reg_code);
