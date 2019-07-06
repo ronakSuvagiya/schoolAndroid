@@ -70,7 +70,7 @@ public class PostAssignment extends JsonFragment {
                     e.printStackTrace();
                 }
             }
-            final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_dropdown_custom, stdname);
+                final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_dropdown_custom, stdname);
             std.setAdapter(spinnerArrayAdapter);
             Log.e("stdData", jsonArray.toString());
         }

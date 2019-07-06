@@ -2,6 +2,7 @@ package com.apps.smartschoolmanagement.fragments;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
@@ -19,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
 import com.apps.smartschoolmanagement.R;
 import com.apps.smartschoolmanagement.adapters.TeacherAssignmentsAdapter;
 import com.apps.smartschoolmanagement.models.ListData;
@@ -26,6 +28,8 @@ import com.apps.smartschoolmanagement.utils.JsonFragment;
 import com.apps.smartschoolmanagement.utils.OnClickDateListener;
 import com.apps.smartschoolmanagement.utils.ProfileInfo;
 import com.apps.smartschoolmanagement.utils.URLs;
+import com.google.gson.JsonObject;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -45,11 +49,19 @@ public class AssignmentsHistory extends JsonFragment {
     int divid;
     SharedPreferences sp;
     String channel;
-    static Integer stdid ;
+    static Integer stdid;
     List<Integer> stdId = new ArrayList<>();
     List<String> stdname = new ArrayList<>();
     List<Integer> divId = new ArrayList<>();
     List<String> divName = new ArrayList<>();
+    List<String> submissiondate = new ArrayList<>();
+    List<String> techerid = new ArrayList<>();
+    List<String> ass_description = new ArrayList<>();
+    List<String> suubject = new ArrayList<>();
+
+    ArrayList<ListData> values = new ArrayList();
+
+    String dates, teachermaster, description, subject;
 
     class getStdApi implements JsonFragment.VolleyCallbackJSONArray {
         @Override
@@ -68,6 +80,7 @@ public class AssignmentsHistory extends JsonFragment {
             Log.e("stdData", jsonArray.toString());
         }
     }
+
     class getDivsApi implements JsonFragment.VolleyCallbackJSONArray {
         @Override
         public void onSuccess(JSONArray jsonArray) {
@@ -87,13 +100,33 @@ public class AssignmentsHistory extends JsonFragment {
         }
     }
 
-    class getAssi implements VolleyCallbackJSONArray{
-
+    class getAssi implements VolleyCallbackJSONArray {
         @Override
         public void onSuccess(JSONArray jsonArray) {
-            Log.e("respo",jsonArray.toString());
+            Log.e("respo", jsonArray.toString());
+            values.clear();
+            rootView.findViewById(R.id.error).setVisibility(8);
+            for (int i = 0; i<= jsonArray.length(); i++) {
+                try {
+                    Log.e("all",">>"+jsonArray.length()) ;
+                    ListData listData = new ListData();
+                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                    listData.setAssignment_submit_date(jsonObject1.getString("date"));
+                    JSONObject jsonObject = jsonObject1.getJSONObject("teacherMaster");
+                    listData.setAssignment_teacher(jsonObject.getString("id"));
+                    listData.setAssignment_assignment(jsonObject.getString("description"));
+                    JSONObject jsonObject2 = jsonObject.getJSONObject("subject");
+                    listData.setAssignment_subject(jsonObject2.getString("name"));
+                    rootView.findViewById(R.id.error).setVisibility(0);
+                    values.add(listData);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            listView.setAdapter(new TeacherAssignmentsAdapter(getActivity(), R.layout.item_layout_assignments, values));
         }
     }
+
     @Nullable
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         this.rootView = inflater.inflate(R.layout.listview, container, false);
@@ -107,7 +140,7 @@ public class AssignmentsHistory extends JsonFragment {
 
         sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
         channel = (sp.getString("schoolid", ""));
-        getJsonResponse(URLs.getStd + channel , rootView, new getStdApi());
+        getJsonResponse(URLs.getStd + channel, rootView, new getStdApi());
         std.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -127,6 +160,7 @@ public class AssignmentsHistory extends JsonFragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 divid = divId.get(i);
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -150,7 +184,7 @@ public class AssignmentsHistory extends JsonFragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                    Log.e("test",editable.toString() + stdid + "" + divid);
+                Log.e("test", editable.toString() + stdid + "" + divid);
                 getJsonResponse(URLs.getAssignment + stdid + "&div=" + divid + "&date=" + editable.toString(), rootView, new getAssi());
             }
         });
@@ -164,44 +198,44 @@ public class AssignmentsHistory extends JsonFragment {
 
     public void loadData() {
         this.params.put("teacher_id", ProfileInfo.getInstance().getLoginData().get("userId"));
-       // getJsonResponse(URLs.assignmentsListTeacher, this.rootView, new C13452());
+        // getJsonResponse(URLs.assignmentsListTeacher, this.rootView, new C13452());
     }
 
-    public void processJSONResult(JSONObject jsonObject) {
-        try {
-            this.values.clear();
-            JSONArray jsonArray = jsonObject.getJSONArray("Response");
-            if ("success".equals(jsonObject.getString(NotificationCompat.CATEGORY_STATUS))) {
-                this.rootView.findViewById(R.id.error).setVisibility(8);
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                    ListData listData = new ListData();
-                    if (!jsonObject1.isNull("submit_date")) {
-                        listData.setAssignment_submit_date(jsonObject1.getString("submit_date"));
-                    }
-                    if (!jsonObject1.isNull("id")) {
-                        listData.setAssignment_id(jsonObject1.getString("id"));
-                    }
-                    if (!jsonObject1.isNull("Assignment")) {
-                        listData.setAssignment_assignment(jsonObject1.getString("Assignment"));
-                    }
-                    if (!jsonObject1.isNull(NotificationCompat.CATEGORY_STATUS)) {
-                        listData.setStatus(jsonObject1.getString(NotificationCompat.CATEGORY_STATUS));
-                    }
-                    if (!jsonObject1.isNull("teacher_id")) {
-                        listData.setAssignment_teacher(jsonObject1.getString("teacher_id"));
-                    }
-                    if (!jsonObject1.isNull("subjectName")) {
-                        listData.setAssignment_subject(jsonObject1.getString("subjectName"));
-                    }
-                    this.values.add(listData);
-                }
-            } else {
-                this.rootView.findViewById(R.id.error).setVisibility(0);
-            }
-            this.listView.setAdapter(new TeacherAssignmentsAdapter(getActivity(), R.layout.item_layout_assignments, this.values));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
+//    public void processJSONResult(JSONObject jsonObject) {
+//        try {
+//            this.values.clear();
+//            JSONArray jsonArray = jsonObject.getJSONArray("Response");
+//            if ("success".equals(jsonObject.getString(NotificationCompat.CATEGORY_STATUS))) {
+//                this.rootView.findViewById(R.id.error).setVisibility(8);
+//                for (int i = 0; i < jsonArray.length(); i++) {
+//                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+//                    ListData listData = new ListData();
+//                    if (!jsonObject1.isNull("submit_date")) {
+//                        listData.setAssignment_submit_date(jsonObject1.getString("submit_date"));
+//                    }
+//                    if (!jsonObject1.isNull("id")) {
+//                        listData.setAssignment_id(jsonObject1.getString("id"));
+//                    }
+//                    if (!jsonObject1.isNull("Assignment")) {
+//                        listData.setAssignment_assignment(jsonObject1.getString("Assignment"));
+//                    }
+//                    if (!jsonObject1.isNull(NotificationCompat.CATEGORY_STATUS)) {
+//                        listData.setStatus(jsonObject1.getString(NotificationCompat.CATEGORY_STATUS));
+//                    }
+//                    if (!jsonObject1.isNull("teacher_id")) {
+//                        listData.setAssignment_teacher(jsonObject1.getString("teacher_id"));
+//                    }
+//                    if (!jsonObject1.isNull("subjectName")) {
+//                        listData.setAssignment_subject(jsonObject1.getString("subjectName"));
+//                    }
+//                    this.values.add(listData);
+//                }
+//            } else {
+//                this.rootView.findViewById(R.id.error).setVisibility(0);
+//            }
+//            this.listView.setAdapter(new TeacherAssignmentsAdapter(getActivity(), R.layout.item_layout_assignments, this.values));
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }
