@@ -71,6 +71,10 @@ public class DatePickerFragment extends DialogFragment implements OnDateSetListe
             cdp.getDatePicker().setMaxDate(System.currentTimeMillis() - 1000);
             cdp.setTitle(null);
         }
+        else{
+            cdp.getDatePicker();
+            cdp.setTitle(null);
+        }
         cdp.setButton(-3, "Clear", new C13921());
         return cdp;
     }

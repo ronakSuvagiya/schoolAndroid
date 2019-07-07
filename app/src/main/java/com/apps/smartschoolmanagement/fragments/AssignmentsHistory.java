@@ -105,23 +105,24 @@ public class AssignmentsHistory extends JsonFragment {
         public void onSuccess(JSONArray jsonArray) {
             Log.e("respo", jsonArray.toString());
             values.clear();
-            rootView.findViewById(R.id.error).setVisibility(8);
-            for (int i = 0; i<= jsonArray.length(); i++) {
+            for (int i = 0; i< jsonArray.length(); i++) {
                 try {
                     Log.e("all",">>"+jsonArray.length()) ;
+                    rootView.findViewById(R.id.error).setVisibility(8);
                     ListData listData = new ListData();
                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                     listData.setAssignment_submit_date(jsonObject1.getString("date"));
                     JSONObject jsonObject = jsonObject1.getJSONObject("teacherMaster");
-                    listData.setAssignment_teacher(jsonObject.getString("id"));
-                    listData.setAssignment_assignment(jsonObject.getString("description"));
-                    JSONObject jsonObject2 = jsonObject.getJSONObject("subject");
+                    listData.setAssignment_teacher(String.valueOf(jsonObject.getInt("id")));
+                    listData.setAssignment_assignment(jsonObject1.getString("description"));
+                    JSONObject jsonObject2 = jsonObject1.getJSONObject("subject");
                     listData.setAssignment_subject(jsonObject2.getString("name"));
-                    rootView.findViewById(R.id.error).setVisibility(0);
                     values.add(listData);
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    rootView.findViewById(R.id.error).setVisibility(0);
                 }
+
             }
             listView.setAdapter(new TeacherAssignmentsAdapter(getActivity(), R.layout.item_layout_assignments, values));
         }
@@ -168,7 +169,7 @@ public class AssignmentsHistory extends JsonFragment {
         });
 
         this.date.setOnClickListener(new OnClickDateListener(
-                this.date, getActivity(), "past"));
+                this.date, getActivity(), "All"));
 
 
         this.date.addTextChangedListener(new TextWatcher() {
