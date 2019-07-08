@@ -29,7 +29,23 @@
                 style="@style/Edittext_Editable"
                 n1:layout_marginBottom="@dimen/_16sdp"
                 n1:hint="Enter title"
-                n1:paddingRight="@dimen/_4sdp" />
+                n1:paddingRight="@dimen/_4sdp"
+                n1:visibility="gone"/>
+
+            <FrameLayout
+                n1:layout_width="match_parent"
+                n1:layout_height="wrap_content"
+                n1:layout_marginBottom="@dimen/_16sdp"
+                n1:background="@drawable/borders_rltb_white_background">
+
+                <Spinner
+                    n1:id="@+id/spnrCat"
+                    n1:layout_width="match_parent"
+                    n1:layout_height="@dimen/_35sdp"
+                    n1:alpha="0.7"
+                    n1:paddingLeft="@dimen/_4sdp" />
+            </FrameLayout>
+
 
             <LinearLayout
                 n1:layout_width="wrap_content"

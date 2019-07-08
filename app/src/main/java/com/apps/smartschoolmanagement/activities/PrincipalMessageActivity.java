@@ -52,7 +52,7 @@ public class PrincipalMessageActivity extends JsonClass {
                     this.statement.setText(jsonObject1.getString("statement").replace("<br>", ""));
                 }
                 if (!(jsonObject1.isNull("file_path") || isFinishing())) {
-                    Glide.with(this).load(jsonObject1.getString("file_path")).override(150, 150).centerCrop().into((ImageView) findViewById(R.id.profilePic));
+//                    Glide.with(this).load(jsonObject1.getString("file_path")).override(150, 150).centerCrop().into((ImageView) findViewById(R.id.profilePic));
                 }
             }
         } catch (JSONException e) {

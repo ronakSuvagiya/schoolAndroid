@@ -14,6 +14,9 @@ public class URLs {
     public static String PostAssignment = "http://quickedu.co.in/addAssignmentApi";
     public static String getAssignment = "http://quickedu.co.in/getAssignmentApi?std=";
     public static String addImgCategory = "http://quickedu.co.in/addCatApi";
+    public static String getImgCategory = "http://quickedu.co.in/getCatApi?school=";
+    public static String addImg = "http://quickedu.co.in/addImageApi?cat=";
+
 
 
 
