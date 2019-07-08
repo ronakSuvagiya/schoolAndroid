@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:n1="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:n1="http://schemas.android.com/apk/res/android"
     n1:id="@+id/coordinatorlayout"
     n1:layout_width="fill_parent"
     n1:layout_height="fill_parent">
@@ -81,7 +82,7 @@
                         n1:layout_width="120.0dip"
                         n1:layout_height="120.0dip"
                         n1:layout_centerHorizontal="true"
-                        n1:src="@drawable/img_profile"
+                        app:srcCompat="@drawable/img_profile"
                         n2:civ_border_color="#ff000000"
                         n2:civ_border_width="2.0dip" />
 
@@ -93,7 +94,7 @@
                         n1:background="@android:color/transparent"
                         n1:foreground="@drawable/touch_effect_rectangle"
                         n1:padding="@dimen/_8sdp"
-                        n1:src="@drawable/img_edit" />
+                        app:srcCompat="@drawable/img_edit" />
                 </RelativeLayout>
 
                 <LinearLayout
@@ -283,34 +284,34 @@
                             n1:textSize="15.0sp" />
                     </LinearLayout>
 
-                    <LinearLayout
-                        n1:id="@+id/layout_ctc"
-                        n1:layout_width="fill_parent"
-                        n1:layout_height="wrap_content"
-                        n1:background="@drawable/borders_rltb">
+                    <!--<LinearLayout-->
+                        <!--n1:id="@+id/layout_ctc"-->
+                        <!--n1:layout_width="fill_parent"-->
+                        <!--n1:layout_height="wrap_content"-->
+                        <!--n1:background="@drawable/borders_rltb">-->
 
-                        <TextView
-                            n1:layout_width="0.0dip"
-                            n1:layout_height="wrap_content"
-                            n1:layout_gravity="center"
-                            n1:layout_weight="0.4"
-                            n1:background="@drawable/borders_r"
-                            n1:gravity="center_vertical"
-                            n1:padding="@dimen/_10sdp"
-                            n1:text="@string/ctc_details"
-                            n1:textSize="15.0sp" />
+                        <!--<TextView-->
+                            <!--n1:layout_width="0.0dip"-->
+                            <!--n1:layout_height="wrap_content"-->
+                            <!--n1:layout_gravity="center"-->
+                            <!--n1:layout_weight="0.4"-->
+                            <!--n1:background="@drawable/borders_r"-->
+                            <!--n1:gravity="center_vertical"-->
+                            <!--n1:padding="@dimen/_10sdp"-->
+                            <!--n1:text="@string/ctc_details"-->
+                            <!--n1:textSize="15.0sp" />-->
 
-                        <TextView
-                            n1:id="@+id/current_ctc"
-                            n1:layout_width="0.0dip"
-                            n1:layout_height="wrap_content"
-                            n1:layout_gravity="center"
-                            n1:layout_weight="0.6"
-                            n1:gravity="center_vertical"
-                            n1:padding="@dimen/_10sdp"
-                            n1:text="---------"
-                            n1:textSize="15.0sp" />
-                    </LinearLayout>
+                        <!--<TextView-->
+                            <!--n1:id="@+id/current_ctc"-->
+                            <!--n1:layout_width="0.0dip"-->
+                            <!--n1:layout_height="wrap_content"-->
+                            <!--n1:layout_gravity="center"-->
+                            <!--n1:layout_weight="0.6"-->
+                            <!--n1:gravity="center_vertical"-->
+                            <!--n1:padding="@dimen/_10sdp"-->
+                            <!--n1:text="-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;"-->
+                            <!--n1:textSize="15.0sp" />-->
+                    <!--</LinearLayout>-->
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:n1="http://schemas.android.com/apk/res/android"
+    n1:id="@+id/coordinatorlayout"
+    n1:layout_width="fill_parent"
+    n1:layout_height="fill_parent">
+
+    <ScrollView style="@style/Scrollview_Style">
+
+        <LinearLayout
+            n1:layout_width="fill_parent"
+            n1:layout_height="fill_parent"
+            n1:orientation="vertical"
+            n1:padding="@dimen/_12sdp">
+
+            <TextView
+                style="@style/Textview_Style_Header"
+                n1:text="Add New Category"
+                n1:textColor="#ccffffff" />
+
+            <View
+                n1:layout_width="fill_parent"
+                n1:layout_height="@dimen/_1sdp"
+                n1:layout_marginTop="@dimen/_5sdp"
+                n1:layout_marginBottom="@dimen/_10sdp"
+                n1:background="#99ffffff" />
+
+            <com.apps.smartschoolmanagement.utils.EditTextClearable
+                n1:id="@+id/edtCat"
+                style="@style/Edittext_Editable"
+                n1:layout_marginBottom="@dimen/_16sdp"
+                n1:hint="Enter Category"
+                n1:paddingRight="@dimen/_4sdp" />
+
+
+            <com.apps.smartschoolmanagement.utils.ButtonTouchEffect
+                n1:id="@+id/btnSave"
+                style="@style/Button_Style"
+                n1:layout_gravity="center_horizontal"
+                n1:layout_marginTop="@dimen/_8sdp"
+                n1:paddingLeft="@dimen/_35sdp"
+                n1:paddingRight="@dimen/_35sdp"
+                n1:text="save" />
+        </LinearLayout>
+    </ScrollView>
+
+    <include layout="@layout/layout_loading" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
