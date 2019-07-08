@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.apps.smartschoolmanagement.R;
 import com.apps.smartschoolmanagement.activities.AppointmentsActivity;
 import com.apps.smartschoolmanagement.activities.AppointmentsAdminActivity;
+import com.apps.smartschoolmanagement.activities.AssignmentsActivity;
 import com.apps.smartschoolmanagement.activities.AssignmentsTeacherActivity;
 import com.apps.smartschoolmanagement.activities.AttendanceActivity;
 import com.apps.smartschoolmanagement.activities.BusesListActivity;
@@ -145,7 +146,7 @@ public class Home_Fragment extends Fragment {
                         break;
                     case -877724890:
                         if (clickedText.equals("Assignments")) {
-//                            obj = null;
+                            obj = 30;
                             break;
 
                         }
@@ -359,6 +360,10 @@ public class Home_Fragment extends Fragment {
                         return;
                     case 29:
                         Home_Fragment.this.startActivity(new Intent(Home_Fragment.this.getActivity(), LibraryActivity.class));
+                        Home_Fragment.this.getActivity().overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
+                        return;
+                    case 30:
+                        Home_Fragment.this.startActivity(new Intent(Home_Fragment.this.getActivity(), AssignmentsActivity.class));
                         Home_Fragment.this.getActivity().overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
                         return;
                     default:

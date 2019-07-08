@@ -167,6 +167,7 @@ public class JsonClass extends AppCompatActivity {
             if (findViewById(R.id.layout_loading) != null) {
                 findViewById(R.id.layout_loading).setVisibility(0);
             }
+            Log.e("utl",url);
             JsonArrayRequest strReq = new JsonArrayRequest(Request.Method.GET, url, null, new Listener<JSONArray>() {
                 @Override
                 public void onResponse(JSONArray response) {

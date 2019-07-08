@@ -164,7 +164,7 @@ public class ListViewAdapter extends BaseAdapter {
             viewHolder.assignment_assignment = (TextView) convertView.findViewById(R.id.assignment);
             viewHolder.assignment_subject = (TextView) convertView.findViewById(R.id.subject_name);
             viewHolder.assignment_submitdate = (TextView) convertView.findViewById(R.id.submission_date);
-            viewHolder.assignment_status = (Spinner) convertView.findViewById(R.id.spnr_status);
+          //  viewHolder.assignment_status = (Spinner) convertView.findViewById(R.id.spnr_status);
             viewHolder.leave_approve = (TextView) convertView.findViewById(R.id.approve_edit);
             viewHolder.leave_reject = (TextView) convertView.findViewById(R.id.reject_cancel);
             viewHolder.leave_date = (TextView) convertView.findViewById(R.id.leave_date);
@@ -256,7 +256,7 @@ public class ListViewAdapter extends BaseAdapter {
         if (viewHolder.assignment_submitdate != null) {
             viewHolder.assignment_submitdate.setText(data.getAssignment_submit_date());
         }
-        if (viewHolder.assignment_status != null) {
+        /*if (viewHolder.assignment_status != null) {
             viewHolder.assignment_status.setOnItemSelectedListener(new OnItemSelectedListener() {
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                     HashMap<String, String> params = new HashMap();
@@ -282,7 +282,7 @@ public class ListViewAdapter extends BaseAdapter {
                 }
             });
             viewHolder.assignment_status.setSelection(Integer.parseInt(data.getStatus()) + 1);
-        }
+        }*/
         if (viewHolder.leave_studentname != null) {
             if (data.getLeave_student() != null) {
                 viewHolder.leave_studentname.setText(data.getLeave_student());

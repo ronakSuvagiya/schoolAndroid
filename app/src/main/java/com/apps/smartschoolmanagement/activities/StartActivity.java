@@ -30,7 +30,7 @@ public class StartActivity extends AppCompatActivity {
 
      String user_type = null;
     SharedPreferences sp;
-    String[] parentTitles = new String[]{"Assignments", "Marks", "My Attendance", "Exam Schedule", "Online Material", "Notification", "Fee Details", "Time Table", "Complaint", "Photo Gallery",  "Event List", "Holiday List", "Staff Profile"};
+    String[] parentTitles = new String[]{"Assignments", "Marks", "My Attendance", "Exam Schedule", "Online Material", "Notification", "Fee Details", "Schedule", "Complaint", "Photo Gallery",  "Event List", "Holiday List", "Staff Profile"};
     String[] staffTitles = new String[]{"Post Assignment", "Post Material", "Notification", "Attendance", "Student Profile", "Student's Mark List", "Schedule", "Exam Schedule", "Complaint", "Add Photo Gallery", "Event List", "Holiday List"};
     String[] titles = null;
 

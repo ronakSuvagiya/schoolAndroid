@@ -13,6 +13,23 @@
             n1:layout_height="fill_parent"
             n1:orientation="vertical">
 
+
+            <FrameLayout
+                n1:id="@+id/date_layout"
+                n1:layout_width="fill_parent"
+                n1:layout_height="wrap_content"
+                n1:layout_gravity="center_vertical"
+                n1:layout_margin="@dimen/_10sdp"
+                n1:background="@drawable/borders_rltb_white_background"
+                n1:visibility="gone">
+
+                <com.apps.smartschoolmanagement.utils.EditTextClearable
+                    n1:id="@+id/date"
+                    style="@style/Edittext_DateTime"
+                    n1:hint="Select Submission Date"
+                    n1:inputType="date" />
+            </FrameLayout>
+
             <TextView
                 n1:layout_width="wrap_content"
                 n1:layout_height="wrap_content"

@@ -19,6 +19,19 @@ public class URLs {
 
 
 
+
+
+
+
+
+
+    public static String getTodayAssignment = "http://quickedu.co.in/getAssignmentByAssignApi?std=";
+
+
+
+
+
+
     // end
 
 

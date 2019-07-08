@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -35,7 +36,7 @@ public class LoginActivity extends BaseActivity {
     String[] staffTitles = new String[]{"Post Assignment", "Post Material", "Post Remarks", "Attendance", "Student Profile", "Student's Mark List", "Track Bus", "Library", "Health Status", "Photo Gallery", "Leave Management", "Take Appointment"};
     String[] titles = null;
     EditText userNames;
-    String user_type = null;
+    static String user_type = null;
     SharedPreferences sp;
 
 //    protected void onResume() {
@@ -114,11 +115,91 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 {
-                    Logininit();
+
+                    if (LoginActivity.user_type != null) {
+                        if ("student".equals(LoginActivity.user_type)) {
+                            userLogin();
+                        } else if ("teacher".equals(LoginActivity.user_type)) {
+                            Logininit();
+                        }
+                    }
                 }
 
             }
         });
+    }
+
+    private  void userLogin(){
+        String userNamess = userNames.getText().toString().trim();
+        String passss = password.getText().toString().trim();
+        try {
+            if (findViewById(R.id.layout_loading) != null) {
+                findViewById(R.id.layout_loading).setVisibility(0);
+            }
+            RequestQueue MyRequestQueue = Volley.newRequestQueue(this);
+
+            JSONObject jsonBody = new JSONObject();
+            jsonBody.put("userName", userNamess);
+            jsonBody.put("pass", passss);
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, URL.Prent_Login_URL, jsonBody, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    try {
+                        String username = String.valueOf(response.get("userName"));
+                        String password = String.valueOf(response.get("password"));
+                        String school_id = String.valueOf(response.get("school"));
+                        String name = String.valueOf(response.get("name"));
+                        String email = String.valueOf(response.get("emialID"));
+                        JSONObject jsonObject = new JSONObject(school_id);
+                        String Schoolid = String.valueOf(jsonObject.get("id"));
+                        String stu = String.valueOf(response.get("stu"));
+                        JSONObject student = new JSONObject(stu);
+                        String studentID = String.valueOf(student.get("id"));
+                        String divID = String.valueOf(student.get("divId"));
+                        JSONObject Div = new JSONObject(divID);
+                        String DivID1 = String.valueOf(Div.get("id"));
+                        String stdA = String.valueOf(Div.get("stdId"));
+                        JSONObject stdobj = new JSONObject(stdA);
+                        String stdID = String.valueOf(stdobj.get("id"));
+                        SharedPreferences.Editor e = sp.edit();
+                        e.putString("user_name", username);
+                        e.putString("password", password);
+                        e.putString("schoolid", Schoolid);
+                        e.putString("name",  name);
+                        e.putString("email", email);
+                        e.putString("studentId", studentID);
+                        e.putString("stdId",stdID);
+                        e.putString("DivId",DivID1);
+                        e.commit();
+                    Log.e("Repo",response.toString());
+                        if (LoginActivity.this.findViewById(R.id.layout_loading) != null) {
+                            LoginActivity.this.findViewById(R.id.layout_loading).setVisibility(8);
+                        }
+                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                        intent.putExtra("titles", titles);
+                        startActivity(intent);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Toast.makeText(LoginActivity.this, "Somethings is wrong", Toast.LENGTH_LONG).show();
+                    }
+
+                    finish();
+                }
+            },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            if (LoginActivity.this.findViewById(R.id.layout_loading) != null) {
+                                LoginActivity.this.findViewById(R.id.layout_loading).setVisibility(8);
+                            }
+                            Toast.makeText(LoginActivity.this, "Invalid Username and Password", Toast.LENGTH_LONG).show();
+                        }
+                    });
+            MyRequestQueue.add(jsonObjectRequest);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     private void Logininit() {
