@@ -86,7 +86,7 @@ public class ManagerProfile extends JsonFragment {
     @Nullable
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         this.view = inflater.inflate(R.layout.layout_profile_view, container, false);
-        this.view.findViewById(R.id.layout_ctc).setVisibility(8);
+//        this.view.findViewById(R.id.layout_ctc).setVisibility(8);
         this.view.findViewById(R.id.layout_birthday).setVisibility(0);
 
         this.view.findViewById(R.id.layout_joining_date).setVisibility(8);

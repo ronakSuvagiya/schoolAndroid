@@ -13,6 +13,9 @@ public class URLs {
     public static String getPrentByStudent = "http://quickedu.co.in/findByStudents?id=";
     public static String PostAssignment = "http://quickedu.co.in/addAssignmentApi";
     public static String getAssignment = "http://quickedu.co.in/getAssignmentApi?std=";
+    public static String addImgCategory = "http://quickedu.co.in/addCatApi";
+
+
 
 
 

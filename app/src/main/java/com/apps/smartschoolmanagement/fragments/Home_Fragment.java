@@ -67,7 +67,7 @@ public class Home_Fragment extends Fragment {
                 int obj = -1;
                 switch (clickedText.hashCode()) {
                     case -2095501965:
-                        if (clickedText.equals("Post Remarks")) {
+                        if (clickedText.equals("Notification")) {
                             obj = 18;
                             break;
                         }
@@ -91,7 +91,7 @@ public class Home_Fragment extends Fragment {
                         }
                         break;
                     case -1827105402:
-                        if (clickedText.equals("Take Appointment")) {
+                        if (clickedText.equals("Schedule")) {
                             obj = 19;
                             break;
                         }
@@ -103,7 +103,7 @@ public class Home_Fragment extends Fragment {
                         }
                         break;
                     case -1585309300:
-                        if (clickedText.equals("Leave Management")) {
+                        if (clickedText.equals("Complaint")) {
                             obj = 5;
                             break;
                         }
@@ -218,7 +218,7 @@ public class Home_Fragment extends Fragment {
                         }
                         break;
                     case 722088502:
-                        if (clickedText.equals("Health Status")) {
+                        if (clickedText.equals("Holiday List")) {
                             obj = 15;
                             break;
                         }
@@ -230,7 +230,7 @@ public class Home_Fragment extends Fragment {
                         }
                         break;
                     case 1684106452:
-                        if (clickedText.equals("Appointments")) {
+                        if (clickedText.equals("Event List")) {
                             obj = 20;
                             break;
                         }
@@ -286,7 +286,7 @@ public class Home_Fragment extends Fragment {
                         AnimationSlideUtil.activityZoom(Home_Fragment.this.getActivity());
                         return;
                     case 10:
-                        Home_Fragment.this.startActivity(new Intent(Home_Fragment.this.getActivity(), PhotoGalleryAddActivity.class));
+                        Home_Fragment.this.startActivity(new Intent(Home_Fragment.this.getActivity(), PhotoGalleryActivity.class));
                         AnimationSlideUtil.activityZoom(Home_Fragment.this.getActivity());
                         return;
                     case 11:

@@ -77,9 +77,9 @@ public class TeacherAssignmentsAdapter extends BaseAdapter {
         if (viewHolder.cardView != null) {
             viewHolder.cardView.setOnClickListener(new OnClickListener() {
                 public void onClick(View v) {
-                    Intent intent = new Intent(TeacherAssignmentsAdapter.this.mContext, AssignmentStatusActivity.class);
-                    intent.putExtra("assignment_id", data.getAssignment_id());
-                    TeacherAssignmentsAdapter.this.mContext.startActivity(intent);
+//                    Intent intent = new Intent(TeacherAssignmentsAdapter.this.mContext, AssignmentStatusActivity.class);
+//                    intent.putExtra("assignment_id", data.getAssignment_id());
+//                    TeacherAssignmentsAdapter.this.mContext.startActivity(intent);
                 }
             });
         }

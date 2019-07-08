@@ -33,7 +33,7 @@ public class LoginActivity extends BaseActivity {
     //    String[] managerTitles = new String[]{"Staff Attendance", "Staff Payrolls", "Staff Profile", "Student's Fee Details", "Student Profile", "Appointments", "Add Photo Gallery", "Photo Gallery", "Track Bus", "My Health Status", "Profit & Loss", "Leaves"};
     String[] parentTitles = new String[]{"Assignments", "Marks", "My Attendance", "Exam Schedule", "Online Material", "Library", "Fee Details", "Remarks", "My Health Status", "Photo Gallery", "Take Appointment", "My Leaves", "Staff Profile", "Principal Statement"};
     EditText password;
-    String[] staffTitles = new String[]{"Post Assignment", "Post Material", "Post Remarks", "Attendance", "Student Profile", "Student's Mark List", "Track Bus", "Library", "Health Status", "Photo Gallery", "Leave Management", "Take Appointment"};
+    String[] staffTitles = new String[]{"Post Assignment", "Post Material", "Notification", "Attendance", "Student Profile", "Student's Mark List", "Schedule", "Exam Schedule", "Complaint", "Add Photo Gallery", "Event List", "Holiday List"};
     String[] titles = null;
     EditText userNames;
     static String user_type = null;
@@ -63,16 +63,16 @@ public class LoginActivity extends BaseActivity {
         setTitle("Login");
         this.imageIds.put("Assignments", Integer.valueOf(R.drawable.img_assignment));  // selected
         this.imageIds.put("Post Assignment", Integer.valueOf(R.drawable.img_assignment));
-        this.imageIds.put("Post Remarks", Integer.valueOf(R.drawable.img_remarks));
+        this.imageIds.put("Notification", Integer.valueOf(R.drawable.img_remarks));
         this.imageIds.put("Remarks", Integer.valueOf(R.drawable.img_remarks));
         this.imageIds.put("Add Photo Gallery", Integer.valueOf(R.drawable.img_add_gallery));
         this.imageIds.put("Photo Gallery", Integer.valueOf(R.drawable.img_photo_gallery));// selected
         this.imageIds.put("Post Material", Integer.valueOf(R.drawable.img_online_material));// selected
         this.imageIds.put("Online Material", Integer.valueOf(R.drawable.img_online_material));
-        this.imageIds.put("Take Appointment", Integer.valueOf(R.drawable.img_appointment));
-        this.imageIds.put("Appointments", Integer.valueOf(R.drawable.img_appointment));
+        this.imageIds.put("Schedule", Integer.valueOf(R.drawable.img_exam_schedule));// Take Appointment
+        this.imageIds.put("Event List", Integer.valueOf(R.drawable.img_appointment));//appointment
         this.imageIds.put("My Health Status", Integer.valueOf(R.drawable.img_health_status));
-        this.imageIds.put("Health Status", Integer.valueOf(R.drawable.img_health_status));
+        this.imageIds.put("Holiday List", Integer.valueOf(R.drawable.img_health_status));
         this.imageIds.put("Student's Health Status", Integer.valueOf(R.drawable.img_health_status));
         this.imageIds.put("Track Bus", Integer.valueOf(R.drawable.img_bus));
         this.imageIds.put("Principal Statement", Integer.valueOf(R.drawable.img_principal_message));
@@ -91,7 +91,7 @@ public class LoginActivity extends BaseActivity {
         this.imageIds.put("My Leaves", Integer.valueOf(R.drawable.img_leave));
         this.imageIds.put("Leaves", Integer.valueOf(R.drawable.img_leave));
         this.imageIds.put("Library", Integer.valueOf(R.drawable.ic_books));
-        this.imageIds.put("Leave Management", Integer.valueOf(R.drawable.img_leave));
+        this.imageIds.put("Complaint", Integer.valueOf(R.drawable.img_leave));// Leave management
         UserStaticData.imageIds = this.imageIds;
         sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         this.user_type = getIntent().getStringExtra("user_type");

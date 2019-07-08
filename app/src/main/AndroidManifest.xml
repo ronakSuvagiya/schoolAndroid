@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.apps.smartschoolmanagement">
@@ -11,9 +11,12 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
-    <uses-feature android:name="android.hardware.camera2" android:required="true"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-feature
+        android:name="android.hardware.camera2"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <supports-screens
         android:anyDensity="true"
@@ -21,6 +24,7 @@
         android:normalScreens="true"
         android:resizeable="true"
         android:xlargeScreens="true" />
+
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true" />
@@ -32,11 +36,13 @@
     <permission
         android:name="com.apps.smartschoolmanagement.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
+
     <uses-permission android:name="com.apps.smartschoolmanagement.permission.C2D_MESSAGE" />
 
     <application
-        android:name="com.apps.smartschoolmanagement.utils.MyApplication"
+        android:name=".utils.MyApplication"
         android:allowBackup="true"
+        android:appComponentFactory="android.support.v4.app.CoreComponentFactory"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
@@ -44,9 +50,12 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme"
-        android:appComponentFactory="android.support.v4.app.CoreComponentFactory"
         tools:overrideLibrary="com.google.firebase.messaging"
         tools:replace="android:theme,android:appComponentFactory">
+        <activity android:name=".activities.PhotoGalleryAddCatActivity"
+            android:theme="@style/Theme.Transparent2"
+            android:windowSoftInputMode="stateAlwaysHidden"></activity>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.apps.smartschoolmanagement.FileProvider"
@@ -65,100 +74,101 @@
             android:value="AIzaSyBvCaVONDnl02FIDPKdEjoYR7N1fgoNnMI" />
 
         <activity
-            android:name="com.apps.smartschoolmanagement.activities.SplashActivity"
+            android:name=".activities.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.apps.smartschoolmanagement.activities.NetworkDialogActivity"
+            android:name=".activities.NetworkDialogActivity"
             android:theme="@style/Theme.Transparent"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
-            android:name="com.apps.smartschoolmanagement.activities.HomeActivity"
+            android:name=".activities.HomeActivity"
             android:windowSoftInputMode="adjustNothing" />
         <activity
-            android:name="com.apps.smartschoolmanagement.activities.StartActivity"
+            android:name=".activities.StartActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.apps.smartschoolmanagement.activities.LoginActivity"
+            android:name=".activities.LoginActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name="com.apps.smartschoolmanagement.activities.AssignmentsActivity" />
-        <activity android:name="com.apps.smartschoolmanagement.activities.ManageLeavesActivity" />
-        <activity android:name="com.apps.smartschoolmanagement.activities.ExamScheduleActivity" />
-        <activity android:name="com.apps.smartschoolmanagement.activities.FeeDetailsActivity" />
-        <activity android:name="com.apps.smartschoolmanagement.activities.MyHealthStatusActivity" />
-        <activity android:name="com.apps.smartschoolmanagement.activities.HealthStatusActivity" />
-        <activity android:name="com.apps.smartschoolmanagement.activities.MarksActivity" />
-        <activity android:name="com.apps.smartschoolmanagement.activities.LibraryActivity" />
+        <activity android:name=".activities.AssignmentsActivity" />
+        <activity android:name=".activities.ManageLeavesActivity" />
+        <activity android:name=".activities.ExamScheduleActivity" />
+        <activity android:name=".activities.FeeDetailsActivity" />
+        <activity android:name=".activities.MyHealthStatusActivity" />
+        <activity android:name=".activities.HealthStatusActivity" />
+        <activity android:name=".activities.MarksActivity" />
+        <activity android:name=".activities.LibraryActivity" />
         <activity
-            android:name="com.apps.smartschoolmanagement.activities.OnlineMaterialActivity"
+            android:name=".activities.OnlineMaterialActivity"
             android:theme="@style/Theme.Transparent2" />
-        <activity android:name="com.apps.smartschoolmanagement.activities.PhotoGalleryActivity" />
+        <activity android:name=".activities.PhotoGalleryActivity" />
         <activity
-            android:name="com.apps.smartschoolmanagement.activities.PrincipalMessageActivity"
+            android:name=".activities.PrincipalMessageActivity"
             android:theme="@style/Theme.Transparent1" />
-        <activity android:name="com.apps.smartschoolmanagement.activities.RemarksActivity" />
-        <activity android:name="com.apps.smartschoolmanagement.activities.BusTrackingActivity" />
-        <activity android:name="com.apps.smartschoolmanagement.activities.BusesListActivity" />
-        <activity android:name="com.apps.smartschoolmanagement.activities.StudentAttendanceActivity" />
-        <activity android:name="com.apps.smartschoolmanagement.activities.AttendanceActivity" />
-        <activity android:name="com.apps.smartschoolmanagement.activities.StudentLeavesActivity" />
-        <activity android:name="com.apps.smartschoolmanagement.activities.StaffAttendanceActivity" />
-        <activity android:name="com.apps.smartschoolmanagement.activities.PostRemarkActivity" />
-        <activity android:name="com.apps.smartschoolmanagement.activities.StaffProfileActivity" />
-        <activity android:name="com.apps.smartschoolmanagement.activities.StudentProfileActivity" />
-        <activity android:name="com.apps.smartschoolmanagement.activities.AssignmentsTeacherActivity" />
-        <activity android:name="com.apps.smartschoolmanagement.activities.StaffPayRollActivity" />
-        <activity android:name="com.apps.smartschoolmanagement.activities.ProfitLossActivity" />
+        <activity android:name=".activities.RemarksActivity" />
+        <activity android:name=".activities.BusTrackingActivity" />
+        <activity android:name=".activities.BusesListActivity" />
+        <activity android:name=".activities.StudentAttendanceActivity" />
+        <activity android:name=".activities.AttendanceActivity" />
+        <activity android:name=".activities.StudentLeavesActivity" />
+        <activity android:name=".activities.StaffAttendanceActivity" />
+        <activity android:name=".activities.PostRemarkActivity" />
+        <activity android:name=".activities.StaffProfileActivity" />
+        <activity android:name=".activities.StudentProfileActivity" />
+        <activity android:name=".activities.AssignmentsTeacherActivity" />
+        <activity android:name=".activities.StaffPayRollActivity" />
+        <activity android:name=".activities.ProfitLossActivity" />
         <activity
-            android:name="com.apps.smartschoolmanagement.activities.PostMaterialActivity"
+            android:name=".activities.PostMaterialActivity"
             android:theme="@style/Theme.Transparent2" />
-        <activity android:name="com.apps.smartschoolmanagement.activities.CheckAllAssignmentsActivity" />
-        <activity android:name="com.apps.smartschoolmanagement.activities.PhotoAlbumActivity" />
-        <activity android:name="com.apps.smartschoolmanagement.activities.AddPhotoGalleryActivity" />
-        <activity android:name="com.apps.smartschoolmanagement.activities.LeaveApplyActivity" />
+        <activity android:name=".activities.CheckAllAssignmentsActivity" />
+        <activity android:name=".activities.PhotoAlbumActivity" />
+        <activity android:name=".activities.AddPhotoGalleryActivity" />
+        <activity android:name=".activities.LeaveApplyActivity" />
         <activity
-            android:name="com.apps.smartschoolmanagement.activities.ProfileEditActivity"
+            android:name=".activities.ProfileEditActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name="com.apps.smartschoolmanagement.activities.PendingLeaves_HM_Activity" />
-        <activity android:name="com.apps.smartschoolmanagement.activities.PreviewActivity" />
-        <activity android:name="com.apps.smartschoolmanagement.activities.MarksListActivity" />
+        <activity android:name=".activities.PendingLeaves_HM_Activity" />
+        <activity android:name=".activities.PreviewActivity" />
+        <activity android:name=".activities.MarksListActivity" />
         <activity
-            android:name="com.apps.smartschoolmanagement.activities.PhotoGalleryAddActivity"
+            android:name=".activities.PhotoGalleryAddActivity"
             android:theme="@style/Theme.Transparent2"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name="com.apps.smartschoolmanagement.activities.Login_GooglePlus"
+            android:name=".activities.Login_GooglePlus"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.apps.smartschoolmanagement.activities.WebViewActivity"
+            android:name=".activities.WebViewActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.apps.smartschoolmanagement.activities.ProfileViewActivity"
+            android:name=".activities.ProfileViewActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.apps.smartschoolmanagement.activities.AssignmentStatusActivity"
+            android:name=".activities.AssignmentStatusActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.apps.smartschoolmanagement.activities.AppointmentsActivity"
+            android:name=".activities.AppointmentsActivity"
             android:theme="@style/Theme.Transparent2" />
-        <activity android:name="com.apps.smartschoolmanagement.activities.AppointmentsAdminActivity" />
+        <activity android:name=".activities.AppointmentsAdminActivity" />
         <activity
-            android:name="com.apps.smartschoolmanagement.activities.PrincipalStatementActivity"
+            android:name=".activities.PrincipalStatementActivity"
             android:theme="@style/Theme.Transparent2" />
         <activity
-            android:name="com.apps.smartschoolmanagement.activities.ViewPagerActivity"
+            android:name=".activities.ViewPagerActivity"
             android:theme="@style/AppTheme.Transparent.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name="com.apps.smartschoolmanagement.activities.ForgotPasswordActivity"
+            android:name=".activities.ForgotPasswordActivity"
             android:theme="@style/Theme.Transparent2"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name="com.apps.smartschoolmanagement.activities.ResetPasswordActivity"
+            android:name=".activities.ResetPasswordActivity"
             android:theme="@style/Theme.Transparent2"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
@@ -169,8 +179,7 @@
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
 
-        <service android:name="com.apps.smartschoolmanagement.firebase.MyFirebaseMessagingService">
-
+        <service android:name=".firebase.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
@@ -185,14 +194,14 @@
         </service>
 
         <activity android:name="com.perusudroid.networkchecker.broadcast.NoInternetActivity" />
+
         <meta-data
             android:name="android.support.VERSION"
             android:value="26.1.0" />
 
         <activity android:name="com.nileshp.multiphotopicker.photopicker.activity.PickImageActivity" />
-
         <activity
-            android:name="com.apps.smartschoolmanagement.permissions.PermissionsActivity"
+            android:name=".permissions.PermissionsActivity"
             android:theme="@style/Permissions.TransparentTheme" />
 
         <receiver
@@ -225,14 +234,17 @@
             android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+
                 <category android:name="com.apps.smartschoolmanagement" />
             </intent-filter>
         </receiver>
+
         <provider
             android:name="com.google.firebase.provider.FirebaseInitProvider"
             android:authorities="com.apps.smartschoolmanagement.firebaseinitprovider"
             android:exported="false"
             android:initOrder="100" />
+
         <activity
             android:name="com.google.android.gms.common.api.GoogleApiActivity"
             android:exported="false"
@@ -244,7 +256,9 @@
         <meta-data
             android:name="com.android.vending.derived.apk.id"
             android:value="1" />
-        <meta-data android:name="com.google.android.gms.version"
+        <meta-data
+            android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
     </application>
+
 </manifest>

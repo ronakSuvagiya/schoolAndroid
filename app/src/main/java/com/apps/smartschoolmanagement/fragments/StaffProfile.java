@@ -77,9 +77,9 @@ public class StaffProfile extends JsonFragment {
         this.view = inflater.inflate(R.layout.layout_profile_view, container, false);
         this.view.findViewById(R.id.layout_subject).setVisibility(0);
         this.root = (LinearLayout) this.view.findViewById(R.id.root_layout);
-        this.view.findViewById(R.id.btn_edit).setOnClickListener(new C13601());
+//        view.findViewById(R.id.btn_edit).setOnClickListener(new C13601());
         if (UserStaticData.user_type != 2) {
-            this.view.findViewById(R.id.layout_ctc).setVisibility(8);
+//            view.findViewById(R.id.layout_ctc).setVisibility(8);
         }
         profilePic = (ImageView) this.view.findViewById(R.id.file_path);
         if (ProfileInfo.getInstance().getLoginData().get("userPic") != null && ((String) ProfileInfo.getInstance().getLoginData().get("userPic")).length() > 50) {

@@ -1,10 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout n1:orientation="vertical" n1:background="@android:color/transparent" n1:layout_width="fill_parent" n1:layout_height="fill_parent"
-  xmlns:n1="http://schemas.android.com/apk/res/android">
-    <androidx.cardview.widget.CardView n1:id="@+id/cardview" n1:layout_width="wrap_content" n1:layout_height="wrap_content" n1:layout_marginLeft="10.0dip" n1:layout_marginTop="@dimen/_8sdp" n1:layout_marginRight="10.0dip" n1:layout_marginBottom="@dimen/_8sdp" n2:cardCornerRadius="5.0dip" n2:cardElevation="@dimen/_5sdp" xmlns:n2="http://schemas.android.com/apk/res-auto">
-        <LinearLayout n1:orientation="vertical" n1:layout_width="150.0dip" n1:layout_height="wrap_content">
-            <ImageView n1:id="@+id/image" n1:layout_width="150.0dip" n1:layout_height="150.0dip" n1:scaleType="centerCrop" />
-            <TextView n1:textStyle="bold" n1:textColor="#ff000000" n1:gravity="center" n1:layout_gravity="bottom|center" n1:id="@+id/image_title" n1:background="#77278988" n1:padding="@dimen/_8sdp" n1:layout_width="fill_parent" n1:layout_height="wrap_content" n1:text="Workshop" n1:layout_alignParentBottom="true" n1:textAllCaps="true" />
+<LinearLayout xmlns:n1="http://schemas.android.com/apk/res/android"
+    n1:layout_width="fill_parent"
+    n1:layout_height="fill_parent"
+    n1:background="@android:color/transparent"
+    n1:orientation="vertical">
+
+    <androidx.cardview.widget.CardView xmlns:n2="http://schemas.android.com/apk/res-auto"
+        n1:id="@+id/cardview"
+        n1:layout_width="wrap_content"
+        n1:layout_height="wrap_content"
+        n1:layout_marginLeft="10.0dip"
+        n1:layout_marginTop="@dimen/_8sdp"
+        n1:layout_marginRight="10.0dip"
+        n1:layout_marginBottom="@dimen/_8sdp"
+        n2:cardCornerRadius="5.0dip"
+        n2:cardElevation="@dimen/_5sdp">
+
+        <LinearLayout
+            n1:layout_width="150.0dip"
+            n1:layout_height="wrap_content"
+            n1:orientation="vertical">
+
+            <ImageView
+                n1:id="@+id/image"
+                n1:layout_width="150.0dip"
+                n1:layout_height="150.0dip"
+                n1:scaleType="centerCrop" />
+
+            <TextView
+                n1:id="@+id/image_title"
+                n1:layout_width="fill_parent"
+                n1:layout_height="wrap_content"
+                n1:layout_alignParentBottom="true"
+                n1:layout_gravity="bottom|center"
+                n1:background="#77278988"
+                n1:gravity="center"
+                n1:padding="@dimen/_8sdp"
+                n1:text="Workshop"
+                n1:textAllCaps="true"
+                n1:textColor="#ff000000"
+                n1:textStyle="bold" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>
