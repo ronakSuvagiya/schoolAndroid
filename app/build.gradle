@@ -59,11 +59,11 @@ dependencies {
 //    implementation 'com.splunk:splunk:1.6.3.0'
 // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
-
 // JSON Parsing
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     testImplementation 'junit:junit:4.12'
+    implementation 'com.github.mzelzoghbi:zgallery:0.3'
 
     implementation 'com.kaopiz:kprogresshud:1.2.0'
     implementation 'com.jakewharton.threetenabp:threetenabp:1.2.0'
