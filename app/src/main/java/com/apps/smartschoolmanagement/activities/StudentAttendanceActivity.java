@@ -1,9 +1,13 @@
 package com.apps.smartschoolmanagement.activities;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
+
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Spinner;
@@ -43,82 +47,10 @@ public class StudentAttendanceActivity extends JsonClass implements OnMonthChang
     Spinner student;
     String studentid = null;
     Calendar cal;
-    /* renamed from: com.apps.smartschoolmanagement.activities.StudentAttendanceActivity$1 */
-    class C12981 implements VolleyCallback {
-        C12981() {
-        }
-
-        public void onSuccess(String result) {
-            if (!TextUtils.isEmpty(result)) {
-                StudentAttendanceActivity.this.processJSONResult(result);
-            }
-        }
-    }
-
-    /* renamed from: com.apps.smartschoolmanagement.activities.StudentAttendanceActivity$2 */
-    class C13002 implements VolleyCallback {
-
-        /* renamed from: com.apps.smartschoolmanagement.activities.StudentAttendanceActivity$2$1 */
-        class C12991 implements VolleyCallback {
-            C12991() {
-            }
-
-            public void onSuccess(String result) {
-                if (result != null) {
-                    StudentAttendanceActivity.this.studentid = result;
-                }
-            }
-        }
-
-        C13002() {
-        }
-
-        public void onSuccess(String result) {
-            if (result != null) {
-                StudentAttendanceActivity.this.classid = result;
-            }
-            StudentAttendanceActivity.this.getSpinnerData(StudentAttendanceActivity.this, URLs.student_codes, StudentAttendanceActivity.this.student, "class_id," + StudentAttendanceActivity.this.classid, new C12991());
-        }
-    }
-
-    /* renamed from: com.apps.smartschoolmanagement.activities.StudentAttendanceActivity$3 */
-    class C13023 implements OnClickListener {
-
-        /* renamed from: com.apps.smartschoolmanagement.activities.StudentAttendanceActivity$3$1 */
-        class C13011 implements VolleyCallback {
-            C13011() {
-            }
-
-            public void onSuccess(String result) {
-                if (!TextUtils.isEmpty(result)) {
-                    StudentAttendanceActivity.this.processJSONResult(result);
-                }
-            }
-        }
-
-        C13023() {
-        }
-
-        public void onClick(View view) {
-            if (StudentAttendanceActivity.this.classes.getSelectedItemPosition() > 0) {
-                StudentAttendanceActivity.this.params.put("class_id", StudentAttendanceActivity.this.classid);
-                StudentAttendanceActivity.this.params.put("student_id", StudentAttendanceActivity.this.studentid);
-              //  StudentAttendanceActivity.this.getJsonResponse(URLs.attendance, StudentAttendanceActivity.this, new C13011());
-            }
-        }
-    }
-
-    /* renamed from: com.apps.smartschoolmanagement.activities.StudentAttendanceActivity$4 */
-    class C13034 implements VolleyCallback {
-        C13034() {
-        }
-
-        public void onSuccess(String result) {
-            if (!TextUtils.isEmpty(result)) {
-                StudentAttendanceActivity.this.processJSONResult(result);
-            }
-        }
-    }
+    SharedPreferences sp;
+    String school = null;
+    String std=  null;
+    String div = null;
 
     /* renamed from: com.apps.smartschoolmanagement.activities.StudentAttendanceActivity$5 */
     class C13045 implements DayViewDecorator {
@@ -137,6 +69,14 @@ public class StudentAttendanceActivity extends JsonClass implements OnMonthChang
         }
     }
 
+    class atte implements VolleyCallbackJSONArray{
+
+        @Override
+        public void onSuccess(JSONArray jsonArray) {
+            Log.e("abc",jsonArray.toString());
+        }
+    }
+
     public static int getMonth(Date date) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -148,14 +88,14 @@ public class StudentAttendanceActivity extends JsonClass implements OnMonthChang
             setTheme(R.style.AppTheme1);
         }
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_student_attendance);
+        setContentView(R.layout.layout_student_attendance2);
         setTitle("Student's Attendance");
         this.materialCalendarView = (MaterialCalendarView) findViewById(R.id.calendarView);
         this.materialCalendarView.setDynamicHeightEnabled(true);
 //        this.materialCalendarView.setArrowColor(getResources().getColor(R.color.colorPrimary));
         this.materialCalendarView.setAllowClickDaysOutsideCurrentMonth(false);
         KProgressHUD progressHUD = KProgressHUD.create(this);
-        this._Present = (TextView) findViewById(R.id.present);
+        /*this._Present = (TextView) findViewById(R.id.present);
         this._Absent = (TextView) findViewById(R.id.absent);
         this._Percentage = (TextView) findViewById(R.id.annual_percentage);
         this._Holidays = (TextView) findViewById(R.id.holidays);
@@ -166,24 +106,29 @@ public class StudentAttendanceActivity extends JsonClass implements OnMonthChang
         this._Percentage.setText("");
         this._Holidays.setText("");
         this._totalWorking.setText("");
-        this._totalPresent.setText("");
+        this._totalPresent.setText("");*/
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
+        this.std = (sp.getString("stdId", ""));
+        this.div = (sp.getString("DivId", ""));
+        this.school = (sp.getString("schoolid", ""));
+        getJsonResponse(URLs.getAttends + div + "&std=" + std + "&school=" + school + "&startingDate=2019-06-01&endDate=2019-06-30",this,  new atte());
         this.materialCalendarView.setOnMonthChangedListener(this);
         if (UserStaticData.user_type == 0) {
             setTitle("My Attendance");
-            findViewById(R.id.layout_candidate_selection).setVisibility(8);
-            this.params.put("student_id", ProfileInfo.getInstance().getLoginData().get("userId"));
+         //   findViewById(R.id.layout_candidate_selection).setVisibility(8);
+         //   this.params.put("student_id", ProfileInfo.getInstance().getLoginData().get("userId"));
             Date today = new Date();
             Calendar cal = Calendar.getInstance();
             cal.setTime(today);
-            this.params.put("month", "" + (cal.get(2) + 1));
+       //     this.params.put("month", "" + (cal.get(2) + 1));
           //  getJsonResponse(URLs.attendance, this, new C12981());
         } else if (UserStaticData.user_type == 1) {
-            setTitle("Student's Attendance");
-            findViewById(R.id.layout_candidate_selection).setVisibility(0);
-            this.classes = (Spinner) findViewById(R.id.spnr_class);
-            this.student = (Spinner) findViewById(R.id.spnr_student);
+     //       setTitle("Student's Attendance");
+      //      findViewById(R.id.layout_candidate_selection).setVisibility(0);
+    //        this.classes = (Spinner) findViewById(R.id.spnr_class);
+   //         this.student = (Spinner) findViewById(R.id.spnr_student);
 //            getSpinnerData(this, URLs.class_codes, this.classes, new C13002());
-            findViewById(R.id.btn_search).setOnClickListener(new C13023());
+ //           findViewById(R.id.btn_search).setOnClickListener(new C13023());
         }
     }
 

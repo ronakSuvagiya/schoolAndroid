@@ -32,6 +32,8 @@ public class URLs {
 
 
     public static String getTodayAssignment = "http://quickedu.co.in/getAssignmentByAssignApi?std=";
+    public static String getAttends = "http://quickedu.co.in/getAttendance?div=";
+
 
 
 
