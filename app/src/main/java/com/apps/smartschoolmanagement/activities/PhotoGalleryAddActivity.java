@@ -25,6 +25,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -34,6 +35,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.apps.smartschoolmanagement.permissions.PermissionHandler;
 import com.apps.smartschoolmanagement.permissions.Permissions;
+import com.apps.smartschoolmanagement.utils.basehelpers.VolleyMultipartRequest;
 import com.google.common.net.HttpHeaders;
 import com.kaopiz.kprogresshud.KProgressHUD;
 import com.nileshp.multiphotopicker.photopicker.activity.PickImageActivity;
@@ -70,6 +72,7 @@ public class PhotoGalleryAddActivity extends JsonClass implements OnClickListene
     String imagePath;
     Bitmap bitmap;
     String encodedString;
+    String urls;
 
     /* renamed from: com.apps.smartschoolmanagement.activities.PhotoGalleryAddActivity$1 */
     class C12531 extends PermissionHandler {
@@ -156,57 +159,20 @@ public class PhotoGalleryAddActivity extends JsonClass implements OnClickListene
                 Permissions.check(this, new String[]{"android.permission.WRITE_EXTERNAL_STORAGE", "android.permission.READ_EXTERNAL_STORAGE"}, "Storage Permission is required to use this service", new Permissions.Options().setSettingsDialogTitle("Warning!").setRationaleDialogTitle(HttpHeaders.WARNING), new C12531());
                 return;
             case R.id.btn_upload:
-                String urls = URLs.addImg + titleid + "&schoolId=" + channel;
+                this.urls = URLs.addImg + titleid + "&schoolId=" + channel;
+
                 if (this.files.size() > 0) {
-//                    this.params.put("cat", title.getSelectedItem().toString());
-//                    this.params.put("schoolId", channel);
-//                    try {
-//                        uploadMultipartData(this.files, "file", this.params, urls, new C12542());
-//                        return;
-//                    } catch (UnsupportedEncodingException e) {
-//                        e.printStackTrace();
-//                        return;
-//                    }
-//                    Bitmap myImg = BitmapFactory.decodeFile(String.valueOf(files));
-////                    myimage.setImageBitmap(myImg);
-//                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-//                    // Must compress the Image to reduce image size to make upload easy
-//                    myImg.compress(Bitmap.CompressFormat.JPEG, 50, stream);
-//                    byte[] aar = stream.toByteArray();
-//                    encodedString = Base64.encodeToString(aar, 0);
-                    uploaduserimage(urls);
-//                    RequestQueue MyRequestQueue = Volley.newRequestQueue(this);
-//                    JSONObject jsonBody = new JSONObject();
-//                    try {
-//                        jsonBody.put("file",pathList);
-//                        jsonBody.put("cat",title.getSelectedItem().toString());
-//                        jsonBody.put("schoolId",channel);
-//
-//                        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,urls, jsonBody, new Response.Listener<JSONObject>() {
-//                            @Override
-//                            public void onResponse(JSONObject response) {
-//                                try {
-//                                    String success = String.valueOf(response.get("message"));
-//                                    Toast.makeText(PhotoGalleryAddActivity.this, success, Toast.LENGTH_LONG).show();
-//                                } catch (JSONException e) {
-//                                    e.printStackTrace();
-//                                }
-//                                finish();
-//                            }
-//                        },
-//                                new Response.ErrorListener() {
-//                                    @Override
-//                                    public void onErrorResponse(VolleyError error) {
-//                                        Toast.makeText(PhotoGalleryAddActivity.this, "Enter image", Toast.LENGTH_LONG).show();
-//
-//                                    }
-//                                });
-//                        MyRequestQueue.add(jsonObjectRequest);
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
+                    for(int i=0;i<pathList.size();i++) {
+                        Uri image = Uri.fromFile(new File(pathList.get(i)));
+                        try {
+                            Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image);
+                            uploadBitmap(bitmap);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 } else {
-                    Toast.makeText(this, "No Images Selected. Please Select Images", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "No Images Selected. Please Select Images", 0).show();
                     return;
                 }
             default:
@@ -225,80 +191,69 @@ public class PhotoGalleryAddActivity extends JsonClass implements OnClickListene
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
         if (resultCode == -1 && resultCode == -1 && requestCode == 1001) {
-            this.pathList = intent.getExtras().getStringArrayList(PickImageActivity.KEY_DATA_RESULT);
-            Uri filePath = Uri.parse(PickImageActivity.KEY_DATA_RESULT);
-            try {
-                //Getting the Bitmap from Gallery
-                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
-                //Setting the Bitmap to ImageView
-//                imageView.setImageBitmap(bitmap);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+                pathList = intent.getExtras().getStringArrayList(PickImageActivity.KEY_DATA_RESULT);
             if (this.pathList != null && !this.pathList.isEmpty()) {
                 for (int i = 0; i < this.pathList.size(); i++) {
                     this.files.add(new File((String) this.pathList.get(i)));
-                    Log.e("image","aavi");
-//                    Uri filePath = (Uri) files;
-//                    try {
-//                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-
                 }
-
             }
+        }
     }
+    private void uploadBitmap(final Bitmap bitmap) {
 
-    public void uploaduserimage(String url) {
+        //getting the tag from the edittext
+        //our custom volley request
+        VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, URLs.addImg + titleid + "&schoolId=" + channel,
+                new Response.Listener<NetworkResponse>() {
+                    @Override
+                    public void onResponse(NetworkResponse response) {
+                        try {
+                            JSONObject obj = new JSONObject(new String(response.data));
+                            Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }) {
 
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-
-                Log.i("Myresponse", "" + response);
-                Toast.makeText(PhotoGalleryAddActivity.this, "" + response, Toast.LENGTH_SHORT).show();
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.i("Mysmart", "" + error);
-                Toast.makeText(PhotoGalleryAddActivity.this, "" + error, Toast.LENGTH_SHORT).show();
-
-            }
-        }) {
+            /*
+             * If you want to add more parameters with the image
+             * you can do it here
+             * here we have only one parameter with the image
+             * which is tags
+             * */
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> param = new HashMap<>();
+                Map<String, String> params = new HashMap<>();
+                params.put("cat", title.getSelectedItem().toString());
+                params.put("schoolId", channel);
+                return params;
+            }
 
-                String images = getStringImage(bitmap);
-//                Log.i("Mynewsam", "" + images);
-                param.put("file", images);
-                param.put("cat", title.getSelectedItem().toString());
-                param.put("schoolId", channel);
-                return param;
+            /*
+             * Here we are passing image by renaming it with a unique name
+             * */
+            @Override
+            protected Map<String, DataPart> getByteData() {
+                Map<String, DataPart> params = new HashMap<>();
+                long imagename = System.currentTimeMillis();
+                params.put("file", new DataPart(imagename + ".jpeg", getFileDataFromDrawable(bitmap)));
+                return params;
             }
         };
 
-        requestQueue.add(stringRequest);
-
-
+        //adding the request to volley
+        Volley.newRequestQueue(this).add(volleyMultipartRequest);
     }
-
-    public String getStringImage(Bitmap bitmap) {
-        Log.i("MyHitesh", "" + bitmap);
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 90, baos);
-        byte[] b = baos.toByteArray();
-        String temp = Base64.encodeToString(b, Base64.DEFAULT);
-
-
-        return temp;
+    public byte[] getFileDataFromDrawable(Bitmap bitmap) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream);
+        return byteArrayOutputStream.toByteArray();
     }
-
 }

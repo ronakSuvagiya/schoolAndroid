@@ -552,7 +552,7 @@ public class JsonClass extends AppCompatActivity {
                 t.execute(new Object[]{url, fileslist, hashmap});
                 return;
             }
-            t.execute(new Object[]{url, fileslist, hashmap, name});
+            t.execute(new Object[]{url, fileslist.get(0), name});
         } else if (this.noInternetDialog != null) {
             if (!this.noInternetDialog.isShowing()) {
                 this.noInternetDialog.showDialog();
