@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:n1="http://schemas.android.com/apk/res/android"
+    n1:layout_width="fill_parent"
+    n1:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView xmlns:n2="http://schemas.android.com/apk/res-auto"
+        n1:id="@+id/cardview"
+        n1:layout_width="fill_parent"
+        n1:layout_height="wrap_content"
+        n1:layout_margin="10.0dip"
+        n1:clickable="true"
+        n2:cardCornerRadius="@dimen/_6sdp"
+        n2:cardElevation="@dimen/_5sdp">
+
+        <LinearLayout
+            n1:layout_width="fill_parent"
+            n1:layout_height="wrap_content"
+            n1:background="@drawable/borders_rltb"
+            n1:orientation="vertical"
+            n1:padding="@dimen/_8sdp">
+
+            <TextView
+                n1:id="@+id/subject_name"
+                style="@style/Textview_Style_Header"
+                n1:layout_marginBottom="@dimen/_8sdp"
+                n1:gravity="left"
+                n1:textSize="18.0sp" />
+
+            <!--<TextView-->
+                <!--n1:id="@+id/assignment"-->
+                <!--n1:layout_width="fill_parent"-->
+                <!--n1:layout_height="wrap_content"-->
+                <!--n1:layout_gravity="center"-->
+                <!--n1:lineSpacingMultiplier="1.3"-->
+                <!--n1:textSize="16.0sp" />-->
+
+            <LinearLayout
+                n1:layout_width="wrap_content"
+                n1:layout_height="wrap_content"
+                n1:layout_gravity="bottom|center|right"
+                n1:layout_marginTop="@dimen/_8sdp">
+
+                <TextView
+                    n1:layout_width="wrap_content"
+                    n1:layout_height="wrap_content"
+                    n1:text="Date : "
+                    n1:textSize="12.0sp" />
+
+                <TextView
+                    n1:id="@+id/submission_date"
+                    n1:layout_width="wrap_content"
+                    n1:layout_height="wrap_content"
+                    n1:textColor="#99cc0000"
+                    n1:textSize="13.0sp"
+                    n1:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                n1:id="@+id/layout_status"
+                n1:layout_width="fill_parent"
+                n1:layout_height="wrap_content"
+                n1:layout_marginTop="@dimen/_8sdp"
+                n1:orientation="horizontal" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

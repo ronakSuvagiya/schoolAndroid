@@ -29,11 +29,10 @@
             n1:background="@drawable/borders_rltb_white_background">
 
             <Spinner
-                n1:id="@+id/spnr_subject"
+                n1:id="@+id/spnr_class"
                 n1:layout_width="fill_parent"
                 n1:layout_height="@dimen/_40sdp"
                 n1:alpha="0.7"
-                n1:entries="@array/subjects"
                 n1:paddingLeft="@dimen/_4sdp" />
         </FrameLayout>
 
@@ -43,11 +42,10 @@
             n1:background="@drawable/borders_rltb_white_background">
 
             <Spinner
-                n1:id="@+id/spnr_class"
+                n1:id="@+id/spnr_subject"
                 n1:layout_width="fill_parent"
                 n1:layout_height="@dimen/_40sdp"
                 n1:alpha="0.7"
-                n1:entries="@array/class_no"
                 n1:paddingLeft="@dimen/_4sdp" />
         </FrameLayout>
 
