@@ -24,7 +24,7 @@
                     n1:text="No records found" />
 
                 <ListView
-                    n1:id="@+id/listview"
+                    n1:id="@+id/listview2"
                     style="@style/ListView_Style" />
 
             </LinearLayout>

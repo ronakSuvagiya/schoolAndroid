@@ -18,6 +18,7 @@ public class URLs {
     public static String addImg = "http://quickedu.co.in/addImageApi?cat=";
     public static String addMaterial = " http://quickedu.co.in/addmatirealApi?sub=";
     public static String getHolidayList = "http://quickedu.co.in/getHolidayApi?school=";
+    public static String getEventList = "http://quickedu.co.in/getEventApi?school=";
 
 
 

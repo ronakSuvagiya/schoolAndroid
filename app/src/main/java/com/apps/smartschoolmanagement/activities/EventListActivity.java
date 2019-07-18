@@ -1,5 +1,7 @@
 package com.apps.smartschoolmanagement.activities;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -8,6 +10,7 @@ import android.view.View;
 import android.widget.ListView;
 
 import com.apps.smartschoolmanagement.R;
+import com.apps.smartschoolmanagement.adapters.EventListAdapter;
 import com.apps.smartschoolmanagement.adapters.HolidayListAdapter;
 import com.apps.smartschoolmanagement.models.ListData;
 import com.apps.smartschoolmanagement.models.UserStaticData;
@@ -18,7 +21,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class HolidayListActivity extends JsonClass {
+public class EventListActivity extends JsonClass {
     View rootView;
     ListView listView;
     SharedPreferences sp;
@@ -29,14 +32,14 @@ public class HolidayListActivity extends JsonClass {
             setTheme(R.style.AppTheme1);
         }
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_holiday_list);
-        setTitle("Holiday List");
-        this.listView = (ListView) findViewById(R.id.listview2);
+        setContentView(R.layout.activity_event_list);
+        setTitle("Event List");
+        this.listView = (ListView) findViewById(R.id.listviews);
         sp = PreferenceManager.getDefaultSharedPreferences(this);
         channel = (sp.getString("schoolid", ""));
-        getJsonResponse(URLs.getHolidayList + channel , this, new HolidayListActivity.getHolidayList());
+        getJsonResponse(URLs.getEventList + channel , this, new EventListActivity.getEventList());
     }
-    class getHolidayList implements JsonClass.VolleyCallbackJSONArray {
+    class getEventList implements JsonClass.VolleyCallbackJSONArray {
         @Override
         public void onSuccess(JSONArray jsonArray) {
             Log.e("respo", jsonArray.toString());
@@ -47,8 +50,11 @@ public class HolidayListActivity extends JsonClass {
                     findViewById(R.id.error).setVisibility(8);
                     ListData listData = new ListData();
                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                    listData.setAssignment_submit_date(jsonObject1.getString("date"));
+                    listData.setAssignment_submit_date(jsonObject1.getString("startDate"));
                     listData.setAssignment_subject(jsonObject1.getString("title"));
+                    listData.setAssignment_end_date(jsonObject1.getString("endDate"));
+                    listData.setAssignment_start_time(jsonObject1.getString("startTime"));
+
                     values.add(listData);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -56,7 +62,7 @@ public class HolidayListActivity extends JsonClass {
                 }
 
             }
-            listView.setAdapter(new HolidayListAdapter(HolidayListActivity.this, R.layout.activity_holiday_list_adapter, values));
+            listView.setAdapter(new EventListAdapter(EventListActivity.this, R.layout.row_event_list, values));
         }
     }
 }

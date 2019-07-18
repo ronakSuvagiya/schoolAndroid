@@ -11,6 +11,25 @@ public class ListData {
     public String assignment_id;
     public String assignment_subject;
     public String assignment_submit_date;
+    public String assignment_end_date;
+
+    public String getAssignment_end_date() {
+        return assignment_end_date;
+    }
+
+    public void setAssignment_end_date(String assignment_end_date) {
+        this.assignment_end_date = assignment_end_date;
+    }
+
+    public String getAssignment_start_time() {
+        return assignment_start_time;
+    }
+
+    public void setAssignment_start_time(String assignment_start_time) {
+        this.assignment_start_time = assignment_start_time;
+    }
+
+    public String assignment_start_time;
     public String assignment_teacher;
     public String bus_driver_name;
     public String bus_latitude;

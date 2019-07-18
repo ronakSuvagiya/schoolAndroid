@@ -52,9 +52,11 @@
         android:usesCleartextTraffic="true"
         tools:overrideLibrary="com.google.firebase.messaging"
         tools:replace="android:theme,android:appComponentFactory">
-        <activity android:name=".activities.HolidayListActivity"
+        <activity android:name=".activities.EventListActivity"></activity>
+        <activity
+            android:name=".activities.HolidayListActivity"
             android:theme="@style/Theme.Transparent2"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".activities.PhotoGalleryAddCatActivity"
             android:theme="@style/Theme.Transparent2"
