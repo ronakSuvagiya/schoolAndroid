@@ -48,15 +48,13 @@
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
+        android:theme="@style/AppTheme"
         tools:overrideLibrary="com.google.firebase.messaging"
         tools:replace="android:theme,android:appComponentFactory">
-        <activity android:name=".activities.TimeTableActivity"></activity>
-        <activity
-            android:name=".activities.PhotoGalleryAddCatActivity"
+        <activity android:name=".activities.PhotoGalleryAddCatActivity"
             android:theme="@style/Theme.Transparent2"
-            android:windowSoftInputMode="stateAlwaysHidden" />
+            android:windowSoftInputMode="stateAlwaysHidden"></activity>
 
         <provider
             android:name="androidx.core.content.FileProvider"

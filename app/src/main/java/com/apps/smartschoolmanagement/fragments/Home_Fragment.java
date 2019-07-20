@@ -26,6 +26,7 @@ import com.apps.smartschoolmanagement.activities.BusesListActivity;
 import com.apps.smartschoolmanagement.activities.ExamScheduleActivity;
 import com.apps.smartschoolmanagement.activities.FeeDetailsActivity;
 import com.apps.smartschoolmanagement.activities.HealthStatusActivity;
+import com.apps.smartschoolmanagement.activities.HolidayListActivity;
 import com.apps.smartschoolmanagement.activities.HomeActivity;
 import com.apps.smartschoolmanagement.activities.LibraryActivity;
 import com.apps.smartschoolmanagement.activities.ManageLeavesActivity;
@@ -313,7 +314,7 @@ public class Home_Fragment extends Fragment {
                         Home_Fragment.this.getActivity().overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
                         return;
                     case 15:
-                        Home_Fragment.this.startActivity(new Intent(Home_Fragment.this.getActivity(), HealthStatusActivity.class));
+                        Home_Fragment.this.startActivity(new Intent(Home_Fragment.this.getActivity(), HolidayListActivity.class));
                         Home_Fragment.this.getActivity().overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
                         return;
                     case 16:
@@ -333,7 +334,7 @@ public class Home_Fragment extends Fragment {
                         AnimationSlideUtil.activityZoom(Home_Fragment.this.getActivity());
                         return;
                     case 20:
-                        Home_Fragment.this.startActivity(new Intent(Home_Fragment.this.getActivity(), AppointmentsAdminActivity.class));
+                        Home_Fragment.this.startActivity(new Intent(Home_Fragment.this.getActivity(), HolidayListActivity.class));
                         Home_Fragment.this.getActivity().overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
                         return;
                     case 21:

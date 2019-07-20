@@ -3,6 +3,7 @@ package com.apps.smartschoolmanagement.utils;
 import am.appwise.components.ni.NoInternetDialog;
 import am.appwise.components.ni.NoInternetDialog.Builder;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -521,6 +522,7 @@ public class JsonClass extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("ResourceType")
     public void loadData(ViewGroup parent, HashMap<String, String> returnData) {
         if (returnData.size() > 0) {
             for (int i = 0; i < parent.getChildCount(); i++) {
@@ -550,7 +552,7 @@ public class JsonClass extends AppCompatActivity {
                 t.execute(new Object[]{url, fileslist, hashmap});
                 return;
             }
-            t.execute(new Object[]{url, fileslist, hashmap, name});
+            t.execute(new Object[]{url, fileslist.get(0), name});
         } else if (this.noInternetDialog != null) {
             if (!this.noInternetDialog.isShowing()) {
                 this.noInternetDialog.showDialog();
