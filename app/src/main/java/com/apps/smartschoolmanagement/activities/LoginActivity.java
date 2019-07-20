@@ -149,7 +149,11 @@ public class LoginActivity extends BaseActivity {
                         String password = String.valueOf(response.get("password"));
                         String school_id = String.valueOf(response.get("school"));
                         String name = String.valueOf(response.get("name"));
+                        String lastName = String.valueOf(response.get("lastName"));
+                        String mobileNo = String.valueOf(response.get("mobileNo"));
                         String email = String.valueOf(response.get("emialID"));
+                        String dob = String.valueOf(response.get("dob"));
+                        String gender = String.valueOf(response.get("gender"));
                         JSONObject jsonObject = new JSONObject(school_id);
                         String Schoolid = String.valueOf(jsonObject.get("id"));
                         String stu = String.valueOf(response.get("stu"));
@@ -166,7 +170,11 @@ public class LoginActivity extends BaseActivity {
                         e.putString("password", password);
                         e.putString("schoolid", Schoolid);
                         e.putString("name",  name);
+                        e.putString("lastName",lastName);
+                        e.putString("mobileNo",mobileNo);
                         e.putString("email", email);
+                        e.putString("dob", dob);
+                        e.putString("gender", gender);
                         e.putString("studentId", studentID);
                         e.putString("stdId",stdID);
                         e.putString("DivId",DivID1);

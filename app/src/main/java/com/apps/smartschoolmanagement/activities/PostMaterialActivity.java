@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -40,6 +41,9 @@ import com.apps.smartschoolmanagement.utils.SpinnerHelper;
 import com.apps.smartschoolmanagement.utils.URLs;
 import com.apps.smartschoolmanagement.utils.filechooser.FileUtils;
 
+import net.gotev.uploadservice.MultipartUploadRequest;
+import net.gotev.uploadservice.UploadNotificationConfig;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,12 +51,14 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import static com.apps.smartschoolmanagement.activities.StudentProfileActivity.stdid;
 
@@ -69,10 +75,13 @@ public class PostMaterialActivity extends JsonClass {
     List<Integer> stdId = new ArrayList<>();
     List<String> subName = new ArrayList<>();
     List<Integer> subID = new ArrayList<>();
-    int subjects;
+    int subjects,sttf;
     String channel;
     String urls;
     String file;
+    String PdfPathHolder ;
+    Uri uri;
+
 
     /* renamed from: com.apps.smartschoolmanagement.activities.PostMaterialActivity$1 */
     class C12561 implements OnClickListener {
@@ -114,21 +123,41 @@ public class PostMaterialActivity extends JsonClass {
         }
 
         C12582() {
+
         }
 
         public void onClick(View view) {
-            urls = URLs.addMaterial + subjects + "&std=" + stdid + "&schoolId=" + channel;
-                    Uri image = Uri.fromFile(files.get(0));
-            Bitmap bitmap = (Bitmap) BitmapFactory.decodeFile(String.valueOf(image));
-            uploadFile(bitmap);
+      /*      urls = URLs.addMaterial;
+
+            try {
+
+                String PdfID = UUID.randomUUID().toString();
+                PdfPathHolder = FileUtils.getPath(getApplicationContext(), uri);
+                new MultipartUploadRequest(getApplicationContext(), PdfID, urls)
+                        .addFileToUpload(PdfPathHolder, "file")
+                        .addParameter("sub", String.valueOf(subjects))
+                        .addParameter("std", String.valueOf(stdid))
+                        .addParameter("schoolId", channel)
+                        .setNotificationConfig(new UploadNotificationConfig())
+                        .setMaxRetries(5)
+                        .startUpload();
+
+            } catch (Exception exception) {
+
+                Toast.makeText(PostMaterialActivity.this, exception.getMessage(), Toast.LENGTH_SHORT).show();
+            }*/
+
+//            Uri image = Uri.fromFile(files.get(0));
+//            Bitmap bitmap = (Bitmap) BitmapFactory.decodeFile(String.valueOf(image));
+//            uploadFile(bitmap);
         }
 //            Toast.makeText(PostMaterialActivity.this, "Please Select Subject", 0).show();
-        }
+    }
+    private void uploadBitmap() {
 
-
-    private void uploadFile(final Bitmap bitmap) {
-
-        VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, URLs.addMaterial + subjects + "&std=" + stdid + "&schoolId=" + channel,
+        //getting the tag from the edittext
+        //our custom volley request
+        VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, URLs.addMaterial,
                 new Response.Listener<NetworkResponse>() {
                     @Override
                     public void onResponse(NetworkResponse response) {
@@ -146,6 +175,13 @@ public class PostMaterialActivity extends JsonClass {
                         Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }) {
+
+            /*
+             * If you want to add more parameters with the image
+             * you can do it here
+             * here we have only one parameter with the image
+             * which is tags
+             * */
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
@@ -154,25 +190,59 @@ public class PostMaterialActivity extends JsonClass {
                 params.put("schoolId", channel);
                 return params;
             }
+
+            /*
+             * Here we are passing image by renaming it with a unique name
+             * */
             @Override
             protected Map<String, DataPart> getByteData() {
                 Map<String, DataPart> params = new HashMap<>();
                 long imagename = System.currentTimeMillis();
-                params.put("file", new DataPart(imagename + ".pdf", getFileDataFromDrawable(bitmap)));
+                try {
+                    params.put("file", new DataPart(imagename + ".pdf", getBytes(PostMaterialActivity.this,uri)));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Toast.makeText(PostMaterialActivity.this,"ERORRRRRRRRRRRRRRRRRRRR",Toast.LENGTH_LONG).show();
+                }
                 return params;
             }
         };
+
+        //adding the request to volley
         Volley.newRequestQueue(this).add(volleyMultipartRequest);
     }
-
-    public byte[] getFileDataFromDrawable(Bitmap bitmap) {
-
-        ByteBuffer byteBuffer = ByteBuffer.allocate(bitmap.getByteCount());
-        bitmap.copyPixelsFromBuffer(byteBuffer);
-        return byteBuffer.array();
+    public static byte[] getBytes(Context context, Uri uri) throws IOException {
+        InputStream iStream = context.getContentResolver().openInputStream(uri);
+        try {
+            return (byte[]) getBytes(iStream);
+        } finally {
+            // close the stream
+            try {
+                iStream.close();
+            } catch (IOException ignored) { /* do nothing */ }
+        }
     }
 
-    /* renamed from: com.apps.smartschoolmanagement.activities.PostMaterialActivity$3 */
+    private static Object getBytes(InputStream iStream) {
+        byte[] bytesResult = null;
+        ByteArrayOutputStream byteBuffer = new ByteArrayOutputStream();
+        int bufferSize = 1024;
+        byte[] buffer = new byte[bufferSize];
+        try {
+            int len;
+            while ((len = iStream.read(buffer)) != -1) {
+                byteBuffer.write(buffer, 0, len);
+            }
+            bytesResult = byteBuffer.toByteArray();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            // close the stream
+            try{ byteBuffer.close(); } catch (IOException ignored){ /* do nothing */ }
+        }
+        return bytesResult;
+    }
+
     class C12593 implements OnClickListener {
         C12593() {
         }
@@ -209,7 +279,6 @@ public class PostMaterialActivity extends JsonClass {
                     JSONObject obj = jsonArray.getJSONObject(i);
                     subName.add(obj.getString("name"));
                     subID.add(obj.getInt("id"));
-                    subjects = obj.getInt("id");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -232,7 +301,23 @@ public class PostMaterialActivity extends JsonClass {
 //        this.classes = new SpinnerHelper((Context) this, (int) R.id.spnr_class, URLs.class_codes);
 //        this.subject = new SpinnerHelper((Context) this, (int) R.id.spnr_subject, URLs.subject_codes);
         findViewById(R.id.btn_attach).setOnClickListener(new C12561());
-        findViewById(R.id.btn_post).setOnClickListener(new C12582());
+        findViewById(R.id.btn_post).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                uploadBitmap();
+            }
+        });
+        this.subj.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                subjects = subID.get(i);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         this.cls.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -251,9 +336,10 @@ public class PostMaterialActivity extends JsonClass {
     }
 
     private void showFileChooser() {
-        Intent intent = new Intent("android.intent.action.GET_CONTENT");
-        intent.setType("*/*");
-        intent.addCategory("android.intent.category.OPENABLE");
+        Intent intent = new Intent();
+//        intent.setType("*/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        intent.setType("application/pdf");
         try {
             startActivityForResult(Intent.createChooser(intent, "Select a File to Upload"), 9);
         } catch (ActivityNotFoundException e) {
@@ -266,9 +352,15 @@ public class PostMaterialActivity extends JsonClass {
             case 9:
                 if (resultCode == -1) {
                     findViewById(R.id.layout_attch_remove).setVisibility(0);
-                    this.files.clear();
-                    if (FileUtils.getPath(this, data.getData()) != null) {
-                        this.files.add(new File(FileUtils.getPath(this, data.getData())));
+
+
+//                    if (FileUtils.getPath(this, data.getData()) != null) {
+//                        this.files.add(new File(FileUtils.getPath(this, data.getData())));
+//                        PdfNameHolder = FileUtils.getPath(this, uri);
+//                        this.files.add(new File(PdfNameHolder));
+
+                    if ( data.getData() != null){
+                        uri = data.getData();
                     } else {
                         Toast.makeText(this, "Please Choose the correct Format for file", 0).show();
                     }

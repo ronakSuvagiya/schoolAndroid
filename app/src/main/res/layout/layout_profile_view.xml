@@ -13,6 +13,7 @@
 
         <androidx.cardview.widget.CardView xmlns:n2="http://schemas.android.com/apk/res-auto"
             n1:layout_width="fill_parent"
+            n1:id="@+id/mainpart"
             n1:layout_height="wrap_content"
             n1:layout_margin="@dimen/_5sdp"
             n1:elevation="@dimen/_5sdp"
@@ -165,6 +166,56 @@
                 n1:layout_width="fill_parent"
                 n1:layout_height="wrap_content"
                 n1:orientation="vertical">
+
+                <androidx.cardview.widget.CardView xmlns:n3="http://schemas.android.com/apk/res-auto"
+                    n1:id="@+id/layout_name"
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="wrap_content"
+                    n1:layout_margin="@dimen/_5sdp"
+                    n1:elevation="@dimen/_5sdp"
+                    n3:cardBackgroundColor="@color/colorPrimary"
+                    n3:cardCornerRadius="@dimen/_5sdp">
+
+                    <LinearLayout
+                        n1:layout_width="fill_parent"
+                        n1:layout_height="wrap_content"
+                        n1:background="@drawable/corner_rectangle"
+                        n1:backgroundTint="#f2ffffff"
+                        n1:padding="@dimen/_5sdp">
+
+                        <ImageView
+                            n1:layout_width="@dimen/_25sdp"
+                            n1:layout_height="@dimen/_25sdp"
+                            n1:layout_margin="@dimen/_10sdp"
+                            n1:background="@drawable/ic_email" />
+
+                        <LinearLayout
+                            n1:layout_width="fill_parent"
+                            n1:layout_height="wrap_content"
+                            n1:orientation="vertical">
+
+                            <TextView
+                                n1:layout_width="fill_parent"
+                                n1:layout_height="fill_parent"
+                                n1:layout_gravity="center"
+                                n1:gravity="center_vertical"
+                                n1:paddingLeft="@dimen/_5sdp"
+                                n1:text="Name"
+                                n1:textColor="#cc000000"
+                                n1:textSize="@dimen/_13ssp" />
+
+                            <TextView
+                                n1:id="@+id/names"
+                                n1:layout_width="fill_parent"
+                                n1:layout_height="wrap_content"
+                                n1:layout_gravity="center"
+                                n1:gravity="center_vertical"
+                                n1:padding="@dimen/_5sdp"
+                                n1:textSize="@dimen/_13ssp"
+                                n1:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView xmlns:n3="http://schemas.android.com/apk/res-auto"
                     n1:id="@+id/layout_email"

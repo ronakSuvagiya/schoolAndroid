@@ -23,6 +23,7 @@ import com.apps.smartschoolmanagement.activities.AssignmentsActivity;
 import com.apps.smartschoolmanagement.activities.AssignmentsTeacherActivity;
 import com.apps.smartschoolmanagement.activities.AttendanceActivity;
 import com.apps.smartschoolmanagement.activities.BusesListActivity;
+import com.apps.smartschoolmanagement.activities.EventListActivity;
 import com.apps.smartschoolmanagement.activities.ExamScheduleActivity;
 import com.apps.smartschoolmanagement.activities.FeeDetailsActivity;
 import com.apps.smartschoolmanagement.activities.HealthStatusActivity;
@@ -218,7 +219,7 @@ public class Home_Fragment extends Fragment {
                             break;
                         }
                         break;
-                    case 722088502:
+                    case 130070438:
                         if (clickedText.equals("Holiday List")) {
                             obj = 15;
                             break;
@@ -230,7 +231,7 @@ public class Home_Fragment extends Fragment {
                             break;
                         }
                         break;
-                    case 1684106452:
+                    case -1376514396:
                         if (clickedText.equals("Event List")) {
                             obj = 20;
                             break;
@@ -324,7 +325,7 @@ public class Home_Fragment extends Fragment {
                         AnimationSlideUtil.activityZoom(Home_Fragment.this.getActivity());
                         return;
                     case 20:
-                        Home_Fragment.this.startActivity(new Intent(Home_Fragment.this.getActivity(), HolidayListActivity.class));
+                        Home_Fragment.this.startActivity(new Intent(Home_Fragment.this.getActivity(), EventListActivity.class));
                         Home_Fragment.this.getActivity().overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
                         return;
                     case 21:
