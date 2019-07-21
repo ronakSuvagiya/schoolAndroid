@@ -160,6 +160,8 @@ public class LoginActivity extends BaseActivity {
                         JSONObject student = new JSONObject(stu);
                         String studentID = String.valueOf(student.get("id"));
                         String divID = String.valueOf(student.get("divId"));
+                        Integer roll = (Integer) student.get("rollNo");
+                        Log.e("roll", String.valueOf(roll));
                         JSONObject Div = new JSONObject(divID);
                         String DivID1 = String.valueOf(Div.get("id"));
                         String stdA = String.valueOf(Div.get("stdId"));
@@ -178,6 +180,7 @@ public class LoginActivity extends BaseActivity {
                         e.putString("studentId", studentID);
                         e.putString("stdId",stdID);
                         e.putString("DivId",DivID1);
+                        e.putInt("roll",roll);
                         e.commit();
                         if (LoginActivity.this.findViewById(R.id.layout_loading) != null) {
                             LoginActivity.this.findViewById(R.id.layout_loading).setVisibility(8);

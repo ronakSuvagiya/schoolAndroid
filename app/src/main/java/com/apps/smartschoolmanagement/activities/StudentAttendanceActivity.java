@@ -2,37 +2,37 @@ package com.apps.smartschoolmanagement.activities;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-
 import android.preference.PreferenceManager;
-import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+
+import com.apps.smartschoolmanagement.R;
+import com.apps.smartschoolmanagement.models.UserStaticData;
+import com.apps.smartschoolmanagement.utils.DateDecorator;
+import com.apps.smartschoolmanagement.utils.JsonClass;
+import com.apps.smartschoolmanagement.utils.URLs;
 import com.kaopiz.kprogresshud.KProgressHUD;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
-import com.apps.smartschoolmanagement.R;
-import com.apps.smartschoolmanagement.models.UserStaticData;
-import com.apps.smartschoolmanagement.utils.DateDecorator;
-import com.apps.smartschoolmanagement.utils.JsonClass;
-import com.apps.smartschoolmanagement.utils.ProfileInfo;
-import com.apps.smartschoolmanagement.utils.URLs;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Iterator;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.threeten.bp.LocalDate;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 public class StudentAttendanceActivity extends JsonClass implements OnMonthChangedListener {
     TextView _Absent;
@@ -49,8 +49,11 @@ public class StudentAttendanceActivity extends JsonClass implements OnMonthChang
     Calendar cal;
     SharedPreferences sp;
     String school = null;
-    String std=  null;
+    String std = null;
     String div = null;
+    int roll;
+    ArrayList<String> adate = new ArrayList<>();
+    int count = 0;
 
     /* renamed from: com.apps.smartschoolmanagement.activities.StudentAttendanceActivity$5 */
     class C13045 implements DayViewDecorator {
@@ -69,11 +72,23 @@ public class StudentAttendanceActivity extends JsonClass implements OnMonthChang
         }
     }
 
-    class atte implements VolleyCallbackJSONArray{
-
+    class atte implements VolleyCallbackJSONArray {
         @Override
         public void onSuccess(JSONArray jsonArray) {
-            Log.e("abc",jsonArray.toString());
+            for (int i = 0; i < jsonArray.length(); i++) {
+                try {
+                    JSONObject obj = jsonArray.getJSONObject(i);
+                    String noList[] = obj.getString("rollNo").split(",");
+                    List<String> numberList = Arrays.asList(noList);
+                    if (numberList.contains(String.valueOf(roll))) {
+                        adate.add(obj.getString("date"));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            addDecorators(null, adate);
+            Log.e("date", adate.toString());
         }
     }
 
@@ -111,24 +126,35 @@ public class StudentAttendanceActivity extends JsonClass implements OnMonthChang
         this.std = (sp.getString("stdId", ""));
         this.div = (sp.getString("DivId", ""));
         this.school = (sp.getString("schoolid", ""));
-        getJsonResponse(URLs.getAttends + div + "&std=" + std + "&school=" + school + "&startingDate=2019-06-01&endDate=2019-06-30",this,  new atte());
+        this.roll = (sp.getInt("roll", 0));
+        Log.e("rollbun", String.valueOf(roll));
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.MONTH, 0);
+        calendar.set(Calendar.DATE, calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
+        Date nextMonthFirstDay = calendar.getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String start = sdf.format(nextMonthFirstDay);
+        calendar.set(Calendar.DATE, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+        Date nextMonthLastDay = calendar.getTime();
+        String end = sdf.format(nextMonthLastDay);
+        getJsonResponse(URLs.getAttends + div + "&std=" + std + "&school=" + school + "&startingDate=" + start + "&endDate=" + end, this, new atte());
         this.materialCalendarView.setOnMonthChangedListener(this);
         if (UserStaticData.user_type == 0) {
             setTitle("My Attendance");
-         //   findViewById(R.id.layout_candidate_selection).setVisibility(8);
-         //   this.params.put("student_id", ProfileInfo.getInstance().getLoginData().get("userId"));
+            //   findViewById(R.id.layout_candidate_selection).setVisibility(8);
+            //   this.params.put("student_id", ProfileInfo.getInstance().getLoginData().get("userId"));
             Date today = new Date();
             Calendar cal = Calendar.getInstance();
             cal.setTime(today);
-       //     this.params.put("month", "" + (cal.get(2) + 1));
-          //  getJsonResponse(URLs.attendance, this, new C12981());
+            //     this.params.put("month", "" + (cal.get(2) + 1));
+            //  getJsonResponse(URLs.attendance, this, new C12981());
         } else if (UserStaticData.user_type == 1) {
-     //       setTitle("Student's Attendance");
-      //      findViewById(R.id.layout_candidate_selection).setVisibility(0);
-    //        this.classes = (Spinner) findViewById(R.id.spnr_class);
-   //         this.student = (Spinner) findViewById(R.id.spnr_student);
+            //       setTitle("Student's Attendance");
+            //      findViewById(R.id.layout_candidate_selection).setVisibility(0);
+            //        this.classes = (Spinner) findViewById(R.id.spnr_class);
+            //         this.student = (Spinner) findViewById(R.id.spnr_student);
 //            getSpinnerData(this, URLs.class_codes, this.classes, new C13002());
- //           findViewById(R.id.btn_search).setOnClickListener(new C13023());
+            //           findViewById(R.id.btn_search).setOnClickListener(new C13023());
         }
     }
 
@@ -173,13 +199,13 @@ public class StudentAttendanceActivity extends JsonClass implements OnMonthChang
         }
     }
 
+
     public void addDecorators(ArrayList<String> presents, ArrayList<String> absents) {
         this.materialCalendarView.removeDecorators();
 //        addDefaultDecorators();
         ArrayList<CalendarDay> presentdays = new ArrayList();
         ArrayList<CalendarDay> absentdays = new ArrayList();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Iterator it = presents.iterator();
+       /* Iterator it = presents.iterator();
         while (it.hasNext()) {
             try {
                 Date date = sdf.parse((String) it.next());
@@ -190,26 +216,42 @@ public class StudentAttendanceActivity extends JsonClass implements OnMonthChang
             } catch (ParseException e) {
                 e.printStackTrace();
             }
+        }*/
+        for (int i = 0; i < absents.size(); i++) {
+            absentdays.add(CalendarDay.from(LocalDate.parse(absents.get(i))));
+            Log.e("abc", absentdays.toString());
         }
-        it = absents.iterator();
-        while (it.hasNext()) {
-            try {
-                Date date = sdf.parse((String) it.next());
-                cal = sdf.getCalendar();
-                cal.setTime(date);
-//                boolean add = absentdays.add(CalendarDay.from(cal));
-                this.materialCalendarView.addDecorator(new DateDecorator(this, -65536, getResources().getDrawable(R.drawable.circle_red), absentdays));
-            } catch (ParseException e2) {
-                e2.printStackTrace();
-            }
-        }
+            this.materialCalendarView.addDecorator(new DateDecorator(this, -65536, getResources().getDrawable(R.drawable.circle_red), absentdays));
     }
 
+//    public void ddl_month_valueChange(ValueChangeEvent event) {
+//        int v_month = Integer.parseInt(event.getNewValue().toString()) - 1;
+//        java.util.Calendar c1 = java.util.Calendar.getInstance();
+//        c1.set(2011, v_month, 1);
+//        Date d_set_att_from = c1.getTime();
+//        cal_att_from_date.setValue(d_set_att_from);
+//        c1.add(java.util.Calendar.MONTH, 1);
+//        c1.add(java.util.Calendar.DATE, -1);
+//        Date d_set_att_to = c1.getTime();
+//        cal_att_to_date.setValue(d_set_att_to);
+//    }
+
     public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
-        this.params.put("student_id", ProfileInfo.getInstance().getLoginData().get("userId"));
-        this.params.put("month", "" + (date.getMonth() + 1));
-       // getJsonResponse(URLs.attendance, this, new C13034());
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(date.getYear(), date.getMonth() - 1, 1);
+        calendar.add(Calendar.MONTH, 0);
+        calendar.set(Calendar.DATE, calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
+        Date nextMonthFirstDay = calendar.getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String start = sdf.format(nextMonthFirstDay);
+        calendar.set(Calendar.DATE, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+        Date nextMonthLastDay = calendar.getTime();
+        String end = sdf.format(nextMonthLastDay);
+        getJsonResponse(URLs.getAttends + div + "&std=" + std + "&school=" + school + "&startingDate=" + start + "&endDate=" + end, this, new atte());
+        // getJsonResponse(URLs.attendance, this, new C13034());
     }
+
 
 //    public void addDefaultDecorators() {
 //        this.materialCalendarView.setSelectedDate(CalendarDay.today());

@@ -48,6 +48,7 @@ import com.apps.smartschoolmanagement.activities.StaffProfileActivity;
 import com.apps.smartschoolmanagement.activities.StudentAttendanceActivity;
 import com.apps.smartschoolmanagement.activities.StudentLeavesActivity;
 import com.apps.smartschoolmanagement.activities.StudentProfileActivity;
+import com.apps.smartschoolmanagement.activities.TimeTableActivity;
 import com.apps.smartschoolmanagement.adapters.GridViewAdapter;
 import com.apps.smartschoolmanagement.utils.AnimationSlideUtil;
 
@@ -68,6 +69,11 @@ public class Home_Fragment extends Fragment {
             if (clickedText != null) {
                 int obj = -1;
                 switch (clickedText.hashCode()) {
+                    case -633276745:
+                        if (clickedText.equals("Schedule")){
+                            obj = 31;
+                            break;
+                        }
                     case -2095501965:
                         if (clickedText.equals("Notification")) {
                             obj = 18;
@@ -251,6 +257,10 @@ public class Home_Fragment extends Fragment {
                         break;
                 }
                 switch (obj) {
+                    case 31:
+                        Home_Fragment.this.startActivity(new Intent(Home_Fragment.this.getActivity(), TimeTableActivity.class));
+                        Home_Fragment.this.getActivity().overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
+                        return;
                     case 1:
                         Home_Fragment.this.startActivity(new Intent(Home_Fragment.this.getActivity(), AssignmentsTeacherActivity.class));
                         Home_Fragment.this.getActivity().overridePendingTransition(R.anim.activity_in, R.anim.activity_out);

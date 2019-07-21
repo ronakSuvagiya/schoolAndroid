@@ -103,7 +103,6 @@ public class StaffProfile extends JsonFragment {
         tmobile.setText(mobileNo);
         TextView tdob = this.view.findViewById(R.id.birthday);
         tdob.setText(dob);
-        Toast.makeText(getActivity(),email,Toast.LENGTH_LONG).show();
         TextView tgender = this.view.findViewById(R.id.gender);
         tgender.setText(gender);
 //        view.findViewById(R.id.btn_edit).setOnClickListener(new C13601());
