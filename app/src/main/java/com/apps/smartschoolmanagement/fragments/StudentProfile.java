@@ -101,31 +101,14 @@ public class StudentProfile extends JsonFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         this.view = inflater.inflate(R.layout.layout_profile_view, container, false);
         this.root = (LinearLayout) this.view.findViewById(R.id.root_layout);
-        sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        CardView mainpart = view.findViewById(R.id.mainpart);
-        mainpart.setVisibility(View.GONE);
-        String name =  (sp.getString("name", null));
-        String email =  (sp.getString("email", null));
-        String lastName =  (sp.getString("lastName", null));
-        String mobileNo =  (sp.getString("mobileNo", null));
-        String dob =  (sp.getString("dob", null));
-        String gender =  (sp.getString("gender", null));
+
         this.root.setVisibility(0);
-        Log.e("lastname","set"+ lastName);
+
 //        TextView aav = this.view.findViewById(R.id.teacherName);
 //        aav.setText(name);
 //        aav.setTextColor(R.color.white);
 //
-        TextView tname = this.view.findViewById(R.id.name);
-        tname.setText(name + "    " + lastName);
-        TextView temail = this.view.findViewById(R.id.email);
-        temail.setText(email);
-        TextView tmobile = this.view.findViewById(R.id.phone);
-        tmobile.setText(mobileNo);
-        TextView tdob = this.view.findViewById(R.id.birthday);
-        tdob.setText(dob);
-        TextView tgender = this.view.findViewById(R.id.gender);
-        tgender.setText(gender);
+
 //        this.view.findViewById(R.id.btn_edit).setOnClickListener(new C13721());
 //        profilePic = (ImageView) this.view.findViewById(R.id.file_path);
 //        this.view.findViewById(R.id.layout_joining_date).setVisibility(8);

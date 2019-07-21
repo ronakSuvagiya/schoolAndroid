@@ -151,7 +151,7 @@ public class LoginActivity extends BaseActivity {
                         String name = String.valueOf(response.get("name"));
                         String lastName = String.valueOf(response.get("lastName"));
                         String mobileNo = String.valueOf(response.get("mobileNo"));
-                        String email = String.valueOf(response.get("emialID"));
+                        String email = String.valueOf(response.get("emailId"));
                         String dob = String.valueOf(response.get("dob"));
                         String gender = String.valueOf(response.get("gender"));
                         JSONObject jsonObject = new JSONObject(school_id);
@@ -172,14 +172,13 @@ public class LoginActivity extends BaseActivity {
                         e.putString("name",  name);
                         e.putString("lastName",lastName);
                         e.putString("mobileNo",mobileNo);
-                        e.putString("email", email);
+                        e.putString("emails", email);
                         e.putString("dob", dob);
                         e.putString("gender", gender);
                         e.putString("studentId", studentID);
                         e.putString("stdId",stdID);
                         e.putString("DivId",DivID1);
                         e.commit();
-                    Log.e("Repo",response.toString());
                         if (LoginActivity.this.findViewById(R.id.layout_loading) != null) {
                             LoginActivity.this.findViewById(R.id.layout_loading).setVisibility(8);
                         }
@@ -230,7 +229,11 @@ public class LoginActivity extends BaseActivity {
                         String password = String.valueOf(response.get("password"));
                         String school_id = String.valueOf(response.get("schoolId"));
                         String name = String.valueOf(response.get("name"));
+                        String lastName = String.valueOf(response.get("lastName"));
+                        String mobileNo = String.valueOf(response.get("mobileNo"));
                         String email = String.valueOf(response.get("emailId"));
+                        String dob = String.valueOf(response.get("dob"));
+                        String gender = String.valueOf(response.get("gender"));
                         int teachermaster = (int) response.get("id");
                         JSONObject jsonObject = new JSONObject(school_id);
                         String Schoolid = String.valueOf(jsonObject.get("id"));
@@ -238,9 +241,14 @@ public class LoginActivity extends BaseActivity {
                         e.putString("user_name", username);
                         e.putString("password", password);
                         e.putString("schoolid", Schoolid);
-                        e.putString("name", name);
-                        e.putString("email", email);
+                        e.putString("NAme", name);
+                        e.putString("EMail", email);
+                        e.putString("LAstName",lastName);
+                        e.putString("MObileNo",mobileNo);
+                        e.putString("DOb", dob);
+                        e.putString("GEnder", gender);
                         e.putInt("teachermaster", teachermaster);
+                        Log.e("dob",dob);
                         e.commit();
 
                         if (LoginActivity.this.findViewById(R.id.layout_loading) != null) {

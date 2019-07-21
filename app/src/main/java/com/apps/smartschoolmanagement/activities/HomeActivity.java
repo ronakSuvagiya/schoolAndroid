@@ -3,8 +3,11 @@ package com.apps.smartschoolmanagement.activities;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.PorterDuff.Mode;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener;
 import com.google.android.material.tabs.TabLayout.Tab;
@@ -29,7 +32,8 @@ public class HomeActivity extends BaseActivity {
     private int[] tabIcons = new int[]{R.drawable.img_home, R.drawable.img_user, R.drawable.img_notification};
     TabLayout tabLayout;
     ViewPager viewPager;
-
+    String user_type = null;
+    SharedPreferences sp;
     /* renamed from: com.apps.smartschoolmanagement.activities.HomeActivity$1 */
     class C12161 implements OnTabSelectedListener {
         C12161() {
@@ -92,6 +96,8 @@ public class HomeActivity extends BaseActivity {
         }
         setContentView(R.layout.tab_layout);
         setTitle("Home");
+        sp =  PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        user_type = sp.getString("usertype", null);
         if (getIntent().getStringArrayExtra("titles") != null) {
             titles = getIntent().getStringArrayExtra("titles");
         }
@@ -108,6 +114,8 @@ public class HomeActivity extends BaseActivity {
         }
         this.tabLayout.addOnTabSelectedListener(new C12161());
         setupTabIcons();
+
+
     }
 
     private void setupTabIcons() {
@@ -122,11 +130,11 @@ public class HomeActivity extends BaseActivity {
     private void setupViewPager(ViewPager viewPager) {
         this.adapter = new TabPagerAdapter(getSupportFragmentManager());
         this.adapter.addTab(new Home_Fragment(), "");
-        if (UserStaticData.user_type == 0) {
+        if ("student".equals(this.user_type)) {
             this.adapter.addTab(new StudentProfile(), "");
-        } else if (UserStaticData.user_type == 1) {
+        } else if ("teacher".equals(this.user_type)) {
             this.adapter.addTab(new StaffProfile(), "");
-        } else if (UserStaticData.user_type == 2) {
+        } else if ("teacher".equals(this.user_type)) {
             this.adapter.addTab(new ManagerProfile(), "");
         }
         this.adapter.addTab(new Notifications(), "");
