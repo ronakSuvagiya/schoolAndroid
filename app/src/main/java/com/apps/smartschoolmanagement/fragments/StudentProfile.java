@@ -101,9 +101,41 @@ public class StudentProfile extends JsonFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         this.view = inflater.inflate(R.layout.layout_profile_view, container, false);
         this.root = (LinearLayout) this.view.findViewById(R.id.root_layout);
-
+        LinearLayout rollNo = view.findViewById(R.id.layout_roll);
+        rollNo.setVisibility(View.VISIBLE);
+        CardView email = view.findViewById(R.id.layout_email);
+        email.setVisibility(View.GONE);
+        CardView phone = view.findViewById(R.id.layout_phone);
+        phone.setVisibility(View.GONE);
+        sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
         this.root.setVisibility(0);
 
+        String name =  (sp.getString("stuname", ""));
+        String lastName =  (sp.getString("stulname", ""));
+        String dob =  (sp.getString("studob", ""));
+        String gender =  (sp.getString("stugender", ""));
+        String address =  (sp.getString("stuaddress", ""));
+        String std =  (sp.getString("stustd", ""));
+        String div =  (sp.getString("studiv", ""));
+        int roll =  (sp.getInt("roll", 0));
+        TextView pname = this.view.findViewById(R.id.name);
+        pname.setText(name + " "  + lastName);
+        TextView pclassname = this.view.findViewById(R.id.className);
+        pclassname.setText(std);
+        TextView pdiv = this.view.findViewById(R.id.div_name);
+        pdiv.setText(div);
+
+        TextView proll = this.view.findViewById(R.id.roll_name);
+        proll.setText(String.valueOf(roll));
+
+        TextView tname = this.view.findViewById(R.id.names);
+        tname.setText(name + " "  + lastName);
+        TextView tdob = this.view.findViewById(R.id.birthday);
+        tdob.setText(dob);
+        TextView paddress = this.view.findViewById(R.id.address);
+        paddress.setText(address);
+        TextView tgender = this.view.findViewById(R.id.gender);
+        tgender.setText(gender);
 //        TextView aav = this.view.findViewById(R.id.teacherName);
 //        aav.setText(name);
 //        aav.setTextColor(R.color.white);
