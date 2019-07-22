@@ -128,7 +128,6 @@ public class PostComplaintActivity extends JsonClass {
                 studentName.removeAll(studentName);
                 studentID.removeAll(studentID);
                 div = divId.get(i);
-//                getJsonResponse(URLs.getSubject + stdid + "&school=" + channel, rootView, new PostAssignment.getSubjectApi());
                 getJsonResponse(URLs.getStudentByStdAndDiv + stdid + "&div=" + div + "&School=" + channel, PostComplaintActivity.this, new PostComplaintActivity.StudentApiCall());
             }
 
@@ -193,8 +192,6 @@ public class PostComplaintActivity extends JsonClass {
             for (int i = 0; i < jsonArray.length(); i++) {
                 try {
                     JSONObject obj = jsonArray.getJSONObject(i);
-//                    StudentName.add(""+ obj.getInt("rollNo") + ": " + obj.getString("name"));
-//                    StudentRollNo.add(obj.getInt("rollNo"));
                     studentName.add(obj.getString("name"));
                     studentID.add(obj.getInt("id"));
                 } catch (JSONException e) {
@@ -203,9 +200,6 @@ public class PostComplaintActivity extends JsonClass {
             }
             final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(PostComplaintActivity.this, R.layout.spinner_dropdown_custom, studentName);
             student.setAdapter(spinnerArrayAdapter);
-            //final ArrayAdapter<String> listArrayAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(),R.layout.list_with_toggal_button,R.id.tv_item,StudentName);
-//            AttendancesAdapter attendancesAdapter = new AttendancesAdapter(getApplicationContext(),R.layout.list_with_toggal_button,StudentName,StudentAttendance.this);
-//            studentList.setAdapter(attendancesAdapter);
 
         }
     }
