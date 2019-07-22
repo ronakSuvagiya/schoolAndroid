@@ -37,6 +37,7 @@ import com.apps.smartschoolmanagement.activities.OnlineMaterialActivity;
 import com.apps.smartschoolmanagement.activities.PendingLeaves_HM_Activity;
 import com.apps.smartschoolmanagement.activities.PhotoGalleryActivity;
 import com.apps.smartschoolmanagement.activities.PhotoGalleryAddActivity;
+import com.apps.smartschoolmanagement.activities.PostComplaintActivity;
 import com.apps.smartschoolmanagement.activities.PostMaterialActivity;
 import com.apps.smartschoolmanagement.activities.PostRemarkActivity;
 import com.apps.smartschoolmanagement.activities.PrincipalMessageActivity;
@@ -110,7 +111,7 @@ public class Home_Fragment extends Fragment {
                             break;
                         }
                         break;
-                    case -1585309300:
+                    case 600906891:
                         if (clickedText.equals("Complaint")) {
                             obj = 5;
                             break;
@@ -278,7 +279,7 @@ public class Home_Fragment extends Fragment {
                         Home_Fragment.this.getActivity().overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
                         return;
                     case 5:
-                        Home_Fragment.this.startActivity(new Intent(Home_Fragment.this.getActivity(), ManageLeavesActivity.class));
+                        Home_Fragment.this.startActivity(new Intent(Home_Fragment.this.getActivity(), PostComplaintActivity.class));
                         Home_Fragment.this.getActivity().overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
                         return;
                     case 6:

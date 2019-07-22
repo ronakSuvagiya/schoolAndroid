@@ -19,7 +19,7 @@ public class URLs {
     public static String addMaterial = " http://quickedu.co.in/addmatirealApi";
     public static String getHolidayList = "http://quickedu.co.in/getHolidayApi?school=";
     public static String getEventList = "http://quickedu.co.in/getEventApi?school=";
-
+    public static String PostComplaint = "http://quickedu.co.in/addComplientApi";
 
 
 
