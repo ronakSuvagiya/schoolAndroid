@@ -23,6 +23,7 @@ import com.apps.smartschoolmanagement.activities.AssignmentsActivity;
 import com.apps.smartschoolmanagement.activities.AssignmentsTeacherActivity;
 import com.apps.smartschoolmanagement.activities.AttendanceActivity;
 import com.apps.smartschoolmanagement.activities.BusesListActivity;
+import com.apps.smartschoolmanagement.activities.ComplaintActivity;
 import com.apps.smartschoolmanagement.activities.EventListActivity;
 import com.apps.smartschoolmanagement.activities.ExamScheduleActivity;
 import com.apps.smartschoolmanagement.activities.FeeDetailsActivity;
@@ -43,6 +44,7 @@ import com.apps.smartschoolmanagement.activities.PostRemarkActivity;
 import com.apps.smartschoolmanagement.activities.PrincipalMessageActivity;
 import com.apps.smartschoolmanagement.activities.ProfitLossActivity;
 import com.apps.smartschoolmanagement.activities.RemarksActivity;
+import com.apps.smartschoolmanagement.activities.ScheduleActivity;
 import com.apps.smartschoolmanagement.activities.StaffAttendanceActivity;
 import com.apps.smartschoolmanagement.activities.StaffPayRollActivity;
 import com.apps.smartschoolmanagement.activities.StaffProfileActivity;
@@ -75,6 +77,7 @@ public class Home_Fragment extends Fragment {
                             obj = 31;
                             break;
                         }
+
                     case -2095501965:
                         if (clickedText.equals("Notification")) {
                             obj = 18;
@@ -106,7 +109,7 @@ public class Home_Fragment extends Fragment {
                         }
                         break;
                     case -1675962311:
-                        if (clickedText.equals("Profit & Loss")) {
+                        if (clickedText.equals("Post Complaint")) {
                             obj = 28;
                             break;
                         }
@@ -259,7 +262,7 @@ public class Home_Fragment extends Fragment {
                 }
                 switch (obj) {
                     case 31:
-                        Home_Fragment.this.startActivity(new Intent(Home_Fragment.this.getActivity(), TimeTableActivity.class));
+                        Home_Fragment.this.startActivity(new Intent(Home_Fragment.this.getActivity(), ScheduleActivity.class));
                         Home_Fragment.this.getActivity().overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
                         return;
                     case 1:
@@ -279,7 +282,7 @@ public class Home_Fragment extends Fragment {
                         Home_Fragment.this.getActivity().overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
                         return;
                     case 5:
-                        Home_Fragment.this.startActivity(new Intent(Home_Fragment.this.getActivity(), PostComplaintActivity.class));
+                        Home_Fragment.this.startActivity(new Intent(Home_Fragment.this.getActivity(), ComplaintActivity.class));
                         Home_Fragment.this.getActivity().overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
                         return;
                     case 6:
@@ -332,7 +335,7 @@ public class Home_Fragment extends Fragment {
                         Home_Fragment.this.getActivity().overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
                         return;
                     case 19:
-                        Home_Fragment.this.startActivity(new Intent(Home_Fragment.this.getActivity(), AppointmentsActivity.class));
+                        Home_Fragment.this.startActivity(new Intent(Home_Fragment.this.getActivity(), ScheduleActivity.class));
                         AnimationSlideUtil.activityZoom(Home_Fragment.this.getActivity());
                         return;
                     case 20:
@@ -368,7 +371,7 @@ public class Home_Fragment extends Fragment {
                         Home_Fragment.this.getActivity().overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
                         return;
                     case 28:
-                        Home_Fragment.this.startActivity(new Intent(Home_Fragment.this.getActivity(), ProfitLossActivity.class));
+                        Home_Fragment.this.startActivity(new Intent(Home_Fragment.this.getActivity(), PostComplaintActivity.class));
                         Home_Fragment.this.getActivity().overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
                         return;
                     case 29:

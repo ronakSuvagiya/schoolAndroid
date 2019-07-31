@@ -20,8 +20,8 @@ public class URLs {
     public static String getHolidayList = "http://quickedu.co.in/getHolidayApi?school=";
     public static String getEventList = "http://quickedu.co.in/getEventApi?school=";
     public static String PostComplaint = "http://quickedu.co.in/addComplientApi";
-
-
+    public static String getComplaint = "http://quickedu.co.in/getComplentsApi?student=";
+    public static String getTimeTable = "http://quickedu.co.in/ApiGetTimeTable?id=";
 
     public static String getTodayAssignment = "http://quickedu.co.in/getAssignmentByAssignApi?std=";
     public static String getAttends = "http://quickedu.co.in/getAttendance?div=";

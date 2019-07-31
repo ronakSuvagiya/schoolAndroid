@@ -31,7 +31,7 @@ public class StartActivity extends AppCompatActivity {
      String user_type = null;
     SharedPreferences sp;
     String[] parentTitles = new String[]{"Assignments", "Marks", "My Attendance", "Exam Schedule", "Online Material", "Notification", "Fee Details", "Schedule", "Complaint", "Photo Gallery",  "Event List", "Holiday List", "Staff Profile"};
-    String[] staffTitles = new String[]{"Post Assignment", "Post Material", "Notification", "Attendance", "Student Profile", "Student's Mark List", "Schedule", "Exam Schedule", "Complaint", "Add Photo Gallery", "Event List", "Holiday List"};
+    String[] staffTitles = new String[]{"Post Assignment", "Post Material", "Notification", "Attendance", "Student Profile", "Student's Mark List", "Schedule", "Exam Schedule", "Post Complaint", "Add Photo Gallery", "Event List", "Holiday List"};
     String[] titles = null;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,7 +59,7 @@ public class StartActivity extends AppCompatActivity {
         this.imageIds.put("Student's Mark List", Integer.valueOf(R.drawable.img_marks_list));
         this.imageIds.put("Student Profile", Integer.valueOf(R.drawable.img_student_profile));
         this.imageIds.put("Staff Profile", Integer.valueOf(R.drawable.img_staff_profile));
-        this.imageIds.put("Profit & Loss", Integer.valueOf(R.drawable.img_profit_loss));
+        this.imageIds.put("Post Complaint", Integer.valueOf(R.drawable.img_leave));
         this.imageIds.put("Complaint", Integer.valueOf(R.drawable.img_leave));
         UserStaticData.imageIds = this.imageIds;
         reg_code = findViewById(R.id.reg_code);

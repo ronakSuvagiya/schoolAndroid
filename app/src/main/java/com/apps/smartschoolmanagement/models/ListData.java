@@ -12,6 +12,25 @@ public class ListData {
     public String assignment_subject;
     public String assignment_submit_date;
     public String assignment_end_date;
+    public String complaint_title;
+
+    public String getComplaint_title() {
+        return complaint_title;
+    }
+
+    public void setComplaint_title(String complaint_title) {
+        this.complaint_title = complaint_title;
+    }
+
+    public String getComplaint_desc() {
+        return complaint_desc;
+    }
+
+    public void setComplaint_desc(String complaint_desc) {
+        this.complaint_desc = complaint_desc;
+    }
+
+    public String complaint_desc;
 
     public String getAssignment_end_date() {
         return assignment_end_date;

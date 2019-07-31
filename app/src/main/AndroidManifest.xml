@@ -52,7 +52,9 @@
         android:usesCleartextTraffic="true"
         tools:overrideLibrary="com.google.firebase.messaging"
         tools:replace="android:theme,android:appComponentFactory">
-        <activity android:name=".activities.PostComplaintActivity"></activity>
+        <activity android:name=".activities.ScheduleActivity"></activity>
+        <activity android:name=".activities.ComplaintActivity" />
+        <activity android:name=".activities.PostComplaintActivity" />
         <activity android:name=".activities.EventListActivity" />
         <activity
             android:name=".activities.HolidayListActivity"

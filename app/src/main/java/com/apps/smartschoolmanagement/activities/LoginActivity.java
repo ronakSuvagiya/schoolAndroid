@@ -31,9 +31,12 @@ import java.util.HashMap;
 public class LoginActivity extends BaseActivity {
     public HashMap<String, Integer> imageIds = new HashMap();
     //    String[] managerTitles = new String[]{"Staff Attendance", "Staff Payrolls", "Staff Profile", "Student's Fee Details", "Student Profile", "Appointments", "Add Photo Gallery", "Photo Gallery", "Track Bus", "My Health Status", "Profit & Loss", "Leaves"};
-    String[] parentTitles = new String[]{"Assignments", "Marks", "My Attendance", "Exam Schedule", "Online Material", "Library", "Fee Details", "Remarks", "My Health Status", "Photo Gallery", "Take Appointment", "My Leaves", "Staff Profile", "Principal Statement"};
+//    String[] parentTitles = new String[]{"Assignments", "Marks", "My Attendance", "Exam Schedule", "Online Material", "Library", "Fee Details", "Remarks", "My Health Status", "Photo Gallery", "Take Appointment", "My Leaves", "Staff Profile", "Principal Statement"};
     EditText password;
-    String[] staffTitles = new String[]{"Post Assignment", "Post Material", "Notification", "Attendance", "Student Profile", "Student's Mark List", "Schedule", "Exam Schedule", "Complaint", "Add Photo Gallery", "Event List", "Holiday List"};
+//    String[] staffTitles = new String[]{"Post Assignment", "Post Material", "Notification", "Attendance", "Student Profile", "Student's Mark List", "Schedule", "Exam Schedule", "Post Complaint", "Add Photo Gallery", "Event List", "Holiday List"};
+    String[] parentTitles = new String[]{"Assignments", "Marks", "My Attendance", "Exam Schedule", "Online Material", "Notification", "Fee Details", "Schedule", "Complaint", "Photo Gallery",  "Event List", "Holiday List", "Staff Profile"};
+    String[] staffTitles = new String[]{"Post Assignment", "Post Material", "Notification", "Attendance", "Student Profile", "Student's Mark List", "Schedule", "Exam Schedule", "Post Complaint", "Add Photo Gallery", "Event List", "Holiday List"};
+
     String[] titles = null;
     EditText userNames;
     static String user_type = null;
@@ -61,37 +64,63 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         setTitle("Login");
-        this.imageIds.put("Assignments", Integer.valueOf(R.drawable.img_assignment));  // selected
+//        this.imageIds.put("Assignments", Integer.valueOf(R.drawable.img_assignment));  // selected
+//        this.imageIds.put("Post Assignment", Integer.valueOf(R.drawable.img_assignment));
+//        this.imageIds.put("Notification", Integer.valueOf(R.drawable.img_remarks));
+//        this.imageIds.put("Remarks", Integer.valueOf(R.drawable.img_remarks));
+//        this.imageIds.put("Add Photo Gallery", Integer.valueOf(R.drawable.img_add_gallery));
+//        this.imageIds.put("Photo Gallery", Integer.valueOf(R.drawable.img_photo_gallery));// selected
+//        this.imageIds.put("Post Material", Integer.valueOf(R.drawable.img_online_material));// selected
+//        this.imageIds.put("Online Material", Integer.valueOf(R.drawable.img_online_material));
+//        this.imageIds.put("Schedule", Integer.valueOf(R.drawable.img_exam_schedule));// Take Appointment
+//        this.imageIds.put("Event List", Integer.valueOf(R.drawable.img_appointment));//appointment
+//        this.imageIds.put("My Health Status", Integer.valueOf(R.drawable.img_health_status));
+//        this.imageIds.put("Holiday List", Integer.valueOf(R.drawable.img_health_status));
+//        this.imageIds.put("Student's Health Status", Integer.valueOf(R.drawable.img_health_status));
+//        this.imageIds.put("Track Bus", Integer.valueOf(R.drawable.img_bus));
+//        this.imageIds.put("Principal Statement", Integer.valueOf(R.drawable.img_principal_message));
+//        this.imageIds.put("Staff Attendance", Integer.valueOf(R.drawable.img_attendance));
+//        this.imageIds.put("Attendance", Integer.valueOf(R.drawable.img_attendance)); // selected
+//        this.imageIds.put("My Attendance", Integer.valueOf(R.drawable.img_attendance));
+//        this.imageIds.put("Fee Details", Integer.valueOf(R.drawable.img_fee));
+//        this.imageIds.put("Student's Fee Details", Integer.valueOf(R.drawable.img_fee));
+//        this.imageIds.put("Exam Schedule", Integer.valueOf(R.drawable.img_exam_schedule));// selected
+//        this.imageIds.put("Marks", Integer.valueOf(R.drawable.img_marks_list));
+//        this.imageIds.put("Student's Mark List", Integer.valueOf(R.drawable.img_marks_list));// selected
+//        this.imageIds.put("Staff Payrolls", Integer.valueOf(R.drawable.img_pay));
+//        this.imageIds.put("Student Profile", Integer.valueOf(R.drawable.img_student_profile));// selected
+//        this.imageIds.put("Staff Profile", Integer.valueOf(R.drawable.img_staff_profile));
+//        this.imageIds.put("Profit & Loss", Integer.valueOf(R.drawable.img_profit_loss));
+//        this.imageIds.put("My Leaves", Integer.valueOf(R.drawable.img_leave));
+//        this.imageIds.put("Leaves", Integer.valueOf(R.drawable.img_leave));
+//        this.imageIds.put("Library", Integer.valueOf(R.drawable.ic_books));
+//        this.imageIds.put("Complaint", Integer.valueOf(R.drawable.img_leave));// Leave management
+
+        this.imageIds.put("Assignments", Integer.valueOf(R.drawable.img_assignment));
         this.imageIds.put("Post Assignment", Integer.valueOf(R.drawable.img_assignment));
         this.imageIds.put("Notification", Integer.valueOf(R.drawable.img_remarks));
-        this.imageIds.put("Remarks", Integer.valueOf(R.drawable.img_remarks));
         this.imageIds.put("Add Photo Gallery", Integer.valueOf(R.drawable.img_add_gallery));
-        this.imageIds.put("Photo Gallery", Integer.valueOf(R.drawable.img_photo_gallery));// selected
-        this.imageIds.put("Post Material", Integer.valueOf(R.drawable.img_online_material));// selected
+        this.imageIds.put("Photo Gallery", Integer.valueOf(R.drawable.img_photo_gallery));
+        this.imageIds.put("Post Material", Integer.valueOf(R.drawable.img_online_material));
         this.imageIds.put("Online Material", Integer.valueOf(R.drawable.img_online_material));
-        this.imageIds.put("Schedule", Integer.valueOf(R.drawable.img_exam_schedule));// Take Appointment
-        this.imageIds.put("Event List", Integer.valueOf(R.drawable.img_appointment));//appointment
-        this.imageIds.put("My Health Status", Integer.valueOf(R.drawable.img_health_status));
+        this.imageIds.put("Schedule", Integer.valueOf(R.drawable.img_exam_schedule));
+        this.imageIds.put("Event List", Integer.valueOf(R.drawable.img_appointment));
+        this.imageIds.put("Health Status", Integer.valueOf(R.drawable.img_health_status));
         this.imageIds.put("Holiday List", Integer.valueOf(R.drawable.img_health_status));
-        this.imageIds.put("Student's Health Status", Integer.valueOf(R.drawable.img_health_status));
-        this.imageIds.put("Track Bus", Integer.valueOf(R.drawable.img_bus));
         this.imageIds.put("Principal Statement", Integer.valueOf(R.drawable.img_principal_message));
         this.imageIds.put("Staff Attendance", Integer.valueOf(R.drawable.img_attendance));
-        this.imageIds.put("Attendance", Integer.valueOf(R.drawable.img_attendance)); // selected
+        this.imageIds.put("Attendance", Integer.valueOf(R.drawable.img_attendance));
         this.imageIds.put("My Attendance", Integer.valueOf(R.drawable.img_attendance));
         this.imageIds.put("Fee Details", Integer.valueOf(R.drawable.img_fee));
         this.imageIds.put("Student's Fee Details", Integer.valueOf(R.drawable.img_fee));
-        this.imageIds.put("Exam Schedule", Integer.valueOf(R.drawable.img_exam_schedule));// selected
+        this.imageIds.put("Exam Schedule", Integer.valueOf(R.drawable.img_exam_schedule));
         this.imageIds.put("Marks", Integer.valueOf(R.drawable.img_marks_list));
-        this.imageIds.put("Student's Mark List", Integer.valueOf(R.drawable.img_marks_list));// selected
-        this.imageIds.put("Staff Payrolls", Integer.valueOf(R.drawable.img_pay));
-        this.imageIds.put("Student Profile", Integer.valueOf(R.drawable.img_student_profile));// selected
+        this.imageIds.put("Student's Mark List", Integer.valueOf(R.drawable.img_marks_list));
+        this.imageIds.put("Student Profile", Integer.valueOf(R.drawable.img_student_profile));
         this.imageIds.put("Staff Profile", Integer.valueOf(R.drawable.img_staff_profile));
-        this.imageIds.put("Profit & Loss", Integer.valueOf(R.drawable.img_profit_loss));
-        this.imageIds.put("My Leaves", Integer.valueOf(R.drawable.img_leave));
-        this.imageIds.put("Leaves", Integer.valueOf(R.drawable.img_leave));
-        this.imageIds.put("Library", Integer.valueOf(R.drawable.ic_books));
-        this.imageIds.put("Complaint", Integer.valueOf(R.drawable.img_leave));// Leave management
+        this.imageIds.put("Post Complaint", Integer.valueOf(R.drawable.img_leave));
+        this.imageIds.put("Complaint", Integer.valueOf(R.drawable.img_leave));
+
         UserStaticData.imageIds = this.imageIds;
         sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         this.user_type = getIntent().getStringExtra("user_type");
@@ -189,6 +218,7 @@ public class LoginActivity extends BaseActivity {
                         e.putString("stuaddress",stuaddress);
                         e.putString("stugender",stugender);
                         e.putString("studob",studob);
+                        e.putString("StudentID",stdID);
 
                         e.commit();
                         if (LoginActivity.this.findViewById(R.id.layout_loading) != null) {

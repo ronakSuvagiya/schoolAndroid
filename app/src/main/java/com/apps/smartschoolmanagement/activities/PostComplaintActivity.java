@@ -192,7 +192,7 @@ public class PostComplaintActivity extends JsonClass {
             for (int i = 0; i < jsonArray.length(); i++) {
                 try {
                     JSONObject obj = jsonArray.getJSONObject(i);
-                    studentName.add(obj.getString("name"));
+                    studentName.add(obj.getString("name") + " , " + obj.getInt("rollNo"));
                     studentID.add(obj.getInt("id"));
                 } catch (JSONException e) {
                     e.printStackTrace();
