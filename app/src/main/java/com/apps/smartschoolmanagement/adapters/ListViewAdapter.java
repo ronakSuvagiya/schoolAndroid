@@ -3,6 +3,7 @@ package com.apps.smartschoolmanagement.adapters;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import androidx.core.app.NotificationCompat;
@@ -79,9 +80,8 @@ public class ListViewAdapter extends BaseAdapter {
         TextView bus_driver_phone;
         ImageButton bus_location;
         TextView bus_number;
-        TextView exam_comment;
         TextView exam_date;
-        TextView exam_name;
+        TextView exam_title;
         TextView leave_approve;
         TextView leave_date;
         TextView leave_reason;
@@ -113,7 +113,7 @@ public class ListViewAdapter extends BaseAdapter {
         TextView student_name;
         ImageView student_photo;
 //        TextView student_roll;
-        CardView studentprofile_layout;
+        CardView studentprofile_layout,cvExamSchedule;
 
         private ViewHolder() {
         }
@@ -158,9 +158,8 @@ public class ListViewAdapter extends BaseAdapter {
             viewHolder.remarks_year = (TextView) convertView.findViewById(R.id.reamrk_year);
             viewHolder.remarks_teacher = (TextView) convertView.findViewById(R.id.remark_teacher);
             viewHolder.reamrks_date_layout = (LinearLayout) convertView.findViewById(R.id.remark_type);
-            viewHolder.exam_comment = (TextView) convertView.findViewById(R.id.exam_subject);
             viewHolder.exam_date = (TextView) convertView.findViewById(R.id.date);
-            viewHolder.exam_name = (TextView) convertView.findViewById(R.id.exam_type);
+            viewHolder.exam_title = (TextView) convertView.findViewById(R.id.exam_title);
             viewHolder.assignment_assignment = (TextView) convertView.findViewById(R.id.assignment);
             viewHolder.assignment_subject = (TextView) convertView.findViewById(R.id.subject_name);
             viewHolder.assignment_submitdate = (TextView) convertView.findViewById(R.id.submission_date);
@@ -184,6 +183,7 @@ public class ListViewAdapter extends BaseAdapter {
             viewHolder.staff_photo = (ImageView) convertView.findViewById(R.id.staff_photo);
             viewHolder.staffprofile_layout = (CardView) convertView.findViewById(R.id.layout_staffprofile);
             viewHolder.studentprofile_layout = (CardView) convertView.findViewById(R.id.layout_studentprofile);
+            viewHolder.cvExamSchedule = convertView.findViewById(R.id.cvExamSchedule);
             viewHolder.student_name = (TextView) convertView.findViewById(R.id.student_name);
             viewHolder.student_class = (TextView) convertView.findViewById(R.id.student_class);
 //            viewHolder.student_roll = (TextView) convertView.findViewById(R.id.student_roll);
@@ -238,14 +238,11 @@ public class ListViewAdapter extends BaseAdapter {
                 viewHolder.remarks_year.setText(splitter[0]);
             }
         }
-        if (viewHolder.exam_comment != null) {
-            viewHolder.exam_comment.setText("Subject : " + data.getExam_comment());
+        if (viewHolder.exam_title != null) {
+            viewHolder.exam_title.setText("Subject : " + data.getExam_title());
         }
         if (viewHolder.exam_date != null) {
             viewHolder.exam_date.setText(data.getExam_date());
-        }
-        if (viewHolder.exam_name != null) {
-            viewHolder.exam_name.setText("Exame Type : " + data.getExam_name());
         }
         if (viewHolder.assignment_assignment != null) {
             viewHolder.assignment_assignment.setText(data.getAssignment_assignment());
@@ -432,6 +429,15 @@ public class ListViewAdapter extends BaseAdapter {
                 }
             });
         }
+
+        if (viewHolder.cvExamSchedule != null) {
+            viewHolder.cvExamSchedule.setOnClickListener(new OnClickListener() {
+                public void onClick(View v) {
+                    openWebPage(data.getExam_pdf());
+                }
+            });
+        }
+
         if (viewHolder.appointment_name != null) {
             viewHolder.appointment_name.setText(data.getName());
         }
@@ -526,6 +532,20 @@ public class ListViewAdapter extends BaseAdapter {
                 toast.show();
             }
         });
+    }
+    public void openWebPage(String url) {
+
+        Uri webpage = Uri.parse(url);
+
+        if (!url.startsWith("http://") && !url.startsWith("https://")) {
+            webpage = Uri.parse("http://" +"Quickedu.co.in/timeTable/" +  url);
+        }
+
+        Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+        if (intent.resolveActivity(mContext.getPackageManager()) != null) {
+            mContext.startActivity(intent);
+//            finish();
+        }
     }
 
     public void showProgress() {

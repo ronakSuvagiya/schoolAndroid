@@ -110,6 +110,24 @@ public class ListData {
     public String student_roll;
     public String time;
     public String village;
+public String  exam_title;
+public String exam_pdf;
+
+    public String getExam_title() {
+        return exam_title;
+    }
+
+    public void setExam_title(String exam_title) {
+        this.exam_title = exam_title;
+    }
+
+    public String getExam_pdf() {
+        return exam_pdf;
+    }
+
+    public void setExam_pdf(String exam_pdf) {
+        this.exam_pdf = exam_pdf;
+    }
 
     public String getStatus() {
         return this.status;

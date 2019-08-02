@@ -22,6 +22,9 @@ public class URLs {
     public static String PostComplaint = "http://quickedu.co.in/addComplientApi";
     public static String getComplaint = "http://quickedu.co.in/getComplentsApi?student=";
     public static String getTimeTable = "http://quickedu.co.in/ApiGetTimeTable?id=";
+    public static String getExamSchedules = "http://quickedu.co.in/ApiGetTimeTableExam?Stdid=";
+    public static String getTeacherTimeTable = "http://quickedu.co.in/ApiGetTimeTableTeacher?TecherID=";
+
 
     public static String getTodayAssignment = "http://quickedu.co.in/getAssignmentByAssignApi?std=";
     public static String getAttends = "http://quickedu.co.in/getAttendance?div=";

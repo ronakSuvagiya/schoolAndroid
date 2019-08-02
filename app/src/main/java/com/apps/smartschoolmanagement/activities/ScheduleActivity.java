@@ -45,10 +45,17 @@ public class ScheduleActivity extends JsonClass {
 
         sp = PreferenceManager.getDefaultSharedPreferences(ScheduleActivity.this);
         String channel = (sp.getString("schoolid", ""));
+        String teacherId = String.valueOf((sp.getInt("teachermaster", 0)));
         String stdid = (sp.getString("stdId", ""));
-        getJsonResponse(URLs.getDiv + stdid + "&school=" + channel, ScheduleActivity.this, new ScheduleActivity.getDivApi());
-
-//        WebView pdf_url = findViewById(R.id.webview);
+        String usertype = sp.getString("usertype","");
+        if (usertype != null) {
+            if ("student".equals(usertype)) {
+                getJsonResponse(URLs.getDiv + stdid + "&school=" + channel, ScheduleActivity.this, new ScheduleActivity.getDivApi());
+            } else {
+                getJsonResponse(URLs.getTeacherTimeTable + teacherId, ScheduleActivity.this, new ScheduleActivity.getTeacherApi());
+            }
+        }
+            //        WebView pdf_url = findViewById(R.id.webview);
 //        pdf_url.getSettings().setJavaScriptEnabled(true);
 //        pdf_url.loadUrl("https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf");
 //        String extStorageDirectory = Environment.getExternalStorageDirectory()
@@ -104,6 +111,21 @@ public class ScheduleActivity extends JsonClass {
     }
 
     class getTimeTableApi implements VolleyCallbackJSONObject {
+        @Override
+        public void onSuccess(JSONObject jSONObject) {
+            try {
+                ScheduleActivity.this.findViewById(R.id.layout_loading).setVisibility(0);
+                pdf = jSONObject.getString("pdfName");
+//                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(pdf));
+//                getApplicationContext().startActivity(browserIntent);
+                openWebPage(pdf);
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Toast.makeText(ScheduleActivity.this, "Somethings is wrong", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+    class getTeacherApi implements VolleyCallbackJSONObject {
         @Override
         public void onSuccess(JSONObject jSONObject) {
             try {
