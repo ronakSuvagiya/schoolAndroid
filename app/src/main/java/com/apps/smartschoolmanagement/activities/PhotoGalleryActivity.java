@@ -2,16 +2,22 @@ package com.apps.smartschoolmanagement.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 
+import com.apps.smartschoolmanagement.adapters.HolidayListAdapter;
+import com.apps.smartschoolmanagement.models.ListData;
 import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 import com.kaopiz.kprogresshud.KProgressHUD;
 import com.apps.smartschoolmanagement.R;
 import com.apps.smartschoolmanagement.adapters.GridAdapter;
@@ -32,11 +38,14 @@ import org.json.JSONObject;
 public class PhotoGalleryActivity extends JsonClass {
     ArrayList<PhotoAlbum> albums = new ArrayList();
     GridView gridView;
-    int[] imageIds = new int[]{R.drawable.img_workshop, R.drawable.img_independenceday, R.drawable.img_sportsday, R.drawable.img_youthconference, R.drawable.img_fest};
-    int[] imageIds_workshop = new int[]{R.drawable.img_workshop1, R.drawable.img_workshop2, R.drawable.img_workshop3, R.drawable.img_workshop4, R.drawable.img_workshop5, R.drawable.img_workshop6};
-    String[] imageTitles = new String[]{"Workshop", "Independence Day", "Sports Day", "Youth Conference", "Learning Feet"};
-    String[] imageTitles_workshop = new String[]{"Workshop1", "Workshop2", "Workshop3", "Workshop4", "Workshop5"};
+    SharedPreferences sp;
+    String channel;
+//    int[] imageIds = new int[]{R.drawable.img_workshop, R.drawable.img_independenceday, R.drawable.img_sportsday, R.drawable.img_youthconference, R.drawable.img_fest};
+//    int[] imageIds_workshop = new int[]{R.drawable.img_workshop1, R.drawable.img_workshop2, R.drawable.img_workshop3, R.drawable.img_workshop4, R.drawable.img_workshop5, R.drawable.img_workshop6};
+//    String[] imageTitles = new String[]{"Workshop", "Independence Day", "Sports Day", "Youth Conference", "Learning Feet"};
+//    String[] imageTitles_workshop = new String[]{"Workshop1", "Workshop2", "Workshop3", "Workshop4", "Workshop5"};
     FloatingActionButton faAddCat,faAddImg;
+    FloatingActionMenu action_menu;
     /* renamed from: com.apps.smartschoolmanagement.activities.PhotoGalleryActivity$1 */
 //    class C12511 implements VolleyCallback {
 //        C12511() {
@@ -57,12 +66,12 @@ public class PhotoGalleryActivity extends JsonClass {
         }
 
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-            ArrayList<String> stringList = new ArrayList(Arrays.asList(((PhotoAlbum) PhotoGalleryActivity.this.albums.get(i)).getPathList()));
-            Collections.sort(stringList);
+//            ArrayList<String> stringList = new ArrayList(Arrays.asList(((PhotoAlbum) PhotoGalleryActivity.this.albums.get(i)).getImagePaths()));
+//            Collections.sort(stringList);
             Intent intent = new Intent(PhotoGalleryActivity.this, PhotoAlbumActivity.class);
-            intent.putStringArrayListExtra("images", stringList);
+            intent.putExtra("catKd", albums.get(i).getCatID());
             intent.putExtra("title", ((PhotoAlbum) PhotoGalleryActivity.this.albums.get(i)).getTitle());
-            ProfileInfo.getInstance().getAlbum_images().clear();
+//            ProfileInfo.getInstance().getAlbum_images().clear();
             PhotoGalleryActivity.this.startActivity(intent);
             PhotoGalleryActivity.this.overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
         }
@@ -80,6 +89,15 @@ public class PhotoGalleryActivity extends JsonClass {
         // getJsonResponse(URLs.gallery, this, new C12511());
         faAddImg = findViewById(R.id.faAddImg);
         faAddCat = findViewById(R.id.faAddCat);
+        action_menu = findViewById(R.id.action_menu);
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
+        channel = (sp.getString("schoolid", ""));
+        String usertype = sp.getString("usertype","");
+        if(usertype.equals("student"))
+        {
+          action_menu.setVisibility(View.GONE);
+        }
+        getJsonResponse(URLs.getImgCategory + channel , this, new PhotoGalleryActivity.getImage());
 
         faAddCat.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,11 +115,11 @@ public class PhotoGalleryActivity extends JsonClass {
             }
         });
         this.gridView.setOnItemClickListener(new C12522());
-        PhotoAlbum listData = new PhotoAlbum();
-        listData.setTitle(String.valueOf(imageTitles));
-        listData.setImagePaths(String.valueOf(imageIds));
-        this.albums.add(listData);
-        this.gridView.setAdapter(new GridAdapter((Context) this, this.albums, (int) R.layout.item_layout_photo_gallery));
+//        PhotoAlbum listData = new PhotoAlbum();
+//        listData.setTitle(String.valueOf(imageTitles));
+//        listData.setImagePaths(String.valueOf(imageIds));
+//        this.albums.add(listData);
+//        this.gridView.setAdapter(new GridAdapter((Context) this, this.albums, (int) R.layout.item_layout_photo_gallery));
     }
 
 //    public void processJSONResult(JSONObject jsonObject) {
@@ -125,4 +143,26 @@ public class PhotoGalleryActivity extends JsonClass {
 //            e.printStackTrace();
 //        }
 //    }
+
+    class getImage implements JsonClass.VolleyCallbackJSONArray {
+        @Override
+        public void onSuccess(JSONArray jsonArray) {
+            for (int i = 0; i< jsonArray.length(); i++) {
+                try {
+                    PhotoAlbum listData = new PhotoAlbum();
+                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+//                    String img= jsonObject1.getString("image_name");
+//                        String images = "http://quickedu.co.in/image/" + img;
+                    listData.setImagePaths("");
+                    listData.setCatID(jsonObject1.getString("id"));
+                    listData.setTitle(jsonObject1.getString("name"));
+                    albums.add(listData);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            gridView.setAdapter(new GridAdapter(PhotoGalleryActivity.this, albums, (int) R.layout.item_layout_photo_gallery));
+
+        }
+    }
 }

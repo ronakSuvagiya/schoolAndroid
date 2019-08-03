@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:n1="http://schemas.android.com/apk/res/android"
+    n1:id="@+id/coordinatorlayout"
+    n1:layout_width="fill_parent"
+    n1:layout_height="wrap_content">
+
+    <include
+        layout="@layout/layout_loading"
+        n1:layout_width="wrap_content"
+        n1:layout_height="wrap_content"
+        n1:layout_gravity="center" />
+
+    <LinearLayout
+        n1:layout_width="fill_parent"
+        n1:layout_height="wrap_content"
+        >
+
+        <androidx.cardview.widget.CardView xmlns:n2="http://schemas.android.com/apk/res-auto"
+            n1:layout_width="fill_parent"
+            n1:layout_height="wrap_content"
+            n1:layout_margin="@dimen/_8sdp"
+            n1:layout_marginTop="@dimen/_20sdp"
+
+            n2:cardBackgroundColor="#ffffffff"
+            n2:cardCornerRadius="@dimen/_6sdp"
+            n2:cardElevation="@dimen/_5sdp">
+
+            <LinearLayout
+                n1:layout_width="fill_parent"
+                n1:layout_height="wrap_content"
+                >
+
+
+                <LinearLayout
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="wrap_content"
+                    n1:background="@drawable/borders_rltb"
+                    n1:orientation="vertical"
+                    n1:padding="@dimen/_8sdp">
+
+                    <TextView
+                        n1:id="@+id/notification_titles"
+                        n1:layout_width="fill_parent"
+                        n1:layout_height="wrap_content"
+                        n1:layout_gravity="center"
+                        n1:layout_marginBottom="@dimen/_10sdp"
+                        n1:lineSpacingMultiplier="1.2"
+                        n1:textColor="@color/colorPrimary"
+                        n1:textSize="@dimen/_22ssp"
+                        n1:text="@string/notice"
+                        n1:textStyle="bold" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

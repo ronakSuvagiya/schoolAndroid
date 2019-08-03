@@ -19,6 +19,9 @@ import com.apps.smartschoolmanagement.R;
 import com.apps.smartschoolmanagement.adapters.FrescoImageAdapter;
 import com.apps.smartschoolmanagement.adapters.ImagePagerAdapter;
 import com.apps.smartschoolmanagement.utils.BaseFinishActivity;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -102,7 +105,7 @@ public class ViewPagerActivity extends BaseFinishActivity {
         List<ImageView> images = new ArrayList();
         for (int i = 0; i < imageAdapter.getCount(); i++) {
             ImageView imageView = new ImageView(this);
-//            Glide.with(this).load((String) imageAdapter.paths.get(i)).fitCenter().placeholder(R.drawable.loading11).crossFade().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageView);
+            Glide.with(this).load((String) imageAdapter.paths.get(i)).fitCenter().placeholder(R.drawable.loading11).crossFade().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageView);
             images.add(imageView);
         }
         ViewPager viewpager = (ViewPager) findViewById(R.id.viewpager);

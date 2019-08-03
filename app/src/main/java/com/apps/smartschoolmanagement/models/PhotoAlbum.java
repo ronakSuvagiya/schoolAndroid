@@ -4,6 +4,15 @@ public class PhotoAlbum {
     public String imagePaths;
     public String[] pathList = null;
     public String title;
+    public String CatID;
+
+    public String getCatID() {
+        return CatID;
+    }
+
+    public void setCatID(String catID) {
+        CatID = catID;
+    }
 
     public String getTitle() {
         return this.title;
@@ -13,7 +22,7 @@ public class PhotoAlbum {
         this.title = title;
     }
 
-    public String getImagePaths() {
+    public String   getImagePaths() {
         return this.imagePaths;
     }
 

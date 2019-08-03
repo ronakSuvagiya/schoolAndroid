@@ -38,7 +38,7 @@ public class FrescoImageAdapter extends BaseAdapter {
         } else {
             simpleDraweeView = (ImageView) convertView;
         }
-        simpleDraweeView.setImageURI(Uri.parse((String) this.paths.get(position)));
+        simpleDraweeView.setImageURI(Uri.parse(paths.get(position)));
         return simpleDraweeView;
     }
 }
