@@ -1,4 +1,4 @@
-package com.kosalgeek.android.photoutil;
+package com.apps.smartschoolmanagement.photoutil;
 
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;

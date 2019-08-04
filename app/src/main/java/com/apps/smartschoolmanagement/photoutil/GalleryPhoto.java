@@ -1,4 +1,4 @@
-package com.kosalgeek.android.photoutil;
+package com.apps.smartschoolmanagement.photoutil;
 
 import android.content.Context;
 import android.content.Intent;

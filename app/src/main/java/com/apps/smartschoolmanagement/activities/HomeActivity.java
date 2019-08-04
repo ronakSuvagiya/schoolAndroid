@@ -7,13 +7,30 @@ import android.content.SharedPreferences;
 import android.graphics.PorterDuff.Mode;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
+import android.util.Log;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.apps.smartschoolmanagement.Comman.URL;
+import com.apps.smartschoolmanagement.photoutil.MainActivity;
+import com.apps.smartschoolmanagement.utils.URLs;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener;
 import com.google.android.material.tabs.TabLayout.Tab;
+
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AlertDialog.Builder;
+
 import com.apps.smartschoolmanagement.R;
 import com.apps.smartschoolmanagement.fragments.Home_Fragment;
 import com.apps.smartschoolmanagement.fragments.ManagerProfile;
@@ -23,6 +40,11 @@ import com.apps.smartschoolmanagement.fragments.StudentProfile;
 import com.apps.smartschoolmanagement.models.UserStaticData;
 import com.apps.smartschoolmanagement.utils.TabPagerAdapter;
 import com.apps.smartschoolmanagement.utils.basehelpers.BaseActivity;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class HomeActivity extends BaseActivity {
     public static int[] images = null;
@@ -34,6 +56,7 @@ public class HomeActivity extends BaseActivity {
     ViewPager viewPager;
     String user_type = null;
     SharedPreferences sp;
+
     /* renamed from: com.apps.smartschoolmanagement.activities.HomeActivity$1 */
     class C12161 implements OnTabSelectedListener {
         C12161() {
@@ -96,13 +119,17 @@ public class HomeActivity extends BaseActivity {
         }
         setContentView(R.layout.tab_layout);
         setTitle("Home");
-        sp =  PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         user_type = sp.getString("usertype", null);
         if (getIntent().getStringArrayExtra("titles") != null) {
             titles = getIntent().getStringArrayExtra("titles");
         }
         if (getIntent().getIntArrayExtra("images") != null) {
             images = getIntent().getIntArrayExtra("images");
+        }
+        if(sp.getString("token","").equals(""))
+        {
+            token();
         }
         this.viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(this.viewPager);
@@ -145,6 +172,66 @@ public class HomeActivity extends BaseActivity {
         finish();
     }
 
+    public void token() {
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w("HOmeActivity", "getInstanceId failed", task.getException());
+                            return;
+                        }
+                        String token = task.getResult().getToken();
+                       String channel = (sp.getString("schoolid", ""));
+                        String stdid = (sp.getString("stdId", ""));
+                        String DeviceID = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+                        PostNotification(token,DeviceID,channel,stdid);
+
+                    }
+                });
+    }
+
+    public void PostNotification(String token, String device, String school, String std) {
+        RequestQueue MyRequestQueue = Volley.newRequestQueue(this);
+        JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("tokan", token);
+            jsonBody.put("deviceID", device);
+            jsonBody.put("school", school);
+            jsonBody.put("std", std);
+
+
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,URLs.sendToken, jsonBody, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    try {
+                        int code = Integer.parseInt(String.valueOf(response.get("code")));
+                        if(code == 200)
+                        {
+                            SharedPreferences.Editor e = sp.edit();
+                            e.putString("token","true");
+                            e.commit();
+                            Toast.makeText(HomeActivity.this,"token Successfully send!",Toast.LENGTH_LONG).show();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Toast.makeText(HomeActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }
+            },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(HomeActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+            MyRequestQueue.add(jsonObjectRequest);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 //    public void showDialogBox() {
 //        new Builder(this).setTitle("Log Out").setMessage("Do you want to Log Out from the Session?").setPositiveButton(17039370, new C12183()).setNegativeButton(17039360, new C12172()).show();
 //    }

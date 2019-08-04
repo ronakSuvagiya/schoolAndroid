@@ -15,5 +15,6 @@ public class MyFirebaseInstanceIDService
         sendRegistrationToServer(refreshedToken);
     }
     private void sendRegistrationToServer(String token) {
+
     }
 }

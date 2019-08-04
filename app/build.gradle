@@ -73,6 +73,11 @@ dependencies {
     implementation 'com.github.mzelzoghbi:zgallery:0.3'
     implementation 'com.kaopiz:kprogresshud:1.2.0'
     implementation 'com.jakewharton.threetenabp:threetenabp:1.2.0'
+
+    implementation 'com.google.firebase:firebase-messaging:19.0.1'
+    implementation 'com.google.firebase:firebase-core:17.0.0'
+
     androidTestImplementation 'androidx.test:runner:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
 }
+apply plugin: 'com.google.gms.google-services'

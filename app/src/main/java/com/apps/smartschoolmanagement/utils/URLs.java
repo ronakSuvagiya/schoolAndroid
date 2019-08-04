@@ -25,8 +25,8 @@ public class URLs {
     public static String getExamSchedules = "http://quickedu.co.in/ApiGetTimeTableExam?Stdid=";
     public static String getTeacherTimeTable = "http://quickedu.co.in/ApiGetTimeTableTeacher?TecherID=";
     public static String getImg = "http://quickedu.co.in/getImageApi?school_id=";
-
-
+    public static String sendToken = "http://quickedu.co.in//addTokenApi/";
+    public static String updateToken = "http://quickedu.co.in//updateTokenApi/";
     public static String getTodayAssignment = "http://quickedu.co.in/getAssignmentByAssignApi?std=";
     public static String getAttends = "http://quickedu.co.in/getAttendance?div=";
 

@@ -1,4 +1,4 @@
-package com.kosalgeek.android.photoutil;
+package com.apps.smartschoolmanagement.photoutil;
 
 public class PhotoLoader extends ImageLoader {
 }
