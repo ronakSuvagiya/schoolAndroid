@@ -1,18 +1,22 @@
 package com.apps.smartschoolmanagement.firebase;
 
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationCompat.Builder;
+import androidx.core.content.ContextCompat;
 
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
@@ -31,22 +35,26 @@ import com.google.firebase.messaging.RemoteMessage;
 import com.apps.smartschoolmanagement.R;
 import com.apps.smartschoolmanagement.activities.HomeActivity;
 import java.util.Calendar;
+import java.util.Map;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "MyFirebaseMsgService";
+    private NotificationChannel mChannel;
+    private NotificationManager notifManager;
     private NotificationCompat.Builder mBuilder;
     public static final String NOTIFICATION_CHANNEL_ID = "10001";
     private NotificationManager mNotificationManager;
     private Context mContext;
 
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        if (remoteMessage.getData() != null) {
+        if (remoteMessage.getData().size() > 0) {
             try {
-//                JSONObject jsonObject1 = new JSONObject(remoteMessage.getData().toString()).getJSONObject("data");
-//                Toast.makeText(this,"send notification",Toast.LENGTH_LONG).show();
-                sendNotification(remoteMessage);
+                Map<String, String> params = remoteMessage.getData();
+                JSONObject object = new JSONObject(params);
+                displayCustomNotificationForOrders(object.getString("title"), object.getString("detail"));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -57,61 +65,70 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Log.d(TAG, "Short lived task is done.");
     }
 
-    private void sendNotification(RemoteMessage remoteMessage) throws JSONException {
-        Intent intent = new Intent(this, HomeActivity.class);
-        intent.addFlags(67108864);
+    private void displayCustomNotificationForOrders(String title, String description) {
+        if (notifManager == null) {
+            notifManager = (NotificationManager) getSystemService
+                    (Context.NOTIFICATION_SERVICE);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationCompat.Builder builder;
+            Intent intent = new Intent(this, HomeActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            PendingIntent pendingIntent;
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            if (mChannel == null) {
+                mChannel = new NotificationChannel
+                        ("0", title, importance);
+                mChannel.setDescription(description);
+                mChannel.enableVibration(true);
+                notifManager.createNotificationChannel(mChannel);
+            }
+            builder = new NotificationCompat.Builder(this, "0");
 
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, Ints.MAX_POWER_OF_TWO);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            pendingIntent = PendingIntent.getActivity(this, 1251, intent, PendingIntent.FLAG_ONE_SHOT);
+            builder.setContentTitle(title)
+                    .setSmallIcon(getNotificationIcon()) // required
+                    .setContentText(description)  // required
+                    .setDefaults(Notification.DEFAULT_ALL)
+                    .setAutoCancel(true)
+                    .setLargeIcon(BitmapFactory.decodeResource
+                            (getResources(), R.mipmap.ic_launcher))
+                    .setBadgeIconType(R.mipmap.ic_launcher)
+                    .setContentIntent(pendingIntent)
+                    .setSound(RingtoneManager.getDefaultUri
+                            (RingtoneManager.TYPE_NOTIFICATION));
+            Notification notification = builder.build();
+            notifManager.notify(0, notification);
+        } else {
 
-//        Intent resultIntent = new Intent(this ,HomeActivity.class);
-//        resultIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//
-//        PendingIntent resultPendingIntent = PendingIntent.getActivity(this,
-//                0 /* Request code */, resultIntent,
-//                PendingIntent.FLAG_UPDATE_CURRENT);
+            Intent intent = new Intent(this, HomeActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            PendingIntent pendingIntent = null;
 
-        String channelId = getString(R.string.default_notification_channel_id);
-        Uri defaultSoundUri = RingtoneManager.getDefaultUri(2);
-        JSONObject jsonObject1 = new JSONObject(remoteMessage.getData().toString()).getJSONObject("data");
-        Builder notificationBuilder = new Builder(this, channelId)
-                .setSmallIcon(R.mipmap.ic_launcher).
-                        setContentTitle(jsonObject1.getString("title"))
-                .setContentText(jsonObject1.getString("message"))
-                .setAutoCancel(true).setSound(defaultSoundUri)
-                .setContentIntent(pendingIntent);
-        notificationBuilder.setVibrate(new long[]{1000, 1000, 1000, 1000, 1000});
-        notificationBuilder.setLights(getResources().getColor(17170443), 1000, 1000);
-        notificationBuilder.addAction(R.mipmap.ic_launcher, "", pendingIntent);
-        notificationBuilder.setColor(getResources().getColor(17170443));
-        ((NotificationManager) getSystemService("notification")).notify((int) Calendar.getInstance().getTimeInMillis(), notificationBuilder.build());
+            pendingIntent = PendingIntent.getActivity(this, 1251, intent, PendingIntent.FLAG_ONE_SHOT);
 
+            Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
+                    .setContentTitle(title)
+                    .setContentText(description)
+                    .setAutoCancel(true)
+                    .setColor(ContextCompat.getColor(getBaseContext(), R.color.colorPrimary))
+                    .setSound(defaultSoundUri)
+                    .setSmallIcon(getNotificationIcon())
+                    .setContentIntent(pendingIntent)
+                    .setStyle(new NotificationCompat.BigTextStyle().setBigContentTitle(title).bigText(description));
 
-//        mBuilder = new NotificationCompat.Builder(mContext);
-//        mBuilder.setSmallIcon(R.mipmap.ic_launcher);
-//        mBuilder.setContentTitle(jsonObject1.getString("title"))
-//                .setContentText(jsonObject1.getString("message"))
-//                .setAutoCancel(false)
-//                .setSound(defaultSoundUri)
-//                .setContentIntent(resultPendingIntent);
-//
-//        mNotificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
-//
-//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O)
-//        {
-//            int importance = NotificationManager.IMPORTANCE_HIGH;
-//            NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "NOTIFICATION_CHANNEL_NAME", importance);
-//            notificationChannel.enableLights(true);
-//            notificationChannel.setLightColor(Color.RED);
-//            notificationChannel.enableVibration(true);
-//            notificationChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
-//            assert mNotificationManager != null;
-//            mBuilder.setChannelId(NOTIFICATION_CHANNEL_ID);
-//            mNotificationManager.createNotificationChannel(notificationChannel);
-//        }
-//        assert mNotificationManager != null;
-//        mNotificationManager.notify(0 /* Request Code */, mBuilder.build());
+            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.notify(1251, notificationBuilder.build());
+        }
     }
 
+    private int getNotificationIcon() {
+        boolean useWhiteIcon = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP);
+        return useWhiteIcon ? R.mipmap.ic_launcher : R.mipmap.ic_launcher;
+    }
     @Override
     public void onNewToken(String s) {
         SharedPreferences sp;
@@ -132,9 +149,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 public void onResponse(JSONObject response) {
                     try {
                         int code = Integer.parseInt(String.valueOf(response.get("code")));
-                        if(code == 200)
-                        {
-                            Toast.makeText(MyFirebaseMessagingService.this,"token Update Successfully!",Toast.LENGTH_LONG).show();
+                        if (code == 200) {
+                            Toast.makeText(MyFirebaseMessagingService.this, "token Update Successfully!", Toast.LENGTH_LONG).show();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -157,3 +173,4 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
     }
 }
+
