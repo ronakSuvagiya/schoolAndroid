@@ -34,6 +34,7 @@ import com.apps.smartschoolmanagement.activities.LibraryActivity;
 import com.apps.smartschoolmanagement.activities.ManageLeavesActivity;
 import com.apps.smartschoolmanagement.activities.MarksListActivity;
 import com.apps.smartschoolmanagement.activities.MyHealthStatusActivity;
+import com.apps.smartschoolmanagement.activities.NotificationActivity;
 import com.apps.smartschoolmanagement.activities.OnlineMaterialActivity;
 import com.apps.smartschoolmanagement.activities.PendingLeaves_HM_Activity;
 import com.apps.smartschoolmanagement.activities.PhotoGalleryActivity;
@@ -78,7 +79,7 @@ public class Home_Fragment extends Fragment {
                             break;
                         }
 
-                    case -2095501965:
+                    case 759553291:
                         if (clickedText.equals("Notification")) {
                             obj = 18;
                             break;
@@ -331,7 +332,7 @@ public class Home_Fragment extends Fragment {
                         Home_Fragment.this.getActivity().overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
                         return;
                     case 18:
-                        Home_Fragment.this.startActivity(new Intent(Home_Fragment.this.getActivity(), PostRemarkActivity.class));
+                        Home_Fragment.this.startActivity(new Intent(Home_Fragment.this.getActivity(), NotificationActivity.class));
                         Home_Fragment.this.getActivity().overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
                         return;
                     case 19:

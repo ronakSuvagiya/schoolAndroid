@@ -206,7 +206,7 @@ ON SEARCH"</string>
     <string name="wifi_on">Wifi</string>
     <string name="workinfo">WORK INFO</string>
     <string name="worksince">Working since</string>
-<string name="notice">Life has two rules: 1) Never quit. 2) Always remember Rule #1.</string>
+    <string name="notice">Life has two rules: 1) Never quit. 2) Always remember Rule #1.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

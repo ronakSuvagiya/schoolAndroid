@@ -29,6 +29,9 @@ public class URLs {
     public static String updateToken = "http://quickedu.co.in//updateTokenApi/";
     public static String getTodayAssignment = "http://quickedu.co.in/getAssignmentByAssignApi?std=";
     public static String getAttends = "http://quickedu.co.in/getAttendance?div=";
+    public static String getStaffData = "http://quickedu.co.in/selectTeacher?schoolId=";
+    public static String getNotificationData = "http://quickedu.co.in/getDataApi?school=";
+
 
 
 

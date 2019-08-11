@@ -20,7 +20,6 @@
             n1:layout_height="wrap_content"
             n1:layout_margin="@dimen/_8sdp"
             n1:layout_marginTop="@dimen/_20sdp"
-
             n2:cardBackgroundColor="#ffffffff"
             n2:cardCornerRadius="@dimen/_6sdp"
             n2:cardElevation="@dimen/_5sdp">

@@ -52,7 +52,8 @@
         android:usesCleartextTraffic="true"
         tools:overrideLibrary="com.google.firebase.messaging"
         tools:replace="android:theme,android:appComponentFactory">
-        <activity android:name=".activities.ScheduleActivity"></activity>
+        <activity android:name=".activities.NotificationActivity"></activity>
+        <activity android:name=".activities.ScheduleActivity" />
         <activity android:name=".activities.ComplaintActivity" />
         <activity android:name=".activities.PostComplaintActivity" />
         <activity android:name=".activities.EventListActivity" />
@@ -186,23 +187,19 @@
             android:resource="@mipmap/ic_launcher" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/colorAccent" />
-
-        <!--<service android:name=".firebase.MyFirebaseMessagingService">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="com.google.firebase.MESSAGING_EVENT" />-->
-            <!--</intent-filter>-->
-        <!--</service>-->
-
-        <!--<service-->
-            <!--android:name="com.google.firebase.messaging.FirebaseMessagingService"-->
-            <!--android:exported="true"-->
-            <!--tools:replace="android:exported">-->
-            <!--<intent-filter android:priority="-500">-->
-                <!--<action android:name="com.google.firebase.MESSAGING_EVENT" />-->
-            <!--</intent-filter>-->
-        <!--</service>-->
-
+            android:resource="@color/colorAccent" /> <!-- <service android:name=".firebase.MyFirebaseMessagingService"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.google.firebase.MESSAGING_EVENT" /> -->
+        <!-- </intent-filter> -->
+        <!-- </service> -->
+        <!-- <service -->
+        <!-- android:name="com.google.firebase.messaging.FirebaseMessagingService" -->
+        <!-- android:exported="true" -->
+        <!-- tools:replace="android:exported"> -->
+        <!-- <intent-filter android:priority="-500"> -->
+        <!-- <action android:name="com.google.firebase.MESSAGING_EVENT" /> -->
+        <!-- </intent-filter> -->
+        <!-- </service> -->
         <service
             android:name=".firebase.MyFirebaseMessagingService"
             android:exported="false">

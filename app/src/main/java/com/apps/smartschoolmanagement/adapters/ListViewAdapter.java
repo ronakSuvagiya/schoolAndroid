@@ -393,20 +393,24 @@ public class ListViewAdapter extends BaseAdapter {
             viewHolder.staff_name.setText(data.getStaff_name());
         }
         if (viewHolder.staff_subject != null) {
-            viewHolder.staff_subject.setText(data.getStaff_subject());
+            viewHolder.staff_subject.setText(data.getStaff_phone());
         }
         if (viewHolder.staff_class != null) {
             viewHolder.staff_class.setText(data.getStaff_class());
         }
-        if (viewHolder.staffprofile_layout != null) {
-            viewHolder.staffprofile_layout.setOnClickListener(new OnClickListener() {
-                public void onClick(View v) {
-                    Intent intent = new Intent(ListViewAdapter.this.mContext, ProfileViewActivity.class);
-                    intent.putExtra("teacherid", data.getStaff_id());
-                    ListViewAdapter.this.mContext.startActivity(intent);
-                }
-            });
-        }
+
+
+//        if (viewHolder.staffprofile_layout != null) {
+//            viewHolder.staffprofile_layout.setOnClickListener(new OnClickListener() {
+//                public void onClick(View v) {
+//                    Intent intent = new Intent(ListViewAdapter.this.mContext, ProfileViewActivity.class);
+//                    intent.putExtra("teacherid", data.getStaff_id());
+//                    ListViewAdapter.this.mContext.startActivity(intent);
+//                }
+//            });
+//        }
+
+
         if (viewHolder.student_photo != null) {
 //            Glide.with(this.mContext).load(Uri.parse(data.getStudent_photo())).override(200, 200).diskCacheStrategy(DiskCacheStrategy.RESULT).centerCrop().into(viewHolder.student_photo);
         }
