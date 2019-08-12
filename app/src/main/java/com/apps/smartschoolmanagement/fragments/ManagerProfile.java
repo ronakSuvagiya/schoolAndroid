@@ -93,7 +93,7 @@ public class ManagerProfile extends JsonFragment {
         this.view.findViewById(R.id.layout_experience).setVisibility(8);
         this.root = (LinearLayout) this.view.findViewById(R.id.root_layout);
         this.view.findViewById(R.id.btn_edit).setOnClickListener(new C13511());
-        this.view.findViewById(R.id.layout_hm).setVisibility(0);
+//        this.view.findViewById(R.id.layout_hm).setVisibility(0);
         this.view.findViewById(R.id.layout_class).setVisibility(8);
         this.view.findViewById(R.id.coordinatorlayout).setBackgroundColor(Color.parseColor("#33546E7A"));
         profilePic = (ImageView) this.view.findViewById(R.id.file_path);

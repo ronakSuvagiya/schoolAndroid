@@ -5,7 +5,7 @@ public class URLs {
 
     // new url start
     public static String getStd = "http://quickedu.co.in/finstdBySchoolId?school="; //1
-    public static String getDiv = "http://quickedu.co.in/findByStd?std="; //1&school=1
+    public static String getDiv = "http://quickedu.co.in/findByStdID?std="; //1&school=1
     public static String getStudentByStdAndDiv = "http://quickedu.co.in/findByStdAndDivAndSchool?std="; //1&div=1&School=1
     public static String addAttendce = "http://quickedu.co.in/addAttendance";
     public static String getStudent = "http://quickedu.co.in/findByStudentid?id="; //1

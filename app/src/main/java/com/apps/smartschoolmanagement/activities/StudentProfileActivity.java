@@ -112,8 +112,12 @@ public class StudentProfileActivity extends JsonClass {
                     listData.setStudent_name(obj.getString("name"));
                     StudentRollNo.add(obj.getInt("rollNo"));
                     JSONObject jsonObject = obj.getJSONObject("divId");
+                    JSONObject school = obj.getJSONObject("school");
                     listData.setStudent_class(jsonObject.getString("name"));
                     listData.setStudent_id(obj.getString("id"));
+                    listData.setStudent_roll(obj.getString("rollNo"));
+                    listData.setDivid(jsonObject.getString("id"));
+                    listData.setSchool(school.getString("id"));
                     Log.e("id","create" + listData.getStudent_id());
                     listDatas.add(listData);
                     Log.e("listdata", jsonArray.toString());
@@ -146,7 +150,7 @@ public class StudentProfileActivity extends JsonClass {
                 divName.removeAll(divName);
                 divId.removeAll(divId);
                 stdid = stdId.get(i);
-                getJsonResponse(URLs.getDiv + stdid + "&school=" + channel, StudentProfileActivity.this, new StudentProfileActivity.getDivApi());
+                getJsonResponse(URLs.getDiv + stdid, StudentProfileActivity.this, new StudentProfileActivity.getDivApi());
             }
 
             @Override

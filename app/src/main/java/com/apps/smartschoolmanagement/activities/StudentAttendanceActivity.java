@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
+import android.view.View;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -47,6 +48,8 @@ public class StudentAttendanceActivity extends JsonClass implements OnMonthChang
     Spinner student;
     String studentid = null;
     Calendar cal;
+    String schoolids,studentsid,divid;
+    int rollno;
     SharedPreferences sp;
     String school = null;
     String std = null;
@@ -122,12 +125,27 @@ public class StudentAttendanceActivity extends JsonClass implements OnMonthChang
         this._Holidays.setText("");
         this._totalWorking.setText("");
         this._totalPresent.setText("");*/
+
         sp = PreferenceManager.getDefaultSharedPreferences(this);
-        this.std = (sp.getString("stdId", ""));
-        this.div = (sp.getString("DivId", ""));
-        this.school = (sp.getString("schoolid", ""));
-        this.roll = (sp.getInt("roll", 0));
-        Log.e("rollbun", String.valueOf(roll));
+        String usertype = sp.getString("usertype","");
+        if(usertype.equals("student")) {
+            this.std = (sp.getString("stdId", ""));
+            this.div = (sp.getString("DivId", ""));
+            this.school = (sp.getString("schoolid", ""));
+            this.roll = (sp.getInt("roll", 0));
+            Log.e("rollbun", String.valueOf(roll));
+        }
+
+        this.std = getIntent().getStringExtra("studentid");
+        this.school = getIntent().getStringExtra("schoolid");
+        this.roll = Integer.parseInt(getIntent().getStringExtra("rollno"));
+        this.div = getIntent().getStringExtra("divid");
+//
+//        this.std = (sp.getString(studentsid,""));
+//        this.div = (sp.getString(schoolids, ""));
+//        this.school = (sp.getString(divid, ""));
+//        this.roll =((int) sp.getInt(String.valueOf(rollno), 0));
+
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.MONTH, 0);
         calendar.set(Calendar.DATE, calendar.getActualMinimum(Calendar.DAY_OF_MONTH));

@@ -70,16 +70,16 @@
                 n1:layout_height="200dp"/>
 
 
-            <com.apps.smartschoolmanagement.utils.ButtonTouchEffect
-                n1:id="@+id/btn_submit"
-                n1:layout_width="wrap_content"
-                n1:layout_height="wrap_content"
-                n1:layout_gravity="center_horizontal"
-                n1:layout_marginTop="@dimen/_8sdp"
-                n1:background="@drawable/corner_rectangle"
-                n1:paddingLeft="@dimen/_35sdp"
-                n1:paddingRight="@dimen/_35sdp"
-                n1:text="Submit" />
+            <!--<com.apps.smartschoolmanagement.utils.ButtonTouchEffect-->
+                <!--n1:id="@+id/btn_submit"-->
+                <!--n1:layout_width="wrap_content"-->
+                <!--n1:layout_height="wrap_content"-->
+                <!--n1:layout_gravity="center_horizontal"-->
+                <!--n1:layout_marginTop="@dimen/_8sdp"-->
+                <!--n1:background="@drawable/corner_rectangle"-->
+                <!--n1:paddingLeft="@dimen/_35sdp"-->
+                <!--n1:paddingRight="@dimen/_35sdp"-->
+                <!--n1:text="Submit" />-->
         </LinearLayout>
 
 

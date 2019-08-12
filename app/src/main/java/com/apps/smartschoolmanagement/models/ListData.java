@@ -12,7 +12,17 @@ public class ListData {
     public String assignment_subject;
     public String assignment_submit_date;
     public String assignment_end_date;
+
+    public String getDivid() {
+        return Divid;
+    }
+
+    public void setDivid(String divid) {
+        Divid = divid;
+    }
+
     public String complaint_title;
+    public  String Divid;
 
     public String getComplaint_title() {
         return complaint_title;

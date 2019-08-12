@@ -2,8 +2,8 @@
 <menu>
     <item xmlns:n1="http://schemas.android.com/apk/res/android"
         xmlns:n2="http://schemas.android.com/apk/res-auto"
-        n1:id="@+id/btnSort"
-        n1:icon="@drawable/piclist_icon_sort"
-        n1:title="@string/action_sort"
+        n1:id="@+id/btnSubmits"
+        n1:icon="@drawable/ic_done_black_24dp"
+        n1:title="submit"
         n2:showAsAction="ifRoom" />
 </menu>

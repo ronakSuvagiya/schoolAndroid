@@ -134,7 +134,7 @@ public class PostAssignment extends JsonFragment {
                 stdid = stdId.get(i);
                 subName.removeAll(subName);
                 subID.removeAll(subID);
-                getJsonResponse(URLs.getDiv + stdid + "&school=" + channel, rootView, new PostAssignment.getDivApi());
+                getJsonResponse(URLs.getDiv + stdid , rootView, new PostAssignment.getDivApi());
                 getJsonResponse(URLs.getSubject + stdid + "&school=" + channel, rootView, new PostAssignment.getSubjectApi());
 
             }

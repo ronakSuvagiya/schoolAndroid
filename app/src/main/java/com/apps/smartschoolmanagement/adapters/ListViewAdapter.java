@@ -428,6 +428,9 @@ public class ListViewAdapter extends BaseAdapter {
                 public void onClick(View v) {
                     Intent intent = new Intent(ListViewAdapter.this.mContext, ProfileViewActivity.class);
                     intent.putExtra("studentid", data.getStudent_id());
+                    intent.putExtra("divid", data.getDivid());
+                    intent.putExtra("rollno", data.getStudent_roll());
+                    intent.putExtra("schoolid", data.getSchool());
                     Log.e("id","send"+ data.getStudent_id());
                     ListViewAdapter.this.mContext.startActivity(intent);
                 }

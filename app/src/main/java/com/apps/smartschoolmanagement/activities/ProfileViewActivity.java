@@ -33,10 +33,11 @@ import org.json.JSONObject;
 
 public class ProfileViewActivity extends JsonClass {
     ImageView profilePic;
-    LinearLayout root;
-    int student_id;
+    LinearLayout root,layout_attd;
+    String student_id;
+    String divid,rollno,schollid;
     String ids;
-    TextView email,name,className,div_name,phone,address,gender,birthday;
+    TextView email,name,names,className,div_name,phone,address,gender,birthday;
 
     /* renamed from: com.apps.smartschoolmanagement.activities.ProfileViewActivity$1 */
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,8 +48,10 @@ public class ProfileViewActivity extends JsonClass {
         setContentView(R.layout.layout_profile_view);
         this.root = (LinearLayout) findViewById(R.id.root_layout);
         this.root.setVisibility(0);
+        layout_attd = findViewById(R.id.layout_attd);
         email = findViewById(R.id.email);
         name = findViewById(R.id.name);
+        names = findViewById(R.id.names);
         className = findViewById(R.id.className);
         div_name = findViewById(R.id.div_name);
         phone = findViewById(R.id.phone);
@@ -61,10 +64,23 @@ public class ProfileViewActivity extends JsonClass {
             findViewById(R.id.layout_subject).setVisibility(0);
         } else if (getIntent().getStringExtra("studentid") != null) {
             this.params.put("student_id", getIntent().getStringExtra("studentid"));
-            student_id = Integer.parseInt(getIntent().getStringExtra("studentid"));
+            student_id = getIntent().getStringExtra("studentid");
+            schollid = getIntent().getStringExtra("schoolid");
+            rollno = getIntent().getStringExtra("rollno");
+            divid = getIntent().getStringExtra("divid");
             Log.e("url",URLs.getStudent+ student_id);
             getJsonResponse(URLs.getStudent + student_id, ProfileViewActivity.this, new ProfileViewActivity.getStudentApi());
-
+            layout_attd.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(ProfileViewActivity.this,StudentAttendanceActivity.class);
+                    intent.putExtra("schoolid",schollid);
+                    intent.putExtra("studentid",student_id);
+                    intent.putExtra("rollno",rollno);
+                    intent.putExtra("divid",divid);
+                    startActivity(intent);
+                }
+            });
         }
     }
 
@@ -88,7 +104,10 @@ public class ProfileViewActivity extends JsonClass {
 //        email.setText(jsonArray.getString(""));
             try {
                 getJsonResponse(URLs.getPrentByStudent + jsonArray.getString("id"), ProfileViewActivity.this, new ProfileViewActivity.getparentDetails());
+                String fname = jsonArray.getString("name");
+                String lname = jsonArray.getString("lastName");
                 name.setText(jsonArray.getString("name"));
+                names.setText(fname + "  " + lname);
                 address.setText(jsonArray.getString("address"));
                 gender.setText(jsonArray.getString("gender"));
                 birthday.setText(jsonArray.getString("dob"));

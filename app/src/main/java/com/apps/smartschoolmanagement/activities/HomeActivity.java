@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -127,9 +128,11 @@ public class HomeActivity extends BaseActivity {
         if (getIntent().getIntArrayExtra("images") != null) {
             images = getIntent().getIntArrayExtra("images");
         }
-        if(sp.getString("token","").equals(""))
-        {
-            token();
+        String usertype = sp.getString("usertype","");
+        if(usertype.equals("student")) {
+            if (sp.getString("token", "").equals("")) {
+                token();
+            }
         }
         this.viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(this.viewPager);

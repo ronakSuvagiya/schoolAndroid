@@ -148,7 +148,7 @@ public class AssignmentsHistory extends JsonFragment {
                 divName.removeAll(divName);
                 divId.removeAll(divId);
                 stdid = stdId.get(i);
-                getJsonResponse(URLs.getDiv + stdid + "&school=" + channel, rootView, new getDivsApi());
+                getJsonResponse(URLs.getDiv + stdid , rootView, new getDivsApi());
             }
 
             @Override

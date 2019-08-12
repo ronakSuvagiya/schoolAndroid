@@ -112,7 +112,7 @@ public class PostComplaintActivity extends JsonClass {
                 divId.removeAll(divId);
                 stdid = stdId.get(i);
 
-                getJsonResponse(URLs.getDiv + stdid + "&school=" + channel, PostComplaintActivity.this, new PostComplaintActivity.getDivApi());
+                getJsonResponse(URLs.getDiv + stdid , PostComplaintActivity.this, new PostComplaintActivity.getDivApi());
 
             }
 
