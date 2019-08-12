@@ -50,7 +50,7 @@ public class ScheduleActivity extends JsonClass {
         String usertype = sp.getString("usertype","");
         if (usertype != null) {
             if ("student".equals(usertype)) {
-                getJsonResponse(URLs.getDiv + stdid , ScheduleActivity.this, new ScheduleActivity.getDivApi());
+                getJsonResponse(URLs.getDiv + stdid, ScheduleActivity.this, new ScheduleActivity.getDivApi());
             } else {
                 getJsonResponse(URLs.getTeacherTimeTable + teacherId, ScheduleActivity.this, new ScheduleActivity.getTeacherApi());
             }

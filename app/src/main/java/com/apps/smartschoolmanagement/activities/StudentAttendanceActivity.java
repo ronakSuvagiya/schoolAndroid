@@ -128,6 +128,7 @@ public class StudentAttendanceActivity extends JsonClass implements OnMonthChang
 
         sp = PreferenceManager.getDefaultSharedPreferences(this);
         String usertype = sp.getString("usertype","");
+        Log.e("usseeerer",usertype);
         if(usertype.equals("student")) {
             this.std = (sp.getString("stdId", ""));
             this.div = (sp.getString("DivId", ""));
@@ -135,12 +136,13 @@ public class StudentAttendanceActivity extends JsonClass implements OnMonthChang
             this.roll = (sp.getInt("roll", 0));
             Log.e("rollbun", String.valueOf(roll));
         }
-
-        this.std = getIntent().getStringExtra("studentid");
-        this.school = getIntent().getStringExtra("schoolid");
-        this.roll = Integer.parseInt(getIntent().getStringExtra("rollno"));
-        this.div = getIntent().getStringExtra("divid");
-//
+        else {
+            this.std = getIntent().getStringExtra("studentid");
+            this.school = getIntent().getStringExtra("schoolid");
+            this.roll = getIntent().getIntExtra("rollno", 0);
+            this.div = getIntent().getStringExtra("divid");
+        }
+        //
 //        this.std = (sp.getString(studentsid,""));
 //        this.div = (sp.getString(schoolids, ""));
 //        this.school = (sp.getString(divid, ""));
