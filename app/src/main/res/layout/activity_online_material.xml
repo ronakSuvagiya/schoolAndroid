@@ -27,14 +27,13 @@
             n1:layout_height="wrap_content"
             n1:layout_margin="@dimen/_8sdp"
             n1:background="@drawable/borders_rltb_white_background"
-            n1:visibility="gone">
+            n1:visibility="visible">
 
             <Spinner
                 n1:id="@+id/spnr_class"
                 n1:layout_width="fill_parent"
                 n1:layout_height="@dimen/_35sdp"
                 n1:alpha="0.7"
-                n1:entries="@array/class_no"
                 n1:paddingLeft="@dimen/_4sdp" />
         </FrameLayout>
 

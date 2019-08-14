@@ -31,6 +31,8 @@ public class URLs {
     public static String getAttends = "http://quickedu.co.in/getAttendance?div=";
     public static String getStaffData = "http://quickedu.co.in/selectTeacher?schoolId=";
     public static String getNotificationData = "http://quickedu.co.in/getDataApi?school=";
+    public static String getOnlineMaterial = "http://quickedu.co.in/getMaterialBySchoolStdAndSubjectApi/";
+
 
 
 

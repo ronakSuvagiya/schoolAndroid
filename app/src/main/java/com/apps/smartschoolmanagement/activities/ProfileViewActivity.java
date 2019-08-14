@@ -69,6 +69,7 @@ public class ProfileViewActivity extends JsonClass {
             rollno = getIntent().getStringExtra("rollno");
             divid = getIntent().getStringExtra("divid");
             Log.e("url",URLs.getStudent+ student_id);
+            layout_attd.setVisibility(View.VISIBLE);
             getJsonResponse(URLs.getStudent + student_id, ProfileViewActivity.this, new ProfileViewActivity.getStudentApi());
             layout_attd.setOnClickListener(new OnClickListener() {
                 @Override

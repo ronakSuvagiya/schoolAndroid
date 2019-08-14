@@ -152,7 +152,7 @@
                             n1:layout_width="wrap_content"
                             n1:layout_height="wrap_content"
                             n1:orientation="horizontal"
-                            n1:visibility="visible">
+                            n1:visibility="gone">
 
                             <TextView
                                 n1:layout_width="fill_parent"
