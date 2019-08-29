@@ -25,16 +25,15 @@ public class URLs {
     public static String getExamSchedules = "http://quickedu.co.in/ApiGetTimeTableExam?Stdid=";
     public static String getTeacherTimeTable = "http://quickedu.co.in/ApiGetTimeTableTeacher?TecherID=";
     public static String getImg = "http://quickedu.co.in/getImageApi?school_id=";
-    public static String sendToken = "http://quickedu.co.in//addTokenApi/";
-    public static String updateToken = "http://quickedu.co.in//updateTokenApi/";
+    public static String sendToken = "http://quickedu.co.in/addTokenApi/";
+    public static String updateToken = "http://quickedu.co.in/updateTokenApi/";
     public static String getTodayAssignment = "http://quickedu.co.in/getAssignmentByAssignApi?std=";
     public static String getAttends = "http://quickedu.co.in/getAttendance?div=";
     public static String getStaffData = "http://quickedu.co.in/selectTeacher?schoolId=";
     public static String getNotificationData = "http://quickedu.co.in/getDataApi?school=";
     public static String getOnlineMaterial = "http://quickedu.co.in/getMaterialBySchoolStdAndSubjectApi/";
-
-
-
+    public static String SendNotification = "http://quickedu.co.in/sendNotifactionApi";
+    public static String FeesDetail = "http://quickedu.co.in/studentFees/";
 
 
 

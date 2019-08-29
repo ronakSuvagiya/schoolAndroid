@@ -56,6 +56,7 @@ public class PostComplaintActivity extends JsonClass {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_complaint);
+        setTitle("Post Complaint");
         this.std = findViewById(R.id.spnr_std);
         this.student = findViewById(R.id.spnr_student);
         this.cls = findViewById(R.id.spnr_class);
@@ -111,7 +112,6 @@ public class PostComplaintActivity extends JsonClass {
                 divName.removeAll(divName);
                 divId.removeAll(divId);
                 stdid = stdId.get(i);
-
                 getJsonResponse(URLs.getDiv + stdid , PostComplaintActivity.this, new PostComplaintActivity.getDivApi());
 
             }

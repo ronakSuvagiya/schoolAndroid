@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:n1="http://schemas.android.com/apk/res/android"
+    n1:id="@+id/coordinatorlayout"
+    n1:layout_width="fill_parent"
+    n1:layout_height="fill_parent">
+
+    <ScrollView
+        style="@style/Scrollview_Style"
+        n1:background="@color/background">
+
+        <LinearLayout
+            n1:layout_width="fill_parent"
+            n1:layout_height="fill_parent"
+            n1:orientation="vertical"
+            n1:padding="@dimen/_12sdp">
+
+            <TextView
+                n1:id="@+id/error"
+                style="@style/TextFields_Error"
+                n1:text="Please fill all the fields" />
+
+            <FrameLayout
+                n1:id="@+id/stdfield"
+                n1:layout_width="fill_parent"
+                n1:layout_height="wrap_content"
+                n1:layout_marginBottom="@dimen/_16sdp"
+                n1:background="@drawable/borders_rltb_white_background"
+                n1:visibility="gone">
+
+                <Spinner
+                    n1:id="@+id/spnr_notification_std"
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="@dimen/_40sdp"
+                    n1:alpha="0.7"
+                    n1:paddingLeft="@dimen/_4sdp" />
+            </FrameLayout>
+
+            <com.apps.smartschoolmanagement.utils.EditTextClearable
+                n1:id="@+id/edit_send_title"
+                n1:layout_width="fill_parent"
+                n1:layout_height="wrap_content"
+                n1:layout_marginBottom="16dp"
+                n1:background="@drawable/borders_rltb_white_background"
+                n1:gravity="top"
+                n1:hint="Enter Title..."
+                n1:maxLines="2"
+                n1:padding="@dimen/_10sdp"
+                n1:textColorHint="#55000000" />
+
+            <com.apps.smartschoolmanagement.utils.EditTextClearable
+                n1:id="@+id/edit_send_description"
+                n1:layout_width="fill_parent"
+                n1:layout_height="200.0dip"
+                n1:background="@drawable/borders_rltb_white_background"
+                n1:gravity="top"
+                n1:hint="Enter Description..."
+                n1:maxLines="30"
+                n1:padding="@dimen/_10sdp"
+                n1:textColorHint="#55000000" />
+
+            <com.apps.smartschoolmanagement.utils.ButtonTouchEffect
+                n1:id="@+id/btn_send_notification"
+                style="@style/Button_Style"
+                n1:layout_gravity="center_horizontal"
+                n1:layout_marginTop="@dimen/_25sdp"
+                n1:background="@drawable/corner_rectangle"
+                n1:paddingLeft="@dimen/_35sdp"
+                n1:paddingRight="@dimen/_35sdp"
+                n1:text="Send" />
+        </LinearLayout>
+    </ScrollView>
+
+    <include layout="@layout/layout_loading" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

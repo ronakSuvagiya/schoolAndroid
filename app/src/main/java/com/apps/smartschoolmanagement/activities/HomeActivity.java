@@ -144,8 +144,6 @@ public class HomeActivity extends BaseActivity {
         }
         this.tabLayout.addOnTabSelectedListener(new C12161());
         setupTabIcons();
-
-
     }
 
     private void setupTabIcons() {

@@ -103,7 +103,7 @@ public class PostAssignment extends JsonFragment {
                     JSONObject obj = jsonArray.getJSONObject(i);
                     subName.add(obj.getString("name"));
                     subID.add(obj.getInt("id"));
-                    subjects = obj.getInt("id");
+//                    subjects = obj.getInt("id");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -144,6 +144,7 @@ public class PostAssignment extends JsonFragment {
 
             }
         });
+
         cls.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -155,9 +156,21 @@ public class PostAssignment extends JsonFragment {
 
             }
         });
+        subj.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                subjects = subID.get(i);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         this.date.setOnClickListener(new OnClickDateListener(this.date, getActivity(), "past"));
         return this.rootView;
     }
+
 
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
