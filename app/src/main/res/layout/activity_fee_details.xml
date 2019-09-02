@@ -274,7 +274,8 @@
                         n1:id="@+id/layout_pay"
                         n1:layout_width="fill_parent"
                         n1:layout_height="wrap_content"
-                        n1:orientation="vertical">
+                        n1:orientation="vertical"
+                        n1:visibility="gone">
 
                         <TextView
                             style="@style/Textview_Style_Header"

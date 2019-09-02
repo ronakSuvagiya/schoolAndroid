@@ -141,13 +141,13 @@ public class FeeDetailsActivity extends JsonClass {
         sp = PreferenceManager.getDefaultSharedPreferences(this);
         students = (sp.getString("studentId", ""));
 
-        getJsonResponse(URLs.FeesDetail + students,getApplicationContext(), new FeeDetailsActivity.getFeesDetailApi());
+        getJsonResponse(URLs.FeesDetail + students,FeeDetailsActivity.this, new FeeDetailsActivity.getFeesDetailApi());
 
         if (UserStaticData.user_type == 0) {
             findViewById(R.id.layout_action).setVisibility(8);
             findViewById(R.id.layout_fields).setVisibility(0);
 //            this.params.put("student_id", ProfileInfo.getInstance().getLoginData().get("userId"));
-            //  getJsonResponse(URLs.feedetails, this, new C12071());
+//              getJsonResponse(URLs.feedetails, this, new C12071());
 
         } else {
             findViewById(R.id.layout_pay).setVisibility(8);
@@ -175,7 +175,7 @@ public class FeeDetailsActivity extends JsonClass {
                     String names = namess.getString("name");
                     int rollno = namess.getInt("rollNo");
                     long paid_amount = obj.getLong("amount");
-                    String std = obj.getString("std");
+                    String std = namess.getString("std");
                     JSONObject total_amount = new JSONObject(std);
                     long total_fess = total_amount.getLong("fees");
 

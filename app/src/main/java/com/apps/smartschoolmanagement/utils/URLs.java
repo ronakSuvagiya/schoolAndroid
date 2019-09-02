@@ -33,15 +33,9 @@ public class URLs {
     public static String getNotificationData = "http://quickedu.co.in/getDataApi?school=";
     public static String getOnlineMaterial = "http://quickedu.co.in/getMaterialBySchoolStdAndSubjectApi/";
     public static String SendNotification = "http://quickedu.co.in/sendNotifactionApi";
-    public static String FeesDetail = "http://quickedu.co.in/studentFees/";
-
-
-
-
-
+    public static String FeesDetail = "http://quickedu.co.in/studentFeesApi/";
 
     // end
-
 
     public static String acceptleave = "http://findlogics.in/school-master/index.php?/api/leaveRequest/acceptLeave";
     public static String album_create = "http://findlogics.in/school-master/index.php?/api/gallery/create";
