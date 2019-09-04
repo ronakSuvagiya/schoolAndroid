@@ -45,6 +45,8 @@ public class FeeDetailsActivity extends JsonClass {
     TextView total;
     SharedPreferences sp;
     String students;
+    long paidFee;
+    long totalFee;
 
     /* renamed from: com.apps.smartschoolmanagement.activities.FeeDetailsActivity$1 */
 //    class C12071 implements VolleyCallback {
@@ -167,27 +169,30 @@ public class FeeDetailsActivity extends JsonClass {
     class getFeesDetailApi implements VolleyCallbackJSONArray {
         @Override
         public void onSuccess(JSONArray jsonArray) {
+            String names = null;
+            int rollno = 0;
             for (int i = 0; i < jsonArray.length(); i++) {
                 try {
                     JSONObject obj = jsonArray.getJSONObject(i);
                     String student = obj.getString("student");
                     JSONObject namess = new JSONObject(student);
-                    String names = namess.getString("name");
-                    int rollno = namess.getInt("rollNo");
+                     names = namess.getString("name");
+                     rollno = namess.getInt("rollNo");
                     long paid_amount = obj.getLong("amount");
                     String std = namess.getString("std");
                     JSONObject total_amount = new JSONObject(std);
                     long total_fess = total_amount.getLong("fees");
-
-                    paid.setText(getString(R.string.Rs) + " " + paid_amount);
-                    due.setText(getString(R.string.Rs) + " " + (paid_amount - total_fess));
-                    total.setText(getString(R.string.Rs) + " " + total_fess);
-                    name.setText(names);
-                    roll.setText(String.valueOf(rollno));
+                    totalFee = total_fess;
+                    paidFee = paidFee + paid_amount ;
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
+            paid.setText(getString(R.string.Rs) + " " + paidFee);
+            due.setText(getString(R.string.Rs) + " " + (paidFee - totalFee));
+            total.setText(getString(R.string.Rs) + " " + totalFee);
+            name.setText(names);
+            roll.setText(String.valueOf(rollno));
         }
     }
 //    public void processJSONResult(JSONArray jsonObject) {
