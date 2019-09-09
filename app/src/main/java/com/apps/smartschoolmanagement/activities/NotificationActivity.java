@@ -20,6 +20,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class NotificationActivity extends JsonClass {
     ListView listView;
@@ -84,8 +85,9 @@ public class NotificationActivity extends JsonClass {
                     e.printStackTrace();
                 }
             }
-            listView.setAdapter(new ListViewAdapter(NotificationActivity.this, R.layout.item_layout_notifications, values));
-
+            listView.setAdapter(new ListViewAdapter(NotificationActivity.this, R.layout.item_layout_notifications, values)
+            );
+            Collections.reverse(values);
         }
     }
 }

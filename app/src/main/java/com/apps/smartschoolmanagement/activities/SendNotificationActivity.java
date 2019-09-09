@@ -60,7 +60,7 @@ public class SendNotificationActivity extends JsonClass {
         channel = (sp.getString("schoolid", ""));
         All = getIntent().getStringExtra("All");
         Std = getIntent().getStringExtra("Std");
-        if (Std.equals("Std"))
+        if (Std!=null && Std.equals("Std"))
         {
             stdfield.setVisibility(View.VISIBLE);
             getJsonResponse(URLs.getStd + channel, SendNotificationActivity.this, new getStdApi());

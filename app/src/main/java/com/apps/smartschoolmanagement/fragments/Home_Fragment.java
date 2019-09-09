@@ -51,6 +51,7 @@ import com.apps.smartschoolmanagement.activities.StaffPayRollActivity;
 import com.apps.smartschoolmanagement.activities.StaffProfileActivity;
 import com.apps.smartschoolmanagement.activities.StudentAttendanceActivity;
 import com.apps.smartschoolmanagement.activities.StudentLeavesActivity;
+import com.apps.smartschoolmanagement.activities.StudentMarkList;
 import com.apps.smartschoolmanagement.activities.StudentProfileActivity;
 import com.apps.smartschoolmanagement.activities.TimeTableActivity;
 import com.apps.smartschoolmanagement.adapters.GridViewAdapter;
@@ -275,7 +276,7 @@ public class Home_Fragment extends Fragment {
                         Home_Fragment.this.getActivity().overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
                         return;
                     case 3:
-                        Home_Fragment.this.startActivity(new Intent(Home_Fragment.this.getActivity(), MarksListActivity.class));
+                        Home_Fragment.this.startActivity(new Intent(Home_Fragment.this.getActivity(), StudentMarkList.class));
                         Home_Fragment.this.getActivity().overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
                         return;
                     case 4:
