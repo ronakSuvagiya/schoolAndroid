@@ -40,10 +40,12 @@ public class StudentMarkList extends JsonClass {
     List<String> Examname = new ArrayList<>();
     List<Integer> ExamId = new ArrayList<>();
     SharedPreferences sp;
-    String stdid,studentid;
-    String SubjectsName,aa;
+    String stdid, studentid;
+    String SubjectsName;
     ListView listView;
-    String[] itemss;
+    String[] items;
+    ArrayList<String> subjects = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,13 +59,12 @@ public class StudentMarkList extends JsonClass {
         LayoutInflater inflater = getLayoutInflater();
         this.header = (ViewGroup) inflater.inflate(R.layout.layout_marks_titles, this.listView, false);
         this.footer = (ViewGroup) inflater.inflate(R.layout.layout_marks_total, this.listView, false);
-        getJsonResponse(URLs.getExam , this, new StudentMarkList.getExamApi());
+        getJsonResponse(URLs.getExam, this, new StudentMarkList.getExamApi());
         exam.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 examid = ExamId.get(i);
                 getJsonResponse(URLs.getSubjectFormat + stdid, StudentMarkList.this, new StudentMarkList.getSubjectFormatApi());
-                getJsonResponse(URLs.getMarksFormat + examid + "&studentRoll=" + studentid , StudentMarkList.this, new StudentMarkList.getMarksFormatApi());
 
             }
 
@@ -81,15 +82,16 @@ public class StudentMarkList extends JsonClass {
             try {
                 horizontalTable.addView(header);
 //                StudentMarkList.this.findViewById(R.id.layout_loading).setVisibility(0);
+                StringBuilder sb = new StringBuilder();
+//                for (String s : subjects) {
+//                    sb.append(s);
+//                    sb.append("\t");
+//                }
                 String format = jSONObject.getString("studentMarks");
                 String[] items = format.split(",");
-                for (String itemas : itemss) {
-                 aa = itemas;
-                }
-                    for (String item : items)
-                {
+                for (String item : items) {
                     View view = getLayoutInflater().inflate(R.layout.layout_marks_english, null);
-                    ((TextView) view.findViewById(R.id.subject)).setText(aa);
+//                    ((TextView) view.findViewById(R.id.subject)).setText(sb.toString());
                     ((TextView) view.findViewById(R.id.obtained)).setText(item);
                     horizontalTable.addView(view);
                 }
@@ -107,18 +109,21 @@ public class StudentMarkList extends JsonClass {
             try {
 //                horizontalTable.addView(header);
 //                StudentMarkList.this.findViewById(R.id.layout_loading).setVisibility(0);
-                String format = jSONObject.getString("fromat");
-                itemss = format.split(",");
-//                for (String item : items)
-//                {
-//                    SubjectsName = item;
+                String format = null;
+                format = jSONObject.getString("fromat");
+                items = format.split(",");
+                for (String item : items) {
+                    subjects.add(item);
 //                    View view = getLayoutInflater().inflate(R.layout.layout_marks_english, null);
 //                    horizontalTable.addView(view);
 //                    View view = getLayoutInflater().inflate(R.layout.layout_marks_english, null);
 //                    ((TextView) view.findViewById(R.id.subject)).setText(item);
 //                    horizontalTable.addView(view);
-//                }
+
+                }
                 AnimationSlideUtil.fadeIn(StudentMarkList.this, horizontalTable);
+                getJsonResponse(URLs.getMarksFormat + examid + "&studentRoll=" + studentid, StudentMarkList.this, new StudentMarkList.getMarksFormatApi());
+
             } catch (JSONException e) {
                 e.printStackTrace();
                 Toast.makeText(StudentMarkList.this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();

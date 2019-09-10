@@ -32,7 +32,7 @@
         n1:background="@drawable/borders_r"
         n1:gravity="center"
         n1:padding="@dimen/_8sdp"
-        n1:text="100"
+        n1:text="50"
         n1:textSize="13.0sp" />
 
     <TextView

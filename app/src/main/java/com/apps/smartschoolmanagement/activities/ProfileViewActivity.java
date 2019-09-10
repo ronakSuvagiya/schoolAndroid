@@ -35,8 +35,9 @@ public class ProfileViewActivity extends JsonClass {
     ImageView profilePic;
     LinearLayout root,layout_attd;
     String student_id;
-    String divid,rollno,schollid;
+    String divid,schollid;
     String ids;
+    int rollno;
     TextView email,name,names,className,div_name,phone,address,gender,birthday;
 
     /* renamed from: com.apps.smartschoolmanagement.activities.ProfileViewActivity$1 */
@@ -66,7 +67,7 @@ public class ProfileViewActivity extends JsonClass {
             this.params.put("student_id", getIntent().getStringExtra("studentid"));
             student_id = getIntent().getStringExtra("studentid");
             schollid = getIntent().getStringExtra("schoolid");
-            rollno = getIntent().getStringExtra("rollno");
+            rollno = getIntent().getIntExtra("rollno",0);
             divid = getIntent().getStringExtra("divid");
             Log.e("url",URLs.getStudent+ student_id);
             layout_attd.setVisibility(View.VISIBLE);

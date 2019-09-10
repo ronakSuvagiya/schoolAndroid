@@ -117,7 +117,7 @@ public class ListData {
     public String student_id;
     public String student_name;
     public String student_photo;
-    public String student_roll;
+    public Integer student_roll;
     public String time;
     public String village;
 public String  exam_title;
@@ -227,11 +227,11 @@ public String exam_pdf;
         this.student_id = student_id;
     }
 
-    public String getStudent_roll() {
+    public Integer getStudent_roll() {
         return this.student_roll;
     }
 
-    public void setStudent_roll(String student_roll) {
+    public void setStudent_roll(Integer student_roll) {
         this.student_roll = student_roll;
     }
 

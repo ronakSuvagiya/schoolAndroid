@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 
 import com.apps.smartschoolmanagement.R;
+import com.apps.smartschoolmanagement.models.ListData;
 import com.apps.smartschoolmanagement.models.UserStaticData;
 import com.apps.smartschoolmanagement.utils.DateDecorator;
 import com.apps.smartschoolmanagement.utils.JsonClass;
@@ -55,9 +56,11 @@ public class StudentAttendanceActivity extends JsonClass implements OnMonthChang
     String std = null;
     String div = null;
     int roll;
+    String stds,schools,divs;
+    int rolls;
     ArrayList<String> adate = new ArrayList<>();
     int count = 0;
-
+    ListData listData = new ListData();
     /* renamed from: com.apps.smartschoolmanagement.activities.StudentAttendanceActivity$5 */
     class C13045 implements DayViewDecorator {
         C13045() {
@@ -75,25 +78,7 @@ public class StudentAttendanceActivity extends JsonClass implements OnMonthChang
         }
     }
 
-    class atte implements VolleyCallbackJSONArray {
-        @Override
-        public void onSuccess(JSONArray jsonArray) {
-            for (int i = 0; i < jsonArray.length(); i++) {
-                try {
-                    JSONObject obj = jsonArray.getJSONObject(i);
-                    String noList[] = obj.getString("rollNo").split(",");
-                    List<String> numberList = Arrays.asList(noList);
-                    if (numberList.contains(String.valueOf(roll))) {
-                        adate.add(obj.getString("date"));
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-            addDecorators(null, adate);
-            Log.e("date", adate.toString());
-        }
-    }
+
 
     public static int getMonth(Date date) {
         Calendar cal = Calendar.getInstance();
@@ -137,10 +122,11 @@ public class StudentAttendanceActivity extends JsonClass implements OnMonthChang
             Log.e("rollbun", String.valueOf(roll));
         }
         else {
-            this.std = getIntent().getStringExtra("studentid");
-            this.school = getIntent().getStringExtra("schoolid");
-            this.roll = getIntent().getIntExtra("rollno", 0);
-            this.div = getIntent().getStringExtra("divid");
+            stds = getIntent().getStringExtra("studentid");
+            schools = getIntent().getStringExtra("schoolid");
+            rolls = getIntent().getIntExtra("rollno", 0);
+            divs = getIntent().getStringExtra("divid");
+
         }
         //
 //        this.std = (sp.getString(studentsid,""));
@@ -157,10 +143,10 @@ public class StudentAttendanceActivity extends JsonClass implements OnMonthChang
         calendar.set(Calendar.DATE, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
         Date nextMonthLastDay = calendar.getTime();
         String end = sdf.format(nextMonthLastDay);
-        getJsonResponse(URLs.getAttends + div + "&std=" + std + "&school=" + school + "&startingDate=" + start + "&endDate=" + end, this, new atte());
         this.materialCalendarView.setOnMonthChangedListener(this);
         if (UserStaticData.user_type == 0) {
             setTitle("My Attendance");
+            getJsonResponse(URLs.getAttends + listData.getDivid() + "&std=" + listData.getStudent_id() + "&school=" + listData.getSchool() + "&startingDate=" + start + "&endDate=" + end, this, new atte());
             //   findViewById(R.id.layout_candidate_selection).setVisibility(8);
             //   this.params.put("student_id", ProfileInfo.getInstance().getLoginData().get("userId"));
             Date today = new Date();
@@ -177,7 +163,25 @@ public class StudentAttendanceActivity extends JsonClass implements OnMonthChang
             //           findViewById(R.id.btn_search).setOnClickListener(new C13023());
         }
     }
-
+    class atte implements VolleyCallbackJSONArray {
+        @Override
+        public void onSuccess(JSONArray jsonArray) {
+            for (int i = 0; i < jsonArray.length(); i++) {
+                try {
+                    JSONObject obj = jsonArray.getJSONObject(i);
+                    String noList[] = obj.getString("rollNo").split(",");
+                    List<String> numberList = Arrays.asList(noList);
+                    if (numberList.contains(String.valueOf(listData.getStudent_roll()))) {
+                        adate.add(obj.getString("date"));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            addDecorators(null, adate);
+            Log.e("date", adate.toString());
+        }
+    }
     public void processJSONResult(String jsonResult) {
         try {
             int i;

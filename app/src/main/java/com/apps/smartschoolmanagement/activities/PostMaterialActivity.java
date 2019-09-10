@@ -75,11 +75,11 @@ public class PostMaterialActivity extends JsonClass {
     List<Integer> stdId = new ArrayList<>();
     List<String> subName = new ArrayList<>();
     List<Integer> subID = new ArrayList<>();
-    int subjects,sttf;
+    int subjects, stdids;
     String channel;
     String urls;
     String file;
-    String PdfPathHolder ;
+    String PdfPathHolder;
     Uri uri;
 
 
@@ -153,6 +153,7 @@ public class PostMaterialActivity extends JsonClass {
         }
 //            Toast.makeText(PostMaterialActivity.this, "Please Select Subject", 0).show();
     }
+
     private void uploadBitmap() {
 
         //getting the tag from the edittext
@@ -199,10 +200,10 @@ public class PostMaterialActivity extends JsonClass {
                 Map<String, DataPart> params = new HashMap<>();
                 long imagename = System.currentTimeMillis();
                 try {
-                    params.put("file", new DataPart(imagename + ".pdf", getBytes(PostMaterialActivity.this,uri)));
+                    params.put("file", new DataPart(imagename + ".pdf", getBytes(PostMaterialActivity.this, uri)));
                 } catch (IOException e) {
                     e.printStackTrace();
-                    Toast.makeText(PostMaterialActivity.this,"ERORRRRRRRRRRRRRRRRRRRR",Toast.LENGTH_LONG).show();
+                    Toast.makeText(PostMaterialActivity.this, "ERORRRRRRRRRRRRRRRRRRRR", Toast.LENGTH_LONG).show();
                 }
                 return params;
             }
@@ -211,6 +212,7 @@ public class PostMaterialActivity extends JsonClass {
         //adding the request to volley
         Volley.newRequestQueue(this).add(volleyMultipartRequest);
     }
+
     public static byte[] getBytes(Context context, Uri uri) throws IOException {
         InputStream iStream = context.getContentResolver().openInputStream(uri);
         try {
@@ -238,7 +240,9 @@ public class PostMaterialActivity extends JsonClass {
             e.printStackTrace();
         } finally {
             // close the stream
-            try{ byteBuffer.close(); } catch (IOException ignored){ /* do nothing */ }
+            try {
+                byteBuffer.close();
+            } catch (IOException ignored) { /* do nothing */ }
         }
         return bytesResult;
     }
@@ -285,6 +289,7 @@ public class PostMaterialActivity extends JsonClass {
             }
             final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(PostMaterialActivity.this, R.layout.spinner_dropdown_custom, subName);
             subj.setAdapter(spinnerArrayAdapter);
+            Log.e("smnData", jsonArray.toString());
         }
     }
 
@@ -297,7 +302,7 @@ public class PostMaterialActivity extends JsonClass {
         this.cls = (Spinner) findViewById(R.id.spnr_class);
         sp = PreferenceManager.getDefaultSharedPreferences(PostMaterialActivity.this);
         channel = (sp.getString("schoolid", ""));
-        getJsonResponse("http://quickedu.co.in/finstdBySchoolId?school=" + channel, getApplicationContext(), new PostMaterialActivity.getStdssApi());
+        getJsonResponse(URLs.getStd + channel, PostMaterialActivity.this, new PostMaterialActivity.getStdssApi());
 //        this.classes = new SpinnerHelper((Context) this, (int) R.id.spnr_class, URLs.class_codes);
 //        this.subject = new SpinnerHelper((Context) this, (int) R.id.spnr_subject, URLs.subject_codes);
         findViewById(R.id.btn_attach).setOnClickListener(new C12561());
@@ -309,10 +314,11 @@ public class PostMaterialActivity extends JsonClass {
         });
         this.subj.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
+
+
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 subjects = subID.get(i);
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -359,7 +365,7 @@ public class PostMaterialActivity extends JsonClass {
 //                        PdfNameHolder = FileUtils.getPath(this, uri);
 //                        this.files.add(new File(PdfNameHolder));
 
-                    if ( data.getData() != null){
+                    if (data.getData() != null) {
                         uri = data.getData();
                     } else {
                         Toast.makeText(this, "Please Choose the correct Format for file", 0).show();

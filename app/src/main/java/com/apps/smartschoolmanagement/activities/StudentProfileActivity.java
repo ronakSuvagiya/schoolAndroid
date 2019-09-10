@@ -115,7 +115,7 @@ public class StudentProfileActivity extends JsonClass {
                     JSONObject school = obj.getJSONObject("school");
                     listData.setStudent_class(jsonObject.getString("name"));
                     listData.setStudent_id(obj.getString("id"));
-                    listData.setStudent_roll(obj.getString("rollNo"));
+                    listData.setStudent_roll(obj.getInt("rollNo"));
                     listData.setDivid(jsonObject.getString("id"));
                     listData.setSchool(school.getString("id"));
                     Log.e("id","create" + listData.getStudent_id());
