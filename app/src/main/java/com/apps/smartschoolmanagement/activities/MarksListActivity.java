@@ -228,7 +228,7 @@ public class MarksListActivity extends JsonClass {
                     ((TextView) view.findViewById(R.id.subject)).setText(listData.getSubject_name());
                     ((TextView) view.findViewById(R.id.obtained)).setText(listData.getObtained());
                     ((TextView) view.findViewById(R.id.result)).setText(listData.getResult());
-                    ((TextView) view.findViewById(R.id.grade)).setText(listData.getCgpa());
+//                    ((TextView) view.findViewById(R.id.grade)).setText(listData.getCgpa());
                     this.horizontalTable.addView(view);
                 }
                 AnimationSlideUtil.fadeIn(this, this.horizontalTable);
@@ -264,7 +264,7 @@ public class MarksListActivity extends JsonClass {
                     }
                 }
                 float percent = (Float.parseFloat(jsonObject1.getString("ObtainedMarks")) / Float.parseFloat(jsonObject1.getString("TotalMarks"))) * 100.0f;
-                ((TextView) this.footer.findViewById(R.id.total_grade)).setText("" + String.format("%.2f", new Object[]{Float.valueOf(percent)}) + "%");
+//                ((TextView) this.footer.findViewById(R.id.total_grade)).setText("" + String.format("%.2f", new Object[]{Float.valueOf(percent)}) + "%");
             }
         } catch (JSONException e) {
             e.printStackTrace();

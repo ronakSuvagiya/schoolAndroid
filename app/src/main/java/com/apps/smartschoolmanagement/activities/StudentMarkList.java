@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.HorizontalScrollView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TableLayout;
@@ -21,6 +22,8 @@ import com.apps.smartschoolmanagement.R;
 import com.apps.smartschoolmanagement.utils.AnimationSlideUtil;
 import com.apps.smartschoolmanagement.utils.JsonClass;
 import com.apps.smartschoolmanagement.utils.URLs;
+import com.github.underscore.lodash.U;
+import com.google.common.collect.ImmutableList;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,12 +31,14 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class StudentMarkList extends JsonClass {
     Spinner exam;
     TableLayout horizontalTable;
-
+    String total;
     ViewGroup footer;
     ViewGroup header;
     int examid;
@@ -41,9 +46,11 @@ public class StudentMarkList extends JsonClass {
     List<Integer> ExamId = new ArrayList<>();
     SharedPreferences sp;
     String stdid, studentid;
+    HorizontalScrollView root;
     String SubjectsName;
     ListView listView;
     String[] items;
+    int sum;
     ArrayList<String> subjects = new ArrayList<>();
 
     @Override
@@ -59,13 +66,19 @@ public class StudentMarkList extends JsonClass {
         LayoutInflater inflater = getLayoutInflater();
         this.header = (ViewGroup) inflater.inflate(R.layout.layout_marks_titles, this.listView, false);
         this.footer = (ViewGroup) inflater.inflate(R.layout.layout_marks_total, this.listView, false);
+        this.root = (HorizontalScrollView) findViewById(R.id.marks);
+        findViewById(R.id.btn_search).setOnClickListener(new View.OnClickListener() {
+                                                             @Override
+                                                             public void onClick(View view) {
+                                                                 getJsonResponse(URLs.getSubjectFormat + stdid, StudentMarkList.this, new StudentMarkList.getSubjectFormatApi());
+                                                             }
+                                                         }
+        );
         getJsonResponse(URLs.getExam, this, new StudentMarkList.getExamApi());
         exam.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 examid = ExamId.get(i);
-                getJsonResponse(URLs.getSubjectFormat + stdid, StudentMarkList.this, new StudentMarkList.getSubjectFormatApi());
-
             }
 
             @Override
@@ -80,21 +93,26 @@ public class StudentMarkList extends JsonClass {
         @Override
         public void onSuccess(JSONObject jSONObject) {
             try {
+                horizontalTable.removeAllViews();
                 horizontalTable.addView(header);
-//                StudentMarkList.this.findViewById(R.id.layout_loading).setVisibility(0);
-                StringBuilder sb = new StringBuilder();
-//                for (String s : subjects) {
-//                    sb.append(s);
-//                    sb.append("\t");
-//                }
+
                 String format = jSONObject.getString("studentMarks");
                 String[] items = format.split(",");
-                for (String item : items) {
+                int size = items.length;
+                int[] arr = new int[size];
+                for (int i = 0; i < items.length; i++) {
+
                     View view = getLayoutInflater().inflate(R.layout.layout_marks_english, null);
-//                    ((TextView) view.findViewById(R.id.subject)).setText(sb.toString());
-                    ((TextView) view.findViewById(R.id.obtained)).setText(item);
+                    ((TextView) view.findViewById(R.id.subject)).setText(subjects.get(i));
+                    ((TextView) view.findViewById(R.id.obtained)).setText(items[i]);
+                    arr[i] = Integer.parseInt(items[i]);
+                    sum += arr[i];
                     horizontalTable.addView(view);
                 }
+                horizontalTable.addView(footer);
+                ((TextView) footer.findViewById(R.id.obtained_marks)).setText(sum + "");
+                ((TextView) footer.findViewById(R.id.total_marks)).setText("200");
+
                 AnimationSlideUtil.fadeIn(StudentMarkList.this, horizontalTable);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -107,19 +125,11 @@ public class StudentMarkList extends JsonClass {
         @Override
         public void onSuccess(JSONObject jSONObject) {
             try {
-//                horizontalTable.addView(header);
-//                StudentMarkList.this.findViewById(R.id.layout_loading).setVisibility(0);
                 String format = null;
                 format = jSONObject.getString("fromat");
                 items = format.split(",");
                 for (String item : items) {
                     subjects.add(item);
-//                    View view = getLayoutInflater().inflate(R.layout.layout_marks_english, null);
-//                    horizontalTable.addView(view);
-//                    View view = getLayoutInflater().inflate(R.layout.layout_marks_english, null);
-//                    ((TextView) view.findViewById(R.id.subject)).setText(item);
-//                    horizontalTable.addView(view);
-
                 }
                 AnimationSlideUtil.fadeIn(StudentMarkList.this, horizontalTable);
                 getJsonResponse(URLs.getMarksFormat + examid + "&studentRoll=" + studentid, StudentMarkList.this, new StudentMarkList.getMarksFormatApi());

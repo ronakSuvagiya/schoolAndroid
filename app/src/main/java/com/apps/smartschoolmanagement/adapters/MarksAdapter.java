@@ -54,7 +54,7 @@ public class MarksAdapter extends BaseAdapter {
             viewHolder.obtained = (TextView) convertView.findViewById(R.id.obtained);
             viewHolder.total = (TextView) convertView.findViewById(R.id.total);
             viewHolder.result = (TextView) convertView.findViewById(R.id.result);
-            viewHolder.cgpa = (TextView) convertView.findViewById(R.id.grade);
+//            viewHolder.cgpa = (TextView) convertView.findViewById(R.id.grade);
             result = convertView;
             convertView.setTag(viewHolder);
         } else {

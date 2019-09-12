@@ -5,5 +5,5 @@
     <TextView n1:textSize="13.0sp" n1:textColor="#ffffffff" n1:gravity="center" n1:background="@drawable/borders_r" n1:padding="@dimen/_8sdp" n1:layout_width="100.0dip" n1:layout_height="wrap_content" n1:text="Marks" />
     <TextView n1:textSize="13.0sp" n1:textColor="#ffffffff" n1:gravity="center" n1:background="@drawable/borders_r" n1:padding="@dimen/_8sdp" n1:layout_width="100.0dip" n1:layout_height="wrap_content" n1:text="Total Marks" />
     <TextView n1:textSize="13.0sp" n1:textColor="#ffffffff" n1:gravity="center" n1:background="@drawable/borders_r" n1:padding="@dimen/_8sdp" n1:layout_width="100.0dip" n1:layout_height="wrap_content" n1:text="Results" />
-    <TextView n1:textSize="13.0sp" n1:textColor="#ffffffff" n1:gravity="center" n1:padding="@dimen/_8sdp" n1:layout_width="100.0dip" n1:layout_height="wrap_content" n1:text="Grade" />
+<!--    <TextView n1:textSize="13.0sp" n1:textColor="#ffffffff" n1:gravity="center" n1:padding="@dimen/_8sdp" n1:layout_width="100.0dip" n1:layout_height="wrap_content" n1:text="Grade" />-->
 </TableRow>

@@ -46,12 +46,12 @@
         n1:textColor="@android:color/holo_green_dark"
         n1:textSize="13.0sp" />
 
-    <TextView
-        n1:id="@+id/grade"
-        n1:layout_width="100.0dip"
-        n1:layout_height="wrap_content"
-        n1:gravity="center"
-        n1:padding="@dimen/_8sdp"
-        n1:text="A"
-        n1:textSize="13.0sp" />
+<!--    <TextView-->
+<!--        n1:id="@+id/grade"-->
+<!--        n1:layout_width="100.0dip"-->
+<!--        n1:layout_height="wrap_content"-->
+<!--        n1:gravity="center"-->
+<!--        n1:padding="@dimen/_8sdp"-->
+<!--        n1:text="A"-->
+<!--        n1:textSize="13.0sp" />-->
 </TableRow>

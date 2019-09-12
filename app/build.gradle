@@ -43,6 +43,9 @@ dependencies {
                 exclude group: 'com.google.android.gms'
             }
 
+    implementation 'com.github.javadev:underscore:1.47'
+
+
     implementation 'net.gotev:uploadservice:2.1'
 
     implementation 'com.wang.avi:library:2.1.3'
