@@ -77,7 +77,8 @@ public class StudentAttendance extends JsonFragment implements OnMonthChangedLis
         }
     }
 
-    class addAttendance implements VolleyCallbackJSONObject {
+    class
+    addAttendance implements VolleyCallbackJSONObject {
 
         @Override
         public void onSuccess(JSONObject jSONObject) {

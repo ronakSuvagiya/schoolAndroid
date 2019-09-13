@@ -179,7 +179,7 @@ public class JsonClass extends AppCompatActivity {
                 }
             }, new ErrorListener() {
                 public void onErrorResponse(VolleyError error) {
-                    Log.e("jkl", "Error: " + error.getMessage());
+
                     if (JsonClass.this.findViewById(R.id.layout_loading) != null) {
                         JsonClass.this.findViewById(R.id.layout_loading).setVisibility(8);
                     }

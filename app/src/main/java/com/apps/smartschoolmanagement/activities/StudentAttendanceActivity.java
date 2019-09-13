@@ -146,7 +146,7 @@ public class StudentAttendanceActivity extends JsonClass implements OnMonthChang
         this.materialCalendarView.setOnMonthChangedListener(this);
         if (UserStaticData.user_type == 0) {
             setTitle("My Attendance");
-            getJsonResponse(URLs.getAttends + listData.getDivid() + "&std=" + listData.getStudent_id() + "&school=" + listData.getSchool() + "&startingDate=" + start + "&endDate=" + end, this, new atte());
+            getJsonResponse(URLs.getAttends + div + "&std=" + std + "&school=" + school + "   " + start + "&endDate=" + end, this, new atte());
             //   findViewById(R.id.layout_candidate_selection).setVisibility(8);
             //   this.params.put("student_id", ProfileInfo.getInstance().getLoginData().get("userId"));
             Date today = new Date();
@@ -155,6 +155,8 @@ public class StudentAttendanceActivity extends JsonClass implements OnMonthChang
             //     this.params.put("month", "" + (cal.get(2) + 1));
             //  getJsonResponse(URLs.attendance, this, new C12981());
         } else if (UserStaticData.user_type == 1) {
+            getJsonResponse(URLs.getAttends + divs + "&std=" + stds + "&school=" + schools + "   " + start + "&endDate=" + end, this, new atte());
+
             //       setTitle("Student's Attendance");
             //      findViewById(R.id.layout_candidate_selection).setVisibility(0);
             //        this.classes = (Spinner) findViewById(R.id.spnr_class);
