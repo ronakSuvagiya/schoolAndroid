@@ -116,19 +116,21 @@ public class StudentAttendanceActivity extends JsonClass implements OnMonthChang
         Log.e("usseeerer",usertype);
         if(usertype.equals("student")) {
             this.std = (sp.getString("stdId", ""));
+        Log.e("sdsds",std);
             this.div = (sp.getString("DivId", ""));
             this.school = (sp.getString("schoolid", ""));
             this.roll = (sp.getInt("roll", 0));
             Log.e("rollbun", String.valueOf(roll));
         }
         else {
-            stds = getIntent().getStringExtra("studentid");
-            schools = getIntent().getStringExtra("schoolid");
-            rolls = getIntent().getIntExtra("rollno", 0);
-            divs = getIntent().getStringExtra("divid");
-
+            this.std = getIntent().getStringExtra("studentid");
+            Log.e("sdsds",std);
+            this.school = getIntent().getStringExtra("schoolid");
+            this.roll  = getIntent().getIntExtra("rollno", 0);
+            this.div = getIntent().getStringExtra("divid");
+            Log.e("rollbusdn", String.valueOf(roll));
         }
-        //
+
 //        this.std = (sp.getString(studentsid,""));
 //        this.div = (sp.getString(schoolids, ""));
 //        this.school = (sp.getString(divid, ""));
@@ -145,8 +147,10 @@ public class StudentAttendanceActivity extends JsonClass implements OnMonthChang
         String end = sdf.format(nextMonthLastDay);
         this.materialCalendarView.setOnMonthChangedListener(this);
         if (UserStaticData.user_type == 0) {
-            setTitle("My Attendance");
-            getJsonResponse(URLs.getAttends + div + "&std=" + std + "&school=" + school + "   " + start + "&endDate=" + end, this, new atte());
+            getJsonResponse(URLs.getAttends + div + "&std=" + std + "&school=" + school + "&startingDate=" + start + "&endDate=" + end, this, new atte());
+
+                        setTitle("My Attendance");
+//            getJsonResponse(URLs.getAttends + div + "&std=" + std + "&school=" + school + "   " + start + "&endDate=" + end, this, new atte());
             //   findViewById(R.id.layout_candidate_selection).setVisibility(8);
             //   this.params.put("student_id", ProfileInfo.getInstance().getLoginData().get("userId"));
             Date today = new Date();
@@ -155,9 +159,11 @@ public class StudentAttendanceActivity extends JsonClass implements OnMonthChang
             //     this.params.put("month", "" + (cal.get(2) + 1));
             //  getJsonResponse(URLs.attendance, this, new C12981());
         } else if (UserStaticData.user_type == 1) {
-            getJsonResponse(URLs.getAttends + divs + "&std=" + stds + "&school=" + schools + "   " + start + "&endDate=" + end, this, new atte());
+            getJsonResponse(URLs.getAttends + div + "&std=" + std + "&school=" + school + "&startingDate=" + start + "&endDate=" + end, this, new atte());
 
-            //       setTitle("Student's Attendance");
+//            getJsonResponse(URLs.getAttends + divs + "&std=" + stds + "&school=" + schools + "   " + start + "&endDate=" + end, this, new atte());
+
+                   setTitle("Student's Attendance");
             //      findViewById(R.id.layout_candidate_selection).setVisibility(0);
             //        this.classes = (Spinner) findViewById(R.id.spnr_class);
             //         this.student = (Spinner) findViewById(R.id.spnr_student);
@@ -173,7 +179,7 @@ public class StudentAttendanceActivity extends JsonClass implements OnMonthChang
                     JSONObject obj = jsonArray.getJSONObject(i);
                     String noList[] = obj.getString("rollNo").split(",");
                     List<String> numberList = Arrays.asList(noList);
-                    if (numberList.contains(String.valueOf(listData.getStudent_roll()))) {
+                    if (numberList.contains(String.valueOf(roll))) {
                         adate.add(obj.getString("date"));
                     }
                 } catch (JSONException e) {
