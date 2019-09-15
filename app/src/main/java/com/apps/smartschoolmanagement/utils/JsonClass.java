@@ -168,7 +168,7 @@ public class JsonClass extends AppCompatActivity {
             if (findViewById(R.id.layout_loading) != null) {
                 findViewById(R.id.layout_loading).setVisibility(0);
             }
-            Log.e("utl", url);
+            Log.e("utl",url);
             JsonArrayRequest strReq = new JsonArrayRequest(Request.Method.GET, url, null, new Listener<JSONArray>() {
                 @Override
                 public void onResponse(JSONArray response) {
@@ -179,7 +179,7 @@ public class JsonClass extends AppCompatActivity {
                 }
             }, new ErrorListener() {
                 public void onErrorResponse(VolleyError error) {
-
+                    Log.e("jkl", "Error: " + error.getMessage());
                     if (JsonClass.this.findViewById(R.id.layout_loading) != null) {
                         JsonClass.this.findViewById(R.id.layout_loading).setVisibility(8);
                     }
@@ -235,7 +235,6 @@ public class JsonClass extends AppCompatActivity {
                         JsonClass.this.findViewById(R.id.layout_loading).setVisibility(8);
                     }
 
-
                     if (error != null && error.networkResponse != null) {
                         int statusCode = error.networkResponse.statusCode;
                         Log.d("jkl", "Error Code: " + statusCode);
@@ -248,8 +247,6 @@ public class JsonClass extends AppCompatActivity {
                         }
                     } else if (error == null || error.getMessage() == null) {
                         JsonClass.this.showToast("Unidentified Server Response");
-                    } else if (error.getMessage().equals("org.json.JSONException: End of input at character 0 of ")) {
-                        JsonClass.this.showToast("Data Not Found..");
                     } else if (!MyApplication.isActivityVisible()) {
                         JsonClass.this.showNetworkDialog("Your network speed too slow. Please switch your network", "Switch");
                     }

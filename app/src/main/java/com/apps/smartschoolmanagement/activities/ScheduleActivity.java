@@ -1,33 +1,46 @@
 package com.apps.smartschoolmanagement.activities;
 
-import androidx.annotation.RequiresPermission;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
 
+
+
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.util.Log;
-import android.webkit.WebView;
-import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
-import com.apps.smartschoolmanagement.BuildConfig;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HurlStack;
+import com.android.volley.toolbox.Volley;
 import com.apps.smartschoolmanagement.R;
-import com.apps.smartschoolmanagement.utils.Downloader;
+import com.apps.smartschoolmanagement.utils.InputStreamVolleyRequest;
 import com.apps.smartschoolmanagement.utils.JsonClass;
 import com.apps.smartschoolmanagement.utils.URLs;
+import com.google.android.gms.common.util.IOUtils;
 
+import org.apache.commons.io.FileUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,21 +51,28 @@ public class ScheduleActivity extends JsonClass {
     int divid;
     String pdf;
     String div;
+    InputStream test;
+    String url;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
-
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
         sp = PreferenceManager.getDefaultSharedPreferences(ScheduleActivity.this);
         String channel = (sp.getString("schoolid", ""));
         String teacherId = String.valueOf((sp.getInt("teachermaster", 0)));
         String stdid = (sp.getString("stdId", ""));
+        String DivId = (sp.getString("DivId", ""));
         String usertype = sp.getString("usertype","");
         if (usertype != null) {
             if ("student".equals(usertype)) {
-                getJsonResponse(URLs.getDiv + stdid, ScheduleActivity.this, new ScheduleActivity.getDivApi());
+              url =  URLs.getTimeTable + DivId;
+              openWebPage(url);
             } else {
-                getJsonResponse(URLs.getTeacherTimeTable + teacherId, ScheduleActivity.this, new ScheduleActivity.getTeacherApi());
+               url = URLs.getTeacherTimeTable + teacherId;
+                openWebPage(url);
             }
         }
             //        WebView pdf_url = findViewById(R.id.webview);
@@ -91,67 +111,61 @@ public class ScheduleActivity extends JsonClass {
 //        startActivity(intent);
 //    }
 
-    class getDivApi implements VolleyCallbackJSONArray {
-        @Override
-        public void onSuccess(JSONArray jsonArray) {
-            for (int i = 0; i < jsonArray.length(); i++) {
-                try {
-                    ScheduleActivity.this.findViewById(R.id.layout_loading).setVisibility(0);
-                    JSONObject obj = jsonArray.getJSONObject(i);
-                    divName.add(obj.getString("name"));
-                    divId.add(obj.getInt("id"));
-                     div = String.valueOf(obj.getInt("id"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-            getJsonResponse(URLs.getTimeTable + div, ScheduleActivity.this, new ScheduleActivity.getTimeTableApi());
-            Log.e("divData", jsonArray.toString());
-        }
-    }
 
-    class getTimeTableApi implements VolleyCallbackJSONObject {
-        @Override
-        public void onSuccess(JSONObject jSONObject) {
-            try {
-                ScheduleActivity.this.findViewById(R.id.layout_loading).setVisibility(0);
-                pdf = jSONObject.getString("pdfName");
-//                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(pdf));
-//                getApplicationContext().startActivity(browserIntent);
-                openWebPage(pdf);
-            } catch (JSONException e) {
-                e.printStackTrace();
-                Toast.makeText(ScheduleActivity.this, "Somethings is wrong", Toast.LENGTH_LONG).show();
-            }
-        }
-    }
-    class getTeacherApi implements VolleyCallbackJSONObject {
-        @Override
-        public void onSuccess(JSONObject jSONObject) {
-            try {
-                ScheduleActivity.this.findViewById(R.id.layout_loading).setVisibility(0);
-                pdf = jSONObject.getString("pdfName");
-//                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(pdf));
-//                getApplicationContext().startActivity(browserIntent);
-                openWebPage(pdf);
-            } catch (JSONException e) {
-                e.printStackTrace();
-                Toast.makeText(ScheduleActivity.this, "Somethings is wrong", Toast.LENGTH_LONG).show();
-            }
-        }
-    }
+
     public void openWebPage(String url) {
-
-        Uri webpage = Uri.parse(url);
-
-        if (!url.startsWith("http://") && !url.startsWith("https://")) {
-            webpage = Uri.parse("http://" +"Quickedu.co.in/timeTable/" +  url);
+        if (findViewById(R.id.layout_loading) != null) {
+            findViewById(R.id.layout_loading).setVisibility(0);
         }
+        InputStreamVolleyRequest request = new     InputStreamVolleyRequest(Request.Method.GET, url,
+                new Response.Listener<byte[]>() {
+                    @Override
+                    public void onResponse(byte[] response) {
+                        // TODO handle the response
 
-        Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivity(intent);
-            this.finish();
-        }
+
+                                File root = new File(Environment.getExternalStorageDirectory(), "TimeTable");
+                                if (!root.exists()) {
+                                    root.mkdirs();
+                                }
+                                File file = new File(root, "timeTable.pdf");
+                        try {
+                            file.createNewFile();
+                            BufferedOutputStream salida = new BufferedOutputStream(new FileOutputStream(file));
+                            salida.write(response);
+                            salida.flush();
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        if (ScheduleActivity.this.findViewById(R.id.layout_loading) != null) {
+                            ScheduleActivity.this.findViewById(R.id.layout_loading).setVisibility(8);
+                        }
+                        // Here you declare your pdf path
+                        Intent pdfViewIntent = new Intent(Intent.ACTION_VIEW);
+                        pdfViewIntent.setDataAndType(Uri.fromFile(file),"application/pdf");
+                        pdfViewIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+                        Intent intent = Intent.createChooser(pdfViewIntent, "Open File");
+                        try {
+                            startActivity(intent);
+                        } catch (ActivityNotFoundException e) {
+                            Toast.makeText(ScheduleActivity.this, "PDf Cannot Open", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                } ,new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (ScheduleActivity.this.findViewById(R.id.layout_loading) != null) {
+                    ScheduleActivity.this.findViewById(R.id.layout_loading).setVisibility(8);
+                }
+                Toast.makeText(ScheduleActivity.this, "Cannot Getting Time Table.", Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
+            }
+        }, null);
+        RequestQueue mRequestQueue = Volley.newRequestQueue(getApplicationContext(), new HurlStack());
+        mRequestQueue.add(request);
     }
 }

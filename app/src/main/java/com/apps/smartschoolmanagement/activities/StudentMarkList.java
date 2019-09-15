@@ -1,6 +1,5 @@
 package com.apps.smartschoolmanagement.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -22,18 +21,13 @@ import com.apps.smartschoolmanagement.R;
 import com.apps.smartschoolmanagement.utils.AnimationSlideUtil;
 import com.apps.smartschoolmanagement.utils.JsonClass;
 import com.apps.smartschoolmanagement.utils.URLs;
-import com.github.underscore.lodash.U;
-import com.google.common.collect.ImmutableList;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class StudentMarkList extends JsonClass {
     Spinner exam;

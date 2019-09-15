@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "51693339187",
+    "firebase_url": "https://fir-demo-2ae63.firebaseio.com",
+    "project_id": "fir-demo-2ae63",
+    "storage_bucket": "fir-demo-2ae63.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:51693339187:android:20dd1222393d81bd",
+        "android_client_info": {
+          "package_name": "com.apps.smartschoolmanagement"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "51693339187-ajs8ick0mom3ufra2kg17bopvn68kaj5.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "51693339187-ajs8ick0mom3ufra2kg17bopvn68kaj5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAiAnwVLPvKofHuMJFc5dBfs82qLhzuxM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
