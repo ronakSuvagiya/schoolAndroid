@@ -37,6 +37,7 @@ public class ProfileViewActivity extends JsonClass {
     String student_id;
     String divid,schollid;
     String ids;
+    String StdId;
     int rollno;
     TextView email,name,names,className,div_name,phone,address,gender,birthday;
 
@@ -59,6 +60,7 @@ public class ProfileViewActivity extends JsonClass {
         address = findViewById(R.id.address);
         gender = findViewById(R.id.gender);
         birthday = findViewById(R.id.birthday);
+        setTitle("Student Profile");
         this.profilePic = (ImageView) findViewById(R.id.file_path);
         if (getIntent().getStringExtra("teacherid") != null) {
             this.params.put("teacher_id", getIntent().getStringExtra("teacherid"));
@@ -77,7 +79,7 @@ public class ProfileViewActivity extends JsonClass {
                 public void onClick(View view) {
                     Intent intent = new Intent(ProfileViewActivity.this,StudentAttendanceActivity.class);
                     intent.putExtra("schoolid",schollid);
-                    intent.putExtra("studentid",student_id);
+                    intent.putExtra("studentid",StdId);
                     intent.putExtra("rollno",rollno);
                     intent.putExtra("divid",divid);
                     startActivity(intent);
@@ -119,7 +121,7 @@ public class ProfileViewActivity extends JsonClass {
                 div_name.setText(jsonObject.getString("name"));
 
                 JSONObject jsonObject2 = jsonObject.getJSONObject("stdId");
-
+                StdId = jsonObject2.getString("id");
                 className.setText(jsonObject2.getString("stdName"));
 
             } catch (JSONException e) {
