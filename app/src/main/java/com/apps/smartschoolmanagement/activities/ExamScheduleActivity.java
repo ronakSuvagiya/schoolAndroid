@@ -55,6 +55,7 @@ public class ExamScheduleActivity extends JsonClass {
                 try {
                     ListData listData = new ListData();
                     JSONObject obj = jsonArray.getJSONObject(i);
+                    listData.setExamScheduleID(String.valueOf(obj.getInt("id")));
                     listData.setExam_date(obj.getString("examDate"));
                     listData.setExam_title(obj.getString("title"));
                     listData.setExam_pdf(obj.getString("pdfName"));

@@ -2,6 +2,7 @@ package com.apps.smartschoolmanagement.adapters;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
@@ -10,7 +11,10 @@ import android.net.Uri;
 import android.os.Build.VERSION;
 import android.os.Environment;
 import android.os.Handler;
+
 import androidx.core.content.FileProvider;
+
+import android.os.StrictMode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,12 +26,24 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HurlStack;
+import com.android.volley.toolbox.Volley;
+import com.apps.smartschoolmanagement.activities.ScheduleActivity;
 import com.apps.smartschoolmanagement.permissions.PermissionHandler;
 import com.apps.smartschoolmanagement.permissions.Permissions;
+import com.apps.smartschoolmanagement.utils.InputStreamVolleyRequest;
+import com.apps.smartschoolmanagement.utils.URLs;
 import com.google.common.net.HttpHeaders;
 import com.apps.smartschoolmanagement.R;
 import com.apps.smartschoolmanagement.models.OnlineMaterial;
+
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -49,6 +65,8 @@ public class MaterialAdapter extends BaseAdapter {
     /* renamed from: t */
     Thread f63t;
     int totalSize = 0;
+    OnlineMaterial data;
+String url;
 
     private static class ViewHolder {
         TextView className;
@@ -81,6 +99,8 @@ public class MaterialAdapter extends BaseAdapter {
     public View getView(int i, View convertView, ViewGroup viewGroup) {
         ViewHolder viewHolder;
         View result;
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
         if (convertView == null) {
             viewHolder = new ViewHolder();
             convertView = LayoutInflater.from(this.mContext).inflate(this.resId, viewGroup, false);
@@ -93,7 +113,7 @@ public class MaterialAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
             result = convertView;
         }
-        final OnlineMaterial data = (OnlineMaterial) getItem(i);
+     data = (OnlineMaterial) getItem(i);
         if (viewHolder.subjectName != null) {
             viewHolder.subjectName.setText(data.getSubjectName());
         }
@@ -104,12 +124,11 @@ public class MaterialAdapter extends BaseAdapter {
             viewHolder.download.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    openWebPage(data.getFileName());
-
+                    Permissions.check(mContext, new String[]{"android.permission.WRITE_EXTERNAL_STORAGE", "android.permission.READ_EXTERNAL_STORAGE"}, "Storage Permission is required to use this service", new Permissions.Options().setSettingsDialogTitle("Warning!").setRationaleDialogTitle(HttpHeaders.WARNING), new C12551());
                 }
             });
         }
-            /* renamed from: com.apps.smartschoolmanagement.adapters.MaterialAdapter$1$1 */
+        /* renamed from: com.apps.smartschoolmanagement.adapters.MaterialAdapter$1$1 */
 //                class C13281 extends PermissionHandler {
 //                    C13281() {
 //                    }
@@ -128,8 +147,8 @@ public class MaterialAdapter extends BaseAdapter {
 //                }
 //            });
 //        }
-            return result;
-        }
+        return result;
+    }
 
 //    public void downloadFile(String url, String name) {
 //        final Handler handler = new Handler();
@@ -259,18 +278,89 @@ public class MaterialAdapter extends BaseAdapter {
 //    }
 
 
-    public void openWebPage(String url) {
-
-        Uri webpage = Uri.parse(url);
-
-        if (!url.startsWith("http://") && !url.startsWith("https://")) {
-            webpage = Uri.parse("http://" +"Quickedu.co.in/document/" +  url);
+    class C12551 extends PermissionHandler {
+        C12551() {
         }
 
-        Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
-        if (intent.resolveActivity(mContext.getPackageManager()) != null) {
-            mContext.startActivity(intent);
-//            mContext.finish();
+        public void onGranted() {
+            url = URLs.getMaterialId + data.getDocId();
+            openWebPage(url);
+        }
+        public void onDenied(Context context, ArrayList<String> arrayList) {
+            Toast.makeText(mContext, "You have to allow Storage Permissions to use this service", 0).show();
         }
     }
+
+
+/*
+        public void openWebPage(String url) {
+
+            Uri webpage = Uri.parse(url);
+
+            if (!url.startsWith("http://") && !url.startsWith("https://")) {
+                webpage = Uri.parse("http://" + "Quickedu.co.in/document/" + url);
+            }
+
+            Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+            if (intent.resolveActivity(mContext.getPackageManager()) != null) {
+                mContext.startActivity(intent);
+//            mContext.finish();
+            }
+        }*/
+
+public void openWebPage(String url) {
+//    if (findViewById(R.id.layout_loading) != null) {
+//        findViewById(R.id.layout_loading).setVisibility(0);
+//    }
+    InputStreamVolleyRequest request = new InputStreamVolleyRequest(Request.Method.GET, url,
+            new Response.Listener<byte[]>() {
+                @Override
+                public void onResponse(byte[] response) {
+                    // TODO handle the response
+
+                    File root = new File(Environment.getExternalStorageDirectory(), "Material");
+                    if (!root.exists()) {
+                        root.mkdirs();
+                    }
+                    File file = new File(root,data.getFileName());
+                    try {
+                        file.createNewFile();
+                        BufferedOutputStream salida = new BufferedOutputStream(new FileOutputStream(file));
+                        salida.write(response);
+                        salida.flush();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+//                    if (ScheduleActivity.this.findViewById(R.id.layout_loading) != null) {
+//                        ScheduleActivity.this.findViewById(R.id.layout_loading).setVisibility(8);
+//                    }
+                    // Here you declare your pdf path
+                    Intent pdfViewIntent = new Intent(Intent.ACTION_VIEW);
+                    pdfViewIntent.setDataAndType(Uri.fromFile(file),data.getDocType());
+                    pdfViewIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+                    Intent intent = Intent.createChooser(pdfViewIntent, "Open File");
+                    try {
+                        mContext.startActivity(intent);
+                    } catch (ActivityNotFoundException e) {
+                        Toast.makeText(mContext, "PDf Cannot Open", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            } ,new Response.ErrorListener() {
+
+        @Override
+        public void onErrorResponse(VolleyError error) {
+//            if (ScheduleActivity.this.findViewById(R.id.layout_loading) != null) {
+//                ScheduleActivity.this.findViewById(R.id.layout_loading).setVisibility(8);
+//            }
+            Toast.makeText(mContext, "Cannot Getting Time Table.", Toast.LENGTH_SHORT).show();
+            error.printStackTrace();
+        }
+    }, null);
+    RequestQueue mRequestQueue = Volley.newRequestQueue(mContext, new HurlStack());
+    mRequestQueue.add(request);
+}
+
     }

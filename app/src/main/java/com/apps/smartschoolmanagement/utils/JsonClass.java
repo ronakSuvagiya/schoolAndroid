@@ -168,7 +168,7 @@ public class JsonClass extends AppCompatActivity {
             if (findViewById(R.id.layout_loading) != null) {
                 findViewById(R.id.layout_loading).setVisibility(0);
             }
-            Log.e("utl", url);
+            Log.e("utl",url);
             JsonArrayRequest strReq = new JsonArrayRequest(Request.Method.GET, url, null, new Listener<JSONArray>() {
                 @Override
                 public void onResponse(JSONArray response) {
@@ -179,6 +179,7 @@ public class JsonClass extends AppCompatActivity {
                 }
             }, new ErrorListener() {
                 public void onErrorResponse(VolleyError error) {
+                    Log.e("jkl", "Error: " + error.getMessage());
             Log.e("errrpr",error.toString());
                     if (JsonClass.this.findViewById(R.id.layout_loading) != null) {
                         JsonClass.this.findViewById(R.id.layout_loading).setVisibility(8);
@@ -234,7 +235,6 @@ public class JsonClass extends AppCompatActivity {
                     if (JsonClass.this.findViewById(R.id.layout_loading) != null) {
                         JsonClass.this.findViewById(R.id.layout_loading).setVisibility(8);
                     }
-
 
                     if (error != null && error.networkResponse != null) {
                         int statusCode = error.networkResponse.statusCode;

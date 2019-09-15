@@ -1,13 +1,17 @@
 package com.apps.smartschoolmanagement.adapters;
 
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import androidx.core.app.NotificationCompat;
 import androidx.cardview.widget.CardView;
+
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,12 +27,18 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.apps.smartschoolmanagement.permissions.PermissionHandler;
 import com.apps.smartschoolmanagement.permissions.Permissions;
+import com.apps.smartschoolmanagement.utils.InputStreamVolleyRequest;
 import com.bumptech.glide.load.Key;
 import com.google.common.net.HttpHeaders;
 import com.kaopiz.kprogresshud.KProgressHUD;
@@ -43,11 +53,18 @@ import com.apps.smartschoolmanagement.utils.AppSingleton;
 import com.apps.smartschoolmanagement.utils.Connectivity;
 import com.apps.smartschoolmanagement.utils.ProfileInfo;
 import com.apps.smartschoolmanagement.utils.URLs;
+
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class ListViewAdapter extends BaseAdapter {
     int check = 0;
@@ -55,6 +72,7 @@ public class ListViewAdapter extends BaseAdapter {
     private ArrayList<ListData> ids = null;
     private Context mContext = null;
     private int resId;
+    ListData Datas;
 
     /* renamed from: com.apps.smartschoolmanagement.adapters.ListViewAdapter$7 */
     class C13247 implements com.apps.smartschoolmanagement.utils.JsonClass.VolleyCallback {
@@ -145,6 +163,8 @@ public class ListViewAdapter extends BaseAdapter {
         ViewHolder viewHolder;
         View result;
         String[] splitter;
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
         if (convertView == null) {
             viewHolder = new ViewHolder();
             convertView = LayoutInflater.from(this.mContext).inflate(this.resId, viewGroup, false);
@@ -440,7 +460,17 @@ public class ListViewAdapter extends BaseAdapter {
         if (viewHolder.cvExamSchedule != null) {
             viewHolder.cvExamSchedule.setOnClickListener(new OnClickListener() {
                 public void onClick(View v) {
-                    openWebPage(data.getExam_pdf());
+                    Permissions.check(mContext, new String[]{"android.permission.WRITE_EXTERNAL_STORAGE", "android.permission.READ_EXTERNAL_STORAGE"}, "Storage Permission is required to use this service", new Permissions.Options().setSettingsDialogTitle("Warning!").setRationaleDialogTitle(HttpHeaders.WARNING), new PermissionHandler() {
+                        @Override
+                        public void onGranted() {
+                            String url = URLs.getExamSchedulepdf + data.getExamScheduleID();
+                            Log.e("urufhef",url);
+                            openWebPage(url,data.getExam_title());
+                        }
+                        public void onDenied(Context context, ArrayList<String> arrayList) {
+                            Toast.makeText(mContext, "You have to allow Storage Permissions to use this service", 0).show();
+                        }
+                    });
                 }
             });
         }
@@ -540,21 +570,78 @@ public class ListViewAdapter extends BaseAdapter {
             }
         });
     }
-    public void openWebPage(String url) {
 
-        Uri webpage = Uri.parse(url);
+    public void openWebPage(String url,String title) {
+//    if (findViewById(R.id.layout_loading) != null) {
+//        findViewById(R.id.layout_loading).setVisibility(0);
+//    }
+        InputStreamVolleyRequest request = new InputStreamVolleyRequest(Request.Method.GET, url,
+                new Response.Listener<byte[]>() {
+                    @Override
+                    public void onResponse(byte[] response) {
+                        // TODO handle the response
 
-        if (!url.startsWith("http://") && !url.startsWith("https://")) {
-            webpage = Uri.parse("http://" +"Quickedu.co.in/timeTable/" +  url);
-        }
+                        File root = new File(Environment.getExternalStorageDirectory(), "ExamSchedule");
+                        if (!root.exists()) {
+                            root.mkdirs();
+                        }
+                        String uniqueString = UUID.randomUUID().toString();
+                        File file = new File(root,title);
+                        try {
+                            file.createNewFile();
+                            BufferedOutputStream salida = new BufferedOutputStream(new FileOutputStream(file));
+                            salida.write(response);
+                            salida.flush();
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+//                    if (ScheduleActivity.this.findViewById(R.id.layout_loading) != null) {
+//                        ScheduleActivity.this.findViewById(R.id.layout_loading).setVisibility(8);
+//                    }
+                        // Here you declare your pdf path
+                        Intent pdfViewIntent = new Intent(Intent.ACTION_VIEW);
+                        pdfViewIntent.setDataAndType(Uri.fromFile(file),"application/pdf");
+                        pdfViewIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
-        Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
-        if (intent.resolveActivity(mContext.getPackageManager()) != null) {
-            mContext.startActivity(intent);
-//            finish();
-        }
+                        Intent intent = Intent.createChooser(pdfViewIntent, "Open File");
+                        try {
+                            mContext.startActivity(intent);
+                        } catch (ActivityNotFoundException e) {
+                            Toast.makeText(mContext, "PDf Cannot Open", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                } ,new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+//            if (ScheduleActivity.this.findViewById(R.id.layout_loading) != null) {
+//                ScheduleActivity.this.findViewById(R.id.layout_loading).setVisibility(8);
+//            }
+                Toast.makeText(mContext, "Cannot Getting Time Table.", Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
+            }
+        }, null);
+        RequestQueue mRequestQueue = Volley.newRequestQueue(mContext, new HurlStack());
+        mRequestQueue.add(request);
     }
-
+//
+//    public void openWebPage(String url) {
+//
+//        Uri webpage = Uri.parse(url);
+//
+//        if (!url.startsWith("http://") && !url.startsWith("https://")) {
+//            webpage = Uri.parse("http://" +"Quickedu.co.in/timeTable/" +  url);
+//        }
+//
+//        Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+//        if (intent.resolveActivity(mContext.getPackageManager()) != null) {
+//            mContext.startActivity(intent);
+////            finish();
+//        }
+//    }
+//
     public void showProgress() {
         this.dialog = new ProgressDialog(this.mContext, R.style.MyGravity);
         this.dialog.setProgressStyle(0);

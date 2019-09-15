@@ -12,6 +12,15 @@ public class ListData {
     public String assignment_subject;
     public String assignment_submit_date;
     public String assignment_end_date;
+    public String ExamScheduleID;
+
+    public String getExamScheduleID() {
+        return ExamScheduleID;
+    }
+
+    public void setExamScheduleID(String examScheduleID) {
+        ExamScheduleID = examScheduleID;
+    }
 
     public String getDivid() {
         return Divid;

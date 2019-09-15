@@ -37,6 +37,10 @@ public class URLs {
 public static String getExam = "http://quickedu.co.in/getExamsApi";
     public static String getSubjectFormat = "http://quickedu.co.in/getResultFormateApi?StdId=";
     public static String getMarksFormat = "http://quickedu.co.in/getStudentResultApi?examId=";
+    public static String getMaterialId = "http://quickedu.co.in/getDocumentApi/";
+    public static String getExamSchedulepdf = "http://quickedu.co.in/ApiGetExamPDF?timeTableId=";
+
+
 
     // end
 

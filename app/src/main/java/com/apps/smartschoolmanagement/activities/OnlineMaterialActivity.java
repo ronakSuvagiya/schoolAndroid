@@ -213,6 +213,15 @@ public class OnlineMaterialActivity extends JsonClass {
                     if (!jsonObject1.isNull("doc_name")) {
                         listData.setFileName(jsonObject1.getString("doc_name"));
                     }
+                    if (!jsonObject1.isNull("id")) {
+                        listData.setDocId(jsonObject1.getString("id"));
+                    }
+                    JSONObject DocumentDetail = jsonObject1.getJSONObject("documentDeatils");
+                    if (!DocumentDetail.isNull("type")) {
+                        listData.setDocType(DocumentDetail.getString("type"));
+                    }
+
+
 //                    if (!jsonObject1.isNull("created_on")) {
 //                        listData.setPosteddate(jsonObject1.getString("created_on"));
 //                        View view = LayoutInflater.from(this).inflate(R.layout.item_date, null);

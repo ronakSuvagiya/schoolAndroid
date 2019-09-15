@@ -6,6 +6,24 @@ public class OnlineMaterial {
     public String filepath;
     public String posteddate;
     public String subjectName;
+    public  String DocId;
+
+    public String getDocType() {
+        return DocType;
+    }
+
+    public void setDocType(String docType) {
+        DocType = docType;
+    }
+
+    public  String DocType;
+    public String getDocId() {
+        return DocId;
+    }
+
+    public void setDocId(String docId) {
+        DocId = docId;
+    }
 
     public String getSubjectName() {
         return this.subjectName;

@@ -3,6 +3,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.apps.smartschoolmanagement">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <uses-feature
+        android:name="android.hardware.camera2"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:xlargeScreens="true" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <permission
+        android:name="com.apps.smartschoolmanagement.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.apps.smartschoolmanagement.permission.C2D_MESSAGE" />
+
     <application
         android:name=".utils.MyApplication"
         android:allowBackup="true"
@@ -16,8 +52,7 @@
         android:usesCleartextTraffic="true"
         tools:overrideLibrary="com.google.firebase.messaging"
         tools:replace="android:theme,android:appComponentFactory">
-        <activity android:name=".activities.StudentMarkList"></activity>
-        <activity android:name=".activities.SendNotificationActivity" />
+        <activity android:name=".activities.SendNotificationActivity"></activity>
         <activity android:name=".activities.NotificationActivity" />
         <activity android:name=".activities.ScheduleActivity" />
         <activity android:name=".activities.ComplaintActivity" />
@@ -32,6 +67,23 @@
             android:theme="@style/Theme.Transparent2"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.apps.smartschoolmanagement.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBvCaVONDnl02FIDPKdEjoYR7N1fgoNnMI" />
+
         <activity
             android:name=".activities.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -41,7 +93,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activities.NetworkDialogActivity"
             android:theme="@style/Theme.Transparent"
@@ -49,7 +100,6 @@
         <activity
             android:name=".activities.HomeActivity"
             android:windowSoftInputMode="adjustNothing" />
-
         <activity
             android:name=".activities.StartActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -132,19 +182,13 @@
             android:name=".activities.ResetPasswordActivity"
             android:theme="@style/Theme.Transparent2"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name="com.perusudroid.networkchecker.broadcast.NoInternetActivity" />
-        <activity android:name="com.nileshp.multiphotopicker.photopicker.activity.PickImageActivity" />
-        <activity
-            android:name=".permissions.PermissionsActivity"
-            android:theme="@style/Permissions.TransparentTheme" />
 
-        <activity
-            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-            android:exported="false"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" /> <!-- <service android:name=".firebase.MyFirebaseMessagingService"> -->
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@mipmap/ic_launcher" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" /> <!-- <service android:name=".firebase.MyFirebaseMessagingService"> -->
         <!-- <intent-filter> -->
         <!-- <action android:name="com.google.firebase.MESSAGING_EVENT" /> -->
         <!-- </intent-filter> -->
@@ -157,52 +201,29 @@
         <!-- <action android:name="com.google.firebase.MESSAGING_EVENT" /> -->
         <!-- </intent-filter> -->
         <!-- </service> -->
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBvCaVONDnl02FIDPKdEjoYR7N1fgoNnMI" />
+        <service
+            android:name=".firebase.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
 
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@mipmap/ic_launcher" />
-
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/colorAccent" />
+        <activity android:name="com.perusudroid.networkchecker.broadcast.NoInternetActivity" />
 
         <meta-data
             android:name="android.support.VERSION"
             android:value="26.1.0" />
-        <meta-data
-            android:name="android.arch.lifecycle.VERSION"
-            android:value="27.0.0-SNAPSHOT" />
 
-        <meta-data
-            android:name="com.android.vending.derived.apk.id"
-            android:value="1" />
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
-
-        <provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="com.apps.smartschoolmanagement.FileProvider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
-        </provider>
-        <provider
-            android:name="com.google.firebase.provider.FirebaseInitProvider"
-            android:authorities="com.apps.smartschoolmanagement.firebaseinitprovider"
-            android:exported="false"
-            android:initOrder="100" />
+        <activity android:name="com.nileshp.multiphotopicker.photopicker.activity.PickImageActivity" />
+        <activity
+            android:name=".permissions.PermissionsActivity"
+            android:theme="@style/Permissions.TransparentTheme" />
 
         <receiver
             android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
             android:enabled="true"
             android:exported="false" />
-
         <receiver
             android:name="com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver"
             android:enabled="true"
@@ -212,6 +233,16 @@
                 <action android:name="com.android.vending.INSTALL_REFERRER" />
             </intent-filter>
         </receiver>
+
+        <service
+            android:name="com.google.android.gms.measurement.AppMeasurementService"
+            android:enabled="true"
+            android:exported="false" />
+        <service
+            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+            android:enabled="true"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <receiver
             android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
@@ -224,58 +255,26 @@
             </intent-filter>
         </receiver>
 
-        <service
-            android:name=".firebase.MyFirebaseMessagingService"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
-        <service
-            android:name="com.google.android.gms.measurement.AppMeasurementService"
-            android:enabled="true"
-            android:exported="false" />
-        <service
-            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
-            android:enabled="true"
+        <provider
+            android:name="com.google.firebase.provider.FirebaseInitProvider"
+            android:authorities="com.apps.smartschoolmanagement.firebaseinitprovider"
             android:exported="false"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
+            android:initOrder="100" />
+
+        <activity
+            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <meta-data
+            android:name="android.arch.lifecycle.VERSION"
+            android:value="27.0.0-SNAPSHOT" />
+        <meta-data
+            android:name="com.android.vending.derived.apk.id"
+            android:value="1" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
-    <permission
-        android:name="com.apps.smartschoolmanagement.permission.C2D_MESSAGE"
-        android:protectionLevel="signature" />
-    <supports-screens
-        android:anyDensity="true"
-        android:largeScreens="true"
-        android:normalScreens="true"
-        android:resizeable="true"
-        android:xlargeScreens="true" />
-    <uses-feature
-        android:name="android.hardware.camera2"
-        android:required="true" />
-    <uses-feature
-        android:glEsVersion="0x00020000"
-        android:required="true" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-
-    <uses-permission android:name="com.apps.smartschoolmanagement.permission.C2D_MESSAGE" />
 
 </manifest>
