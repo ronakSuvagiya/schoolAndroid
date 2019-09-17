@@ -35,6 +35,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static com.apps.smartschoolmanagement.fragments.StudentAttendance.stdid;
@@ -125,6 +126,7 @@ public class AssignmentsHistory extends JsonFragment {
 
             }
             listView.setAdapter(new TeacherAssignmentsAdapter(getActivity(), R.layout.item_layout_assignments, values));
+            Collections.reverse(values);
         }
     }
 

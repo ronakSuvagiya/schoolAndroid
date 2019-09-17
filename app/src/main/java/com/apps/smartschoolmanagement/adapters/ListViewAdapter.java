@@ -474,7 +474,6 @@ public class ListViewAdapter extends BaseAdapter {
                 }
             });
         }
-
         if (viewHolder.appointment_name != null) {
             viewHolder.appointment_name.setText(data.getName());
         }

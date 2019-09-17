@@ -17,7 +17,7 @@
                 n2:mcv_tileHeight="@dimen/_30sdp"
                 n2:mcv_weekDayTextAppearance="@style/month_style" />
 
-
+    <include layout="@layout/layout_loading" />
 
 
 </LinearLayout>

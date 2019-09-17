@@ -23,6 +23,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Collections;
+
 public class ExamScheduleActivity extends JsonClass {
     ListView listView;
     KProgressHUD progressHUD;
@@ -71,6 +73,8 @@ public class ExamScheduleActivity extends JsonClass {
             }
             ListViewAdapter listViewAdapter = new ListViewAdapter(ExamScheduleActivity.this, R.layout.item_layout_exams, values);
             listView.setAdapter(listViewAdapter);
+            Collections.reverse(values);
+
         }
     }
 }

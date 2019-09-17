@@ -55,6 +55,7 @@
         <activity android:name=".activities.SendNotificationActivity"></activity>
         <activity android:name=".activities.NotificationActivity" />
         <activity android:name=".activities.ScheduleActivity" />
+        <activity android:name=".activities.StudentMarkList" />
         <activity android:name=".activities.ComplaintActivity" />
         <activity android:name=".activities.PostComplaintActivity" />
         <activity android:name=".activities.EventListActivity" />
