@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import com.kaopiz.kprogresshud.KProgressHUD;
@@ -23,12 +24,18 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class ExamScheduleActivity extends JsonClass {
     ListView listView;
     KProgressHUD progressHUD;
     SharedPreferences sp;
+    String usertype,channel,stdID;
+    Spinner Std;
+    List<String> stdname = new ArrayList<>();
+    List<Integer> stdId = new ArrayList<>();
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         if (UserStaticData.user_type == 0) {
@@ -42,10 +49,49 @@ public class ExamScheduleActivity extends JsonClass {
 //            findViewById(R.id.layout_selection).setVisibility(8);
 //        }
         this.listView = (ListView) findViewById(R.id.listview_exams);
+        this.Std = (Spinner) findViewById(R.id.spnr_StdId);
         sp = PreferenceManager.getDefaultSharedPreferences(ExamScheduleActivity.this);
-        String channel = (sp.getString("stdId", ""));
-        Log.e("student ","iddd"+channel);
-        getJsonResponse(URLs.getExamSchedules + channel, ExamScheduleActivity.this, new ExamScheduleActivity.getExamApi());
+
+        stdID  = (sp.getString("stdId", ""));
+        channel = (sp.getString("schoolid", ""));
+        usertype = sp.getString("usertype", "");
+        if (usertype != null) {
+            if ("student".equals(usertype)) {
+                getJsonResponse(URLs.getExamSchedules + stdID, ExamScheduleActivity.this, new ExamScheduleActivity.getExamApi());
+            } else {
+                Std.setVisibility(View.VISIBLE);
+                getJsonResponse(URLs.getStd + channel, ExamScheduleActivity.this, new ExamScheduleActivity.getStdApi());
+            }
+        }
+        Std.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                int stdid = stdId.get(i);
+                getJsonResponse(URLs.getExamSchedules + stdid, ExamScheduleActivity.this, new ExamScheduleActivity.getExamApi());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+    class getStdApi implements VolleyCallbackJSONArray {
+        @Override
+        public void onSuccess(JSONArray jsonArray) {
+            for (int i = 0; i < jsonArray.length(); i++) {
+                try {
+                    JSONObject obj = jsonArray.getJSONObject(i);
+                    stdname.add(obj.getString("stdName"));
+                    stdId.add(obj.getInt("id"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(ExamScheduleActivity.this, R.layout.spinner_dropdown_custom, stdname);
+            Std.setAdapter(spinnerArrayAdapter);
+            Log.e("stdData", jsonArray.toString());
+        }
     }
 
     class getExamApi implements VolleyCallbackJSONArray {

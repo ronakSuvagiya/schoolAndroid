@@ -11,26 +11,10 @@
             n1:layout_height="fill_parent"
             n1:orientation="vertical"
             n1:padding="@dimen/_12sdp">
-
             <TextView
                 style="@style/Textview_Style_Header"
                 n1:text="Add New Album"
                 n1:textColor="#ccffffff" />
-
-            <View
-                n1:layout_width="fill_parent"
-                n1:layout_height="@dimen/_1sdp"
-                n1:layout_marginTop="@dimen/_5sdp"
-                n1:layout_marginBottom="@dimen/_10sdp"
-                n1:background="#99ffffff" />
-
-            <com.apps.smartschoolmanagement.utils.EditTextClearable
-                n1:id="@+id/edt_title"
-                style="@style/Edittext_Editable"
-                n1:layout_marginBottom="@dimen/_16sdp"
-                n1:hint="Enter title"
-                n1:paddingRight="@dimen/_4sdp"
-                n1:visibility="gone"/>
 
             <FrameLayout
                 n1:layout_width="match_parent"
@@ -45,7 +29,6 @@
                     n1:alpha="0.7"
                     n1:paddingLeft="@dimen/_4sdp" />
             </FrameLayout>
-
 
             <LinearLayout
                 n1:layout_width="wrap_content"
@@ -65,6 +48,93 @@
                     n1:textStyle="bold" />
             </LinearLayout>
 
+            <LinearLayout
+                n1:layout_width="match_parent"
+                n1:layout_height="wrap_content"
+                n1:orientation="vertical">
+
+                <LinearLayout
+                    n1:id="@+id/layout_image1"
+                    n1:layout_width="wrap_content"
+                    n1:layout_height="wrap_content"
+                    n1:visibility="gone">
+
+                    <TextView
+                        n1:id="@+id/image_name1"
+                        n1:layout_width="wrap_content"
+                        n1:layout_height="wrap_content"
+                        n1:text="1 Image Attached"
+                        n1:textColor="#b6ffffff"
+                        n1:textSize="17.0sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    n1:id="@+id/layout_image2"
+                    n1:layout_width="wrap_content"
+                    n1:layout_height="wrap_content"
+                    n1:visibility="gone">
+
+                    <TextView
+                        n1:id="@+id/image_name2"
+                        n1:layout_width="wrap_content"
+                        n1:layout_height="wrap_content"
+                        n1:text="2 Image Attached"
+                        n1:textColor="#b6ffffff"
+                        n1:textSize="17.0sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    n1:id="@+id/layout_image3"
+                    n1:layout_width="wrap_content"
+                    n1:layout_height="wrap_content"
+                    n1:visibility="gone">
+
+                    <TextView
+                        n1:id="@+id/image_name3"
+                        n1:layout_width="wrap_content"
+                        n1:layout_height="wrap_content"
+                        n1:text="3 Image Attached"
+                        n1:textColor="#b6ffffff"
+                        n1:textSize="17.0sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    n1:id="@+id/layout_image4"
+                    n1:layout_width="wrap_content"
+                    n1:layout_height="wrap_content"
+                    n1:visibility="gone">
+
+                    <TextView
+                        n1:id="@+id/image_name4"
+                        n1:layout_width="wrap_content"
+                        n1:layout_height="wrap_content"
+                        n1:text="4 Image Attached"
+                        n1:textColor="#b6ffffff"
+                        n1:textSize="17.0sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    n1:id="@+id/layout_image5"
+                    n1:layout_width="wrap_content"
+                    n1:layout_height="wrap_content"
+                    n1:visibility="gone">
+
+                    <TextView
+                        n1:id="@+id/image_name5"
+                        n1:layout_width="wrap_content"
+                        n1:layout_height="wrap_content"
+                        n1:text="5 Image Attached"
+                        n1:textColor="#b6ffffff"
+                        n1:textSize="17.0sp" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+
             <TextView
                 n1:layout_width="fill_parent"
                 n1:layout_height="wrap_content"
@@ -72,6 +142,14 @@
                 n1:text="You can upload only 5 images at once"
                 n1:textColor="#ccffffff"
                 n1:textSize="@dimen/_11ssp" />
+
+            <View
+                n1:layout_width="fill_parent"
+                n1:layout_height="@dimen/_1sdp"
+                n1:layout_marginTop="@dimen/_5sdp"
+                n1:layout_marginBottom="@dimen/_10sdp"
+                n1:background="#99ffffff" />
+
 
             <com.apps.smartschoolmanagement.utils.ButtonTouchEffect
                 n1:id="@+id/btn_upload"
@@ -81,8 +159,17 @@
                 n1:paddingLeft="@dimen/_35sdp"
                 n1:paddingRight="@dimen/_35sdp"
                 n1:text="Upload" />
+
+            <com.apps.smartschoolmanagement.utils.EditTextClearable
+                n1:id="@+id/edt_title"
+                style="@style/Edittext_Editable"
+                n1:layout_marginBottom="@dimen/_16sdp"
+                n1:hint="Enter title"
+                n1:paddingRight="@dimen/_4sdp"
+                n1:visibility="gone" />
         </LinearLayout>
     </ScrollView>
 
     <include layout="@layout/layout_loading" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

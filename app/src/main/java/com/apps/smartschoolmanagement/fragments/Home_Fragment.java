@@ -272,7 +272,7 @@ public class Home_Fragment extends Fragment {
                         Home_Fragment.this.getActivity().overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
                         return;
                     case 2:
-                        Home_Fragment.this.startActivity(new Intent(Home_Fragment.this.getActivity(), MarksListActivity.class));
+                        Home_Fragment.this.startActivity(new Intent(Home_Fragment.this.getActivity(), StudentMarkList.class));
                         Home_Fragment.this.getActivity().overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
                         return;
                     case 3:

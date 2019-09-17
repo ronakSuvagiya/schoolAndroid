@@ -34,7 +34,7 @@ public class URLs {
     public static String getOnlineMaterial = "http://quickedu.co.in/getMaterialBySchoolStdAndSubjectApi/";
     public static String SendNotification = "http://quickedu.co.in/sendNotifactionApi";
     public static String FeesDetail = "http://quickedu.co.in/studentFeesApi/";
-public static String getExam = "http://quickedu.co.in/getExamsApi";
+public static String getExam = "http://quickedu.co.in/ApiGetTimeTableExam?Stdid=";
     public static String getSubjectFormat = "http://quickedu.co.in/getResultFormateApi?StdId=";
     public static String getMarksFormat = "http://quickedu.co.in/getStudentResultApi?examId=";
     public static String getMaterialId = "http://quickedu.co.in/getDocumentApi/";

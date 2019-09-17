@@ -21,7 +21,9 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -73,6 +75,7 @@ public class PhotoGalleryAddActivity extends JsonClass implements OnClickListene
     Bitmap bitmap;
     String encodedString;
     String urls;
+    RelativeLayout layout_loading;
 
     /* renamed from: com.apps.smartschoolmanagement.activities.PhotoGalleryAddActivity$1 */
     class C12531 extends PermissionHandler {
@@ -131,6 +134,8 @@ public class PhotoGalleryAddActivity extends JsonClass implements OnClickListene
         getJsonResponse(URLs.getImgCategory + channel, this, new getImgCatApi());
         this.selectImages = (Button) findViewById(R.id.btn_select_images);
         this.uploadImages = (Button) findViewById(R.id.btn_upload);
+        layout_loading = findViewById(R.id.layout_loading);
+
         this.uploadImages.setOnClickListener(this);
         this.selectImages.setOnClickListener(this);
         this.dialog = new ProgressDialog(this);
@@ -192,22 +197,62 @@ public class PhotoGalleryAddActivity extends JsonClass implements OnClickListene
         super.onActivityResult(requestCode, resultCode, intent);
         if (resultCode == -1 && resultCode == -1 && requestCode == 1001) {
                 pathList = intent.getExtras().getStringArrayList(PickImageActivity.KEY_DATA_RESULT);
-            if (this.pathList != null && !this.pathList.isEmpty()) {
+            if (this.pathList != null && !this.pathList.isEmpty() && pathList.size()<=5) {
                 for (int i = 0; i < this.pathList.size(); i++) {
                     this.files.add(new File((String) this.pathList.get(i)));
+                    if(pathList.size() == 1)
+                    {
+                        findViewById(R.id.layout_image1).setVisibility(0);
+                    }
+                    else if(pathList.size() == 2)
+                    {
+                        findViewById(R.id.layout_image1).setVisibility(0);
+                        findViewById(R.id.layout_image2).setVisibility(0);
+                    }
+
+                    else if(pathList.size() == 3)
+                    {
+                        findViewById(R.id.layout_image1).setVisibility(0);
+                        findViewById(R.id.layout_image2).setVisibility(0);
+                        findViewById(R.id.layout_image3).setVisibility(0);
+                    }
+
+                    else if(pathList.size() == 4)
+                    {
+                        findViewById(R.id.layout_image1).setVisibility(0);
+                        findViewById(R.id.layout_image2).setVisibility(0);
+                        findViewById(R.id.layout_image3).setVisibility(0);
+                        findViewById(R.id.layout_image4).setVisibility(0);
+                    }
+                    else if(pathList.size() == 5)
+                    {
+                        findViewById(R.id.layout_image1).setVisibility(0);
+                        findViewById(R.id.layout_image2).setVisibility(0);
+                        findViewById(R.id.layout_image3).setVisibility(0);
+                        findViewById(R.id.layout_image4).setVisibility(0);
+                        findViewById(R.id.layout_image5).setVisibility(0);
+                    }
                 }
             }
+            else {
+                Toast.makeText(getApplicationContext(),"Please select less than 5 image at a time",Toast.LENGTH_LONG).show();
+            }
+//            findViewById(R.id.remove_image5).setOnClickListener(new PhotoGalleryAddActivity.C12593());
         }
+
     }
     private void uploadBitmap(final Bitmap bitmap) {
 
         //getting the tag from the edittext
         //our custom volley request
+        layout_loading.setVisibility(View.VISIBLE);
         VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, URLs.addImg + titleid + "&schoolId=" + channel,
                 new Response.Listener<NetworkResponse>() {
+
                     @Override
                     public void onResponse(NetworkResponse response) {
                         try {
+                            layout_loading.setVisibility(View.GONE);
                             JSONObject obj = new JSONObject(new String(response.data));
                             Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
@@ -256,4 +301,13 @@ public class PhotoGalleryAddActivity extends JsonClass implements OnClickListene
         bitmap.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream);
         return byteArrayOutputStream.toByteArray();
     }
+//    class C12593 implements OnClickListener {
+//        C12593() {
+//        }
+//
+//        public void onClick(View v) {
+//            PhotoGalleryAddActivity.this.pathList.clear();
+//            PhotoGalleryAddActivity.this.findViewById(R.id.layout_attch_remove).setVisibility(8);
+//        }
+//    }
 }

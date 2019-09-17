@@ -18,6 +18,20 @@
                 n1:id="@+id/error"
                 style="@style/TextFields_Error"
                 n1:text="No records Found" />
+            <FrameLayout
+                n1:layout_width="fill_parent"
+                n1:layout_height="wrap_content"
+                n1:layout_marginBottom="@dimen/_16sdp"
+                n1:background="@drawable/borders_rltb_white_background">
+
+                <Spinner
+                    n1:id="@+id/spnr_StdId"
+                    n1:visibility="gone"
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="@dimen/_35sdp"
+                    n1:alpha="0.7"
+                    n1:paddingLeft="@dimen/_4sdp" />
+            </FrameLayout>
 
             <ListView
                 n1:id="@+id/listview_exams"

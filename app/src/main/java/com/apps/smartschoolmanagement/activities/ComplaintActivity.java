@@ -21,6 +21,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Collections;
+
 public class ComplaintActivity extends JsonClass {
     View rootView;
     ListView listView;
@@ -60,6 +62,7 @@ public class ComplaintActivity extends JsonClass {
                 }
             }
             listView.setAdapter(new ComplaintAdapter(ComplaintActivity.this, R.layout.row_list_complaint, values));
+            Collections.reverse(values);
         }
     }
 }

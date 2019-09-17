@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.HorizontalScrollView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TableLayout;
@@ -18,8 +19,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.apps.smartschoolmanagement.R;
+import com.apps.smartschoolmanagement.adapters.AttendancesAdapter;
+import com.apps.smartschoolmanagement.fragments.StudentAttendance;
 import com.apps.smartschoolmanagement.utils.AnimationSlideUtil;
 import com.apps.smartschoolmanagement.utils.JsonClass;
+import com.apps.smartschoolmanagement.utils.JsonFragment;
 import com.apps.smartschoolmanagement.utils.URLs;
 
 import org.json.JSONArray;
@@ -30,31 +34,57 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudentMarkList extends JsonClass {
-    Spinner exam;
+    Spinner std,exam,div,student;
     TableLayout horizontalTable;
     String total;
     ViewGroup footer;
     ViewGroup header;
     int examid;
+
+    List<String> stdname = new ArrayList<>();
+    List<Integer> stdId = new ArrayList<>();
+    ArrayList<String> subjects = new ArrayList<>();
     List<String> Examname = new ArrayList<>();
     List<Integer> ExamId = new ArrayList<>();
+    List<String> divName = new ArrayList<>();
+    List<Integer> divId = new ArrayList<>();
+    List<String> StudentName = new ArrayList<>();
+    List<Integer> StudentID = new ArrayList<>();
     SharedPreferences sp;
-    String stdid, studentid;
+    String stdid, studentid,usertype,channel;
     HorizontalScrollView root;
     String SubjectsName;
     ListView listView;
     String[] items;
+    LinearLayout teacherdata;
     int sum;
-    ArrayList<String> subjects = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_mark_list);
+        this.std = (Spinner) findViewById(R.id.spnr_std);
+        this.div = (Spinner) findViewById(R.id.spnr_div);
+        this.student = (Spinner) findViewById(R.id.spnr_student);
         this.exam = (Spinner) findViewById(R.id.spnr_exam);
+        this.teacherdata = findViewById(R.id.layout_candidate_selection);
         sp = PreferenceManager.getDefaultSharedPreferences(this);
-        stdid = (sp.getString("stdId", ""));
-        studentid = (sp.getString("studentId", ""));
+        usertype = sp.getString("usertype", "");
+        channel = (sp.getString("schoolid", ""));
+
+        if (usertype != null) {
+            if ("student".equals(usertype)) {
+                setTitle("Marks");
+                getJsonResponse(URLs.getExam + stdid, this, new StudentMarkList.getExamApi());
+                stdid = (sp.getString("stdId", ""));
+                studentid = (sp.getString("studentId", ""));
+            } else {
+                setTitle("Student Marks");
+                teacherdata.setVisibility(View.VISIBLE);
+                getJsonResponse(URLs.getStd + channel,StudentMarkList.this, new StudentMarkList.getStudentData());
+            }
+        }
         this.listView = (ListView) findViewById(R.id.listview);
         this.horizontalTable = (TableLayout) findViewById(R.id.table_layout);
         LayoutInflater inflater = getLayoutInflater();
@@ -68,7 +98,47 @@ public class StudentMarkList extends JsonClass {
                                                              }
                                                          }
         );
-        getJsonResponse(URLs.getExam, this, new StudentMarkList.getExamApi());
+        std.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                divName.removeAll(divName);
+                divId.removeAll(divId);
+                stdid = String.valueOf(stdId.get(i));
+                getJsonResponse(URLs.getDiv + stdid, StudentMarkList.this, new StudentMarkList.divApiCall());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        div.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                StudentName.removeAll(StudentName);
+                StudentID.removeAll(StudentID);
+                Integer divid = divId.get(i);
+                getJsonResponse(URLs.getStudentByStdAndDiv + stdid + "&div=" + divid + "&School=" + channel, StudentMarkList.this, new StudentMarkList.StudentApiCall());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        student.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Examname.removeAll(Examname);
+                ExamId.removeAll(ExamId);
+                studentid = String.valueOf(divId.get(i));
+                getJsonResponse(URLs.getExam + stdid, StudentMarkList.this, new StudentMarkList.getExamApi());
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         exam.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -150,6 +220,59 @@ public class StudentMarkList extends JsonClass {
             final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(StudentMarkList.this, R.layout.spinner_dropdown_custom, Examname);
             exam.setAdapter(spinnerArrayAdapter);
             Log.e("stdData", jsonArray.toString());
+        }
+    }
+    class getStudentData implements JsonClass.VolleyCallbackJSONArray {
+        @Override
+        public void onSuccess(JSONArray jSONObject) {
+            for (int i = 0; i < jSONObject.length(); i++) {
+                try {
+                    JSONObject obj = jSONObject.getJSONObject(i);
+                    stdname.add(obj.getString("stdName"));
+                    stdId.add(obj.getInt("id"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(StudentMarkList.this, R.layout.spinner_dropdown_custom, stdname);
+            std.setAdapter(spinnerArrayAdapter);
+        }
+    }
+
+    class divApiCall implements JsonClass.VolleyCallbackJSONArray {
+
+        @Override
+        public void onSuccess(JSONArray jsonArray) {
+            for (int i = 0; i < jsonArray.length(); i++) {
+                try {
+                    JSONObject obj = jsonArray.getJSONObject(i);
+                    divName.add(obj.getString("name"));
+                    divId.add(obj.getInt("id"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(StudentMarkList.this, R.layout.spinner_dropdown_custom, divName);
+            div.setAdapter(spinnerArrayAdapter);
+        }
+    }
+    class StudentApiCall implements JsonClass.VolleyCallbackJSONArray {
+
+        @Override
+        public void onSuccess(JSONArray jsonArray) {
+            for (int i = 0; i < jsonArray.length(); i++) {
+                try {
+                    JSONObject obj = jsonArray.getJSONObject(i);
+                    StudentName.add(obj.getString("name"));
+                    StudentID.add(obj.getInt("id"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(StudentMarkList.this, R.layout.spinner_dropdown_custom, StudentName);
+            student.setAdapter(spinnerArrayAdapter);
+            //final ArrayAdapter<String> listArrayAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(),R.layout.list_with_toggal_button,R.id.tv_item,StudentName);
+
         }
     }
 }

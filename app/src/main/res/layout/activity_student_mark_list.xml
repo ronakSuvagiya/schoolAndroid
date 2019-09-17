@@ -16,6 +16,7 @@
             <LinearLayout
                 n1:id="@+id/layout_candidate_selection"
                 n1:layout_width="fill_parent"
+                n1:visibility="gone"
                 n1:layout_height="wrap_content"
                 n1:orientation="vertical">
 
@@ -26,40 +27,55 @@
                     n1:background="@drawable/borders_rltb_white_background">
 
                     <Spinner
-                        n1:id="@+id/spnr_exam"
+                        n1:id="@+id/spnr_std"
                         n1:layout_width="fill_parent"
                         n1:layout_height="@dimen/_35sdp"
                         n1:alpha="0.7"
                         n1:paddingLeft="@dimen/_4sdp" />
                 </FrameLayout>
 
-<!--                <FrameLayout-->
-<!--                    n1:layout_width="fill_parent"-->
-<!--                    n1:layout_height="wrap_content"-->
-<!--                    n1:layout_marginBottom="@dimen/_16sdp"-->
-<!--                    n1:background="@drawable/borders_rltb_white_background">-->
+            <FrameLayout
+                n1:layout_width="fill_parent"
+                n1:layout_height="wrap_content"
+                n1:layout_marginBottom="@dimen/_16sdp"
+                n1:background="@drawable/borders_rltb_white_background">
 
-<!--                    <Spinner-->
-<!--                        n1:id="@+id/spnr_student"-->
-<!--                        n1:layout_width="fill_parent"-->
-<!--                        n1:layout_height="@dimen/_35sdp"-->
-<!--                        n1:alpha="0.7"-->
-<!--                        n1:paddingLeft="@dimen/_4sdp" />-->
-<!--                </FrameLayout>-->
+                <Spinner
+                    n1:id="@+id/spnr_div"
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="@dimen/_40sdp"
+                    n1:alpha="0.7"
+                    n1:paddingLeft="@dimen/_4sdp" />
+            </FrameLayout>
+                <FrameLayout
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="wrap_content"
+                    n1:layout_marginBottom="@dimen/_16sdp"
+                    n1:background="@drawable/borders_rltb_white_background">
+
+                    <Spinner
+                        n1:id="@+id/spnr_student"
+                        n1:layout_width="fill_parent"
+                        n1:layout_height="@dimen/_40sdp"
+                        n1:alpha="0.7"
+                        n1:paddingLeft="@dimen/_4sdp" />
+                </FrameLayout>
+
             </LinearLayout>
 
-<!--            <FrameLayout-->
-<!--                n1:layout_width="fill_parent"-->
-<!--                n1:layout_height="wrap_content"-->
-<!--                n1:background="@drawable/borders_rltb_white_background">-->
+            <FrameLayout
+                n1:layout_width="fill_parent"
+                n1:layout_height="wrap_content"
+                n1:layout_marginBottom="@dimen/_16sdp"
+                n1:background="@drawable/borders_rltb_white_background">
 
-<!--                <Spinner-->
-<!--                    n1:id="@+id/spnr_semester"-->
-<!--                    n1:layout_width="fill_parent"-->
-<!--                    n1:layout_height="@dimen/_40sdp"-->
-<!--                    n1:alpha="0.7"-->
-<!--                    n1:paddingLeft="@dimen/_4sdp" />-->
-<!--            </FrameLayout>-->
+                <Spinner
+                    n1:id="@+id/spnr_exam"
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="@dimen/_35sdp"
+                    n1:alpha="0.7"
+                    n1:paddingLeft="@dimen/_4sdp" />
+            </FrameLayout>
 
             <com.apps.smartschoolmanagement.utils.ButtonTouchEffect
                 n1:id="@+id/btn_search"
