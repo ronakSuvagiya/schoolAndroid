@@ -1,14 +1,20 @@
 package com.apps.smartschoolmanagement.fragments;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 
 import android.preference.PreferenceManager;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader.ImageContainer;
 import com.android.volley.toolbox.ImageLoader.ImageListener;
@@ -29,8 +36,11 @@ import com.apps.smartschoolmanagement.utils.AppSingleton;
 import com.apps.smartschoolmanagement.utils.JsonFragment;
 import com.apps.smartschoolmanagement.utils.ProfileInfo;
 import com.apps.smartschoolmanagement.utils.URLs;
+
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Locale;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -57,6 +67,8 @@ public class StudentProfile extends JsonFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+//        loadLocale();
+
 
     }
 
@@ -103,23 +115,32 @@ public class StudentProfile extends JsonFragment {
         this.root = (LinearLayout) this.view.findViewById(R.id.root_layout);
         LinearLayout rollNo = view.findViewById(R.id.layout_roll);
         rollNo.setVisibility(View.VISIBLE);
+        loadLocale();
         CardView email = view.findViewById(R.id.layout_email);
+        CardView language = view.findViewById(R.id.layout_language);
+        language.setOnClickListener(new OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            showChangeLanguageDialog();
+                                        }
+                                    }
+        );
         email.setVisibility(View.GONE);
         CardView phone = view.findViewById(R.id.layout_phone);
         phone.setVisibility(View.GONE);
         sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
         this.root.setVisibility(0);
 
-        String name =  (sp.getString("stuname", ""));
-        String lastName =  (sp.getString("stulname", ""));
-        String dob =  (sp.getString("studob", ""));
-        String gender =  (sp.getString("stugender", ""));
-        String address =  (sp.getString("stuaddress", ""));
-        String std =  (sp.getString("stustd", ""));
-        String div =  (sp.getString("studiv", ""));
-        int roll =  (sp.getInt("roll", 0));
+        String name = (sp.getString("stuname", ""));
+        String lastName = (sp.getString("stulname", ""));
+        String dob = (sp.getString("studob", ""));
+        String gender = (sp.getString("stugender", ""));
+        String address = (sp.getString("stuaddress", ""));
+        String std = (sp.getString("stustd", ""));
+        String div = (sp.getString("studiv", ""));
+        int roll = (sp.getInt("roll", 0));
         TextView pname = this.view.findViewById(R.id.name);
-        pname.setText(name + " "  + lastName);
+        pname.setText(name + " " + lastName);
         TextView pclassname = this.view.findViewById(R.id.className);
         pclassname.setText(std);
         TextView pdiv = this.view.findViewById(R.id.div_name);
@@ -129,7 +150,7 @@ public class StudentProfile extends JsonFragment {
         proll.setText(String.valueOf(roll));
 
         TextView tname = this.view.findViewById(R.id.names);
-        tname.setText(name + " "  + lastName);
+        tname.setText(name + " " + lastName);
         TextView tdob = this.view.findViewById(R.id.birthday);
         tdob.setText(dob);
         TextView paddress = this.view.findViewById(R.id.address);
@@ -146,8 +167,6 @@ public class StudentProfile extends JsonFragment {
 //        this.view.findViewById(R.id.layout_joining_date).setVisibility(8);
 //        this.view.findViewById(R.id.layout_experience).setVisibility(8);
 //        this.view.findViewById(R.id.layout_ctc).setVisibility(8);
-
-
 
 
 //        if (ProfileInfo.getInstance().getLoginData().get("userPic") != null && ((String) ProfileInfo.getInstance().getLoginData().get("userPic")).length() > 50) {
@@ -189,7 +208,7 @@ public class StudentProfile extends JsonFragment {
 //        }
 //    }
 
-//    public void loadData(ViewGroup parent, HashMap<String, String> returnData) {
+    //    public void loadData(ViewGroup parent, HashMap<String, String> returnData) {
 //        if (returnData != null) {
 //            for (int i = 0; i < parent.getChildCount(); i++) {
 //                View child = parent.getChildAt(i);
@@ -206,4 +225,64 @@ public class StudentProfile extends JsonFragment {
 //        }
 //        Toast.makeText(getActivity(), "No record found", 0).show();
 //    }
+    private void showChangeLanguageDialog() {
+        final String[] listitems = {"English", "हिंदी", "ગુજરાતી"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Choose Language...");
+        builder.setSingleChoiceItems(listitems, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if (i == 0) {
+                    setLocale("en");
+                    getActivity().recreate();
+                } else if (i == 1) {
+                    setLocale("hi");
+                    getActivity().recreate();
+                } else if (i == 2) {
+                    setLocale("hi");
+                    getActivity().recreate();
+                }
+
+                dialogInterface.dismiss();
+
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+    }
+
+//    private void setLocale(String lang) {
+//        Locale locale = new Locale(lang);
+//        Locale.setDefault(locale);
+//
+//        Configuration configuration = new Configuration();
+//        configuration.locale = locale;
+//        getActivity().getBaseContext().getResources().updateConfiguration(configuration, getActivity().getBaseContext().getResources().getDisplayMetrics());
+//        SharedPreferences.Editor editor = sp.edit();
+//        editor.putString("MyLang", lang);
+//        editor.apply();
+//
+//    }
+
+    public void setLocale(String lang) {
+        Locale myLocale = new Locale(lang);
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.locale = myLocale;
+        res.updateConfiguration(conf, dm);
+        getActivity().getBaseContext().getResources().updateConfiguration(conf,  getActivity().getBaseContext().getResources().getDisplayMetrics());
+        getActivity().invalidateOptionsMenu();
+        getActivity().recreate();
+                SharedPreferences.Editor editor = sp.edit();
+        editor.putString("MyLang", lang);
+        editor.commit();
+    }
+
+    public void loadLocale() {
+        String lang = sp.getString("MyLang", "en");
+        setLocale(lang);
+    }
 }

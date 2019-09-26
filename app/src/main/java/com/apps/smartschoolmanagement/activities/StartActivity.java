@@ -1,7 +1,11 @@
 package com.apps.smartschoolmanagement.activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -9,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.preference.PreferenceManager;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,6 +25,7 @@ import com.apps.smartschoolmanagement.R;
 import com.apps.smartschoolmanagement.models.UserStaticData;
 
 import java.util.HashMap;
+import java.util.Locale;
 
 public class StartActivity extends AppCompatActivity {
     EditText reg_code;
@@ -37,6 +43,9 @@ public class StartActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_type);
+        showChangeLanguageDialog();
+//        loadLocale();
+//        setLocale("gu");
         this.imageIds.put("Assignments", Integer.valueOf(R.drawable.img_assignment));
         this.imageIds.put("Post Assignment", Integer.valueOf(R.drawable.img_assignment));
         this.imageIds.put("Notification", Integer.valueOf(R.drawable.img_remarks));
@@ -112,6 +121,51 @@ public class StartActivity extends AppCompatActivity {
                 }
             });
         }
+    private void showChangeLanguageDialog() {
+        final String[] listitems = {"English", "हिंदी", "ગુજરાતી"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Choose Language...");
+        builder.setSingleChoiceItems(listitems, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if (i == 0) {
+                    setLocale("en");
+                   recreate();
+                } else if (i == 1) {
+                    setLocale("hi");
+                   recreate();
+                } else if (i == 2) {
+                    setLocale("gu");
+                    recreate();
+                }
+
+                dialogInterface.dismiss();
+
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+    public void setLocale(String lang) {
+        Locale myLocale = new Locale(lang);
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.locale = myLocale;
+        res.updateConfiguration(conf, dm);
+        getBaseContext().getResources().updateConfiguration(conf, getBaseContext().getResources().getDisplayMetrics());
+        invalidateOptionsMenu();
+        recreate();
+//        SharedPreferences.Editor editor = sp.edit();
+//        editor.putString("MyLang", lang);
+//        editor.commit();
+    }
+
+//    public void loadLocale() {
+//        String lang = sp.getString("MyLang", "en");
+//        setLocale(lang);
+//    }
     }
 
 //

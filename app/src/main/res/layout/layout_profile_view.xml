@@ -495,6 +495,42 @@
                 </androidx.cardview.widget.CardView>
 
 
+                <androidx.cardview.widget.CardView xmlns:n5="http://schemas.android.com/apk/res-auto"
+                    n1:id="@+id/layout_language"
+                    n1:layout_width="fill_parent"
+                    n1:layout_height="wrap_content"
+                    n1:layout_margin="@dimen/_5sdp"
+                    n1:elevation="@dimen/_5sdp"
+                    n5:cardBackgroundColor="@color/colorPrimary"
+                    n5:cardCornerRadius="@dimen/_5sdp">
+
+                    <LinearLayout
+                        n1:layout_width="fill_parent"
+                        n1:layout_height="wrap_content"
+                        n1:background="@drawable/corner_rectangle"
+                        n1:backgroundTint="#f2ffffff"
+                        n1:padding="@dimen/_5sdp">
+
+
+                        <LinearLayout
+                            n1:layout_width="fill_parent"
+                            n1:layout_height="wrap_content"
+                            n1:orientation="vertical">
+
+                            <TextView
+                                n1:id="@+id/tvChangeLanguage"
+                                n1:layout_width="fill_parent"
+                                n1:layout_height="fill_parent"
+                                n1:layout_gravity="center"
+                                n1:gravity="center"
+                                n1:paddingLeft="@dimen/_5sdp"
+                                n1:text="@string/change_language"
+                                n1:textColor="#cc000000"
+                                n1:textSize="20sp" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
 
 

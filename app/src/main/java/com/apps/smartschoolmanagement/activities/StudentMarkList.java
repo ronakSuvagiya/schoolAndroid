@@ -104,6 +104,7 @@ public class StudentMarkList extends JsonClass {
                 divName.removeAll(divName);
                 divId.removeAll(divId);
                 stdid = String.valueOf(stdId.get(i));
+
                 getJsonResponse(URLs.getDiv + stdid, StudentMarkList.this, new StudentMarkList.divApiCall());
             }
 
