@@ -5,53 +5,33 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
 import android.os.Bundle;
-
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.preference.PreferenceManager;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.ImageLoader.ImageContainer;
-import com.android.volley.toolbox.ImageLoader.ImageListener;
-import com.kosalgeek.android.photoutil.ImageBase64;
 import com.apps.smartschoolmanagement.R;
-import com.apps.smartschoolmanagement.activities.BusTrackingActivity;
-import com.apps.smartschoolmanagement.activities.ProfileEditActivity;
-import com.apps.smartschoolmanagement.utils.AppSingleton;
 import com.apps.smartschoolmanagement.utils.JsonFragment;
-import com.apps.smartschoolmanagement.utils.ProfileInfo;
-import com.apps.smartschoolmanagement.utils.URLs;
+import com.apps.smartschoolmanagement.utils.LocaleManager;
 
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Locale;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import static android.content.Context.MODE_PRIVATE;
-
-public class StudentProfile extends JsonFragment {
+public class StudentProfile extends JsonFragment  {
     public static ImageView profilePic;
     LinearLayout root;
     SharedPreferences sp;
     View view;
+    Locale locale;
 
     /* renamed from: com.apps.smartschoolmanagement.fragments.StudentProfile$1 */
 //    class C13721 implements OnClickListener {
@@ -115,13 +95,13 @@ public class StudentProfile extends JsonFragment {
         this.root = (LinearLayout) this.view.findViewById(R.id.root_layout);
         LinearLayout rollNo = view.findViewById(R.id.layout_roll);
         rollNo.setVisibility(View.VISIBLE);
-        loadLocale();
+//        loadLocale();
         CardView email = view.findViewById(R.id.layout_email);
         CardView language = view.findViewById(R.id.layout_language);
         language.setOnClickListener(new OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
-                                            showChangeLanguageDialog();
+                                            showChangeLangDialog();
                                         }
                                     }
         );
@@ -225,33 +205,33 @@ public class StudentProfile extends JsonFragment {
 //        }
 //        Toast.makeText(getActivity(), "No record found", 0).show();
 //    }
-    private void showChangeLanguageDialog() {
-        final String[] listitems = {"English", "हिंदी", "ગુજરાતી"};
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Choose Language...");
-        builder.setSingleChoiceItems(listitems, -1, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                if (i == 0) {
-                    setLocale("en");
-                    getActivity().recreate();
-                } else if (i == 1) {
-                    setLocale("hi");
-                    getActivity().recreate();
-                } else if (i == 2) {
-                    setLocale("hi");
-                    getActivity().recreate();
-                }
-
-                dialogInterface.dismiss();
-
-            }
-        });
-
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-
-    }
+//    private void showChangeLanguageDialog() {
+//        final String[] listitems = {"English", "हिंदी", "ગુજરાતી"};
+//        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+//        builder.setTitle("Choose Language...");
+//        builder.setSingleChoiceItems(listitems, -1, new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//                if (i == 0) {
+//                    setLocale("en");
+//                    getActivity().recreate();
+//                } else if (i == 1) {
+//                    setLocale("hi");
+//                    getActivity().recreate();
+//                } else if (i == 2) {
+//                    setLocale("hi");
+//                    getActivity().recreate();
+//                }
+//
+//                dialogInterface.dismiss();
+//
+//            }
+//        });
+//
+//        AlertDialog alertDialog = builder.create();
+//        alertDialog.show();
+//
+//    }
 
 //    private void setLocale(String lang) {
 //        Locale locale = new Locale(lang);
@@ -266,23 +246,101 @@ public class StudentProfile extends JsonFragment {
 //
 //    }
 
-    public void setLocale(String lang) {
-        Locale myLocale = new Locale(lang);
-        Resources res = getResources();
-        DisplayMetrics dm = res.getDisplayMetrics();
-        Configuration conf = res.getConfiguration();
-        conf.locale = myLocale;
-        res.updateConfiguration(conf, dm);
-        getActivity().getBaseContext().getResources().updateConfiguration(conf,  getActivity().getBaseContext().getResources().getDisplayMetrics());
-        getActivity().invalidateOptionsMenu();
-        getActivity().recreate();
-                SharedPreferences.Editor editor = sp.edit();
-        editor.putString("MyLang", lang);
-        editor.commit();
+//    public void setLocale(String lang) {
+//        Locale myLocale = new Locale(lang);
+//        Resources res = getResources();
+//        DisplayMetrics dm = res.getDisplayMetrics();
+//        Configuration conf = res.getConfiguration();
+//        conf.locale = myLocale;
+//        res.updateConfiguration(conf, dm);
+//        getActivity().getBaseContext().getResources().updateConfiguration(conf,  getActivity().getBaseContext().getResources().getDisplayMetrics());
+//        getActivity().invalidateOptionsMenu();
+//        getActivity().recreate();
+//                SharedPreferences.Editor editor = sp.edit();
+//        editor.putString("MyLang", lang);
+//        editor.commit();
+//    }
+
+//    public void loadLocale() {
+//        String lang = sp.getString("MyLang", "en");
+//        setLocale(lang);
+//    }
+public void showChangeLangDialog() {
+    AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
+    LayoutInflater inflater = this.getLayoutInflater();
+    final View dialogView = inflater.inflate(R.layout.language_dialog, null);
+    dialogBuilder.setView(dialogView);
+
+    final Spinner spinner1 = (Spinner) dialogView.findViewById(R.id.spinner1);
+
+    dialogBuilder.setTitle(getResources().getString(R.string.language_setting));
+//    dialogBuilder.setMessage(getResources().getString(R.string.lang_dialog_message));
+    dialogBuilder.setPositiveButton("Change", new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int whichButton) {
+            int langpos = spinner1.getSelectedItemPosition();
+            switch(langpos) {
+                case 0: //English
+//                    sp.edit().putString("LANG", "en").apply();
+//                    LocaleUtils.setLocale(Locale.forLanguageTag(LAN_ENGLISH));
+//                    setNewLocale(this, LocaleManager.);
+//                    getActivity().recreate();
+//                    LocalizationActivity.setLanguage(Locale.ENGLISH);
+                    return;
+                case 1: //Hindi
+//                    sp.edit().putString("LANG", "hi").apply();
+//                    LocaleUtils.setLocale("hi");
+//                    LocaleUtils.setLocale(Locale.forLanguageTag(LAN_Hindi));
+//                    getActivity().recreate();
+                    return;
+                case 2: //Hindi
+//                    sp.edit().putString("LANG", "gu").apply();
+//                    setLocale("gu");
+//                    LocaleUtils.setLocale(Locale.forLanguageTag(LAN_Gujrati));
+//                    getActivity().recreate();
+                    return;
+                default: //By default set to english
+//                    sp.edit().putString("LANG", "en").apply();
+//                    setLocale("en");
+//                    LocaleUtils.setLocale(Locale.forLanguageTag(LAN_ENGLISH));
+                    return;
+            }
+        }
+    });
+    dialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int whichButton) {
+            //pass
+        }
+    });
+    AlertDialog b = dialogBuilder.create();
+    b.show();
+}
+    private void setNewLocale(AppCompatActivity mContext, @LocaleManager.LocaleDef String language) {
+        LocaleManager.setNewLocale(getActivity(), language);
+        Intent intent = mContext.getIntent();
+        startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
     }
 
-    public void loadLocale() {
-        String lang = sp.getString("MyLang", "en");
-        setLocale(lang);
-    }
+//    public void setLangRecreate(String langval) {
+//        Configuration config = getActivity().getBaseContext().getResources().getConfiguration();
+//        locale = new Locale(langval);
+//        Locale.setDefault(locale);
+//        config.locale = locale;
+//        getActivity().getBaseContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
+//        getActivity().recreate();
+//    }
+
+//        public void setLocale(String lang) {
+//        Locale myLocale = new Locale(lang);
+//        Resources res = getResources();
+//        DisplayMetrics dm = res.getDisplayMetrics();
+//        Configuration conf = res.getConfiguration();
+//        conf.locale = myLocale;
+//        res.updateConfiguration(conf, dm);
+//        getActivity().getBaseContext().getResources().updateConfiguration(conf,  getActivity().getBaseContext().getResources().getDisplayMetrics());
+//        getActivity().invalidateOptionsMenu();
+//        getActivity().recreate();
+////                SharedPreferences.Editor editor = sp.edit();
+////        editor.putString("MyLang", lang);
+////        editor.commit();
+//    }
 }

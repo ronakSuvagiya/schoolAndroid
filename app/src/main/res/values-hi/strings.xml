@@ -213,4 +213,10 @@ ON SEARCH"</string>
     <string name="notice">Life has two rules: 1) Never quit. 2) Always remember Rule #1.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="lang_select">
+        <item>अंग्रेज़ी</item>
+        <item>हिंदी</item>
+        <item>गुजराती</item>
+    </string-array>
+    <string name="language_setting">भाषा बदलो</string>
 </resources>

@@ -2,44 +2,43 @@ package com.apps.smartschoolmanagement.utils;
 
 public class URLs {
 
-
+    public static String BASEURL = "http://13.235.43.116";
     // new url start
-    public static String getStd = "http://quickedu.co.in/finstdBySchoolId?school="; //1
-    public static String getDiv = "http://quickedu.co.in/findByStdID?std="; //1&school=1
-    public static String getStudentByStdAndDiv = "http://quickedu.co.in/findByStdAndDivAndSchool?std="; //1&div=1&School=1
-    public static String addAttendce = "http://quickedu.co.in/addAttendance";
-    public static String getStudent = "http://quickedu.co.in/findByStudentid?id="; //1
-    public static String getSubject = "http://quickedu.co.in/getSubjectApi?stdid="; //1
-    public static String getPrentByStudent = "http://quickedu.co.in/findByStudents?id=";
-    public static String PostAssignment = "http://quickedu.co.in/addAssignmentApi";
-    public static String getAssignment = "http://quickedu.co.in/getAssignmentApi?std=";
-    public static String addImgCategory = "http://quickedu.co.in/addCatApi";
-    public static String getImgCategory = "http://quickedu.co.in/getCatApi?school=";
-    public static String addImg = "http://quickedu.co.in/addImageApi?cat=";
-    public static String addMaterial = " http://quickedu.co.in/addmatirealApi";
-    public static String getHolidayList = "http://quickedu.co.in/getHolidayApi?school=";
-    public static String getEventList = "http://quickedu.co.in/getEventApi?school=";
-    public static String PostComplaint = "http://quickedu.co.in/addComplientApi";
-    public static String getComplaint = "http://quickedu.co.in/getComplentsApi?student=";
-    public static String getTimeTable = "http://quickedu.co.in/ApiGetTimeTable?id=";
-    public static String getExamSchedules = "http://quickedu.co.in/ApiGetTimeTableExam?Stdid=";
-    public static String getTeacherTimeTable = "http://quickedu.co.in/ApiGetTimeTableTeacher?TecherID=";
-    public static String getImg = "http://quickedu.co.in/getImageApi?school_id=";
-    public static String sendToken = "http://quickedu.co.in/addTokenApi/";
-    public static String updateToken = "http://quickedu.co.in/updateTokenApi/";
-    public static String getTodayAssignment = "http://quickedu.co.in/getAssignmentByAssignApi?std=";
-    public static String getAttends = "http://quickedu.co.in/getAttendance?div=";
-    public static String getStaffData = "http://quickedu.co.in/selectTeacher?schoolId=";
-    public static String getNotificationData = "http://quickedu.co.in/getDataApi?school=";
-    public static String getOnlineMaterial = "http://quickedu.co.in/getMaterialBySchoolStdAndSubjectApi/";
-    public static String SendNotification = "http://quickedu.co.in/sendNotifactionApi";
-    public static String FeesDetail = "http://quickedu.co.in/studentFeesApi/";
-public static String getExam = "http://quickedu.co.in/ApiGetTimeTableExam?Stdid=";
-    public static String getSubjectFormat = "http://quickedu.co.in/getResultFormateApi?StdId=";
-    public static String getMarksFormat = "http://quickedu.co.in/getStudentResultApi?examId=";
-    public static String getMaterialId = "http://quickedu.co.in/getDocumentApi/";
-    public static String getExamSchedulepdf = "http://quickedu.co.in/ApiGetExamPDF?timeTableId=";
-
+    public static String getStd = BASEURL + "/finstdBySchoolId?school="; //1
+    public static String getDiv = BASEURL +"/findByStdID?std="; //1&school=1
+    public static String getStudentByStdAndDiv = BASEURL +"/findByStdAndDivAndSchool?std="; //1&div=1&School=1
+    public static String addAttendce = BASEURL +"/addAttendance";
+    public static String getStudent =BASEURL + "/findByStudentid?id="; //1
+    public static String getSubject =BASEURL + "/getSubjectApi?stdid="; //1
+    public static String getPrentByStudent = BASEURL +"/findByStudents?id=";
+    public static String PostAssignment = BASEURL +"/addAssignmentApi";
+    public static String getAssignment = BASEURL +"/getAssignmentApi?std=";
+    public static String addImgCategory = BASEURL +"/addCatApi";
+    public static String getImgCategory = BASEURL +"/getCatApi?school=";
+    public static String addImg = BASEURL +"/addImageApi?cat=";
+    public static String addMaterial =BASEURL + " /addmatirealApi";
+    public static String getHolidayList = BASEURL +"/getHolidayApi?school=";
+    public static String getEventList = BASEURL +"/getEventApi?school=";
+    public static String PostComplaint = BASEURL +"/addComplientApi";
+    public static String getComplaint = BASEURL +"/getComplentsApi?student=";
+    public static String getTimeTable = BASEURL +"/ApiGetTimeTable?id=";
+    public static String getExamSchedules = BASEURL +"/ApiGetTimeTableExam?Stdid=";
+    public static String getTeacherTimeTable = BASEURL +"/ApiGetTimeTableTeacher?TecherID=";
+    public static String getImg = BASEURL +"/getImageApi?school_id=";
+    public static String sendToken = BASEURL +"/addTokenApi/";
+    public static String updateToken = BASEURL +"/updateTokenApi/";
+    public static String getTodayAssignment = BASEURL +"/getAssignmentByAssignApi?std=";
+    public static String getAttends = BASEURL +"/getAttendance?div=";
+    public static String getStaffData = BASEURL +"/selectTeacher?schoolId=";
+    public static String getNotificationData = BASEURL +"/getDataApi?school=";
+    public static String getOnlineMaterial = BASEURL +"/getMaterialBySchoolStdAndSubjectApi/";
+    public static String SendNotification = BASEURL +"/sendNotifactionApi";
+    public static String FeesDetail = BASEURL +"/studentFeesApi/";
+    public static String getExam = BASEURL +"/ApiGetTimeTableExam?Stdid=";
+    public static String getSubjectFormat = BASEURL +"/getResultFormateApi?StdId=";
+    public static String getMarksFormat = BASEURL +"/getStudentResultApi?examId=";
+    public static String getMaterialId = BASEURL +"/getDocumentApi/";
+    public static String getExamSchedulepdf = BASEURL +"/ApiGetExamPDF?timeTableId=";
 
 
     // end

@@ -43,7 +43,7 @@ public class StartActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_type);
-        showChangeLanguageDialog();
+//        showChangeLanguageDialog();
 //        loadLocale();
 //        setLocale("gu");
         this.imageIds.put("Assignments", Integer.valueOf(R.drawable.img_assignment));
@@ -121,32 +121,30 @@ public class StartActivity extends AppCompatActivity {
                 }
             });
         }
-    private void showChangeLanguageDialog() {
-        final String[] listitems = {"English", "हिंदी", "ગુજરાતી"};
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Choose Language...");
-        builder.setSingleChoiceItems(listitems, -1, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                if (i == 0) {
-                    setLocale("en");
-                   recreate();
-                } else if (i == 1) {
-                    setLocale("hi");
-                   recreate();
-                } else if (i == 2) {
-                    setLocale("gu");
-                    recreate();
-                }
-
-                dialogInterface.dismiss();
-
-            }
-        });
-
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-    }
+//    private void showChangeLanguageDialog() {
+//        final String[] listitems = {"English", "हिंदी", "ગુજરાતી"};
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setTitle("Choose Language...");
+//        AlertDialog alertDialog = builder.create();
+//        builder.setSingleChoiceItems(listitems, -1, new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//                if (i == 0) {
+//                    setLocale("en");
+//                   recreate();
+//                } else if (i == 1) {
+//                    setLocale("hi");
+//                   recreate();
+//                } else if (i == 2) {
+//                    setLocale("gu");
+//                    recreate();
+//                }
+//                dialogInterface.dismiss();
+//                alertDialog.hide();
+//            }
+//        });
+//        alertDialog.show();
+//    }
     public void setLocale(String lang) {
         Locale myLocale = new Locale(lang);
         Resources res = getResources();
