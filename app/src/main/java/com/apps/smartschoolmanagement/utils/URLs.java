@@ -4,6 +4,12 @@ public class URLs {
 
     public static String BASEURL = "http://13.235.43.116";
     // new url start
+
+    public  static final String Login_URL = BASEURL + "/Teacherlogin";
+    public  static final String Prent_Login_URL = BASEURL + "/PrentLogin";
+
+    public  static final String STUDENT_STD = BASEURL +  "/finstdBySchoolId?school=";
+
     public static String getStd = BASEURL + "/finstdBySchoolId?school="; //1
     public static String getDiv = BASEURL +"/findByStdID?std="; //1&school=1
     public static String getStudentByStdAndDiv = BASEURL +"/findByStdAndDivAndSchool?std="; //1&div=1&School=1

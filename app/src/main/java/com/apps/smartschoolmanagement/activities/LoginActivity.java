@@ -21,6 +21,7 @@ import com.android.volley.toolbox.Volley;
 import com.apps.smartschoolmanagement.Comman.URL;
 import com.apps.smartschoolmanagement.R;
 import com.apps.smartschoolmanagement.models.UserStaticData;
+import com.apps.smartschoolmanagement.utils.URLs;
 import com.apps.smartschoolmanagement.utils.basehelpers.BaseActivity;
 
 import org.json.JSONException;
@@ -170,7 +171,7 @@ public class LoginActivity extends BaseActivity {
             JSONObject jsonBody = new JSONObject();
             jsonBody.put("userName", userNamess);
             jsonBody.put("pass", passss);
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, URL.Prent_Login_URL, jsonBody, new Response.Listener<JSONObject>() {
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, URLs.Prent_Login_URL, jsonBody, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
                     try {
@@ -263,7 +264,7 @@ public class LoginActivity extends BaseActivity {
             JSONObject jsonBody = new JSONObject();
             jsonBody.put("userName", userNamess);
             jsonBody.put("pass", passss);
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, URL.Login_URL, jsonBody, new Response.Listener<JSONObject>() {
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, URLs.Login_URL, jsonBody, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
                     try {
